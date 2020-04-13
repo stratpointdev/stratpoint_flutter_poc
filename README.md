@@ -1,3 +1,19 @@
+## Getting Started
+
+Flutter development can be done on macOS, Linux, or Windows. While you can use any editor with the Flutter toolchain, there are IDE plugins for *[IntelliJ IDEA](https://www.jetbrains.com/idea/)*, *[Android Studio](https://developer.android.com/studio/index.html)* and *[Visual Studio Code](https://code.visualstudio.com/)* that can ease the development cycle. We’ll use VS Code for this project.
+
+### Setting up Your Development Environment
+
+Instructions for setting up your development machine with the Flutter framework can be found [here](https://flutter.dev/docs/get-started/install). The basic steps vary by platform, but for the most part are:
+
+1. Download the installation bundle for your development machine’s operating system to get the latest **stable release (at least v1.12)** of the Flutter SDK 
+2. Extract the the installation bundle in the desired location
+3. Add the flutter tool to your path
+4. Run the `flutter doctor` command, which installs the Flutter framework including Dart and alerts you to any missing dependencies
+5. Install missing dependencies
+6. Set up your IDE with a Flutter plugin/extension
+7. For your build machines - Xcode 11.3 or 11.4, Android SDK 29
+
 
 ## Domain-Driven Design 
 
