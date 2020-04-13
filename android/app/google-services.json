@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1070254934331",
+    "firebase_url": "https://thebrewery-flutter.firebaseio.com",
+    "project_id": "thebrewery-flutter",
+    "storage_bucket": "thebrewery-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070254934331:android:accb87f3ab07afaa128f1e",
+        "android_client_info": {
+          "package_name": "com.thebrewery.ale_flutter_ddd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1070254934331-pdr618re34e7sj5nl1q27aefbkh0pp1q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDka7IlWKq7iTlsDMEQKw9uU6SpaoFIN50"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1070254934331-pdr618re34e7sj5nl1q27aefbkh0pp1q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
