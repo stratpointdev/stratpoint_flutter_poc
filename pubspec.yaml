@@ -49,4 +49,5 @@ flutter:
   assets:
     # assets-generator-begin
     # assets/*
+    - assets/icon.png
     # assets-generator-end
