@@ -42,6 +42,10 @@ dev_dependencies:
   auto_route_generator: ^0.3.2
   injectable_generator: ^0.3.2
   json_serializable: ^3.2.5
+  flutter_launcher_name: ^0.0.1
+
+flutter_launcher_name:
+  name: "GlobeOne POC"
 
 
 flutter:
