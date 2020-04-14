@@ -43,10 +43,15 @@ dev_dependencies:
   injectable_generator: ^0.3.2
   json_serializable: ^3.2.5
   flutter_launcher_name: ^0.0.1
+  flutter_launcher_icons: ^0.7.4
 
 flutter_launcher_name:
   name: "GlobeOne POC"
 
+flutter_icons:
+  image_path: "assets/icon.png"
+  android: true
+  ios: true
 
 flutter:
   uses-material-design: true
