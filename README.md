@@ -14,6 +14,53 @@ Instructions for setting up your development machine with the Flutter framework 
 6. Set up your IDE with a Flutter plugin/extension
 7. For your build machines - Xcode 11.3 or 11.4, Android SDK 29
 
+### Project Tips
+
+#### App Name
+
+To rename the application, edit the value of the `name` key on the [pubspec.yaml](pubspec.yaml)
+
+```yaml
+flutter_launcher_name:
+  name: "GlobeOne POC"
+```
+
+Then run the following commands
+
+```shell
+flutter pub get
+flutter pub run flutter_launcher_name:main
+```
+
+#### App Icon
+
+To change the app icon, change the icon on the directory **/assets/icon.png**`** and make sure the correct value for the `image_path` is set on the [pubspec.yaml](pubspec.yaml)
+
+```yaml
+flutter_icons:
+  image_path: "assets/icon.png"
+  android: true
+  ios: true
+```
+
+Then run the following commands
+
+```shell
+flutter pub get
+flutter pub run flutter_launcher_icons:main
+```
+
+#### Assets
+
+Adding assets is as easy as adding files to the **/assets** directory. To easily access these assets, please run the [Flutter Image Sync](https://marketplace.visualstudio.com/items?itemName=Lihaha.flutter-img-sync&ssr=false#overview) plugin.
+
+This plugin will generate a file called `R.dart` inside your **/lib** folder.
+
+You may now access your assets like this
+
+```dart
+Image.asset(R.assetsIcSampleName)
+```
 
 ## Domain-Driven Design 
 

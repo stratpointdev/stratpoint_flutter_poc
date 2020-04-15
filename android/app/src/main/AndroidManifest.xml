@@ -7,7 +7,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="finished_notes_firebase_ddd_course"
+        android:label="GlobeOne POC"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
