@@ -26,14 +26,14 @@ class MyApp extends StatelessWidget {
               title: 'GlobePOC',
               debugShowCheckedModeBanner: false,
               theme: ThemeData(
-                fontFamily: 'Roboto',
+                fontFamily: 'FSElliotPro',
                 secondaryHeaderColor: Colors.black,
                 textSelectionHandleColor:
                     Color(HexToIntConverter.convert("#007AFF")),
                 textSelectionColor: Color(HexToIntConverter.convert("#001B58")),
                 errorColor: Color(HexToIntConverter.convert("#E02020")),
-                hintColor: Color(HexToIntConverter.convert("#CCCCCC")),
                 disabledColor: Color(HexToIntConverter.convert("#007AFF")),
+                hintColor: Color(HexToIntConverter.convert("#A1A1A1")),
                 primaryColor: Color(HexToIntConverter.convert("#0056BF")),
                 accentColor: Colors.white,
               ),

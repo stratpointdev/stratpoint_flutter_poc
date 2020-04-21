@@ -41,3 +41,10 @@ flutter:
     - assets/icon.png
     - assets/ic_globe_banner.png
     # assets-generator-end
+  fonts:
+    - family: FSElliotPro
+      fonts:
+        - asset: assets/fonts/FSElloitPro/FS-Elliot-Pro-Bold.otf
+        - asset: assets/fonts/FSElloitPro/FS-Elliot-Pro-Italic.otf
+        - asset: assets/fonts/FSElloitPro/FS-Elliot-Pro-Regular.otf
+          style: italic
