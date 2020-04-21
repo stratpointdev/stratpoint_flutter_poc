@@ -1,52 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:globe_one_poc_project/common/utils/media_query_util.dart';
 
 class MobilePaymentInformationWidget extends StatefulWidget {
-  final String paymentAmountLabel;
-  final Color paymentAmountLabelColor;
-  final double paymentAmountLabelFontSize;
-
   final String paymentAmountValue;
-  final Color paymentAmountValueColor;
-  final double paymentAmountValueFontSize;
 
   final String dueDate;
-  final Color dueDateTextColor;
-  final double dueDateFontSize;
 
-  final String payNowButtonLabel;
-  final Color payNowButtonColor;
-  final Color payNowButtonTextColor;
-  final double payNowButtonFontSize;
-  final double payNowButtonRadius;
   final GestureTapCallback payNowButtonOnPressed;
-
-  final String viewBillButtonLabel;
-  final Color viewBillButtonTextColor;
-  final double viewBillButtonFontSize;
-  final IconData viewBillButtonIcon;
   final GestureTapCallback viewBillButtonOnPressed;
 
   const MobilePaymentInformationWidget(
       {Key key,
-      this.paymentAmountLabel,
-      this.paymentAmountLabelColor,
-      this.paymentAmountLabelFontSize,
-      this.paymentAmountValue,
-      this.paymentAmountValueColor,
-      this.paymentAmountValueFontSize,
-      this.dueDate,
-      this.dueDateTextColor,
-      this.dueDateFontSize,
-      this.payNowButtonLabel,
-      this.payNowButtonColor,
-      this.payNowButtonTextColor,
-      this.payNowButtonFontSize,
-      this.payNowButtonRadius,
+      this.paymentAmountValue: '₱ 1,798.03',
+      this.dueDate: 'Due on May 13',
       this.payNowButtonOnPressed,
-      this.viewBillButtonLabel,
-      this.viewBillButtonTextColor,
-      this.viewBillButtonFontSize,
-      this.viewBillButtonIcon,
       this.viewBillButtonOnPressed})
       : super(key: key);
 
@@ -59,6 +26,7 @@ class _MobilePaymentInformationWidgetState
     extends State<MobilePaymentInformationWidget> {
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Container(
@@ -68,17 +36,21 @@ class _MobilePaymentInformationWidgetState
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  widget.paymentAmountLabel,
+                  "Amount to pay",
                   style: TextStyle(
-                    fontSize: widget.paymentAmountLabelFontSize,
-                    color: widget.paymentAmountLabelColor,
+                    fontSize: MediaQueryUtil.convertHeight(screenHeight, 14),
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'FSElliotPro',
+                    color: Theme.of(context).primaryColor.withOpacity(.8),
                   ),
                 ),
                 Text(
                   widget.paymentAmountValue,
                   style: TextStyle(
-                    fontSize: widget.paymentAmountValueFontSize,
-                    color: widget.paymentAmountValueColor,
+                    fontSize: MediaQueryUtil.convertHeight(screenHeight, 14),
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'FSElliotPro',
+                    color: Colors.black,
                   ),
                 ),
               ],
@@ -91,8 +63,8 @@ class _MobilePaymentInformationWidgetState
                 Text(
                   widget.dueDate,
                   style: TextStyle(
-                    fontSize: widget.dueDateFontSize,
-                    color: widget.dueDateTextColor,
+                    fontSize: MediaQueryUtil.convertHeight(screenHeight, 10),
+                    color: Theme.of(context).hintColor,
                   ),
                 )
               ],
@@ -105,31 +77,39 @@ class _MobilePaymentInformationWidgetState
                 Expanded(
                   child: FlatButton(
                     shape: RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.circular(widget.payNowButtonRadius)),
+                        borderRadius: BorderRadius.circular(5)),
                     onPressed: widget.payNowButtonOnPressed,
-                    textColor: widget.payNowButtonTextColor,
-                    color: widget.payNowButtonColor,
+                    textColor: Theme.of(context).accentColor,
+                    color: Theme.of(context).primaryColor,
                     child: Text(
-                      widget.payNowButtonLabel,
-                      style: TextStyle(fontSize: widget.payNowButtonFontSize),
+                      'Pay now',
+                      style: TextStyle(
+                        fontSize:
+                            MediaQueryUtil.convertHeight(screenHeight, 11),
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'FSElliotPro',
+                      ),
                     ),
                   ),
                 ),
                 Expanded(
                   child: FlatButton(
                     onPressed: widget.viewBillButtonOnPressed,
-                    textColor: widget.viewBillButtonTextColor,
+                    textColor: Theme.of(context).primaryColor.withOpacity(.8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          widget.viewBillButtonLabel,
+                          'View My Bill',
                           style: TextStyle(
-                              fontSize: widget.viewBillButtonFontSize),
+                            fontSize:
+                                MediaQueryUtil.convertHeight(screenHeight, 11),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'FSElliotPro',
+                          ),
                         ),
                         Icon(
-                          widget.viewBillButtonIcon,
+                          Icons.chevron_right,
                         ),
                       ],
                     ),

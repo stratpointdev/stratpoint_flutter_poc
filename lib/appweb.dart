@@ -1,4 +1,4 @@
-import 'package:globe_one_poc_project/presentation/page/login/login.dart';
+import 'package:globe_one_poc_project/presentation/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

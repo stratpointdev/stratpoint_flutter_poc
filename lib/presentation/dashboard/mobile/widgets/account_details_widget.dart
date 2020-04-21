@@ -5,6 +5,15 @@ import 'package:globe_one_poc_project/common/utils/media_query_util.dart';
 class AccountDetailsWidget extends StatefulWidget {
   @override
   _AccountDetailsWidgetState createState() => _AccountDetailsWidgetState();
+
+  final String userName;
+  final String userMobileNumber;
+  final String userDuoNumber;
+
+  AccountDetailsWidget(
+      {this.userName: "Samantha",
+      this.userMobileNumber: "0917 XXX XXXX",
+      this.userDuoNumber: "DUO 052654245"});
 }
 
 class _AccountDetailsWidgetState extends State<AccountDetailsWidget> {
@@ -35,15 +44,19 @@ class _AccountDetailsWidgetState extends State<AccountDetailsWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    "Samantha",
+                    widget.userName,
                     style: TextStyle(
                         fontFamily: 'FSElliotPro',
-                        fontSize: 14,
+                        fontSize:
+                            MediaQueryUtil.convertHeight(screenHeight, 14),
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "0917 XXX XXXX | DUO 052654245",
-                    style: TextStyle(fontFamily: 'FSElliotPro', fontSize: 10),
+                    widget.userMobileNumber + " | " + widget.userDuoNumber,
+                    style: TextStyle(
+                      fontFamily: 'FSElliotPro',
+                      fontSize: MediaQueryUtil.convertHeight(screenHeight, 10),
+                    ),
                   )
                 ],
               ),

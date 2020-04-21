@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:globe_one_poc_project/presentation/page/login/mobile/dashboard_page.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/mobile/dashboard_page.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'application/login/bloc/login_bloc.dart';

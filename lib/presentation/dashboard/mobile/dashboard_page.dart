@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:globe_one_poc_project/common/utils/media_query_util.dart';
-import 'package:globe_one_poc_project/presentation/page/login/mobile/account_details_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/mobile_payment_information_widget.dart';
 
 class DashBoardPage extends StatelessWidget {
   @override
@@ -26,7 +27,13 @@ class DashBoardPage extends StatelessWidget {
         ],
       ),
       body: ListView(
-        children: <Widget>[AccountDetailsWidget()],
+        children: <Widget>[
+          AccountDetailsWidget(),
+          MobilePaymentInformationWidget(
+            payNowButtonOnPressed: () {},
+            viewBillButtonOnPressed: () {},
+          )
+        ],
       ),
     );
   }
