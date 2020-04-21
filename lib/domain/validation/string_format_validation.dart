@@ -1,24 +1,22 @@
+import 'package:globe_one_poc_project/domain/validation/password_validator.dart';
 
-import 'package:finished_notes_firebase_ddd_course/domain/validation/password_validator.dart';
-
-class StringFormatValidation{
-
+class StringFormatValidation {
   static String validateEmail(String email) {
-    if(email.isEmpty){
+    if (email.isEmpty) {
       return "Please enter email";
-    }else if (RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+    } else if (RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(email)) {
       return null;
-    }else{
+    } else {
       return "Please enter a vaild email";
     }
   }
 
   static String validatePassword(String password) {
-    if(password.isEmpty){
+    if (password.isEmpty) {
       return "Please enter password";
-    }else if (PasswordValidator.isPasswordTooShort(password, 8)) {
+    } else if (PasswordValidator.isPasswordTooShort(password, 8)) {
       return "Password must be at least 8 characters";
     } else if (!PasswordValidator.hasAtLeastANumber(password)) {
       return "Password must contain at least one number.";

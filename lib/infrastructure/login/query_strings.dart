@@ -1,9 +1,5 @@
-
-
-class QueryStrings{
-
-
-  static String loginQueryString(String username, String password){
+class QueryStrings {
+  static String loginQueryString(String username, String password) {
     return """
     mutation{
       users{
@@ -43,5 +39,4 @@ class QueryStrings{
         }
     """;
   }
-
 }

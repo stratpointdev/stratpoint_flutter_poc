@@ -1,15 +1,15 @@
 class PasswordValidator {
-
-  static bool isPasswordValid(String password){
-    if(password.length > 8 && hasAtleastOnSpecialChar(password) &&
-        RegExp(r".*[0-9]").hasMatch(password)&& RegExp(r".*[A-Z]").hasMatch(password)
-        &&PasswordValidator.notContainsInvalidCharacter(password)){
+  static bool isPasswordValid(String password) {
+    if (password.length > 8 &&
+        hasAtleastOnSpecialChar(password) &&
+        RegExp(r".*[0-9]").hasMatch(password) &&
+        RegExp(r".*[A-Z]").hasMatch(password) &&
+        PasswordValidator.notContainsInvalidCharacter(password)) {
       return true;
-    }else{
+    } else {
       return false;
     }
   }
-
 
   static bool isPasswordTooShort(String pass, int minLength) {
     if (pass.length < minLength) {
@@ -19,7 +19,8 @@ class PasswordValidator {
   }
 
   static bool notContainsInvalidCharacter(String pass) {
-    if (RegExp(r'.*[\\"]').hasMatch(pass)|RegExp(r".*[\//']").hasMatch(pass)) {
+    if (RegExp(r'.*[\\"]').hasMatch(pass) |
+        RegExp(r".*[\//']").hasMatch(pass)) {
       return false;
     }
     return true;

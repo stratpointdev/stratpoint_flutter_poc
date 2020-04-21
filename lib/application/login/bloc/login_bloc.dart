@@ -1,6 +1,5 @@
-
-import 'package:finished_notes_firebase_ddd_course/infrastructure/login/login_service.dart';
-import 'package:finished_notes_firebase_ddd_course/infrastructure/login/models/profile.dart';
+import 'package:globe_one_poc_project/infrastructure/login/login_service.dart';
+import 'package:globe_one_poc_project/infrastructure/login/models/profile.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -12,7 +11,7 @@ part 'login_bloc.freezed.dart';
 
 @injectable
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  UserService userService =  UserService();
+  UserService userService = UserService();
 
   @override
   LoginState get initialState => LoginState.initial();
@@ -23,7 +22,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       emailChanged: (e) async* {
         yield state.copyWith(
           emailAddress: e.emailStr,
-
         );
       },
       passwordChanged: (e) async* {
@@ -31,39 +29,30 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           password: e.passwordStr,
         );
       },
-
       signInWithEmailAndPasswordPressed: (e) async* {
         yield* _LogInWithEmailAndPassword();
       },
-
     );
   }
 
-    Stream<LoginState> _LogInWithEmailAndPassword() async* {
-
+  Stream<LoginState> _LogInWithEmailAndPassword() async* {
     yield state.copyWith(
-    isSubmitting: true,
+      isSubmitting: true,
     );
-    String response = await userService.logInUser(state.emailAddress,state.password);
+    String response =
+        await userService.logInUser(state.emailAddress, state.password);
 
     Profile profile = await userService.getUserViaSession(response);
 
-    if(response != "error" && profile != null){
+    if (response != "error" && profile != null) {
       yield state.copyWith(
-        isSubmitting: false,
-        token : response,
-        profile : profile
-      );
-    }else{
+          isSubmitting: false, token: response, profile: profile);
+    } else {
       yield state.copyWith(
         isSubmitting: false,
         showErrorMessages: true,
         errorMessage: 'Invalid email address or password!',
       );
     }
-
-
-    }
-
-
   }
+}
