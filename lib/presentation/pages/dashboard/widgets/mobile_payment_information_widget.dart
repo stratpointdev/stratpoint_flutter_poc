@@ -109,11 +109,11 @@ class _MobilePaymentInformationWidgetState
                             BorderRadius.circular(widget.payNowButtonRadius)),
                     onPressed: widget.payNowButtonOnPressed,
                     textColor: widget.payNowButtonTextColor,
+                    color: widget.payNowButtonColor,
                     child: Text(
                       widget.payNowButtonLabel,
                       style: TextStyle(fontSize: widget.payNowButtonFontSize),
                     ),
-                    color: widget.payNowButtonColor,
                   ),
                 ),
                 Expanded(
