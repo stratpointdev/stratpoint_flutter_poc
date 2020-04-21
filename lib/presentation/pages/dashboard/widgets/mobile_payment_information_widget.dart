@@ -27,7 +27,7 @@ class MobilePaymentInformationWidget extends StatefulWidget {
   final GestureTapCallback viewBillButtonOnPressed;
 
   const MobilePaymentInformationWidget(
-      Key key,
+      {Key key,
       this.paymentAmountLabel,
       this.paymentAmountLabelColor,
       this.paymentAmountLabelFontSize,
@@ -47,7 +47,7 @@ class MobilePaymentInformationWidget extends StatefulWidget {
       this.viewBillButtonTextColor,
       this.viewBillButtonFontSize,
       this.viewBillButtonIcon,
-      this.viewBillButtonOnPressed)
+      this.viewBillButtonOnPressed})
       : super(key: key);
 
   @override
