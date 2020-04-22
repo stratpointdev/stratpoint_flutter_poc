@@ -1,6 +1,8 @@
-import 'package:globe_one_poc_project/domain/validation/password_validator.dart';
+
+import 'password_validator.dart';
 
 class StringFormatValidation {
+
   static String validateEmail(String email) {
     if (email.isEmpty) {
       return "Please enter email";

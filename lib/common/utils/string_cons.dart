@@ -15,4 +15,6 @@ class StringCons {
 
   static const String sessionDate = "sessionDate";
   static const String sessionToken = "sessionToken";
+
+
 }
