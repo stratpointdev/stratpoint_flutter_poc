@@ -8,52 +8,51 @@ class DataUsageWidget extends StatelessWidget {
   final Color textColor;
   final Color cupIndicatorTextColor;
   final Color addMoreDataButtonColor;
-  final Image levelImage;
+  final Widget cupLevelIndicator;
   final EdgeInsetsGeometry padding;
   final VoidCallback onRefresh;
   final VoidCallback onAddMoreData;
   final VoidCallback onViewDetails;
 
-  DataUsageWidget({
+  const DataUsageWidget({
     @required this.time,
     @required this.remainingData,
     @required this.dataAllocation,
     @required this.refillDate,
-    @required this.textColor,
-    @required this.addMoreDataButtonColor,
-    @required this.cupIndicatorTextColor,
-    @required this.levelImage,
+    this.textColor = const Color(0xff244857),
+    this.addMoreDataButtonColor = const Color(0xff009CDF),
+    this.cupIndicatorTextColor = const Color(0xff9B9B9B),
+    this.padding = const EdgeInsets.fromLTRB(16, 20, 16, 35),
+    @required this.cupLevelIndicator,
     @required this.onRefresh,
     @required this.onAddMoreData,
     @required this.onViewDetails,
-    this.padding,
   });
 
   @override
   Widget build(BuildContext context) {
-    TextStyle _cupIndicatorStyle = TextStyle(
+    final TextStyle cupLevelIndicatorTextStyle = TextStyle(
       fontSize: 17,
       color: cupIndicatorTextColor,
     );
 
-    Widget mainWidget = IntrinsicHeight(
+    return IntrinsicHeight(
       child: Container(
-        padding: const EdgeInsets.fromLTRB(16, 20, 16, 35),
+        padding: padding,
         color: Colors.white,
         child: Column(
           children: <Widget>[
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
                       'Data Allowance',
                       style: TextStyle(
                         color: textColor,
-                        // fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
                     ),
@@ -67,14 +66,15 @@ class DataUsageWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                Expanded(child: Container()),
-                SizedBox(
-                  height: 14,
-                  width: 14,
-                  child: RawMaterialButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () => onRefresh,
-                    child: Icon(Icons.refresh), // TODO: Change Icon
+                Center(
+                  child: SizedBox(
+                    height: 24,
+                    width: 24,
+                    child: IconButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: () => onRefresh,
+                      icon: Icon(Icons.refresh), // TODO: Change Icon
+                    ),
                   ),
                 ),
               ],
@@ -89,18 +89,19 @@ class DataUsageWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text('100%', style: _cupIndicatorStyle),
-                      Text('—', style: _cupIndicatorStyle),
-                      Text('50%', style: _cupIndicatorStyle),
-                      Text('—', style: _cupIndicatorStyle),
-                      Text('0%', style: _cupIndicatorStyle),
+                      Text('100%', style: cupLevelIndicatorTextStyle),
+                      Text('—', style: cupLevelIndicatorTextStyle),
+                      Text('50%', style: cupLevelIndicatorTextStyle),
+                      Text('—', style: cupLevelIndicatorTextStyle),
+                      Text('0%', style: cupLevelIndicatorTextStyle),
                     ],
                   ),
-                  // const SizedBox(width: 8),
                   Expanded(child: Container()),
+                  // TODO: Change to Ratio depending on Screen Size?
                   Container(
                     width: 140,
-                    child: levelImage,
+                    height: 190,
+                    child: cupLevelIndicator,
                   ),
                   Expanded(child: Container()),
                   Column(
@@ -181,13 +182,5 @@ class DataUsageWidget extends StatelessWidget {
         ),
       ),
     );
-
-    if (padding != null) {
-      return Padding(
-        padding: padding,
-        child: mainWidget,
-      );
-    }
-    return mainWidget;
   }
 }
