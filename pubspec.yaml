@@ -38,6 +38,7 @@ flutter:
   assets:
     # assets-generator-begin
     # assets/*
+    - assets/duck_placeholder.png
     - assets/icon.png
     - assets/ic_globe_banner.png
     # assets-generator-end
