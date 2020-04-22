@@ -4,14 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'MobileMenu.dart';
 
 class MobileDashboard extends StatefulWidget {
-   const MobileDashboard();
+  const MobileDashboard();
 
-   @override
+  @override
   _MobileDashboard createState() => _MobileDashboard();
 }
 
 class _MobileDashboard extends State<MobileDashboard> {
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -28,17 +27,15 @@ class _MobileDashboard extends State<MobileDashboard> {
               ),
             ),
           ),
-
           AccountMobileDashboard(
             profile: "Samantha",
             mobile: "0918 XXXX XXXX",
             duoNumber: "(02) 2920118",
             profilePicture: "https://i.imgur.com/BoN9kdC.png",
           ),
-
           MobileMenu()
         ],
       ),
-    );;
+    );
   }
 }

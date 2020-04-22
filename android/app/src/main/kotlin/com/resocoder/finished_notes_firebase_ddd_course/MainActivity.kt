@@ -1,4 +1,4 @@
-package com.resocoder.globe_one_poc_project
+package com.stratpoint.globe_one_poc_project
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
