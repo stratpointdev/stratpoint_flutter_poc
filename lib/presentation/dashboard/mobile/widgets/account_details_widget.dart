@@ -11,7 +11,7 @@ class AccountDetailsWidget extends StatefulWidget {
   final String userDuoNumber;
 
   AccountDetailsWidget(
-      {this.userName: "Samantha",
+      {this.userName: "Samantha.",
       this.userMobileNumber: "0917 XXX XXXX",
       this.userDuoNumber: "DUO 052654245"});
 }
