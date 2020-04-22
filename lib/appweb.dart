@@ -1,11 +1,11 @@
-
-import 'package:globe_one_poc_project/presentation/login/login.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import 'application/login/bloc/login_bloc.dart';
 import 'common/utils/hex_to_int_converter.dart';
+import 'presentation/dashboard/web/widgets/desktop_dashboard.dart';
+import 'presentation/dashboard/web/widgets/mobile_dashboard.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           title: 'POC',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            fontFamily: 'Roboto',
+            fontFamily: 'FSElliotPro',
             secondaryHeaderColor: Colors.black,
             textSelectionHandleColor:
                 Color(HexToIntConverter.convert("#007AFF")),
@@ -36,7 +36,16 @@ class MyApp extends StatelessWidget {
             accentColor: Colors.white,
           ),
 
-          home: LoginPage(),
+          home: Scaffold(
+            body: Column(
+              children: <Widget>[
+                ScreenTypeLayout(
+                    tablet: DesktopDashboard(),
+                    mobile: MobileDashboard()
+                )
+              ],
+            ),
+          ),
         ));
 
   }
