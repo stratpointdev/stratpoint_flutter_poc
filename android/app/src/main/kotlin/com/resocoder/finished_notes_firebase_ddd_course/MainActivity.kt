@@ -1,4 +1,4 @@
-package com.resocoder.finished_notes_firebase_ddd_course
+package com.stratpoint.globe_one_poc_project
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
