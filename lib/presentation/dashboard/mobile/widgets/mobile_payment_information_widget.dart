@@ -11,7 +11,8 @@ class MobilePaymentInformationWidget extends StatefulWidget {
 
   const MobilePaymentInformationWidget(
       {Key key,
-      this.paymentAmountValue: '₱ 1,798.03',
+    //  this.paymentAmountValue: '₱ 1,798.03',
+        this.paymentAmountValue,
       this.dueDate: 'Due on May 13',
       this.payNowButtonOnPressed,
       this.viewBillButtonOnPressed})

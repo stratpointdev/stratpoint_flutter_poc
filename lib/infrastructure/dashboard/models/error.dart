@@ -7,8 +7,6 @@ class Err{
 
   factory Err.fromJson(Map<String, dynamic> json) {
 
-    print("json : "+json['code'].toString());
-
     return Err(
       code: json['code'],
       message: json['message'],
