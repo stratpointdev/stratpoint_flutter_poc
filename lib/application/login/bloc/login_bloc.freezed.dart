@@ -24,7 +24,7 @@ class _$LoginEventTearOff {
     );
   }
 
-  SignInWithEmailAndPasswordPressed signInWithEmailAndPasswordPressed() {
+  SignInWithEmailAndPasswordPressed LogInWithEmailAndPasswordPressed() {
     return const SignInWithEmailAndPasswordPressed();
   }
 }
@@ -37,13 +37,13 @@ mixin _$LoginEvent {
   Result when<Result extends Object>({
     @required Result emailChanged(String emailStr),
     @required Result passwordChanged(String passwordStr),
-    @required Result signInWithEmailAndPasswordPressed(),
+    @required Result LogInWithEmailAndPasswordPressed(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result emailChanged(String emailStr),
     Result passwordChanged(String passwordStr),
-    Result signInWithEmailAndPasswordPressed(),
+    Result LogInWithEmailAndPasswordPressed(),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -51,14 +51,14 @@ mixin _$LoginEvent {
     @required Result emailChanged(EmailChanged value),
     @required Result passwordChanged(PasswordChanged value),
     @required
-        Result signInWithEmailAndPasswordPressed(
+        Result LogInWithEmailAndPasswordPressed(
             SignInWithEmailAndPasswordPressed value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result emailChanged(EmailChanged value),
     Result passwordChanged(PasswordChanged value),
-    Result signInWithEmailAndPasswordPressed(
+    Result LogInWithEmailAndPasswordPressed(
         SignInWithEmailAndPasswordPressed value),
     @required Result orElse(),
   });
@@ -137,11 +137,11 @@ class _$EmailChanged implements EmailChanged {
   Result when<Result extends Object>({
     @required Result emailChanged(String emailStr),
     @required Result passwordChanged(String passwordStr),
-    @required Result signInWithEmailAndPasswordPressed(),
+    @required Result LogInWithEmailAndPasswordPressed(),
   }) {
     assert(emailChanged != null);
     assert(passwordChanged != null);
-    assert(signInWithEmailAndPasswordPressed != null);
+    assert(LogInWithEmailAndPasswordPressed != null);
     return emailChanged(emailStr);
   }
 
@@ -150,7 +150,7 @@ class _$EmailChanged implements EmailChanged {
   Result maybeWhen<Result extends Object>({
     Result emailChanged(String emailStr),
     Result passwordChanged(String passwordStr),
-    Result signInWithEmailAndPasswordPressed(),
+    Result LogInWithEmailAndPasswordPressed(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -166,12 +166,12 @@ class _$EmailChanged implements EmailChanged {
     @required Result emailChanged(EmailChanged value),
     @required Result passwordChanged(PasswordChanged value),
     @required
-        Result signInWithEmailAndPasswordPressed(
+        Result LogInWithEmailAndPasswordPressed(
             SignInWithEmailAndPasswordPressed value),
   }) {
     assert(emailChanged != null);
     assert(passwordChanged != null);
-    assert(signInWithEmailAndPasswordPressed != null);
+    assert(LogInWithEmailAndPasswordPressed != null);
     return emailChanged(this);
   }
 
@@ -180,7 +180,7 @@ class _$EmailChanged implements EmailChanged {
   Result maybeMap<Result extends Object>({
     Result emailChanged(EmailChanged value),
     Result passwordChanged(PasswordChanged value),
-    Result signInWithEmailAndPasswordPressed(
+    Result LogInWithEmailAndPasswordPressed(
         SignInWithEmailAndPasswordPressed value),
     @required Result orElse(),
   }) {
@@ -258,11 +258,11 @@ class _$PasswordChanged implements PasswordChanged {
   Result when<Result extends Object>({
     @required Result emailChanged(String emailStr),
     @required Result passwordChanged(String passwordStr),
-    @required Result signInWithEmailAndPasswordPressed(),
+    @required Result LogInWithEmailAndPasswordPressed(),
   }) {
     assert(emailChanged != null);
     assert(passwordChanged != null);
-    assert(signInWithEmailAndPasswordPressed != null);
+    assert(LogInWithEmailAndPasswordPressed != null);
     return passwordChanged(passwordStr);
   }
 
@@ -271,7 +271,7 @@ class _$PasswordChanged implements PasswordChanged {
   Result maybeWhen<Result extends Object>({
     Result emailChanged(String emailStr),
     Result passwordChanged(String passwordStr),
-    Result signInWithEmailAndPasswordPressed(),
+    Result LogInWithEmailAndPasswordPressed(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -287,12 +287,12 @@ class _$PasswordChanged implements PasswordChanged {
     @required Result emailChanged(EmailChanged value),
     @required Result passwordChanged(PasswordChanged value),
     @required
-        Result signInWithEmailAndPasswordPressed(
+        Result LogInWithEmailAndPasswordPressed(
             SignInWithEmailAndPasswordPressed value),
   }) {
     assert(emailChanged != null);
     assert(passwordChanged != null);
-    assert(signInWithEmailAndPasswordPressed != null);
+    assert(LogInWithEmailAndPasswordPressed != null);
     return passwordChanged(this);
   }
 
@@ -301,7 +301,7 @@ class _$PasswordChanged implements PasswordChanged {
   Result maybeMap<Result extends Object>({
     Result emailChanged(EmailChanged value),
     Result passwordChanged(PasswordChanged value),
-    Result signInWithEmailAndPasswordPressed(
+    Result LogInWithEmailAndPasswordPressed(
         SignInWithEmailAndPasswordPressed value),
     @required Result orElse(),
   }) {
@@ -346,7 +346,7 @@ class _$SignInWithEmailAndPasswordPressed
 
   @override
   String toString() {
-    return 'LoginEvent.signInWithEmailAndPasswordPressed()';
+    return 'LoginEvent.LogInWithEmailAndPasswordPressed()';
   }
 
   @override
@@ -363,12 +363,12 @@ class _$SignInWithEmailAndPasswordPressed
   Result when<Result extends Object>({
     @required Result emailChanged(String emailStr),
     @required Result passwordChanged(String passwordStr),
-    @required Result signInWithEmailAndPasswordPressed(),
+    @required Result LogInWithEmailAndPasswordPressed(),
   }) {
     assert(emailChanged != null);
     assert(passwordChanged != null);
-    assert(signInWithEmailAndPasswordPressed != null);
-    return signInWithEmailAndPasswordPressed();
+    assert(LogInWithEmailAndPasswordPressed != null);
+    return LogInWithEmailAndPasswordPressed();
   }
 
   @override
@@ -376,12 +376,12 @@ class _$SignInWithEmailAndPasswordPressed
   Result maybeWhen<Result extends Object>({
     Result emailChanged(String emailStr),
     Result passwordChanged(String passwordStr),
-    Result signInWithEmailAndPasswordPressed(),
+    Result LogInWithEmailAndPasswordPressed(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (signInWithEmailAndPasswordPressed != null) {
-      return signInWithEmailAndPasswordPressed();
+    if (LogInWithEmailAndPasswordPressed != null) {
+      return LogInWithEmailAndPasswordPressed();
     }
     return orElse();
   }
@@ -392,13 +392,13 @@ class _$SignInWithEmailAndPasswordPressed
     @required Result emailChanged(EmailChanged value),
     @required Result passwordChanged(PasswordChanged value),
     @required
-        Result signInWithEmailAndPasswordPressed(
+        Result LogInWithEmailAndPasswordPressed(
             SignInWithEmailAndPasswordPressed value),
   }) {
     assert(emailChanged != null);
     assert(passwordChanged != null);
-    assert(signInWithEmailAndPasswordPressed != null);
-    return signInWithEmailAndPasswordPressed(this);
+    assert(LogInWithEmailAndPasswordPressed != null);
+    return LogInWithEmailAndPasswordPressed(this);
   }
 
   @override
@@ -406,13 +406,13 @@ class _$SignInWithEmailAndPasswordPressed
   Result maybeMap<Result extends Object>({
     Result emailChanged(EmailChanged value),
     Result passwordChanged(PasswordChanged value),
-    Result signInWithEmailAndPasswordPressed(
+    Result LogInWithEmailAndPasswordPressed(
         SignInWithEmailAndPasswordPressed value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (signInWithEmailAndPasswordPressed != null) {
-      return signInWithEmailAndPasswordPressed(this);
+    if (LogInWithEmailAndPasswordPressed != null) {
+      return LogInWithEmailAndPasswordPressed(this);
     }
     return orElse();
   }

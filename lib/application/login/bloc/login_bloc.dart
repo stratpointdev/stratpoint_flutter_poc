@@ -29,7 +29,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           password: e.passwordStr,
         );
       },
-      signInWithEmailAndPasswordPressed: (e) async* {
+
+
+      LogInWithEmailAndPasswordPressed: (e) async* {
+
         yield* _LogInWithEmailAndPassword();
       },
     );

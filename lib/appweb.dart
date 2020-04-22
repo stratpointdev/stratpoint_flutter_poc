@@ -1,4 +1,6 @@
+
 import 'package:globe_one_poc_project/presentation/login/login.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,12 +12,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MultiBlocProvider(
         providers: [
           BlocProvider<LoginBloc>(
             create: (context) => LoginBloc(),
           ),
         ],
+
         child: MaterialApp(
           title: 'POC',
           debugShowCheckedModeBanner: false,
@@ -31,7 +35,9 @@ class MyApp extends StatelessWidget {
             primaryColor: Color(HexToIntConverter.convert("#0077E4")),
             accentColor: Colors.white,
           ),
+
           home: LoginPage(),
         ));
+
   }
 }

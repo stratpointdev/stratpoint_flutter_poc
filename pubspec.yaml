@@ -17,6 +17,8 @@ dependencies:
   json_annotation: ^3.0.1
   meta: ^1.1.8
   injectable: ^0.3.0
+  http: ^0.12.0+4
+  api_client: ^2.2.0
 
 dev_dependencies:
   flutter_test:
