@@ -4,8 +4,7 @@ import 'package:globe_one_poc_project/application/dashboard/payment_detail/bloc/
 import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/local/local_payment_details_service.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/payment_details_repository_impl.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/remote/remote_payment_details_service.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account/dashboard_page.dart';
-
+import 'package:globe_one_poc_project/presentation/dashboard/mobile/account/widgets/dashboard_page.dart';
 import 'common/utils/hex_to_int_converter.dart';
 
 class MyApp extends StatelessWidget {
@@ -16,6 +15,10 @@ class MyApp extends StatelessWidget {
     WidgetsFlutterBinding.ensureInitialized();
     return MultiBlocProvider(
         providers: [
+          BlocProvider<PaymentDetailBloc>(
+            create: (context) => PaymentDetailBloc(PaymentDetailsRepositoryImpl(
+                RemotePaymentDetailsService(), LocalPaymentDetailsService())),
+          ),
           BlocProvider<PaymentDetailBloc>(
             create: (context) => PaymentDetailBloc(PaymentDetailsRepositoryImpl(
                 RemotePaymentDetailsService(), LocalPaymentDetailsService())),
