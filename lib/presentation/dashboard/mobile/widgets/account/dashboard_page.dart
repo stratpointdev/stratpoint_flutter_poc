@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:globe_one_poc_project/common/utils/media_query_util.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/data_usage_widget.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/mobile_payment_information_widget.dart';
+
+import 'account_details_widget.dart';
+import 'data_usage_widget.dart';
+import 'mobile_payment_information_widget.dart';
 
 class DashBoardPage extends StatelessWidget {
   @override
@@ -48,7 +49,6 @@ class DashBoardPage extends StatelessWidget {
             dataAllocation: '10 GB',
             refillDate: 'Apr. 24',
             textColor: const Color(0xff244857),
-            cupLevelIndicator: null,
           ),
         ],
       ),

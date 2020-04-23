@@ -1,5 +1,5 @@
 
-package com.stratpoint.globe_one_poc_project
+package com.stratpoint.globeonepoc
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
