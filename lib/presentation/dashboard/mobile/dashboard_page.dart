@@ -40,6 +40,7 @@ class DashBoardPage extends StatelessWidget {
             onRefresh: () => {},
             onAddMoreData: () => {},
             onViewDetails: () => {},
+            cupLevelIndicator: Image.asset('assets/duck_placeholder.png'),
             time: '8:30 AM',
             addMoreDataButtonColor: const Color(0xff009CDF),
             cupIndicatorTextColor: const Color(0xff9B9B9B),
