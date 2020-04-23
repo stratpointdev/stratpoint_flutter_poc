@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_detail/bloc/payment_detail_bloc.dart';
+import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/local/local_payment_details_service.dart';
+import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/payment_details_repository_impl.dart';
+import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/remote/remote_payment_details_service.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account/dashboard_page.dart';
 
 import 'common/utils/hex_to_int_converter.dart';
@@ -14,7 +17,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider<PaymentDetailBloc>(
-            create: (context) => PaymentDetailBloc(),
+            create: (context) => PaymentDetailBloc(PaymentDetailsRepositoryImpl(
+                RemotePaymentDetailsService(), LocalPaymentDetailsService())),
           ),
         ],
         child: MaterialApp(

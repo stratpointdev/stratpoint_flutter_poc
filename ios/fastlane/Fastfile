@@ -1,0 +1,57 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+
+default_platform(:ios)
+platform :ios do
+  desc "Build an ipa"
+  lane :build do
+    Dir.chdir("../..") do
+      sh "flutter packages get"
+      sh "flutter clean"
+      sh "flutter build ios"
+   end
+build_ios_app(
+     scheme: "Runner",
+     clean: true,
+     output_directory: './build',
+     export_options: {
+     method: "development", #adhoc or enterprise
+       provisioningProfiles: {
+         "com.stratpoint.globeonepoc" => "StratpointDevAll",
+       }
+     }
+   )
+  end
+end
+
+default_platform(:ios)
+platform :ios do
+  # other lanes #
+  desc "Submit a new iOS build to AppCenter"
+  lane :deploy do
+    if File.exist?(File.dirname(__FILE__) + "./build/Runner.ipa")
+      appcenter_upload(
+        api_token: "62330455c2dbab4f6bb508ad7fb256498a616f0f", # Your secret api token from app center
+        owner_name: "globeone_poc", # Your username on AppCenter
+        owner_type: "organization",
+        app_name: "globeone_poc_ios", # Your AppCenter name
+        ipa: "./build/Runner.ipa",
+      )
+    else
+      UI.message('Unable to find ipa') 
+    end
+  end
+end

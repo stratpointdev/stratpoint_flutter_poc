@@ -1,7 +1,3 @@
+abstract class PaymentDetailEvent {}
 
-
-
-abstract class PaymentDetailEvent  {
-}
-
-class RefreshEvent extends PaymentDetailEvent{}
+class RefreshEvent extends PaymentDetailEvent {}
