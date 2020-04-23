@@ -1,5 +1,5 @@
-import '../../dashboard/models/account_balance.dart';
-import '../../dashboard/models/last_payment.dart';
+import 'account_balance.dart';
+import 'last_payment.dart';
 
 class OutstandingBalance {
   AccountBalance accountBalance;
