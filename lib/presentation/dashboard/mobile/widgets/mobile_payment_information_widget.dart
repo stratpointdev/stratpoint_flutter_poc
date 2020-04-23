@@ -11,9 +11,8 @@ class MobilePaymentInformationWidget extends StatefulWidget {
 
   const MobilePaymentInformationWidget(
       {Key key,
-    //  this.paymentAmountValue: '₱ 1,798.03',
-        this.paymentAmountValue,
-      this.dueDate: 'Due on May 13',
+      this.paymentAmountValue,
+      this.dueDate,
       this.payNowButtonOnPressed,
       this.viewBillButtonOnPressed})
       : super(key: key);
@@ -85,11 +84,10 @@ class _MobilePaymentInformationWidgetState
                     child: Text(
                       'Pay now',
                       style: TextStyle(
-                        fontSize:
-                            MediaQueryUtil.convertHeight(screenHeight, 11),
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'FSElliotPro',
-                      ),
+                          fontSize:
+                              MediaQueryUtil.convertHeight(screenHeight, 11),
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'FSElliotPro'),
                     ),
                   ),
                 ),

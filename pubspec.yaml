@@ -13,12 +13,11 @@ dependencies:
   graphql_flutter: ^3.0.0
   shared_preferences: ^0.5.6+2
   http: ^0.12.0+4
-
+  intl: ^0.16.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
 
 flutter_launcher_name:
   name: "GlobeOne POC"
@@ -34,8 +33,11 @@ flutter:
     # assets-generator-begin
     # assets/*
     - assets/duck_placeholder.png
-    - assets/icon.png
     - assets/ic_globe_banner.png
+    - assets/icon.png
+    # assets/images/*
+    - assets/images/mobiletopbanner.png
+    - assets/images/topbanner.png
     # assets-generator-end
   fonts:
     - family: FSElliotPro

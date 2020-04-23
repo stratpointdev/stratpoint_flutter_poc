@@ -1,4 +1,3 @@
-
 class LastPayment {
 
 
@@ -17,7 +16,6 @@ factory LastPayment.fromJson(Map<String, dynamic> json) {
     paymentDate: json['paymentDate'],
   );
 }
-
 
 
 }

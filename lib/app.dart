@@ -1,9 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import  'presentation/dashboard/web/DashboardProfile.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/mobile/dashboard_page.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_detail/bloc/payment_detail_bloc.dart';
 
+import 'common/utils/hex_to_int_converter.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -11,19 +11,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsFlutterBinding.ensureInitialized();
-    return  MultiBlocProvider(
-            providers: [
-              BlocProvider<PaymentDetailBloc>(
-                create: (context) => PaymentDetailBloc(),
-              ),
-            ],
-            child: MaterialApp(
-              title: 'GlobePOC',
-              debugShowCheckedModeBanner: false,
-
-              home: DashboardProfile(profile: 'akeem',profilePicture: 'picture',mobile: '123',duoNumber: '456',),
-
-            ));
-
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider<PaymentDetailBloc>(
+            create: (context) => PaymentDetailBloc(),
+          ),
+        ],
+        child: MaterialApp(
+          title: 'GlobePOC',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            fontFamily: 'FSElliotPro',
+            secondaryHeaderColor: Colors.black,
+            textSelectionHandleColor:
+                Color(HexToIntConverter.convert("#007AFF")),
+            textSelectionColor: Color(HexToIntConverter.convert("#001B58")),
+            errorColor: Color(HexToIntConverter.convert("#E02020")),
+            disabledColor: Color(HexToIntConverter.convert("#007AFF")),
+            hintColor: Color(HexToIntConverter.convert("#A1A1A1")),
+            primaryColor: Color(HexToIntConverter.convert("#0056BF")),
+            accentColor: Colors.white,
+          ),
+          home: DashBoardPage(),
+        ));
   }
 }
