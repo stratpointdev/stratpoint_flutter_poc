@@ -14,7 +14,7 @@ class PaymentDetailsRepositoryImpl implements PaymentDetailsRepository {
 
   @override
   Future<Either<PaymentDetailsFailure, OutstandingBalance>>
-      getOutstandingBalance() {
+  getOutstandingBalance() {
     return remotePaymentDetailsService.getOutstandingBalance();
   }
 }

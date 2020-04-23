@@ -72,7 +72,7 @@ class DataUsageWidget extends StatelessWidget {
                     width: 24,
                     child: IconButton(
                       padding: EdgeInsets.zero,
-                      onPressed: () => onRefresh,
+                      onPressed: onRefresh,
                       icon: Icon(Icons.refresh), // TODO: Change Icon
                     ),
                   ),
@@ -132,7 +132,7 @@ class DataUsageWidget extends StatelessWidget {
                       ),
                       const SizedBox(height: 20),
                       RawMaterialButton(
-                        onPressed: () => onViewDetails,
+                        onPressed: onViewDetails,
                         child: Text(
                           'View Details',
                           style: TextStyle(
@@ -152,7 +152,7 @@ class DataUsageWidget extends StatelessWidget {
             Container(
               height: 40,
               child: RawMaterialButton(
-                onPressed: () => onAddMoreData,
+                onPressed:  onAddMoreData,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4.0),
                 ),
