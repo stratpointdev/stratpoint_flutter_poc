@@ -20,7 +20,7 @@ class AccountDetailsBloc
       yield AccountDetailsLoading();
       final result = await accountDetailsRepository.getAccountDetails();
       yield result.fold(
-          (posibble_failures) => AccountDetailsFailed(),
+          (failures) => AccountDetailsFailed(),
           (success_entity) =>
               AccountDetailsSuccess(accountDetailsModel: success_entity));
     }

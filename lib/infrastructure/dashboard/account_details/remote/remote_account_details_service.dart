@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:globe_one_poc_project/domain/dashboard/account_details/models/account_details_failures.dart';
-import 'package:globe_one_poc_project/domain/dashboard/account_details/models/account_details_model.dart';
+import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
+import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_model.dart';
 
 class RemoteAccountDetailsService {
   String baseUrl =
