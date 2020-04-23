@@ -1,5 +1,8 @@
-import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/remote/models/outstanding_balance.dart';
+import 'package:dartz/dartz.dart';
+import 'package:globe_one_poc_project/domain/dashboard/payment_details/models/outstanding_balance.dart';
+import 'package:globe_one_poc_project/domain/dashboard/payment_details/models/payment_details_failure.dart';
 
 abstract class PaymentDetailsRepository {
-  Future<OutstandingBalance> getOutstandingBalance();
+  Future<Either<PaymentDetailsFailure, OutstandingBalance>>
+      getOutstandingBalance();
 }

@@ -16,7 +16,9 @@ class PaymentDetailBloc extends Bloc<PaymentDetailEvent, PaymentDetailState> {
 
     if (event is RefreshEvent) {
       var value = await repository.getOutstandingBalance();
-      yield PaymentSuccessState(outstandingBalance: value);
+      if (value.isRight()) {
+        yield PaymentSuccessState(outstandingBalance: value.getOrElse(null));
+      }
     }
   }
 }

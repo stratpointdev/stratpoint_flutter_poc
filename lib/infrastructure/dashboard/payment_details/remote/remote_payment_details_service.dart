@@ -1,7 +1,8 @@
 import 'dart:convert';
 
-import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/remote/models/error.dart';
-import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/remote/models/outstanding_balance.dart';
+import 'package:dartz/dartz.dart';
+import 'package:globe_one_poc_project/domain/dashboard/payment_details/models/payment_details_failure.dart';
+import 'package:globe_one_poc_project/domain/dashboard/payment_details/models/outstanding_balance.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/remote/sample.dart';
 import 'package:http/http.dart' as http;
 
@@ -23,7 +24,7 @@ class RemotePaymentDetailsService {
     );
   }
 
-  Future<Err> getErr() async {
+  Future<PaymentDetailsFailure> getErr() async {
     http.Response response =
         await createAlbum("/account/get-out-standing-balance");
     print(response);
@@ -31,14 +32,18 @@ class RemotePaymentDetailsService {
       var data = json.decode(response.body);
       var rest = data["errors"] as List;
       print(rest);
-      List<Err> res = rest.map<Err>((json) => Err.fromJson(json)).toList();
+      List<PaymentDetailsFailure> res = rest
+          .map<PaymentDetailsFailure>(
+              (json) => PaymentDetailsFailure.fromJson(json))
+          .toList();
       return res[0];
     } else {
       throw Exception('error');
     }
   }
 
-  Future<OutstandingBalance> getOutstandingBalance() async {
+  Future<Either<PaymentDetailsFailure, OutstandingBalance>>
+      getOutstandingBalance() async {
     print("getLastPayment");
     // http.Response response = await createAlbum("/account/get-out-standing-balance");
     // print(response.body);
@@ -47,7 +52,7 @@ class RemotePaymentDetailsService {
     var rest = data["outstandingBalanceByMsisdnResponse"];
     var dd = rest["outstandingBalanceByMsisdnResult"];
     print(dd);
-    return OutstandingBalance.fromJson(dd);
+    return right(OutstandingBalance.fromJson(dd));
     //}else{
     //  throw Exception('error');
     //}

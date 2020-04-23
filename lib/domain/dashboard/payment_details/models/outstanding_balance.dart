@@ -1,5 +1,5 @@
-import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/remote/models/account_balance.dart';
-import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/remote/models/last_payment.dart';
+import 'package:globe_one_poc_project/domain/dashboard/payment_details/models/account_balance.dart';
+import 'package:globe_one_poc_project/domain/dashboard/payment_details/models/last_payment.dart';
 
 class OutstandingBalance {
   AccountBalance accountBalance;
