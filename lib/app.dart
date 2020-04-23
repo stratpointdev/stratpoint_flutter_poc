@@ -4,13 +4,13 @@ import 'package:globe_one_poc_project/application/dashboard/payment_detail/bloc/
 import 'package:globe_one_poc_project/infrastructure/dashboard/data_usage/data_usage_repository_impl.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/data_usage/local/local_data_usage_service.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/data_usage/remote/remote_data_usage_service.dart';
-
 import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/local/local_payment_details_service.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/payment_details_repository_impl.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/remote/remote_payment_details_service.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/dashboard_page.dart'
-if(dart.library.js) 'package:globe_one_poc_project/presentation/dashboard/web/desktop_dashboard.dart';
+if(dart.library.js) 'package:globe_one_poc_project/presentation/dashboard/web/dashboard_page.dart';
 import 'application/dashboard/data_usage/bloc/data_usage_bloc.dart';
+
 
 import 'common/utils/hex_to_int_converter.dart';
 
@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
             create: (context) => PaymentDetailBloc(PaymentDetailsRepositoryImpl(
                 RemotePaymentDetailsService(), LocalPaymentDetailsService())),
           ),
+
           BlocProvider<DataUsageBloc>(
             create: (context) => DataUsageBloc(DataUsageRepositoryImpl(RemoteDataUsageService(),
                 LocalDataUsageService())),

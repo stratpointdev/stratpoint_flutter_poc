@@ -59,16 +59,16 @@ class _DashBoardPageState extends State<DashBoardPage> {
       BlocListener<DataUsageBloc, DataUsageState>(
         listener: (context,state){
           if(state is SuccessState){
-              remainingData = state.remainingData;
-              dataAllocation  = state.totalData;
-              refillDate = state.refillDate;
+              remainingData = KBConverter.convert(double.parse(state.dataUsage.volumeRemaining));
+              dataAllocation  = KBConverter.convert(double.parse(state.dataUsage.totalAllocated));
+              refillDate = state.dataUsage.endDate;
            }
         },
         child: BlocBuilder<DataUsageBloc, DataUsageState>(
           builder: (context, state) {
             return DataUsageWidget(
-                onRefresh: () => {},
-                onAddMoreData: () => {dataUsageBloc.add(RefreshEvent())},
+                onRefresh: () => {dataUsageBloc.add(RefreshEvent())},
+                onAddMoreData: () => {},
                 onViewDetails: () => {},
                 cupLevelIndicator: Image.asset('assets/duck_placeholder.png'),
                 time: '8:30 AM',
