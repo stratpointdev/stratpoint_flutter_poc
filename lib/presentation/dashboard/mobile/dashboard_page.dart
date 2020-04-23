@@ -48,6 +48,7 @@ class DashBoardPage extends StatelessWidget {
             dataAllocation: '10 GB',
             refillDate: 'Apr. 24',
             textColor: const Color(0xff244857),
+            cupLevelIndicator: null,
           ),
         ],
       ),
