@@ -6,12 +6,16 @@ class WebPaymentInformationWidget extends StatefulWidget {
   final String dueAmount;
   final String lastPaymentAmount;
   final String lastPaymentDate;
+  final VoidCallback onRefresh;
+  final VoidCallback onPayNow;
 
   WebPaymentInformationWidget({
     this.dueDate: 'May 3',
     this.dueAmount: '1,798.03',
     this.lastPaymentAmount: '1,839.00',
-    this.lastPaymentDate: 'Mar. 15, 2020'
+    this.lastPaymentDate: 'Mar. 15, 2020',
+    this.onRefresh,
+    this.onPayNow
   });
 
   @override
@@ -58,7 +62,7 @@ class _WebPaymentInformationWidget extends State<WebPaymentInformationWidget> {
                         width: 24,
                         child: IconButton(
                           padding: EdgeInsets.zero,
-                          onPressed: () => null,
+                          onPressed: widget.onRefresh,
                           icon: Icon(Icons.refresh),
                         ),
                       ),
@@ -107,7 +111,7 @@ class _WebPaymentInformationWidget extends State<WebPaymentInformationWidget> {
                         width: 200,
                         height: 40,
                         child: RawMaterialButton(
-                          onPressed: () => null,
+                          onPressed: widget.onPayNow,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4.0),
                           ),
