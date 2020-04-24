@@ -8,17 +8,17 @@ abstract class AccountDetailsState extends Equatable {
   List<Object> get props => [];
 }
 
-class AccountDetailsInitial extends AccountDetailsState {}
+class AccountDetailsInitialState extends AccountDetailsState {}
 
-class AccountDetailsLoading extends AccountDetailsState {}
+class AccountDetailsLoadingState extends AccountDetailsState {}
 
-class AccountDetailsSuccess extends AccountDetailsState {
+class AccountDetailsSuccessState extends AccountDetailsState {
   final NameInfo nameInfo;
 
-  const AccountDetailsSuccess({this.nameInfo});
+  const AccountDetailsSuccessState({this.nameInfo});
 
   @override
   List<Object> get props => [nameInfo];
 }
 
-class AccountDetailsFailed extends AccountDetailsState {}
+class AccountDetailsFailedState extends AccountDetailsState {}

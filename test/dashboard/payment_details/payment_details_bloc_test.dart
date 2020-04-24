@@ -2,9 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_details/bloc/payment_details_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_details/bloc/payment_details_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_details/bloc/payment_details_state.dart';
-import 'package:globe_one_poc_project/domain/dashboard/payment_details/entities/account_balance.dart';
-import 'package:globe_one_poc_project/domain/dashboard/payment_details/entities/last_payment.dart';
-import 'package:globe_one_poc_project/domain/dashboard/payment_details/entities/outstanding_balance.dart';
+import 'package:globe_one_poc_project/domain/dashboard/payment_details/entities/payment_details_model.dart';
 import 'package:globe_one_poc_project/domain/dashboard/payment_details/payment_details_repository.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -22,15 +20,19 @@ void main() {
   });
 
   test('Successful RefreshEvent should display PaymentSuccessState', () {
-    OutstandingBalance balance = OutstandingBalance(
-        accountBalance: AccountBalance(), lastPayment: LastPayment());
+    PaymentDetailsModel paymentDetailsModel = PaymentDetailsModel(
+        200,
+        OutstandingBalanceByMsisdnResponse(
+            OutstandingBalanceByMsisdnResult('_', '_', '_')));
 
-    when(mockRepository.getOutstandingBalance())
-        .thenAnswer((_) async => right(balance));
+    when(mockRepository.getPaymentDetails())
+        .thenAnswer((_) async => right(paymentDetailsModel));
 
-    bloc.add(RefreshEvent());
+    bloc.add(RefreshPaymentDetailsEvent());
 
-    expectLater(bloc,
-        emitsInOrder([PaymentDetailsInitialState(), PaymentSuccessState()]));
+    expectLater(
+        bloc,
+        emitsInOrder(
+            [PaymentDetailsInitialState(), PaymentDetailsSuccessState()]));
   });
 }

@@ -15,13 +15,12 @@ class PaymentDetailsBloc
   @override
   Stream<PaymentDetailsState> mapEventToState(
       PaymentDetailsEvent event) async* {
-    // TODO: implement mapEventToState
-
-    if (event is RefreshEvent) {
-      var value = await repository.getOutstandingBalance();
-      if (value.isRight()) {
-        yield PaymentSuccessState(outstandingBalance: value.getOrElse(null));
-      }
+    if (event is RefreshPaymentDetailsEvent) {
+      var result = await repository.getPaymentDetails();
+      yield result.fold(
+          (failures) => PaymentDetailsFailedState(),
+          (success_entity) =>
+              PaymentDetailsSuccessState(paymentDetailsModel: success_entity));
     }
   }
 }
