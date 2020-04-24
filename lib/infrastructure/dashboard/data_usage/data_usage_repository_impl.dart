@@ -14,8 +14,30 @@ class DataUsageRepositoryImpl implements DataUsageRepository {
 
   @override
   Future<Either<DataUsageFailure, DataUsage>> getDataUsage() {
-    // TODO: implement getDataUsage
-    return remoteService.getDataUsage();
+
+    return remoteService.getDataUsage() ;
   }
+
+  @override
+  Future deleteDataUsageLocal(dataUsage) {
+    return localService.update(dataUsage);
+  }
+
+  @override
+  Future insertDataUsageLocal(dataUsage) {
+    return localService.insert(dataUsage);
+  }
+
+  @override
+  Future updateDataUsageLocal(dataUsage) {
+    return localService.update(dataUsage);
+  }
+
+  @override
+  Future<bool> checkDataUsageLocalById(dataUsage) {
+   return localService.checkDataUsageById(dataUsage);
+  }
+
+
 
 }

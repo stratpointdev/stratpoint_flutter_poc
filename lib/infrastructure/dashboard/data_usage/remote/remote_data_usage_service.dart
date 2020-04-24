@@ -9,12 +9,11 @@ import 'package:http/http.dart' as http;
 
 class RemoteDataUsageService {
 
-  String httpUrl =
-      'https://virtserver.swaggerhub.com/S1723/G1ES-OCSP-API-ALL/1.0.0';
+  String httpUrl = 'https://virtserver.swaggerhub.com/S1723/G1ES-OCSP-API-ALL/1.0.0';
 
-  Future<http.Response> ApiClient(String extention) {
+  Future<http.Response> ApiClient(String extenstion) {
     return http.post(
-      httpUrl + extention,
+      httpUrl + extenstion,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -36,7 +35,7 @@ class RemoteDataUsageService {
     var dd = rest["buckets"];
     var da = dd["buckets"] as List;
     print(da[0].toString());
-    return right(DataUsage.fromJson(da[0]));
+    return right(DataUsage.fromMap(da[0]));
     //}else{
     //  throw Exception('error');
     //}

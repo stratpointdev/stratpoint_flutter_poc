@@ -1,6 +1,6 @@
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/account_mobile_dashboard.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/mobile_header.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'mobile_menu.dart';
 
 class MobileDashboard extends StatefulWidget {
