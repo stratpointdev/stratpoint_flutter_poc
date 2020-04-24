@@ -3,12 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_state.dart';
-import 'package:globe_one_poc_project/application/dashboard/data_usage/bloc/data_usage_bloc.dart';
-import 'package:globe_one_poc_project/application/dashboard/data_usage/bloc/data_usage_event.dart';
-import 'package:globe_one_poc_project/application/dashboard/data_usage/bloc/data_usage_state.dart';
-import 'package:globe_one_poc_project/application/dashboard/payment_details/bloc/payment_details_bloc.dart';
-import 'package:globe_one_poc_project/application/dashboard/payment_details/bloc/payment_details_event.dart';
-import 'package:globe_one_poc_project/application/dashboard/payment_details/bloc/payment_details_state.dart';
+
+import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_bloc.dart';
+import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_event.dart';
+import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
+import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_bloc.dart';
+import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_event.dart';
+import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_state.dart';
+
 import 'package:globe_one_poc_project/common/utils/kb_converter.dart';
 import 'package:globe_one_poc_project/common/utils/media_query_util.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
@@ -28,7 +30,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
   DataUsageBloc _dataUsageBloc;
 
   Future<Null> _refresh() async {
-    _dataUsageBloc.add(RefreshEvent());
+    _dataUsageBloc.add(RefreshDataUsageEvent());
     _paymentDetailsBloc.add(RefreshPaymentDetailsEvent());
     return null;
   }
@@ -41,10 +43,6 @@ class _DashBoardPageState extends State<DashBoardPage> {
     _dataUsageBloc = BlocProvider.of<DataUsageBloc>(context);
     _accountDetailsBloc.add(RefreshAccountDetailsEvent());
   }
-
-  var remainingData = '6.4 GB';
-  var dataAllocation = '10 GB';
-  var refillDate = 'Apr. 24';
 
   var paymentAmountValue = '0';
   var dueDate = '';
@@ -117,19 +115,22 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     viewBillButtonOnPressed: () {},
                   );
                 }),
-                BlocListener<DataUsageBloc, DataUsageState>(
-                    listener: (context, state) {
-                  if (state is SuccessState) {
+                BlocBuilder<DataUsageBloc, DataUsageState>(
+                    builder: (context, state) {
+                  var remainingData = '6.4 GB';
+                  var dataAllocation = '10 GB';
+                  var refillDate = 'Apr. 24';
+
+                  if (state is DataUsageSuccessState) {
                     remainingData = KBConverter.convert(
                         double.parse(state.dataUsage.volumeRemaining));
                     dataAllocation = KBConverter.convert(
                         double.parse(state.dataUsage.totalAllocated));
                     refillDate = state.dataUsage.endDate;
                   }
-                }, child: BlocBuilder<DataUsageBloc, DataUsageState>(
-                        builder: (context, state) {
                   return DataUsageWidget(
-                    onRefresh: () => {_dataUsageBloc.add(RefreshEvent())},
+                    onRefresh: () =>
+                        {_dataUsageBloc.add(RefreshDataUsageEvent())},
                     onAddMoreData: () => {},
                     onViewDetails: () => {},
                     cupLevelIndicator:
@@ -142,7 +143,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     refillDate: refillDate,
                     textColor: const Color(0xff244857),
                   );
-                })),
+                }),
               ],
             ),
           )
