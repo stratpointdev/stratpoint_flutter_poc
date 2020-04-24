@@ -7,9 +7,11 @@ class PaymentDetailsModel {
 
   factory PaymentDetailsModel.fromJson(Map<dynamic, dynamic> json) {
     return PaymentDetailsModel(
-        json["responseCode"],
-        OutstandingBalanceByMsisdnResponse.fromJson(
-            json["outstandingBalanceByMsisdnResponse"]));
+      json["responseCode"],
+      OutstandingBalanceByMsisdnResponse.fromJson(
+        json["outstandingBalanceByMsisdnResponse"],
+      ),
+    );
   }
 }
 
@@ -21,8 +23,10 @@ class OutstandingBalanceByMsisdnResponse {
   factory OutstandingBalanceByMsisdnResponse.fromJson(
       Map<dynamic, dynamic> json) {
     return OutstandingBalanceByMsisdnResponse(
-        OutstandingBalanceByMsisdnResult.fromJson(
-            json["outstandingBalanceByMsisdnResult"]));
+      OutstandingBalanceByMsisdnResult.fromJson(
+        json["outstandingBalanceByMsisdnResult"],
+      ),
+    );
   }
 }
 

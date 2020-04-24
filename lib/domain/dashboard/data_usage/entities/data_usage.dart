@@ -1,7 +1,4 @@
-
-
 class DataUsage {
-
   final String bucketId;
   final String startDate;
   final String endDate;
@@ -19,38 +16,32 @@ class DataUsage {
     this.volumeRemaining,
     this.totalAllocated,
     this.volumeUsed,
-    this.unit
+    this.unit,
   });
 
-
   factory DataUsage.fromMap(Map<String, dynamic> json) {
-
     return DataUsage(
-        bucketId: json['bucketId'],
-        startDate : json['startDate'],
-        endDate :json['endDate'],
-        state: json['state'],
-        volumeRemaining: json['volumeRemaining'],
-        totalAllocated: json['totalAllocated'],
-        volumeUsed: json['volumeUsed'],
-        unit: json['unit']
+      bucketId: json['bucketId'],
+      startDate: json['startDate'],
+      endDate: json['endDate'],
+      state: json['state'],
+      volumeRemaining: json['volumeRemaining'],
+      totalAllocated: json['totalAllocated'],
+      volumeUsed: json['volumeUsed'],
+      unit: json['unit'],
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'bucketId' : bucketId,
-      'startDate' : startDate,
-      'endDate' : endDate,
-      'state' : state,
-      'volumeRemaining' :volumeRemaining,
-      'totalAllocated' : totalAllocated,
-      'volumeUsed' :volumeUsed,
-      'unit' :unit,
+      'bucketId': bucketId,
+      'startDate': startDate,
+      'endDate': endDate,
+      'state': state,
+      'volumeRemaining': volumeRemaining,
+      'totalAllocated': totalAllocated,
+      'volumeUsed': volumeUsed,
+      'unit': unit,
     };
-
-
   }
-
-
 }
