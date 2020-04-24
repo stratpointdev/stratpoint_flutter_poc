@@ -4,8 +4,17 @@ import 'package:globe_one_poc_project/application/dashboard/payment_details/bloc
 import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/local/local_payment_details_service.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/payment_details_repository_impl.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/remote/remote_payment_details_service.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/mobile/dashboard_page.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/mobile/dashboard_page.dart'
+    if (dart.library.js) 'package:globe_one_poc_project/presentation/dashboard/web/dashboard_page.dart';
+
+import 'application/dashboard/account_details/account_details_bloc.dart';
+import 'application/dashboard/data_usage/bloc/data_usage_bloc.dart';
 import 'common/utils/hex_to_int_converter.dart';
+import 'infrastructure/dashboard/account_details/account_details_repository_impl.dart';
+import 'infrastructure/dashboard/account_details/remote/remote_account_details_service.dart';
+import 'infrastructure/dashboard/data_usage/data_usage_repository_impl.dart';
+import 'infrastructure/dashboard/data_usage/local/local_data_usage_service.dart';
+import 'infrastructure/dashboard/data_usage/remote/remote_data_usage_service.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -19,6 +28,14 @@ class MyApp extends StatelessWidget {
             create: (context) => PaymentDetailsBloc(
                 PaymentDetailsRepositoryImpl(RemotePaymentDetailsService(),
                     LocalPaymentDetailsService())),
+          ),
+          BlocProvider<AccountDetailsBloc>(
+            create: (context) => AccountDetailsBloc(
+                AccountDetailsRepositoryImpl(RemoteAccountDetailsService())),
+          ),
+          BlocProvider<DataUsageBloc>(
+            create: (context) => DataUsageBloc(DataUsageRepositoryImpl(
+                RemoteDataUsageService(), LocalDataUsageService())),
           ),
         ],
         child: MaterialApp(
