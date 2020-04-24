@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_detail/bloc/payment_detail_bloc.dart';
+import 'package:globe_one_poc_project/infrastructure/dashboard/account_details/account_details_repository_impl.dart';
+import 'package:globe_one_poc_project/infrastructure/dashboard/account_details/remote/remote_account_details_service.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/local/local_payment_details_service.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/payment_details_repository_impl.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/remote/remote_payment_details_service.dart';
@@ -19,9 +22,9 @@ class MyApp extends StatelessWidget {
             create: (context) => PaymentDetailBloc(PaymentDetailsRepositoryImpl(
                 RemotePaymentDetailsService(), LocalPaymentDetailsService())),
           ),
-          BlocProvider<PaymentDetailBloc>(
-            create: (context) => PaymentDetailBloc(PaymentDetailsRepositoryImpl(
-                RemotePaymentDetailsService(), LocalPaymentDetailsService())),
+          BlocProvider<AccountDetailsBloc>(
+            create: (context) => AccountDetailsBloc(
+                AccountDetailsRepositoryImpl(RemoteAccountDetailsService())),
           ),
         ],
         child: MaterialApp(

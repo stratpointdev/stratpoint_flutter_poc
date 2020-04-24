@@ -1,11 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_bloc.dart';
+import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_event.dart';
+import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_state.dart';
 import 'package:globe_one_poc_project/common/utils/media_query_util.dart';
+import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/data_usage_widget.dart';
 
 import 'widgets/mobile_payment_information_widget.dart';
 
-class DashBoardPage extends StatelessWidget {
+class DashBoardPage extends StatefulWidget {
+  @override
+  _DashBoardPageState createState() => _DashBoardPageState();
+}
+
+class _DashBoardPageState extends State<DashBoardPage> {
+  AccountDetailsBloc _accountDetailsBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _accountDetailsBloc = BlocProvider.of<AccountDetailsBloc>(context);
+    _accountDetailsBloc.add(RefreshAccountDetailsEvent());
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -30,7 +49,21 @@ class DashBoardPage extends StatelessWidget {
       ),
       body: ListView(
         children: <Widget>[
-          AccountDetailsWidget(),
+          BlocBuilder<AccountDetailsBloc, AccountDetailsState>(
+              builder: (context, state) {
+            String userName = '';
+            if (state is AccountDetailsSuccess) {
+              userName = state.nameInfo.nameElement2;
+            } else if (state is AccountDetailsFailures) {
+              userName = 'NA';
+            }
+
+            return AccountDetailsWidget(
+              userName: userName,
+              userMobileNumber: "0917 123 4567",
+              userDuoNumber: " | DUO 052654245",
+            );
+          }),
           MobilePaymentInformationWidget(
             paymentAmountValue: '₱ 1,798.03',
             dueDate: 'Due on May 13',
