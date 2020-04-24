@@ -13,4 +13,5 @@ factory AccountBalance.fromJson(Map<String, dynamic> json) {
     arBalance: json['arBalance'],
   );
 }
+
 }
