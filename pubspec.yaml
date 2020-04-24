@@ -20,6 +20,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner:
+
+  mockito: ^4.1.1
 
 flutter_launcher_name:
   name: "GlobeOne POC"
@@ -41,6 +44,7 @@ flutter:
     - assets/images/mobiletopbanner.png
     - assets/images/topbanner.png
     # assets-generator-end
+  
   fonts:
     - family: FSElliotPro
       fonts:

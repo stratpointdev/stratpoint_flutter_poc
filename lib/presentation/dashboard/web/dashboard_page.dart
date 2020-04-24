@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/bloc/data_usage_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/bloc/data_usage_event.dart';
@@ -20,8 +18,7 @@ class DashBoardPage extends StatefulWidget {
 }
 
 class _DashBoardPageState extends State<DashBoardPage> {
-
-   DataUsageBloc dataUsageBloc;
+  DataUsageBloc dataUsageBloc;
   @override
   void initState() {
     // TODO: implement initState
@@ -35,57 +32,46 @@ class _DashBoardPageState extends State<DashBoardPage> {
 
   @override
   Widget build(BuildContext context) {
-
-
     // TODO: implement build
     return Container(
       child: Column(
         children: <Widget>[
-
           DesktopHeaderMenu(),
-
           DesktopHeader(),
-
           AccountDesktopDashboard(
             profile: "Samantha",
             mobile: "0918 XXXX XXXX",
             duoNumber: "(02) 2920118",
             profilePicture: "https://i.imgur.com/BoN9kdC.png",
           ),
-
           DesktopMenu(),
-
-
-      BlocListener<DataUsageBloc, DataUsageState>(
-        listener: (context,state){
-          if(state is SuccessState){
-              remainingData = KBConverter.convert(double.parse(state.dataUsage.volumeRemaining));
-              dataAllocation  = KBConverter.convert(double.parse(state.dataUsage.totalAllocated));
+          BlocListener<DataUsageBloc, DataUsageState>(
+              listener: (context, state) {
+            if (state is SuccessState) {
+              remainingData = KBConverter.convert(
+                  double.parse(state.dataUsage.volumeRemaining));
+              dataAllocation = KBConverter.convert(
+                  double.parse(state.dataUsage.totalAllocated));
               refillDate = state.dataUsage.endDate;
-           }
-        },
-        child: BlocBuilder<DataUsageBloc, DataUsageState>(
-          builder: (context, state) {
+            }
+          }, child: BlocBuilder<DataUsageBloc, DataUsageState>(
+                  builder: (context, state) {
             return DataUsageWidget(
-                onRefresh: () => {dataUsageBloc.add(RefreshEvent())},
-                onAddMoreData: () => {},
-                onViewDetails: () => {},
-                cupLevelIndicator: Image.asset('assets/duck_placeholder.png'),
-                time: '8:30 AM',
-                addMoreDataButtonColor: const Color(0xff009CDF),
-                cupIndicatorTextColor: const Color(0xff9B9B9B),
-                remainingData: remainingData,
-                dataAllocation: dataAllocation,
-                refillDate: refillDate,
-                textColor: const Color(0xff244857),
+              onRefresh: () => {dataUsageBloc.add(RefreshEvent())},
+              onAddMoreData: () => {},
+              onViewDetails: () => {},
+              cupLevelIndicator: Image.asset('assets/duck_placeholder.png'),
+              time: '8:30 AM',
+              addMoreDataButtonColor: const Color(0xff009CDF),
+              cupIndicatorTextColor: const Color(0xff9B9B9B),
+              remainingData: remainingData,
+              dataAllocation: dataAllocation,
+              refillDate: refillDate,
+              textColor: const Color(0xff244857),
             );
-          }
-        )
-      ),
+          })),
         ],
       ),
     );
   }
-
-
 }
