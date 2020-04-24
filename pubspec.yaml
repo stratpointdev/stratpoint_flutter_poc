@@ -22,6 +22,8 @@ dev_dependencies:
     sdk: flutter
   build_runner:
 
+  mockito: ^4.1.1
+
 flutter_launcher_name:
   name: "GlobeOne POC"
 

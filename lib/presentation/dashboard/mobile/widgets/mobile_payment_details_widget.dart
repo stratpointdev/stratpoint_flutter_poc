@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:globe_one_poc_project/common/utils/media_query_util.dart';
 
-class MobilePaymentInformationWidget extends StatefulWidget {
+class MobilePaymentDetailsWidget extends StatefulWidget {
   final String paymentAmountValue;
 
   final String dueDate;
@@ -9,7 +9,7 @@ class MobilePaymentInformationWidget extends StatefulWidget {
   final GestureTapCallback payNowButtonOnPressed;
   final GestureTapCallback viewBillButtonOnPressed;
 
-  const MobilePaymentInformationWidget(
+  const MobilePaymentDetailsWidget(
       {Key key,
       this.paymentAmountValue,
       this.dueDate,
@@ -23,7 +23,7 @@ class MobilePaymentInformationWidget extends StatefulWidget {
 }
 
 class _MobilePaymentInformationWidgetState
-    extends State<MobilePaymentInformationWidget> {
+    extends State<MobilePaymentDetailsWidget> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;

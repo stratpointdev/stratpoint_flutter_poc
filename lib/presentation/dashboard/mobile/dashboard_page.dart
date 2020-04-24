@@ -12,7 +12,7 @@ import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/data_usage_widget.dart';
 
-import 'widgets/mobile_payment_information_widget.dart';
+import 'widgets/mobile_payment_details_widget.dart';
 
 class DashBoardPage extends StatefulWidget {
   @override
@@ -74,7 +74,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
               userDuoNumber: " | DUO 052654245",
             );
           }),
-          MobilePaymentInformationWidget(
+          MobilePaymentDetailsWidget(
             paymentAmountValue: '₱ 1,798.03',
             dueDate: 'Due on May 13',
             payNowButtonOnPressed: () {},
