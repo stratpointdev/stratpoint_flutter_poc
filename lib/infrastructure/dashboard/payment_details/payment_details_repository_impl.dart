@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:globe_one_poc_project/domain/dashboard/payment_details/entities/outstanding_balance.dart';
+import 'package:globe_one_poc_project/domain/dashboard/payment_details/entities/payment_details.dart';
 import 'package:globe_one_poc_project/domain/dashboard/payment_details/entities/payment_details_failure.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/local/local_payment_details_service.dart';
 import 'package:globe_one_poc_project/domain/dashboard/payment_details/payment_details_repository.dart';

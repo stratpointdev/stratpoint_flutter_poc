@@ -4,4 +4,9 @@ import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_
 
 abstract class DataUsageRepository {
   Future<Either<DataUsageFailure, DataUsage>> getDataUsage();
+  Future insertDataUsageLocal(DataUsage);
+  Future updateDataUsageLocal(DataUsage);
+  Future deleteDataUsageLocal(DataUsage);
+  Future<bool> checkDataUsageLocalById(DataUsage);
+
 }

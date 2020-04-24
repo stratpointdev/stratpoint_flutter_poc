@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:globe_one_poc_project/domain/dashboard/payment_details/entities/outstanding_balance.dart';
+import 'package:globe_one_poc_project/domain/dashboard/payment_details/entities/payment_details.dart';
+
 
 abstract class PaymentDetailsState extends Equatable {
   const PaymentDetailsState();

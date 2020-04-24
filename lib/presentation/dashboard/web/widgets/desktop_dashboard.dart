@@ -1,7 +1,7 @@
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/account_desktop_dashboard.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/desktop_header_menu.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/desktop_menu.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 
 import 'desktop_header.dart';
