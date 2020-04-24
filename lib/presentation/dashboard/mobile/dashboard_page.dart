@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_bloc.dart';
+import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_event.dart';
+import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_state.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/bloc/data_usage_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/bloc/data_usage_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/bloc/data_usage_state.dart';
 import 'package:globe_one_poc_project/common/utils/kb_converter.dart';
 import 'package:globe_one_poc_project/common/utils/media_query_util.dart';
+import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/data_usage_widget.dart';
 
@@ -16,13 +20,15 @@ class DashBoardPage extends StatefulWidget {
 }
 
 class _DashBoardPageState extends State<DashBoardPage> {
+  AccountDetailsBloc _accountDetailsBloc;
+  DataUsageBloc _dataUsageBloc;
 
-  DataUsageBloc dataUsageBloc;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    dataUsageBloc = BlocProvider.of<DataUsageBloc>(context);
+    _accountDetailsBloc = BlocProvider.of<AccountDetailsBloc>(context);
+    _accountDetailsBloc.add(RefreshAccountDetailsEvent());
+    _dataUsageBloc = BlocProvider.of<DataUsageBloc>(context);
   }
 
   var remainingData = '6.4 GB';
@@ -53,40 +59,52 @@ class _DashBoardPageState extends State<DashBoardPage> {
       ),
       body: ListView(
         children: <Widget>[
-          AccountDetailsWidget(),
+          BlocBuilder<AccountDetailsBloc, AccountDetailsState>(
+              builder: (context, state) {
+            String userName = '';
+            if (state is AccountDetailsSuccess) {
+              userName = state.nameInfo.nameElement2;
+            } else if (state is AccountDetailsFailures) {
+              userName = 'NA';
+            }
+
+            return AccountDetailsWidget(
+              userName: userName,
+              userMobileNumber: "0917 123 4567",
+              userDuoNumber: " | DUO 052654245",
+            );
+          }),
           MobilePaymentInformationWidget(
             paymentAmountValue: '₱ 1,798.03',
             dueDate: 'Due on May 13',
             payNowButtonOnPressed: () {},
             viewBillButtonOnPressed: () {},
           ),
-
           BlocListener<DataUsageBloc, DataUsageState>(
-              listener: (context,state){
-                if(state is SuccessState){
-                  remainingData = KBConverter.convert(double.parse(state.dataUsage.volumeRemaining));
-                  dataAllocation  = KBConverter.convert(double.parse(state.dataUsage.totalAllocated));
-                  refillDate = state.dataUsage.endDate;
-                }
-              },
-              child: BlocBuilder<DataUsageBloc, DataUsageState>(
+              listener: (context, state) {
+            if (state is SuccessState) {
+              remainingData = KBConverter.convert(
+                  double.parse(state.dataUsage.volumeRemaining));
+              dataAllocation = KBConverter.convert(
+                  double.parse(state.dataUsage.totalAllocated));
+              refillDate = state.dataUsage.endDate;
+            }
+          }, child: BlocBuilder<DataUsageBloc, DataUsageState>(
                   builder: (context, state) {
-                    return DataUsageWidget(
-                      onRefresh: () => {dataUsageBloc.add(RefreshEvent())},
-                      onAddMoreData: () => {},
-                      onViewDetails: () => {},
-                      cupLevelIndicator: Image.asset('assets/duck_placeholder.png'),
-                      time: '8:30 AM',
-                      addMoreDataButtonColor: const Color(0xff009CDF),
-                      cupIndicatorTextColor: const Color(0xff9B9B9B),
-                      remainingData: remainingData,
-                      dataAllocation: dataAllocation,
-                      refillDate: refillDate,
-                      textColor: const Color(0xff244857),
-                    );
-                  }
-              )
-          ),
+            return DataUsageWidget(
+              onRefresh: () => {_dataUsageBloc.add(RefreshEvent())},
+              onAddMoreData: () => {},
+              onViewDetails: () => {},
+              cupLevelIndicator: Image.asset('assets/duck_placeholder.png'),
+              time: '8:30 AM',
+              addMoreDataButtonColor: const Color(0xff009CDF),
+              cupIndicatorTextColor: const Color(0xff9B9B9B),
+              remainingData: remainingData,
+              dataAllocation: dataAllocation,
+              refillDate: refillDate,
+              textColor: const Color(0xff244857),
+            );
+          })),
         ],
       ),
     );

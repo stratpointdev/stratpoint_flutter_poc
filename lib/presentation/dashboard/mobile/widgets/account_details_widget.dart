@@ -11,9 +11,7 @@ class AccountDetailsWidget extends StatefulWidget {
   final String userDuoNumber;
 
   AccountDetailsWidget(
-      {this.userName: "Samantha.",
-      this.userMobileNumber: "0917 XXX XXXX",
-      this.userDuoNumber: "DUO 052654245"});
+      {this.userName, this.userMobileNumber, this.userDuoNumber});
 }
 
 class _AccountDetailsWidgetState extends State<AccountDetailsWidget> {
@@ -52,7 +50,7 @@ class _AccountDetailsWidgetState extends State<AccountDetailsWidget> {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    widget.userMobileNumber + " | " + widget.userDuoNumber,
+                    widget.userMobileNumber + widget.userDuoNumber,
                     style: TextStyle(
                       fontFamily: 'FSElliotPro',
                       fontSize: MediaQueryUtil.convertHeight(screenHeight, 10),

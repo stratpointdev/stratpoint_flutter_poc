@@ -8,8 +8,7 @@ class AccountDetailsBloc
     extends Bloc<AccountDetailsEvent, AccountDetailsState> {
   final AccountDetailsRepository accountDetailsRepository;
 
-  AccountDetailsBloc({this.accountDetailsRepository})
-      : assert(accountDetailsRepository != null);
+  AccountDetailsBloc(this.accountDetailsRepository);
 
   @override
   AccountDetailsState get initialState => AccountDetailsInitial();
@@ -22,8 +21,9 @@ class AccountDetailsBloc
       final result = await accountDetailsRepository.getAccountDetails();
       yield result.fold(
           (failures) => AccountDetailsFailed(),
-          (success_entity) =>
-              AccountDetailsSuccess(accountDetailsModel: success_entity));
+          (success_entity) => AccountDetailsSuccess(
+              nameInfo: success_entity.detailsByMsisdnResponse
+                  .detailsByMsisdnResult.subscriberHeader.nameInfo));
     }
   }
 }
