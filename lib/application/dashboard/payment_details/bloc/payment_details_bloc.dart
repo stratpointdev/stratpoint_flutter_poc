@@ -3,15 +3,18 @@ import 'package:globe_one_poc_project/application/dashboard/payment_details/bloc
 import 'package:globe_one_poc_project/application/dashboard/payment_details/bloc/payment_details_state.dart';
 import 'package:globe_one_poc_project/domain/dashboard/payment_details/payment_details_repository.dart';
 
-class PaymentDetailBloc extends Bloc<PaymentDetailsEvent, PaymentDetailsState> {
+class PaymentDetailsBloc
+    extends Bloc<PaymentDetailsEvent, PaymentDetailsState> {
   final PaymentDetailsRepository repository;
 
-  PaymentDetailBloc(this.repository);
-
-  get initialState => InitialState();
+  PaymentDetailsBloc(this.repository) : assert(repository != null);
 
   @override
-  Stream<PaymentDetailsState> mapEventToState(event) async* {
+  PaymentDetailsState get initialState => PaymentDetailsInitialState();
+
+  @override
+  Stream<PaymentDetailsState> mapEventToState(
+      PaymentDetailsEvent event) async* {
     // TODO: implement mapEventToState
 
     if (event is RefreshEvent) {

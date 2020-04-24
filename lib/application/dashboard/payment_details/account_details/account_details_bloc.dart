@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:globe_one_poc_project/application/dashboard/payment_detail/account_details/account_details_event.dart';
-import 'package:globe_one_poc_project/application/dashboard/payment_detail/account_details/account_details_state.dart';
+import 'package:globe_one_poc_project/application/dashboard/payment_details/account_details/account_details_event.dart';
+import 'package:globe_one_poc_project/application/dashboard/payment_details/account_details/account_details_state.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/account_details_repository.dart';
 
 class AccountDetailsBloc

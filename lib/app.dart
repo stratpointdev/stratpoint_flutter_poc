@@ -15,13 +15,10 @@ class MyApp extends StatelessWidget {
     WidgetsFlutterBinding.ensureInitialized();
     return MultiBlocProvider(
         providers: [
-          BlocProvider<PaymentDetailBloc>(
-            create: (context) => PaymentDetailBloc(PaymentDetailsRepositoryImpl(
-                RemotePaymentDetailsService(), LocalPaymentDetailsService())),
-          ),
-          BlocProvider<PaymentDetailBloc>(
-            create: (context) => PaymentDetailBloc(PaymentDetailsRepositoryImpl(
-                RemotePaymentDetailsService(), LocalPaymentDetailsService())),
+          BlocProvider<PaymentDetailsBloc>(
+            create: (context) => PaymentDetailsBloc(
+                PaymentDetailsRepositoryImpl(RemotePaymentDetailsService(),
+                    LocalPaymentDetailsService())),
           ),
         ],
         child: MaterialApp(
