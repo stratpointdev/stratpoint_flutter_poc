@@ -11,17 +11,17 @@ class AccountDetailsBloc
   AccountDetailsBloc(this.accountDetailsRepository);
 
   @override
-  AccountDetailsState get initialState => AccountDetailsInitial();
+  AccountDetailsState get initialState => AccountDetailsInitialState();
 
   @override
   Stream<AccountDetailsState> mapEventToState(
       AccountDetailsEvent event) async* {
     if (event is RefreshAccountDetailsEvent) {
-      yield AccountDetailsLoading();
+      yield AccountDetailsLoadingState();
       final result = await accountDetailsRepository.getAccountDetails();
       yield result.fold(
-          (failures) => AccountDetailsFailed(),
-          (success_entity) => AccountDetailsSuccess(
+          (failures) => AccountDetailsFailedState(),
+          (success_entity) => AccountDetailsSuccessState(
               nameInfo: success_entity.detailsByMsisdnResponse
                   .detailsByMsisdnResult.subscriberHeader.nameInfo));
     }

@@ -1,11 +1,11 @@
 class AccountDetailsModel {
-  String responseCode;
+  int responseCode;
   List<DetailsByMsisdnError> accountDetailsErrors;
   DetailsByMsisdnResponse detailsByMsisdnResponse;
   AccountDetailsModel(this.responseCode, this.detailsByMsisdnResponse);
 
   factory AccountDetailsModel.fromJson(Map<dynamic, dynamic> json) {
-    return AccountDetailsModel(json["responseCode"].toString(),
+    return AccountDetailsModel(json["responseCode"],
         DetailsByMsisdnResponse.fromJson(json["detailsByMsisdnResponse"]));
   }
 }
