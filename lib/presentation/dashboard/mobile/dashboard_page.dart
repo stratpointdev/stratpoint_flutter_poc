@@ -15,6 +15,7 @@ import 'package:globe_one_poc_project/common/utils/kb_converter.dart';
 import 'package:globe_one_poc_project/common/utils/media_query_util.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/data_usage_widget.dart';
 import 'package:globe_one_poc_project/r.dart';
 
@@ -90,66 +91,101 @@ class _DashBoardPageState extends State<DashBoardPage> {
           RefreshIndicator(
             onRefresh: _refresh,
             color: Theme.of(context).primaryColor,
-            child: ListView(
-              shrinkWrap: true,
-              children: <Widget>[
-                BlocBuilder<PaymentDetailsBloc, PaymentDetailsState>(
-                    builder: (context, state) {
-                  if (state is PaymentDetailsSuccessState) {
-                    paymentAmountValue = state
-                        .paymentDetailsModel
-                        .outstandingBalanceByMsisdnResponse
-                        .outstandingBalanceByMsisdnResult
-                        .overDueBalance
-                        .toString();
+            child: Container(
+              height: 620,
+              child: ListView(
+                shrinkWrap: true,
+                children: <Widget>[
+                  Container(
+                    height: MediaQueryUtil.convertHeight(screenHeight, 160),
+                    child: CMSBannerWidget(
+                      onPageSelected: (index) {
+                        print(index);
+                      },
+                      onPageChange: (index) {
+                        print(index);
+                      },
+                      pages: <Widget>[
+                        Container(
+                          color: Colors.orange,
+                          height: 50,
+                          child: FlutterLogo(colors: Colors.blue),
+                        ),
+                        Container(
+                          color: Colors.orange,
+                          height: 50,
+                          child: FlutterLogo(
+                              style: FlutterLogoStyle.stacked,
+                              colors: Colors.red),
+                        ),
+                        Container(
+                          color: Colors.orange,
+                          height: 50,
+                          child: FlutterLogo(
+                              style: FlutterLogoStyle.horizontal,
+                              colors: Colors.green),
+                        ),
+                      ],
+                    ),
+                  ),
+                  BlocBuilder<PaymentDetailsBloc, PaymentDetailsState>(
+                      builder: (context, state) {
+                    if (state is PaymentDetailsSuccessState) {
+                      paymentAmountValue = state
+                          .paymentDetailsModel
+                          .outstandingBalanceByMsisdnResponse
+                          .outstandingBalanceByMsisdnResult
+                          .overDueBalance
+                          .toString();
 
-                    dueDate = state
-                        .paymentDetailsModel
-                        .outstandingBalanceByMsisdnResponse
-                        .outstandingBalanceByMsisdnResult
-                        .overDueDate
-                        .toString();
-                  }
-                  return MobilePaymentDetailsWidget(
-                    paymentAmountValue: paymentAmountValue,
-                    dueDate: dueDate,
-                    payNowButtonOnPressed: () {},
-                    viewBillButtonOnPressed: () {},
-                  );
-                }),
-                BlocBuilder<DataUsageBloc, DataUsageState>(
-                    builder: (context, state) {
-                  var remainingData = '6.4 GB';
-                  var dataAllocation = '10 GB';
-                  var refillDate = 'Apr. 24';
+                      dueDate = state
+                          .paymentDetailsModel
+                          .outstandingBalanceByMsisdnResponse
+                          .outstandingBalanceByMsisdnResult
+                          .overDueDate
+                          .toString();
+                    }
+                    return MobilePaymentDetailsWidget(
+                      paymentAmountValue: '₱ $paymentAmountValue',
+                      dueDate: dueDate,
+                      payNowButtonOnPressed: () {},
+                      viewBillButtonOnPressed: () {},
+                    );
+                  }),
+                  BlocBuilder<DataUsageBloc, DataUsageState>(
+                      builder: (context, state) {
+                    var remainingData = '6.4 GB';
+                    var dataAllocation = '10 GB';
+                    var refillDate = 'Apr. 24';
 
-                  if (state is DataUsageSuccessState) {
-                    remainingData = KBConverter.convert(
-                        double.parse(state.dataUsage.volumeRemaining));
-                    dataAllocation = KBConverter.convert(
-                        double.parse(state.dataUsage.totalAllocated));
-                    refillDate = state.dataUsage.endDate;
-                  }
-                  return DataUsageWidget(
-                    isMobile: true,
-                    onRefresh: () =>
-                        {_dataUsageBloc.add(RefreshDataUsageEvent())},
-                    onAddMoreData: () => {},
-                    onViewDetails: () => {},
-                    cupLevelIndicator:
-                        Image.asset('assets/duck_placeholder.png'),
-                    time: '8:30 AM',
-                    addMoreDataButtonColor: const Color(0xff009CDF),
-                    cupIndicatorTextColor: const Color(0xff9B9B9B),
-                    remainingData: remainingData,
-                    dataAllocation: dataAllocation,
-                    refillDate: refillDate,
-                    textColor: const Color(0xff244857),
-                  );
-                }),
-              ],
+                    if (state is DataUsageSuccessState) {
+                      remainingData = KBConverter.convert(
+                          double.parse(state.dataUsage.volumeRemaining));
+                      dataAllocation = KBConverter.convert(
+                          double.parse(state.dataUsage.totalAllocated));
+                      refillDate = state.dataUsage.endDate;
+                    }
+                    return DataUsageWidget(
+                      isMobile: true,
+                      onRefresh: () =>
+                          {_dataUsageBloc.add(RefreshDataUsageEvent())},
+                      onAddMoreData: () => {},
+                      onViewDetails: () => {},
+                      cupLevelIndicator:
+                          Image.asset('assets/duck_placeholder.png'),
+                      time: '8:30 AM',
+                      addMoreDataButtonColor: const Color(0xff009CDF),
+                      cupIndicatorTextColor: const Color(0xff9B9B9B),
+                      remainingData: remainingData,
+                      dataAllocation: dataAllocation,
+                      refillDate: refillDate,
+                      textColor: const Color(0xff244857),
+                    );
+                  }),
+                ],
+              ),
             ),
-          )
+          ),
         ],
       ),
     );

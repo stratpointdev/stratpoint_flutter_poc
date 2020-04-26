@@ -186,7 +186,7 @@ class DataUsageWidget extends StatelessWidget {
                                     fontSize: MediaQueryUtil.convertHeight(
                                         screenHeight, 11),
                                     fontWeight: FontWeight.bold,
-                                    color: Theme.of(context).primaryColor),
+                                    color: Color(0xff007CB5)),
                               )
                             : Text(
                                 'View Details',
