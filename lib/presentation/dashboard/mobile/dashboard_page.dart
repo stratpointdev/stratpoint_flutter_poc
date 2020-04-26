@@ -89,6 +89,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
           }),
           RefreshIndicator(
             onRefresh: _refresh,
+            color: Theme.of(context).primaryColor,
             child: ListView(
               shrinkWrap: true,
               children: <Widget>[
@@ -130,6 +131,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     refillDate = state.dataUsage.endDate;
                   }
                   return DataUsageWidget(
+                    isMobile: true,
                     onRefresh: () =>
                         {_dataUsageBloc.add(RefreshDataUsageEvent())},
                     onAddMoreData: () => {},
