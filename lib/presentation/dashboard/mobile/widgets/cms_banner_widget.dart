@@ -19,7 +19,13 @@ class CMSBannerWidget extends StatefulWidget {
 }
 
 class _CMSBannerWidgetState extends State<CMSBannerWidget> {
-  PageController _controller = PageController();
+  PageController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = new PageController();
+  }
 
   @override
   Widget build(BuildContext context) {
