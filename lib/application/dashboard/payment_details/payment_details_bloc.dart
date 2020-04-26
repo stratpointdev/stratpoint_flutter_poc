@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:globe_one_poc_project/domain/dashboard/payment_details/payment_details_repository.dart';
 
 import 'payment_details_event.dart';

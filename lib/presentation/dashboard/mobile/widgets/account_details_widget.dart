@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:globe_one_poc_project/common/utils/hex_to_int_converter.dart';
 import 'package:globe_one_poc_project/common/utils/media_query_util.dart';
 
 class AccountDetailsWidget extends StatefulWidget {
@@ -32,7 +31,7 @@ class _AccountDetailsWidgetState extends State<AccountDetailsWidget> {
               width: MediaQueryUtil.convertWidth(screenWidth, 32),
               height: MediaQueryUtil.convertHeight(screenHeight, 32),
               decoration: BoxDecoration(
-                color: Color(HexToIntConverter.convert("#F8D31C")),
+                color: Color(0xffF8D31C),
                 shape: BoxShape.circle,
               ),
             ),

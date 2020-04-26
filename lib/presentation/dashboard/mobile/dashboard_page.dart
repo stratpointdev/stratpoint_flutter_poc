@@ -16,6 +16,7 @@ import 'package:globe_one_poc_project/common/utils/media_query_util.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/data_usage_widget.dart';
+import 'package:globe_one_poc_project/r.dart';
 
 import 'widgets/mobile_payment_details_widget.dart';
 
@@ -59,7 +60,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
           child: Container(
             width: MediaQueryUtil.convertWidth(screenWidth, 59),
             height: MediaQueryUtil.convertHeight(screenHeight, 22),
-            child: Image.asset("assets/ic_globe_banner.png"),
+            child: Image.asset(R.assetsIcGlobeBanner),
           ),
         ),
         actions: <Widget>[

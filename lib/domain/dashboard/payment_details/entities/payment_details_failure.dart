@@ -6,8 +6,9 @@ class PaymentDetailsFailure {
 
   factory PaymentDetailsFailure.fromJson(Map<String, dynamic> json) {
     return PaymentDetailsFailure(
-        code: json['code'],
-        message: json['message'],
-        parameter: json['parameter']);
+      code: json['code'],
+      message: json['message'],
+      parameter: json['parameter'],
+    );
   }
 }

@@ -3,19 +3,17 @@ import 'package:globe_one_poc_project/common/utils/media_query_util.dart';
 
 class MobilePaymentDetailsWidget extends StatefulWidget {
   final String paymentAmountValue;
-
   final String dueDate;
-
   final GestureTapCallback payNowButtonOnPressed;
   final GestureTapCallback viewBillButtonOnPressed;
 
-  const MobilePaymentDetailsWidget(
-      {Key key,
-      this.paymentAmountValue,
-      this.dueDate,
-      this.payNowButtonOnPressed,
-      this.viewBillButtonOnPressed})
-      : super(key: key);
+  const MobilePaymentDetailsWidget({
+    Key key,
+    this.paymentAmountValue,
+    this.dueDate,
+    this.payNowButtonOnPressed,
+    this.viewBillButtonOnPressed,
+  }) : super(key: key);
 
   @override
   _MobilePaymentInformationWidgetState createState() =>
@@ -55,9 +53,7 @@ class _MobilePaymentInformationWidgetState
                 ),
               ],
             ),
-            SizedBox(
-              height: 8,
-            ),
+            const SizedBox(height: 8),
             Row(
               children: <Widget>[
                 Text(
@@ -69,9 +65,7 @@ class _MobilePaymentInformationWidgetState
                 )
               ],
             ),
-            SizedBox(
-              height: 16,
-            ),
+            const SizedBox(height: 16),
             Row(
               children: <Widget>[
                 Expanded(
@@ -84,10 +78,11 @@ class _MobilePaymentInformationWidgetState
                     child: Text(
                       'Pay now',
                       style: TextStyle(
-                          fontSize:
-                              MediaQueryUtil.convertHeight(screenHeight, 11),
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'FSElliotPro'),
+                        fontSize:
+                            MediaQueryUtil.convertHeight(screenHeight, 11),
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'FSElliotPro',
+                      ),
                     ),
                   ),
                 ),
@@ -107,9 +102,7 @@ class _MobilePaymentInformationWidgetState
                             fontFamily: 'FSElliotPro',
                           ),
                         ),
-                        Icon(
-                          Icons.chevron_right,
-                        ),
+                        Icon(Icons.chevron_right),
                       ],
                     ),
                   ),
