@@ -17,6 +17,7 @@ import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/data_usage_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/progress_indicator_widget.dart';
 import 'package:globe_one_poc_project/r.dart';
 
 import 'widgets/mobile_payment_details_widget.dart';
@@ -148,6 +149,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
                           .overDueDate
                           .toString();
                     }
+                    if (state is PaymentDetailsLoadingState) {
+                      return ProgressIndicatorWidget();
+                    }
                     return MobilePaymentDetailsWidget(
                       paymentAmountValue: '₱ $paymentAmountValue',
                       dueDate: dueDate,
@@ -168,6 +172,10 @@ class _DashBoardPageState extends State<DashBoardPage> {
                         dataAllocation = state.totalAllocated;
                         refillDate = state.endDate;
                     }
+                    if (state is DataUsageLoadingState) {
+                      return ProgressIndicatorWidget();
+                    }
+
                     return DataUsageWidget(
                       isMobile: true,
                       onRefresh: () =>
@@ -185,6 +193,11 @@ class _DashBoardPageState extends State<DashBoardPage> {
                       textColor: const Color(0xff244857),
                     );
                   }),
+                  Expanded(
+                    child: Container(
+                      child: Image.asset('assets/rest_of_screen.png'),
+                    ),
+                  )
                 ],
               ),
 

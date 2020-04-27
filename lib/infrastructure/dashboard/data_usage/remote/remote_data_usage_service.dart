@@ -40,7 +40,4 @@ class RemoteDataUsageService {
     //  throw Exception('error');
     //}
   }
-
-
-
 }
