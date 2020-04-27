@@ -33,19 +33,19 @@ flutter_build_android:
     - develop
 
 
-deploy_android:
-  stage: deploy_android
-  before_script:
-    - cd android
-    - bundle install --deployment
-  dependencies:
-    - flutter_build_android
-  script:
-    - bundle exec fastlane deploy
-  tags:
-    - flutter
-  only:
-    - develop
+# deploy_android:
+#   stage: deploy_android
+#   before_script:
+#     - cd android
+#     - bundle install --deployment
+#   dependencies:
+#     - flutter_build_android
+#   script:
+#     - bundle exec fastlane deploy
+#   tags:
+#     - flutter
+#   only:
+#     - develop
 
 flutter_build_ios:
   stage: build_ios
@@ -63,19 +63,19 @@ flutter_build_ios:
   only:
     - develop
 
-deploy_ios:
-  stage: deploy_ios
-  before_script:
-    - cd ios
-    - bundle install --deployment
-  dependencies:
-    - flutter_build_ios
-  script:
-    - bundle exec fastlane deploy
-  tags:
-    - flutter
-  only:
-    - develop
+# deploy_ios:
+#   stage: deploy_ios
+#   before_script:
+#     - cd ios
+#     - bundle install --deployment
+#   dependencies:
+#     - flutter_build_ios
+#   script:
+#     - bundle exec fastlane deploy
+#   tags:
+#     - flutter
+#   only:
+#     - develop
 
 flutter_build_web:
   stage: build_web
@@ -91,14 +91,14 @@ flutter_build_web:
   only:
     - develop
 
-deploy_web:
-  stage: deploy_web
-  before_script:
-    - npm i -g firebase-tools
-  dependencies:
-    - flutter_build_web
-  script:
-    - flutter use staging
-    - firebase deploy --token $FIREBASE_TOKEN
-  only:
-    - develop
+# deploy_web:
+#   stage: deploy_web
+#   before_script:
+#     - npm i -g firebase-tools
+#   dependencies:
+#     - flutter_build_web
+#   script:
+#     - flutter use staging
+#     - firebase deploy --token $FIREBASE_TOKEN
+#   only:
+#     - develop
