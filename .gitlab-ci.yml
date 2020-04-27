@@ -3,6 +3,9 @@ stages:
   - build # All jobs related for building app for iOS and Android
   - deploy
 
+before_script:
+    export PATH="$PATH:/Users/ronalddelacruz/development/flutter/bin"
+    
 flutter_test: # Name of the lane
   stage: test # type of stage
   script:
