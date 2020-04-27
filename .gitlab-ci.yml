@@ -12,8 +12,6 @@ flutter_test: # Name of the lane
     - flutter test # Run Flutter test
   tags:
     - flutter # Tags for runner
-  only:
-    - develop
 
 
 flutter_build_android:
