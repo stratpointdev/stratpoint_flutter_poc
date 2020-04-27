@@ -20,7 +20,7 @@ class DataUsageRepositoryImpl implements DataUsageRepository {
        if (value.isLeft()) {
          return remoteDataUsageService.getDataUsage();
        }else {
-         return localDataUsageService.getDataUsage();
+         return value;
        }
      });
    }else {

@@ -2,7 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_model.dart';
 import 'package:sembast/sembast.dart';
-
+import '../../../database_factory.dart' if(dart.library.js)'package:sembast_web/sembast_web.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import '../../../app_database.dart';
 
 class LocalAccountDetailsService {
@@ -10,7 +11,13 @@ class LocalAccountDetailsService {
   static const String ACCOUNT_DETAILS = 'accountDetails';
   final _accountDetails = intMapStoreFactory.store(ACCOUNT_DETAILS);
 
-  Future<Database> get _db async => await AppDatabase.instance.database;
+  Future<Database> get _db async => database();
+  Future<Database> database() {
+    if (!kIsWeb)
+      return AppDatabase.instance.database;
+    else
+      return databaseFactoryWeb.openDatabase(ACCOUNT_DETAILS);
+  }
 
   Future insert(AccountDetailsModel accountDetailsModel) async {
     print('insert ');
@@ -40,7 +47,7 @@ class LocalAccountDetailsService {
       }).first);
     }catch(error){
       print('errorlocal '+error.toString());
-      return left(AccountDetailsFailures.localError(error));
+      return left(AccountDetailsFailures.localError(error.toString()));
     }
   }
 

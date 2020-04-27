@@ -24,20 +24,23 @@ class PaymentDetailsBloc
       yield value.fold(
               (failures) => PaymentDetailsFailedState(),
               (success_entity) => PaymentDetailsSuccessState(paymentDetailsModel: success_entity));
+      if (value.isRight()) {
+        await paymentDetailsRepository.deletePaymentDetailsLocal();
+        await paymentDetailsRepository.insertPaymentDetailsLocal(value.getOrElse(() => null));
+      }
     }
 
     if (event is RefreshPaymentDetailsEvent) {
       yield PaymentDetailsLoadingState();
       var result = await paymentDetailsRepository.getPaymentDetails(isLocal: false);
-      if (result.isRight()) {
-        await paymentDetailsRepository.deletePaymentDetailsLocal();
-        await paymentDetailsRepository.insertPaymentDetailsLocal(result.getOrElse(() => null));
-      }
-
       yield result.fold(
           (failures) => PaymentDetailsFailedState(),
           (success_entity) =>
               PaymentDetailsSuccessState(paymentDetailsModel: success_entity));
+      if (result.isRight()) {
+        await paymentDetailsRepository.deletePaymentDetailsLocal();
+        await paymentDetailsRepository.insertPaymentDetailsLocal(result.getOrElse(() => null));
+      }
     }
   }
 }

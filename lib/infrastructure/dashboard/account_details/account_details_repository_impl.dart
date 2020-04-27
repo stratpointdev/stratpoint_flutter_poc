@@ -19,7 +19,7 @@ class AccountDetailsRepositoryImpl implements AccountDetailsRepository {
         if (value.isLeft()) {
           return remoteAccountDetailsService.getAccountDetails();
         }else {
-          return localAccountDetailsService.getAccountDetails();
+          return value;
         }
       });
     }else {

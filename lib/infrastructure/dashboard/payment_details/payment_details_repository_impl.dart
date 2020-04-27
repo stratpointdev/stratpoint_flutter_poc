@@ -14,14 +14,14 @@ class PaymentDetailsRepositoryImpl implements PaymentDetailsRepository {
 
   @override
   Future<Either<PaymentDetailsFailure, PaymentDetailsModel>>
-      getPaymentDetails({isLocal}) {
+      getPaymentDetails({isLocal}) async{
 
     if(isLocal) {
       return localPaymentDetailsService.getPaymentDetails().then((value) {
         if (value.isLeft()) {
           return remotePaymentDetailsService.getPaymentDetails();
         }else {
-          return localPaymentDetailsService.getPaymentDetails();
+          return value;
         }
       });
     }else {

@@ -25,22 +25,27 @@ class AccountDetailsBloc
               (failures) => AccountDetailsFailedState(),
               (success_entity) => AccountDetailsSuccessState(nameInfo: success_entity.detailsByMsisdnResponse
                   .detailsByMsisdnResult.subscriberHeader.nameInfo));
+
+      if (value.isRight()) {
+        await accountDetailsRepository.deletePaymentDetailsLocal();
+        await accountDetailsRepository.insertPaymentDetailsLocal(value.getOrElse(() => null));
+      }
     }
 
     if (event is RefreshAccountDetailsEvent) {
       yield AccountDetailsLoadingState();
       final result = await accountDetailsRepository.getAccountDetails(isLocal: false);
 
-      if (result.isRight()) {
-        await accountDetailsRepository.deletePaymentDetailsLocal();
-        await accountDetailsRepository.insertPaymentDetailsLocal(result.getOrElse(() => null));
-      }
-
       yield result.fold(
           (failures) => AccountDetailsFailedState(),
           (success_entity) => AccountDetailsSuccessState(
               nameInfo: success_entity.detailsByMsisdnResponse
                   .detailsByMsisdnResult.subscriberHeader.nameInfo));
+
+      if (result.isRight()) {
+        await accountDetailsRepository.deletePaymentDetailsLocal();
+        await accountDetailsRepository.insertPaymentDetailsLocal(result.getOrElse(() => null));
+      }
     }
   }
 }

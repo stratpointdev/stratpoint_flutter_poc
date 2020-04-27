@@ -1,9 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:globe_one_poc_project/common/utils/datetime_converter.dart';
+import 'package:globe_one_poc_project/domain/dashboard/payment_details/entities/payment_details_model.dart';
+import 'package:intl/intl.dart';
 
 class LoadBalance extends StatefulWidget {
-
-  const LoadBalance();
+  final String paymentAmountValue;
+  final String dueDate;
+  final LastPaymentDt lastPaymentDt;
+  final VoidCallback onRefresh;
+   LoadBalance({this.paymentAmountValue, this.dueDate,this.lastPaymentDt,this.onRefresh});
 
   @override
   _LoadBalance createState() => _LoadBalance();
@@ -44,7 +50,7 @@ class _LoadBalance extends State<LoadBalance> {
                     Padding(
                       padding: EdgeInsets.only(top: 10, bottom: 10),
                       child: Text(
-                        "As of Apr. 22, 2020",
+                        "As of "+DateTimeConverter.getDateWithYearNow(),
                         style: TextStyle(fontSize: 18, color: Color(0xff244857)),
                         textAlign: TextAlign.left
                       ),
@@ -55,9 +61,10 @@ class _LoadBalance extends State<LoadBalance> {
                     //add refresh icon here
                     Padding(
                       padding: EdgeInsets.only(right: 0),
-                      child: Icon(
-                          refresh,
-                          color: Color(0xff244857)
+                      child: IconButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: widget.onRefresh,
+                        icon: Icon(Icons.refresh),
                       ),
                     )
                     //end of refresh icon here
@@ -67,7 +74,7 @@ class _LoadBalance extends State<LoadBalance> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 30),
                   child: Text(
-                    "Expires on Apr. 22, 2021, 10:25 AM",
+                    "Expires on " +DateTimeConverter.convertToDateTime(widget.dueDate),
                     style: TextStyle(fontSize: 18, color: Color(0xff244857)),
                     textAlign: TextAlign.left,
                   ),
@@ -76,7 +83,7 @@ class _LoadBalance extends State<LoadBalance> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 30),
                   child: Text(
-                      "P13.50",
+                      NumberFormat.currency(decimalDigits: 2 , symbol: '₱').format(double.parse(widget.paymentAmountValue)),
                       style: TextStyle(fontSize: 36, color: Color(0xff244857)),
                       textAlign: TextAlign.left
                   ),
@@ -116,7 +123,7 @@ class _LoadBalance extends State<LoadBalance> {
                     Padding(
                       padding: EdgeInsets.only(bottom: 10),
                       child: Text(
-                          "P50.00",
+                       NumberFormat.currency(decimalDigits: 2 , symbol: '₱').format(widget.lastPaymentDt.amount),
                           style: TextStyle(fontSize: 16, color: Color(0xff244857)),
                           textAlign: TextAlign.left
                       ),
@@ -141,7 +148,7 @@ class _LoadBalance extends State<LoadBalance> {
                     Padding(
                       padding: EdgeInsets.only(bottom: 10),
                       child: Text(
-                          "Apr. 22, 2020",
+                          DateTimeConverter.convertToDate(widget.lastPaymentDt.paymentDate),
                           style: TextStyle(fontSize: 16, color: Color(0xff244857)),
                           textAlign: TextAlign.left
                       ),

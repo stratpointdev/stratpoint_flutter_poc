@@ -28,10 +28,6 @@ class DataUsageFailedState extends DataUsageState {
 
   @override
   List<Object> get props => [dataUsageFailure];
-
-
-
-
 }
 //function to sum all total allocated and remainingData;
 DataUsageSuccessState dataUsageSuccesState(List<DataUsage> dataUsageList){
@@ -44,7 +40,7 @@ DataUsageSuccessState dataUsageSuccesState(List<DataUsage> dataUsageList){
   }
   var remainingData = GBConverter.convert(sumVolumeRemaining);
   var dataAllocation = GBConverter.convert(sumTotalAllocated);
-  var refillDate = DateTimeConverter.convert(dataUsageList[0].endDate);
+  var refillDate = DateTimeConverter.convertToDate(dataUsageList[0].endDate);
   return DataUsageSuccessState(volumeRemaing: remainingData, totalAllocated: dataAllocation , endDate: refillDate );
 }
 
