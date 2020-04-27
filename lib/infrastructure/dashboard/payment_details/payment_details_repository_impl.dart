@@ -14,7 +14,31 @@ class PaymentDetailsRepositoryImpl implements PaymentDetailsRepository {
 
   @override
   Future<Either<PaymentDetailsFailure, PaymentDetailsModel>>
-      getPaymentDetails() {
-    return remotePaymentDetailsService.getPaymentDetails();
+      getPaymentDetails({isLocal}) async{
+
+    if(isLocal) {
+      return localPaymentDetailsService.getPaymentDetails().then((value) {
+        if (value.isLeft()) {
+          return remotePaymentDetailsService.getPaymentDetails();
+        }else {
+          return value;
+        }
+      });
+    }else {
+      return remotePaymentDetailsService.getPaymentDetails();
+    }
+
   }
+
+  @override
+  Future deletePaymentDetailsLocal() {
+    return localPaymentDetailsService.delete();
+  }
+
+  @override
+  Future insertPaymentDetailsLocal(paymentDetailsModel) {
+    return localPaymentDetailsService.insert(paymentDetailsModel);
+  }
+
+
 }

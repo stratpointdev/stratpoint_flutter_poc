@@ -11,7 +11,7 @@ import 'package:globe_one_poc_project/application/dashboard/payment_details/paym
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_state.dart';
 
-import 'package:globe_one_poc_project/common/utils/kb_converter.dart';
+
 import 'package:globe_one_poc_project/common/utils/media_query_util.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
@@ -44,7 +44,10 @@ class _DashBoardPageState extends State<DashBoardPage> {
     _accountDetailsBloc = BlocProvider.of<AccountDetailsBloc>(context);
     _paymentDetailsBloc = BlocProvider.of<PaymentDetailsBloc>(context);
     _dataUsageBloc = BlocProvider.of<DataUsageBloc>(context);
-    _accountDetailsBloc.add(RefreshAccountDetailsEvent());
+
+    _accountDetailsBloc.add(InitialAccountDetailsEvent());
+    _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
+    _dataUsageBloc.add(InitialDataUsageEvent());
   }
 
   var paymentAmountValue = '0';
@@ -162,12 +165,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     var dataAllocation = '10 GB';
                     var refillDate = 'Apr. 24';
 
+
+
                     if (state is DataUsageSuccessState) {
-                      remainingData = KBConverter.convert(
-                          double.parse(state.dataUsage.volumeRemaining));
-                      dataAllocation = KBConverter.convert(
-                          double.parse(state.dataUsage.totalAllocated));
-                      refillDate = state.dataUsage.endDate;
+                        remainingData = state.volumeRemaing;
+                        dataAllocation = state.totalAllocated;
+                        refillDate = state.endDate;
                     }
                     if (state is DataUsageLoadingState) {
                       return ProgressIndicatorWidget();
@@ -177,7 +180,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                       isMobile: true,
                       onRefresh: () =>
                           {_dataUsageBloc.add(RefreshDataUsageEvent())},
-                      onAddMoreData: () => {},
+                      onAddMoreData: () => {_dataUsageBloc.add(RefreshDataUsageEvent())},
                       onViewDetails: () => {},
                       cupLevelIndicator:
                           Image.asset('assets/duck_placeholder.png'),
@@ -197,6 +200,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                   )
                 ],
               ),
+
             ),
           ),
         ],
