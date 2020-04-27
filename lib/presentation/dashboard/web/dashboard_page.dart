@@ -50,9 +50,10 @@ class _DashBoardPageState extends State<DashBoardPage> {
                 var refillDate = 'Apr. 24';
 
                 if (state is DataUsageSuccessState) {
-                  remainingData = GBConverter.convert(double.parse(state.dataUsage[0].volumeRemaining));
-                  dataAllocation = GBConverter.convert(double.parse(state.dataUsage[0].totalAllocated));
-                  refillDate = state.dataUsage[0].endDate;
+
+                  remainingData = state.volumeRemaing;
+                  dataAllocation = state.totalAllocated;
+                  refillDate = state.endDate;
                 }
                 return DataUsageWidget(
                   onRefresh: () => {_dataUsageBloc.add(RefreshDataUsageEvent())},

@@ -162,18 +162,18 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     var dataAllocation = '10 GB';
                     var refillDate = 'Apr. 24';
 
+
+
                     if (state is DataUsageSuccessState) {
-                        remainingData = GBConverter.convert(
-                        double.parse(state.dataUsage[0].volumeRemaining));
-                        dataAllocation = GBConverter.convert(
-                        double.parse(state.dataUsage[0].totalAllocated));
-                        refillDate = DateTimeConverter.convert(state.dataUsage[0].endDate);
+                        remainingData = state.volumeRemaing;
+                        dataAllocation = state.totalAllocated;
+                        refillDate = state.endDate;
                     }
                     return DataUsageWidget(
                       isMobile: true,
                       onRefresh: () =>
                           {_dataUsageBloc.add(RefreshDataUsageEvent())},
-                      onAddMoreData: () => {},
+                      onAddMoreData: () => {_dataUsageBloc.add(RefreshDataUsageEvent())},
                       onViewDetails: () => {},
                       cupLevelIndicator:
                           Image.asset('assets/duck_placeholder.png'),
