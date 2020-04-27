@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:globe_one_poc_project/r.dart';
 
 class DesktopHeader extends StatelessWidget {
 
@@ -72,7 +73,7 @@ class DesktopHeader extends StatelessWidget {
                   child: CircleAvatar(
                     radius: 15.0,
                     backgroundImage:
-                    NetworkImage("assets/images/user.png"),
+                    NetworkImage(R.assetsImagesUser),
                     backgroundColor: Colors.transparent,
                   )
               ),
@@ -105,7 +106,7 @@ class DesktopHeader extends StatelessWidget {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: NetworkImage("assets/images/globelogo.png"),
+                        image: NetworkImage(R.assetsImagesGlobelogo),
                       ),
                     ),
                   )

@@ -8,7 +8,6 @@ import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/web-pay
 import 'desktop_header.dart';
 
 class DesktopDashboard extends StatefulWidget {
-
   const DesktopDashboard();
 
   @override
@@ -16,18 +15,14 @@ class DesktopDashboard extends StatefulWidget {
 }
 
 class _DesktopDashboard extends State<DesktopDashboard> {
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
       child: Column(
         children: <Widget>[
-
           DesktopHeaderMenu(),
-
           DesktopHeader(),
-
           AccountDesktopDashboard(
             profile: "Samantha",
             mobile: "0918 XXXX XXXX",
@@ -38,6 +33,7 @@ class _DesktopDashboard extends State<DesktopDashboard> {
           DesktopMenu(),
 
           WebPaymentInformationWidget()
+
         ],
       ),
     );

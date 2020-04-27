@@ -42,8 +42,10 @@ flutter:
     - assets/ic_globe_banner.png
     - assets/icon.png
     # assets/images/*
+    - assets/images/globelogo.png
     - assets/images/mobiletopbanner.png
     - assets/images/topbanner.png
+    - assets/images/user.png
     # assets-generator-end
   
   fonts:

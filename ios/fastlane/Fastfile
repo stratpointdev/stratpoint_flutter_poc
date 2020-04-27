@@ -18,6 +18,7 @@ default_platform(:ios)
 platform :ios do
   desc "Build an ipa"
   lane :build do
+    increment_build_number(xcodeproj: "Runner.xcodeproj")
     Dir.chdir("../..") do
       sh "flutter packages get"
       sh "flutter clean"
@@ -49,6 +50,7 @@ platform :ios do
         owner_type: "organization",
         app_name: "globeone_poc_ios", # Your AppCenter name
         ipa: "./build/Runner.ipa",
+        notify_testers: true
       )
     else
       UI.message('Unable to find ipa') 
