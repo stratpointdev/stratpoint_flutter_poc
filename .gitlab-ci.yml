@@ -34,6 +34,7 @@ flutter_build_android:
 deploy_android:
   stage: deploy
   before_script:
+    - export PATH="$PATH:/Users/ronalddelacruz/development/flutter/bin"
     - cd android
     - bundle install --deployment
   dependencies:
@@ -49,6 +50,7 @@ deploy_android:
 flutter_build_ios:
   stage: build
   before_script:
+    - export PATH="$PATH:/Users/ronalddelacruz/development/flutter/bin"
     - flutter channel stable
     - cd ios
     - bundle install --deployment
@@ -65,6 +67,7 @@ flutter_build_ios:
 deploy_ios:
   stage: deploy
   before_script:
+    - export PATH="$PATH:/Users/ronalddelacruz/development/flutter/bin"
     - cd ios
     - bundle install --deployment
   dependencies:
@@ -79,6 +82,7 @@ deploy_ios:
 flutter_build_web:
   stage: build
   before_script:
+    - export PATH="$PATH:/Users/ronalddelacruz/development/flutter/bin"
     - flutter channel beta
   script:
     - flutter build web
@@ -94,6 +98,7 @@ deploy_web:
   image: node:12.13.0-alpine
   stage: deploy
   before_script:
+    - export PATH="$PATH:/Users/ronalddelacruz/development/flutter/bin"
     - npm i -g firebase-tools
   dependencies:
     - flutter_build_web
