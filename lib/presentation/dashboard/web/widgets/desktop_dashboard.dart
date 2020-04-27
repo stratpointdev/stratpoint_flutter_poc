@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'desktop_header.dart';
 
 class DesktopDashboard extends StatefulWidget {
-
   const DesktopDashboard();
 
   @override
@@ -15,26 +14,21 @@ class DesktopDashboard extends StatefulWidget {
 }
 
 class _DesktopDashboard extends State<DesktopDashboard> {
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
       child: Column(
         children: <Widget>[
-
           DesktopHeaderMenu(),
-
           DesktopHeader(),
-
           AccountDesktopDashboard(
             profile: "Samantha",
             mobile: "0918 XXXX XXXX",
             duoNumber: "(02) 2920118",
             profilePicture: "https://i.imgur.com/BoN9kdC.png",
           ),
-
-          DesktopMenu()
+          DesktopMenu(),
         ],
       ),
     );

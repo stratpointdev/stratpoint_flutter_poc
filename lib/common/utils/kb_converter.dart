@@ -1,11 +1,8 @@
-class KBConverter{
-  static String convert(double num ){
+class KBConverter {
+  static String convert(double num) {
+    var marker = 1000;
+    var gigaBytes = marker * marker;
 
-      var marker = 1000;
-      var gigaBytes = marker *marker;
-
-      return(num / gigaBytes).toStringAsFixed(1) + " GB";
-
+    return (num / gigaBytes).toStringAsFixed(1) + " GB";
   }
-
 }
