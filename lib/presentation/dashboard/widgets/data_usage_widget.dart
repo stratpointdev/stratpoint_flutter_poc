@@ -80,74 +80,75 @@ class DataUsageWidget extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 36),
-            Expanded(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text('100%', style: cupLevelIndicatorTextStyle),
-                      Text('—', style: cupLevelIndicatorTextStyle),
-                      Text('50%', style: cupLevelIndicatorTextStyle),
-                      Text('—', style: cupLevelIndicatorTextStyle),
-                      Text('0%', style: cupLevelIndicatorTextStyle),
-                    ],
-                  ),
-                  Expanded(child: Container()),
-                  // TODO: Change to Ratio depending on Screen Size?
-                  Container(
-                    width: 140,
-                    height: 190,
-                    child: cupLevelIndicator,
-                  ),
-                  Expanded(child: Container()),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        '$remainingData LEFT',
-                        style: const TextStyle(
-                          fontSize: 20,
+
+
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text('100%', style: cupLevelIndicatorTextStyle),
+                    Text('—', style: cupLevelIndicatorTextStyle),
+                    Text('50%', style: cupLevelIndicatorTextStyle),
+                    Text('—', style: cupLevelIndicatorTextStyle),
+                    Text('0%', style: cupLevelIndicatorTextStyle),
+                  ],
+                ),
+                Spacer(),
+                // TODO: Change to Ratio depending on Screen Size?
+                Container(
+                  width: 140,
+                  height: 190,
+                  child: cupLevelIndicator,
+                ),
+                Spacer(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      '$remainingData LEFT',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Out of $dataAllocation',
+                      style: TextStyle(
+                        color: textColor,
+                        fontSize: 12,
+                      ),
+                    ),
+                    Text(
+                      'Refills on $refillDate',
+                      style: TextStyle(
+                        color: textColor,
+                        fontSize: 12,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    RawMaterialButton(
+                      onPressed: onViewDetails,
+                      child: Text(
+                        'View Details',
+                        style: TextStyle(
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline,
                         ),
                       ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Out of $dataAllocation',
-                        style: TextStyle(
-                          color: textColor,
-                          fontSize: 12,
-                        ),
-                      ),
-                      Text(
-                        'Refills on $refillDate',
-                        style: TextStyle(
-                          color: textColor,
-                          fontSize: 12,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      RawMaterialButton(
-                        onPressed: onViewDetails,
-                        child: Text(
-                          'View Details',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(width: 10),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+                const SizedBox(width: 10),
+              ],
             ),
+
             const SizedBox(height: 36),
             Container(
               height: 40,

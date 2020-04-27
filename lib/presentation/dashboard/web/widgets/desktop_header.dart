@@ -50,9 +50,7 @@ class DesktopHeader extends StatelessWidget {
                 ),
               ),
 
-              Expanded(
-                child: Spacer(),
-              ),
+              Spacer(),
 
               Padding(
                 padding: EdgeInsets.only(right: 30),
@@ -112,9 +110,7 @@ class DesktopHeader extends StatelessWidget {
                   )
               ),
 
-              Expanded(
-                  child: Spacer()
-              ),
+              Spacer(),
 
               Padding(
                   padding: EdgeInsets.only(right: 15, top: 20),
