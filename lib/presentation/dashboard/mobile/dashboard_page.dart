@@ -10,8 +10,9 @@ import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usag
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_state.dart';
+import 'package:globe_one_poc_project/common/utils/datetime_converter.dart';
+import 'package:globe_one_poc_project/common/utils/gb_converter.dart';
 
-import 'package:globe_one_poc_project/common/utils/kb_converter.dart';
 import 'package:globe_one_poc_project/common/utils/media_query_util.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
@@ -43,7 +44,10 @@ class _DashBoardPageState extends State<DashBoardPage> {
     _accountDetailsBloc = BlocProvider.of<AccountDetailsBloc>(context);
     _paymentDetailsBloc = BlocProvider.of<PaymentDetailsBloc>(context);
     _dataUsageBloc = BlocProvider.of<DataUsageBloc>(context);
-    _accountDetailsBloc.add(RefreshAccountDetailsEvent());
+
+    _accountDetailsBloc.add(InitialAccountDetailsEvent());
+    _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
+    _dataUsageBloc.add(InitialDataUsageEvent());
   }
 
   var paymentAmountValue = '0';
@@ -159,11 +163,11 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     var refillDate = 'Apr. 24';
 
                     if (state is DataUsageSuccessState) {
-                      remainingData = KBConverter.convert(
-                          double.parse(state.dataUsage.volumeRemaining));
-                      dataAllocation = KBConverter.convert(
-                          double.parse(state.dataUsage.totalAllocated));
-                      refillDate = state.dataUsage.endDate;
+                        remainingData = GBConverter.convert(
+                        double.parse(state.dataUsage[0].volumeRemaining));
+                        dataAllocation = GBConverter.convert(
+                        double.parse(state.dataUsage[0].totalAllocated));
+                        refillDate = DateTimeConverter.convert(state.dataUsage[0].endDate);
                     }
                     return DataUsageWidget(
                       isMobile: true,
@@ -184,6 +188,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                   }),
                 ],
               ),
+
             ),
           ),
         ],

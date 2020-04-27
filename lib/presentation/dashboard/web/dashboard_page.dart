@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
-import 'package:globe_one_poc_project/common/utils/kb_converter.dart';
+import 'package:globe_one_poc_project/common/utils/gb_converter.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/widgets/data_usage_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/account_desktop_dashboard.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/desktop_header_menu.dart';
@@ -50,9 +50,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
                 var refillDate = 'Apr. 24';
 
                 if (state is DataUsageSuccessState) {
-                  remainingData = KBConverter.convert(double.parse(state.dataUsage.volumeRemaining));
-                  dataAllocation = KBConverter.convert(double.parse(state.dataUsage.totalAllocated));
-                  refillDate = state.dataUsage.endDate;
+                  remainingData = GBConverter.convert(double.parse(state.dataUsage[0].volumeRemaining));
+                  dataAllocation = GBConverter.convert(double.parse(state.dataUsage[0].totalAllocated));
+                  refillDate = state.dataUsage[0].endDate;
                 }
                 return DataUsageWidget(
                   onRefresh: () => {_dataUsageBloc.add(RefreshDataUsageEvent())},

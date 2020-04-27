@@ -6,9 +6,9 @@ import 'payment_details_state.dart';
 
 class PaymentDetailsBloc
     extends Bloc<PaymentDetailsEvent, PaymentDetailsState> {
-  final PaymentDetailsRepository repository;
+  final PaymentDetailsRepository paymentDetailsRepository;
 
-  PaymentDetailsBloc(this.repository) : assert(repository != null);
+  PaymentDetailsBloc(this.paymentDetailsRepository) : assert(paymentDetailsRepository != null);
 
   @override
   PaymentDetailsState get initialState => PaymentDetailsInitialState();
@@ -16,8 +16,24 @@ class PaymentDetailsBloc
   @override
   Stream<PaymentDetailsState> mapEventToState(
       PaymentDetailsEvent event) async* {
+
+    if(event is InitialPaymentDetailsEvent){
+      yield PaymentDetailsLoadingState();
+      var value = await paymentDetailsRepository.getPaymentDetails(isLocal: true);
+
+      yield value.fold(
+              (failures) => PaymentDetailsFailedState(),
+              (success_entity) => PaymentDetailsSuccessState(paymentDetailsModel: success_entity));
+    }
+
     if (event is RefreshPaymentDetailsEvent) {
-      var result = await repository.getPaymentDetails();
+      yield PaymentDetailsLoadingState();
+      var result = await paymentDetailsRepository.getPaymentDetails(isLocal: false);
+      if (result.isRight()) {
+        await paymentDetailsRepository.deletePaymentDetailsLocal();
+        await paymentDetailsRepository.insertPaymentDetailsLocal(result.getOrElse(() => null));
+      }
+
       yield result.fold(
           (failures) => PaymentDetailsFailedState(),
           (success_entity) =>

@@ -10,7 +10,7 @@ class AppDatabase {
   static AppDatabase get instance => _singleton;
   Completer<Database> _dbOpenCompleter;
   AppDatabase._();
-  Database _database;
+  //Database _database;
 
   Future<Database> get database async {
     if (_dbOpenCompleter == null) {

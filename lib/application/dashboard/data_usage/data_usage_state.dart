@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage.dart';
+import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage_model.dart';
 import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage_failures.dart';
 
 abstract class DataUsageState extends Equatable {
@@ -9,7 +9,7 @@ abstract class DataUsageState extends Equatable {
 }
 
 class DataUsageSuccessState extends DataUsageState {
-  final DataUsage dataUsage;
+  final List<DataUsage> dataUsage;
   DataUsageSuccessState(this.dataUsage);
 
   @override
@@ -24,6 +24,6 @@ class DataUsageFailedState extends DataUsageState {
   List<Object> get props => [dataUsageFailure];
 }
 
-class InitialState extends DataUsageState {}
+class DataUsageInitialState extends DataUsageState {}
 
 class DataUsageLoadingState extends DataUsageState {}

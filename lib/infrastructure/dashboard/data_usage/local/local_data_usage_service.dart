@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage.dart';
+import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage_model.dart';
 import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage_failures.dart';
 import 'package:sembast/sembast.dart';
 
@@ -12,51 +12,39 @@ class LocalDataUsageService {
 
   Future<Database> get _db async => await AppDatabase.instance.database;
 
-  Future insert(DataUsage dataUsage) async {
-    await _dataUsage.add(await _db, dataUsage.toMap());
+  Future insert(DataUsageModel dataUsageModel) async {
+    print('insert');
+    try {
+      await _dataUsage.add(await _db, dataUsageModel.toJson());
+    }catch(error){
+      print('insert error' +error.toString());
+    }
   }
 
-  Future update(DataUsage dataUsage) async {
-
-    final finder = Finder(filter: Filter.equals('bucketId' ,dataUsage.bucketId ));
-    await _dataUsage.update(
-      await _db,
-      dataUsage.toMap(),
-      finder: finder,
-    );
-  }
-
-  Future delete(DataUsage dataUsage) async {
-    final finder = Finder(filter: Filter.equals('bucketId' ,dataUsage.bucketId ));
+  Future delete() async {
+    print('delete');
     await _dataUsage.delete(
       await _db,
-      finder: finder,
     );
   }
 
-  Future<Either<DataUsageFailure, DataUsage>> getDataUsage() async {
-    final finder = Finder(limit: 1);
-    final recordSnapshots = await _dataUsage.find(
-      await _db, finder: finder
-    );
+  Future<Either<DataUsageFailure, DataUsageModel>> getDataUsage() async {
 
-    return right(recordSnapshots.map((snapshot) {
-      return DataUsage.fromMap(snapshot.value);
-    }).single);
-  }
-
-  Future<bool> checkDataUsageById(DataUsage dataUsage) async {
     try {
-      final finder = Finder( filter: Filter.equals('bucketId' ,dataUsage.bucketId ), limit: 1 );
+      final finder = Finder(limit: 1);
       final recordSnapshots = await _dataUsage.find(
           await _db, finder: finder
       );
 
-      return recordSnapshots.map( (snapshot) {
-        return DataUsage.fromMap( snapshot.value );
-      } ).single != null;
+      return right(recordSnapshots.map((snapshot) {
+        print('getDataUsage '+snapshot.value.toString());
+        return DataUsageModel.fromJson(snapshot.value);
+      }).single);
     }catch(error){
-      return false;
+      print('errorlocal'+error.toString());
+      return left(DataUsageFailure.localError(error));
     }
   }
+
+
 }

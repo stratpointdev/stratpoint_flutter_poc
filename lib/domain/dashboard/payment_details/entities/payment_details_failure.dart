@@ -11,4 +11,10 @@ class PaymentDetailsFailure {
       parameter: json['parameter'],
     );
   }
+
+  factory PaymentDetailsFailure.localError(String error){
+    return PaymentDetailsFailure(
+      message: error,
+    );
+  }
 }
