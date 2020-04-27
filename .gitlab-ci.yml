@@ -38,7 +38,7 @@ deploy_web:
   dependencies:
     - flutter_build_web
   script:
-    - flutter use staging
+    - firebase use staging
     - firebase deploy --token $FIREBASE_TOKEN
   only:
     - develop
@@ -84,7 +84,7 @@ flutter_build_ios:
     - bundle exec fastlane build
   artifacts:
     paths:
-      - ./build/Runner.ipa
+      - Runner.ipa
   tags:
     - flutter
   only:
