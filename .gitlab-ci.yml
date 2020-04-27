@@ -1,11 +1,13 @@
 stages:
   - test # All jobs related for testing such as Unit Test
-  - build # All jobs related for building app for iOS and Android
-  - deploy
+  - build_android # All jobs related for building app for iOS and Android
+  - build_ios
+  - build_web
+#   - deploy_android
+#   - deploy_ios
+#   - deploy_web
 
-before_script:
-  - export PATH="$PATH:/Users/ronalddelacruz/development/flutter/bin"
-    
+
 flutter_test: # Name of the lane
   stage: test # type of stage
   script:
@@ -15,9 +17,8 @@ flutter_test: # Name of the lane
 
 
 flutter_build_android:
-  stage: build
+  stage: build_android
   before_script:
-    - export PATH="$PATH:/Users/ronalddelacruz/development/flutter/bin"
     - flutter channel stable
     - cd android
     - bundle install --deployment
@@ -33,9 +34,8 @@ flutter_build_android:
 
 
 deploy_android:
-  stage: deploy
+  stage: deploy_android
   before_script:
-    - export PATH="$PATH:/Users/ronalddelacruz/development/flutter/bin"
     - cd android
     - bundle install --deployment
   dependencies:
@@ -47,11 +47,9 @@ deploy_android:
   only:
     - develop
 
-
 flutter_build_ios:
-  stage: build
+  stage: build_ios
   before_script:
-    - export PATH="$PATH:/Users/ronalddelacruz/development/flutter/bin"
     - flutter channel stable
     - cd ios
     - bundle install --deployment
@@ -59,16 +57,15 @@ flutter_build_ios:
     - bundle exec fastlane build
   artifacts:
     paths:
-      - /build/Runner.ipa
+      - build/Runner.ipa
   tags:
     - flutter
   only:
     - develop
 
 deploy_ios:
-  stage: deploy
+  stage: deploy_ios
   before_script:
-    - export PATH="$PATH:/Users/ronalddelacruz/development/flutter/bin"
     - cd ios
     - bundle install --deployment
   dependencies:
@@ -81,9 +78,8 @@ deploy_ios:
     - develop
 
 flutter_build_web:
-  stage: build
+  stage: build_web
   before_script:
-    - export PATH="$PATH:/Users/ronalddelacruz/development/flutter/bin"
     - flutter channel beta
   script:
     - flutter build web
@@ -96,10 +92,8 @@ flutter_build_web:
     - develop
 
 deploy_web:
-  image: node:12.13.0-alpine
-  stage: deploy
+  stage: deploy_web
   before_script:
-    - export PATH="$PATH:/Users/ronalddelacruz/development/flutter/bin"
     - npm i -g firebase-tools
   dependencies:
     - flutter_build_web
