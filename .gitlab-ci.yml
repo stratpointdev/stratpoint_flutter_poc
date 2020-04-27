@@ -61,7 +61,7 @@ flutter_build_ios:
     - bundle exec fastlane build
   artifacts:
     paths:
-      - build/Runner.ipa
+      - build/ios/Runner.ipa
   tags:
     - flutter
   only:
