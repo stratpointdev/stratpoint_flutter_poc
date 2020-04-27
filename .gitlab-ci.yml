@@ -4,7 +4,7 @@ stages:
   - deploy
 
 before_script:
-    export PATH="$PATH:/Users/ronalddelacruz/development/flutter/bin"
+  - export PATH="$PATH:/Users/ronalddelacruz/development/flutter/bin"
     
 flutter_test: # Name of the lane
   stage: test # type of stage
@@ -16,6 +16,7 @@ flutter_test: # Name of the lane
 flutter_build_android:
   stage: build
   before_script:
+    - export PATH="$PATH:/Users/ronalddelacruz/development/flutter/bin"
     - flutter channel stable
     - cd android
     - bundle install --deployment
