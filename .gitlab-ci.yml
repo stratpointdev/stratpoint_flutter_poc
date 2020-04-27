@@ -1,9 +1,9 @@
 stages:
   - test # All jobs related for testing such as Unit Test
-  - build_web
+#  - build_web
 #  - build_android
   - build_ios
-  - deploy_web
+#  - deploy_web
 #   - deploy_android
 #   - deploy_ios
 #   - deploy_web
@@ -16,32 +16,32 @@ flutter_test: # Name of the lane
   tags:
     - flutter # Tags for runner
 
-flutter_build_web:
-  stage: build_web
-  before_script:
-    - flutter channel beta
-  script:
-    - flutter config --enable-web
-    - flutter build web
-  artifacts:
-    paths:
-      - build/web
-  tags:
-    - flutter
-  only:
-    - develop
+# flutter_build_web:
+#   stage: build_web
+#   before_script:
+#     - flutter channel beta
+#   script:
+#     - flutter config --enable-web
+#     - flutter build web
+#   artifacts:
+#     paths:
+#       - build/web
+#   tags:
+#     - flutter
+#   only:
+#     - develop
 
-deploy_web:
-  stage: deploy_web
-  before_script:
-    - npm i -g firebase-tools
-  dependencies:
-    - flutter_build_web
-  script:
-    - firebase use staging
-    - firebase deploy --token $FIREBASE_TOKEN
-  only:
-    - develop
+# deploy_web:
+#   stage: deploy_web
+#   before_script:
+#     - npm i -g firebase-tools
+#   dependencies:
+#     - flutter_build_web
+#   script:
+#     - firebase use staging
+#     - firebase deploy --token $FIREBASE_TOKEN
+#   only:
+#     - develop
 
 # flutter_build_android:
 #   stage: build_android
@@ -84,7 +84,7 @@ flutter_build_ios:
     - bundle exec fastlane build
   artifacts:
     paths:
-      - Runner.ipa
+      - /Users/macmini/builds/a96d4856/0/thebrewery/flutter/globeone_poc/ios/build/Runner.ipa
   tags:
     - flutter
   only:
