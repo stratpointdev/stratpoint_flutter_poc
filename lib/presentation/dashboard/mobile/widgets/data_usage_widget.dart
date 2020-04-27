@@ -237,6 +237,6 @@ class DataUsageWidget extends StatelessWidget {
             ),
           ],
         ),
-      );
+      ));
   }
 }
