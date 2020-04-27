@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<string>2</string>
 	<key>FirebaseScreenReportingEnabled</key>
 	<string>NO</string>
 	<key>LSRequiresIPhoneOS</key>

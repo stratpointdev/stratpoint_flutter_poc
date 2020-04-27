@@ -17,6 +17,9 @@ default_platform(:android)
 platform :android do
   desc "Build a Flutter apk"
   lane :build do
+    increment_version_code(
+      gradle_file_path: File.dirname(__FILE__) + "./android/app/build.gradle"
+   )
     Dir.chdir("../..") do
       sh "flutter packages get"
       sh "flutter clean"
@@ -32,6 +35,7 @@ platform :android do
       owner_type: "organization",
       app_name: "globeone_poc_android", # Your AppCenter name
       apk: "../build/app/outputs/apk/release/app-arm64-v8a-release.apk",
+      notify_testers: true
     )
     else
       UI.message('Unable to find apk')
