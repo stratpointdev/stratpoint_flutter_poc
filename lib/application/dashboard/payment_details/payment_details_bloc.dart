@@ -17,6 +17,7 @@ class PaymentDetailsBloc
   Stream<PaymentDetailsState> mapEventToState(
       PaymentDetailsEvent event) async* {
     if (event is RefreshPaymentDetailsEvent) {
+      yield PaymentDetailsLoadingState();
       var result = await repository.getPaymentDetails();
       yield result.fold(
           (failures) => PaymentDetailsFailedState(),

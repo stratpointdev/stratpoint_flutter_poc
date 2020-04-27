@@ -41,6 +41,7 @@ flutter:
     - assets/duck_placeholder.png
     - assets/ic_globe_banner.png
     - assets/icon.png
+    - assets/rest_of_screen.png
     # assets/images/*
     - assets/images/globelogo.png
     - assets/images/mobiletopbanner.png

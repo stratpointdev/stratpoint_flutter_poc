@@ -8,8 +8,8 @@ import 'package:globe_one_poc_project/infrastructure/dashboard/data_usage/remote
 import 'package:http/http.dart' as http;
 
 class RemoteDataUsageService {
-
-  String httpUrl = 'https://virtserver.swaggerhub.com/S1723/G1ES-OCSP-API-ALL/1.0.0';
+  String httpUrl =
+      'https://virtserver.swaggerhub.com/S1723/G1ES-OCSP-API-ALL/1.0.0';
 
   Future<http.Response> ApiClient(String extenstion) {
     return http.post(
@@ -25,11 +25,11 @@ class RemoteDataUsageService {
     );
   }
 
-  Future<Either<DataUsageFailure, DataUsage>>
-      getDataUsage() async {
+  Future<Either<DataUsageFailure, DataUsage>> getDataUsage() async {
     // http.Response response = await createAlbum("/account/get-out-standing-balance");
     // print(response.body);
     // if (response.statusCode == 200) {
+    await Future.delayed(Duration(seconds: 2));
     var data = json.decode(Sample.retrieveSubcriberUsage);
     var rest = data["retrieveSubscriberUsageResult"];
     var dd = rest["buckets"];
@@ -40,6 +40,4 @@ class RemoteDataUsageService {
     //  throw Exception('error');
     //}
   }
-
-
 }
