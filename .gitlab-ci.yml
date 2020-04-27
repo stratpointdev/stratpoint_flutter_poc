@@ -1,17 +1,17 @@
 stages:
-  - test # All jobs related for testing such as Unit Test
+#   - test # All jobs related for testing such as Unit Test
   - build # All jobs related for building app for iOS and Android
   - deploy
 
 before_script:
   - export PATH="$PATH:/Users/ronalddelacruz/development/flutter/bin"
     
-flutter_test: # Name of the lane
-  stage: test # type of stage
-  script:
-    - flutter test # Run Flutter test
-  tags:
-    - flutter # Tags for runner
+# flutter_test: # Name of the lane
+#   stage: test # type of stage
+#   script:
+#     - flutter test # Run Flutter test
+#   tags:
+#     - flutter # Tags for runner
 
 
 flutter_build_android:
