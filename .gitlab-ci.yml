@@ -1,8 +1,9 @@
 stages:
   - test # All jobs related for testing such as Unit Test
-  - build_android # All jobs related for building app for iOS and Android
-  - build_ios
   - build_web
+#  - build_android
+  - build_ios
+  - deploy_web
 #   - deploy_android
 #   - deploy_ios
 #   - deploy_web
@@ -15,22 +16,48 @@ flutter_test: # Name of the lane
   tags:
     - flutter # Tags for runner
 
-
-flutter_build_android:
-  stage: build_android
+flutter_build_web:
+  stage: build_web
   before_script:
-    - flutter channel stable
-    - cd android
-    - bundle install --deployment
+    - flutter channel beta
   script:
-    - bundle exec fastlane build
+    - flutter config --enable-web
+    - flutter build web
   artifacts:
     paths:
-      - build/app/outputs/apk/release/app-arm64-v8a-release.apk
+      - build/web
   tags:
     - flutter
   only:
     - develop
+
+deploy_web:
+  stage: deploy_web
+  before_script:
+    - npm i -g firebase-tools
+  dependencies:
+    - flutter_build_web
+  script:
+    - flutter use staging
+    - firebase deploy --token $FIREBASE_TOKEN
+  only:
+    - develop
+
+# flutter_build_android:
+#   stage: build_android
+#   before_script:
+#     - flutter channel stable
+#     - cd android
+#     - bundle install --deployment
+#   script:
+#     - bundle exec fastlane build
+#   artifacts:
+#     paths:
+#       - build/app/outputs/apk/release/app-arm64-v8a-release.apk
+#   tags:
+#     - flutter
+#   only:
+#     - develop
 
 
 # deploy_android:
@@ -57,7 +84,7 @@ flutter_build_ios:
     - bundle exec fastlane build
   artifacts:
     paths:
-      - build/Runner.ipa
+      - ./build/Runner.ipa
   tags:
     - flutter
   only:
@@ -77,28 +104,4 @@ flutter_build_ios:
 #   only:
 #     - develop
 
-flutter_build_web:
-  stage: build_web
-  before_script:
-    - flutter channel beta
-  script:
-    - flutter build web
-  artifacts:
-    paths:
-      - build/web
-  tags:
-    - flutter
-  only:
-    - develop
 
-# deploy_web:
-#   stage: deploy_web
-#   before_script:
-#     - npm i -g firebase-tools
-#   dependencies:
-#     - flutter_build_web
-#   script:
-#     - flutter use staging
-#     - firebase deploy --token $FIREBASE_TOKEN
-#   only:
-#     - develop
