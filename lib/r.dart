@@ -13,4 +13,9 @@ class R {
   static final String assetsImagesTopbanner = 'assets/images/topbanner.png';
   /// ![](http://127.0.0.1:9527/assets/images/user.png)
   static final String assetsImagesUser = 'assets/images/user.png';
+
+  static final String image1 = 'assets/images/image1.png';
+  static final String image2 = 'assets/images/image2.png';
+  static final String image3 = 'assets/images/image3.png';
+  static final String image4 = 'assets/images/image4.png';
 }

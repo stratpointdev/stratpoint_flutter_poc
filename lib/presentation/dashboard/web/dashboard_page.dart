@@ -7,6 +7,7 @@ import 'package:globe_one_poc_project/presentation/dashboard/widgets/data_usage_
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/account_desktop_dashboard.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/desktop_header_menu.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/desktop_menu.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/desktop_load_rewards.dart';
 
 import 'package:flutter/material.dart';
 
@@ -26,24 +27,32 @@ class _DashBoardPageState extends State<DashBoardPage> {
     _dataUsageBloc = BlocProvider.of<DataUsageBloc>(context);
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Container(
-      child: Column(
-        children: <Widget>[
-          DesktopHeaderMenu(),
-          DesktopHeader(),
-          AccountDesktopDashboard(
-            profile: "Samantha",
-            mobile: "0918 XXXX XXXX",
-            duoNumber: "(02) 2920118",
-            profilePicture: "https://i.imgur.com/BoN9kdC.png",
-          ),
-          DesktopMenu(),
-          BlocBuilder<DataUsageBloc, DataUsageState>(
+    return Scaffold(
+      body: Container(
+         child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    DesktopHeaderMenu(),
+                    DesktopHeader(),
+                    AccountDesktopDashboard(
+                      profile: "Samantha",
+                      mobile: "0918 XXXX XXXX",
+                      duoNumber: "(02) 2920118",
+                      profilePicture: "https://i.imgur.com/BoN9kdC.png",
+                    ),
+                    DesktopMenu(),
+
+
+                    DesktopLoadRewards(),
+
+
+
+                    BlocBuilder<DataUsageBloc, DataUsageState>(
               builder: (context, state) {
                 var remainingData = '6.4 GB';
                 var dataAllocation = '10 GB';
@@ -68,8 +77,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
                   refillDate: refillDate,
                   textColor: const Color(0xff244857),
                 );
-              }),
-        ],
+                }),
+                  ],
+                )
+              ],
+            ),
+          )
       ),
     );
   }

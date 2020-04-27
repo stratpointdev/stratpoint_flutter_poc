@@ -108,100 +108,98 @@ class DataUsageWidget extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 36),
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text('100%',
-                          style: isMobile
-                              ? cupLevelIndicatorTextStyleMobile
-                              : cupLevelIndicatorTextStyle),
-                      Text('—',
-                          style: isMobile
-                              ? cupLevelIndicatorTextStyleMobile
-                              : cupLevelIndicatorTextStyle),
-                      Text('50%',
-                          style: isMobile
-                              ? cupLevelIndicatorTextStyleMobile
-                              : cupLevelIndicatorTextStyle),
-                      Text('—',
-                          style: isMobile
-                              ? cupLevelIndicatorTextStyleMobile
-                              : cupLevelIndicatorTextStyle),
-                      Text('0%',
-                          style: isMobile
-                              ? cupLevelIndicatorTextStyleMobile
-                              : cupLevelIndicatorTextStyle),
-                    ],
-                  ),
-                  Expanded(child: Container()),
-                  // TODO: Change to Ratio depending on Screen Size?
-                  Container(
-                    width: isMobile
-                        ? MediaQueryUtil.convertWidth(screenWidth, 85)
-                        : 140,
-                    height: isMobile
-                        ? MediaQueryUtil.convertHeight(screenHeight, 117)
-                        : 190,
-                    child: cupLevelIndicator,
-                  ),
-                  Expanded(child: Container()),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        '$remainingData LEFT',
-                        style: const TextStyle(
-                          fontSize: 20,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text('100%',
+                        style: isMobile
+                            ? cupLevelIndicatorTextStyleMobile
+                            : cupLevelIndicatorTextStyle),
+                    Text('—',
+                        style: isMobile
+                            ? cupLevelIndicatorTextStyleMobile
+                            : cupLevelIndicatorTextStyle),
+                    Text('50%',
+                        style: isMobile
+                            ? cupLevelIndicatorTextStyleMobile
+                            : cupLevelIndicatorTextStyle),
+                    Text('—',
+                        style: isMobile
+                            ? cupLevelIndicatorTextStyleMobile
+                            : cupLevelIndicatorTextStyle),
+                    Text('0%',
+                        style: isMobile
+                            ? cupLevelIndicatorTextStyleMobile
+                            : cupLevelIndicatorTextStyle),
+                  ],
+                ),
+                Spacer(),
+                // TODO: Change to Ratio depending on Screen Size?
+                Container(
+                  width: isMobile
+                      ? MediaQueryUtil.convertWidth(screenWidth, 85)
+                      : 140,
+                  height: isMobile
+                      ? MediaQueryUtil.convertHeight(screenHeight, 117)
+                      : 190,
+                  child: cupLevelIndicator,
+                ),
+                Spacer(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      '$remainingData LEFT',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Out of $dataAllocation',
+                      style: TextStyle(
+                        color: textColor,
+                        fontSize: 12,
+                      ),
+                    ),
+                    Text(
+                      'Refills on $refillDate',
+                      style: TextStyle(
+                        color: textColor,
+                        fontSize: 12,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    RawMaterialButton(
+                      onPressed: onViewDetails,
+                      child: isMobile
+                          ? Text(
+                        'View Details >',
+                        style: TextStyle(
+                            fontSize: MediaQueryUtil.convertHeight(
+                                screenHeight, 11),
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff007CB5)),
+                      )
+                          : Text(
+                        'View Details',
+                        style: TextStyle(
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline,
                         ),
                       ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Out of $dataAllocation',
-                        style: TextStyle(
-                          color: textColor,
-                          fontSize: 12,
-                        ),
-                      ),
-                      Text(
-                        'Refills on $refillDate',
-                        style: TextStyle(
-                          color: textColor,
-                          fontSize: 12,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      RawMaterialButton(
-                        onPressed: onViewDetails,
-                        child: isMobile
-                            ? Text(
-                                'View Details >',
-                                style: TextStyle(
-                                    fontSize: MediaQueryUtil.convertHeight(
-                                        screenHeight, 11),
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xff007CB5)),
-                              )
-                            : Text(
-                                'View Details',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.underline,
-                                ),
-                              ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(width: 40),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+                const SizedBox(width: 40),
+              ],
             ),
             const SizedBox(height: 36),
             Container(
@@ -239,7 +237,6 @@ class DataUsageWidget extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
+      ));
   }
 }
