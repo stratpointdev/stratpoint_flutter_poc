@@ -12,6 +12,9 @@ flutter_test: # Name of the lane
     - flutter test # Run Flutter test
   tags:
     - flutter # Tags for runner
+  only:
+    - develop
+
 
 flutter_build_android:
   stage: build
@@ -103,6 +106,7 @@ deploy_web:
   dependencies:
     - flutter_build_web
   script:
+    - flutter use staging
     - firebase deploy --token $FIREBASE_TOKEN
   only:
     - develop
