@@ -93,7 +93,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
             onRefresh: _refresh,
             color: Theme.of(context).primaryColor,
             child: Container(
-              height: 620,
+              height: MediaQueryUtil.convertHeight(screenHeight, 558.9),
               child: ListView(
                 shrinkWrap: true,
                 children: <Widget>[

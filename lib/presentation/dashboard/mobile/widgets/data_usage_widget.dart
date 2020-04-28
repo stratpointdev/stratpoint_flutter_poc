@@ -67,9 +67,7 @@ class DataUsageWidget extends StatelessWidget {
                                   screenHeight, 14),
                               fontWeight: FontWeight.bold,
                               fontFamily: 'FSElliotPro',
-                              color: Theme.of(context)
-                                  .primaryColor
-                                  .withOpacity(.8),
+                              color: Color(0xff019CDE),
                             )
                           : TextStyle(
                               color: textColor,
