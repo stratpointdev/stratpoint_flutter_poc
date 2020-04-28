@@ -31,6 +31,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
   DataUsageBloc _dataUsageBloc;
 
   Future<Null> _refresh() async {
+    _accountDetailsBloc.add(RefreshAccountDetailsEvent());
     _dataUsageBloc.add(RefreshDataUsageEvent());
     _paymentDetailsBloc.add(RefreshPaymentDetailsEvent());
     return null;

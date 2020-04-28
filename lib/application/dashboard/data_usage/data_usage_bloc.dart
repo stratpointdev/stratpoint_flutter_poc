@@ -20,7 +20,7 @@ class DataUsageBloc extends Bloc<DataUsageEvent, DataUsageState> {
           myPrefs.getString('LastAccountDetailsCall'));
       int minutes = DateTime.now().difference(lastAPICallDate).inMinutes;
       bool isLocal = true;
-      if (minutes >= 5) {
+      if (minutes >= 1) {
         isLocal = false;
       }
       var value = await dataUsageRepository.getDataUsage(isLocal: isLocal);
