@@ -86,7 +86,7 @@ class DataUsageWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Column(
+              /*  Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -96,11 +96,11 @@ class DataUsageWidget extends StatelessWidget {
                     Text('—', style: cupLevelIndicatorTextStyle),
                     Text('0%', style: cupLevelIndicatorTextStyle),
                   ],
-                ),
-                Spacer(),
+                ),*/
+
                 // TODO: Change to Ratio depending on Screen Size?
                 Container(
-                  width: 140,
+                  width: 200,
                   height: 190,
                   child: cupLevelIndicator,
                 ),

@@ -32,6 +32,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
   PaymentDetailsBloc _paymentDetailsBloc;
   DataUsageBloc _dataUsageBloc;
 
+
   Future<Null> _refresh() async {
     _dataUsageBloc.add(RefreshDataUsageEvent());
     _paymentDetailsBloc.add(RefreshPaymentDetailsEvent());
@@ -49,10 +50,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
     _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
     _dataUsageBloc.add(InitialDataUsageEvent());
   }
-
+  var remainingData = '6.4 GB';
+  var dataAllocation = '10 GB';
+  var refillDate = 'Apr. 24';
   var paymentAmountValue = '0';
   var dueDate = '';
-
+  var cupLevelIndicator = Image.asset(R.assetsDuckPlaceholder) ;
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -161,9 +164,6 @@ class _DashBoardPageState extends State<DashBoardPage> {
                   }),
                   BlocBuilder<DataUsageBloc, DataUsageState>(
                       builder: (context, state) {
-                    var remainingData = '6.4 GB';
-                    var dataAllocation = '10 GB';
-                    var refillDate = 'Apr. 24';
 
 
 
@@ -171,6 +171,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                         remainingData = state.volumeRemaing;
                         dataAllocation = state.totalAllocated;
                         refillDate = state.endDate;
+                        cupLevelIndicator = state.cupLevelIndicator;
                     }
                     if (state is DataUsageLoadingState) {
                       return ProgressIndicatorWidget();
@@ -180,10 +181,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
                       isMobile: true,
                       onRefresh: () =>
                           {_dataUsageBloc.add(RefreshDataUsageEvent())},
-                      onAddMoreData: () => {_dataUsageBloc.add(RefreshDataUsageEvent())},
+                      onAddMoreData: () => {},
                       onViewDetails: () => {},
-                      cupLevelIndicator:
-                          Image.asset('assets/duck_placeholder.png'),
+                      cupLevelIndicator: cupLevelIndicator,
                       time: '8:30 AM',
                       addMoreDataButtonColor: const Color(0xff009CDF),
                       cupIndicatorTextColor: const Color(0xff9B9B9B),

@@ -111,7 +111,7 @@ class DataUsageWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Column(
+            /*    Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -136,15 +136,15 @@ class DataUsageWidget extends StatelessWidget {
                             ? cupLevelIndicatorTextStyleMobile
                             : cupLevelIndicatorTextStyle),
                   ],
-                ),
+                ),*/
                 Spacer(),
                 // TODO: Change to Ratio depending on Screen Size?
                 Container(
                   width: isMobile
-                      ? MediaQueryUtil.convertWidth(screenWidth, 85)
+                      ? MediaQueryUtil.convertWidth(screenWidth, 110)
                       : 140,
                   height: isMobile
-                      ? MediaQueryUtil.convertHeight(screenHeight, 117)
+                      ? MediaQueryUtil.convertHeight(screenHeight, 120)
                       : 190,
                   child: cupLevelIndicator,
                 ),

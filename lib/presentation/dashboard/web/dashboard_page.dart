@@ -8,7 +8,7 @@ import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usag
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_event.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/widgets/data_usage_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/account_desktop_dashboard.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/desktop_header_menu.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/desktop_menu.dart';
@@ -16,6 +16,7 @@ import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/desktop
 
 import 'package:flutter/material.dart';
 
+import '../../../r.dart';
 import 'widgets/desktop_header.dart';
 
 class DashBoardPage extends StatefulWidget {
@@ -30,6 +31,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
   var remainingData;
   var dataAllocation;
   var refillDate;
+  var cupLevelIndicator;
 
   @override
   void initState() {
@@ -38,12 +40,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
      remainingData = '6.4 GB';
      dataAllocation = '10 GB';
      refillDate = 'Apr. 24';
+     cupLevelIndicator = Image.asset(R.duck5);
 
     _accountDetailsBloc = BlocProvider.of<AccountDetailsBloc>(context);
     _dataUsageBloc = BlocProvider.of<DataUsageBloc>(context);
 
     _accountDetailsBloc.add(InitialAccountDetailsEvent());
-
     _dataUsageBloc.add(InitialDataUsageEvent());
 
   }
@@ -127,14 +129,14 @@ class _DashBoardPageState extends State<DashBoardPage> {
                       remainingData = state.volumeRemaing;
                       dataAllocation = state.totalAllocated;
                       refillDate = state.endDate;
+                      cupLevelIndicator = state.cupLevelIndicator;
                     }
                     return DataUsageWidget(
                       onRefresh: () =>
                           {_dataUsageBloc.add(RefreshDataUsageEvent())},
-                      onAddMoreData: () => {_dataUsageBloc.add(RefreshDataUsageEvent())},
+                      onAddMoreData: () => {},
                       onViewDetails: () => {},
-                      cupLevelIndicator:
-                          Image.asset('assets/duck_placeholder.png'),
+                      cupLevelIndicator: cupLevelIndicator,
                       time: '8:30 AM',
                       addMoreDataButtonColor: const Color(0xff009CDF),
                       cupIndicatorTextColor: const Color(0xff9B9B9B),
