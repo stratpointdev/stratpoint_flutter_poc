@@ -24,7 +24,7 @@ void main() {
     PaymentDetailsModel paymentDetailsModel = PaymentDetailsModel(
         200,
         OutstandingBalanceByMsisdnResponse(
-            OutstandingBalanceByMsisdnResult(lastPaymentDt, '_', '_', ' ')));
+            OutstandingBalanceByMsisdnResult(lastPaymentDt, '_', '_', '_')));
 
     when(mockRepository.getPaymentDetails(isLocal: false))
         .thenAnswer((_) async => right(paymentDetailsModel));

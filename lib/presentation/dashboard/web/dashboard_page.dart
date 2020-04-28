@@ -5,8 +5,6 @@ import 'package:globe_one_poc_project/application/dashboard/account_details/acco
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
-import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_bloc.dart';
-import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_event.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/widgets/data_usage_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/account_desktop_dashboard.dart';
@@ -35,9 +33,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-     remainingData = '6.4 GB';
-     dataAllocation = '10 GB';
-     refillDate = 'Apr. 24';
+    remainingData = '6.4 GB';
+    dataAllocation = '10 GB';
+    refillDate = 'Apr. 24';
 
     _accountDetailsBloc = BlocProvider.of<AccountDetailsBloc>(context);
     _dataUsageBloc = BlocProvider.of<DataUsageBloc>(context);
@@ -45,13 +43,10 @@ class _DashBoardPageState extends State<DashBoardPage> {
     _accountDetailsBloc.add(InitialAccountDetailsEvent());
 
     _dataUsageBloc.add(InitialDataUsageEvent());
-
   }
-
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -63,25 +58,23 @@ class _DashBoardPageState extends State<DashBoardPage> {
               children: <Widget>[
                 DesktopHeaderMenu(),
                 DesktopHeader(),
-
                 BlocBuilder<AccountDetailsBloc, AccountDetailsState>(
                     builder: (context, state) {
-                      String userName = '';
-                      if (state is AccountDetailsSuccessState) {
-                        userName = state.nameInfo.nameElement2;
-                      } else if (state is AccountDetailsFailures) {
-                        userName = 'NA';
-                      }
-                      return  AccountDesktopDashboard(
-                        profile: userName,
-                        mobile: "0918 XXXX XXXX",
-                        duoNumber: "(02) 2920118",
-                        profilePicture: "https://i.imgur.com/BoN9kdC.png",
-                      );
-                    }),
-
+                  String userName = '';
+                  if (state is AccountDetailsSuccessState) {
+                    userName = state.nameInfo.nameElement2;
+                  } else if (state is AccountDetailsFailures) {
+                    userName = 'NA';
+                  }
+                  return AccountDesktopDashboard(
+                    profile: userName,
+                    mobile: "0918 XXXX XXXX",
+                    duoNumber: "(02) 2920118",
+                    profilePicture: "https://i.imgur.com/BoN9kdC.png",
+                  );
+                }),
                 DesktopMenu(),
-            /*    Container(
+                /*    Container(
                   height: MediaQueryUtil.convertHeight(screenHeight, 100),
                   child: CMSBannerWidget(
                     onPageSelected: (index) {
@@ -114,15 +107,11 @@ class _DashBoardPageState extends State<DashBoardPage> {
                   ),
                 ),*/
                 DesktopLoadRewards(),
-
                 Container(
                   alignment: Alignment.centerLeft,
                   width: screenWidth / 4,
-
                   child: BlocBuilder<DataUsageBloc, DataUsageState>(
                       builder: (context, state) {
-
-
                     if (state is DataUsageSuccessState) {
                       remainingData = state.volumeRemaing;
                       dataAllocation = state.totalAllocated;
@@ -131,7 +120,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     return DataUsageWidget(
                       onRefresh: () =>
                           {_dataUsageBloc.add(RefreshDataUsageEvent())},
-                      onAddMoreData: () => {_dataUsageBloc.add(RefreshDataUsageEvent())},
+                      onAddMoreData: () =>
+                          {_dataUsageBloc.add(RefreshDataUsageEvent())},
                       onViewDetails: () => {},
                       cupLevelIndicator:
                           Image.asset('assets/duck_placeholder.png'),
