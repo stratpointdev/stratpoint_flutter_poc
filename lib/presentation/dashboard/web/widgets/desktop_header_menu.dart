@@ -5,7 +5,6 @@ class DesktopHeaderMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
         color: Color(0xff244A59),
         height: 30,

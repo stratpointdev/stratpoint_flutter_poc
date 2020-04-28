@@ -1,5 +1,5 @@
 class Api {
-  String _baseUrl = 'tests.free.beeceptor.com';
+  String _baseUrl = 'globe-mock.free.beeceptor.com';
 
   Uri getSubscriberDetails() {
     var path = "/postpaid/v1/account/subscriber-details";

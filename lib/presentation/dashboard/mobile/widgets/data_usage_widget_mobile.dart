@@ -36,15 +36,15 @@ class DataUsageWidgetMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    final TextStyle cupLevelIndicatorTextStyle = TextStyle(
-      fontSize: 17,
-      color: cupIndicatorTextColor,
-    );
-    final TextStyle cupLevelIndicatorTextStyleMobile = TextStyle(
-      fontFamily: 'FSElliotPro',
-      fontSize: MediaQueryUtil.convertHeight(screenHeight, 12),
-      color: cupIndicatorTextColor,
-    );
+    // final TextStyle cupLevelIndicatorTextStyle = TextStyle(
+    //   fontSize: 17,
+    //   color: cupIndicatorTextColor,
+    // );
+    // final TextStyle cupLevelIndicatorTextStyleMobile = TextStyle(
+    //   fontFamily: 'FSElliotPro',
+    //   fontSize: MediaQueryUtil.convertHeight(screenHeight, 12),
+    //   color: cupIndicatorTextColor,
+    // );
 
     return IntrinsicHeight(
         child: Container(
@@ -99,7 +99,6 @@ class DataUsageWidgetMobile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-
                 Container(
                   width: isMobile
                       ? MediaQueryUtil.convertWidth(screenWidth, 110)

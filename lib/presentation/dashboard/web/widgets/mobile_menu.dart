@@ -8,7 +8,6 @@ class MobileMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
         padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
         color: Color(0xff1587B7),

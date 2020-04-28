@@ -35,13 +35,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-     remainingData = '6.4 GB';
-     dataAllocation = '10 GB';
-     refillDate = 'Apr. 24';
-     cupLevelIndicator = Image.asset(R.assetsDuckPlaceholder);
-     lastApiCall = '8:30 AM';
+    remainingData = '6.4 GB';
+    dataAllocation = '10 GB';
+    refillDate = 'Apr. 24';
+    cupLevelIndicator = Image.asset(R.assetsDuckPlaceholder);
+    lastApiCall = '8:30 AM';
 
     _accountDetailsBloc = BlocProvider.of<AccountDetailsBloc>(context);
     _dataUsageBloc = BlocProvider.of<DataUsageBloc>(context);
@@ -51,7 +50,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
+    // double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
