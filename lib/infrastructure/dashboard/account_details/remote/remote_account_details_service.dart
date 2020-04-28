@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dartz/dartz.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_model.dart';
@@ -7,8 +5,7 @@ import 'package:globe_one_poc_project/infrastructure/dashboard/account_details/r
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RemoteAccountDetailsService {
-  String baseUrl =
-      'https://virtserver.swaggerhub.com/S1723/G1ES-OCSP-API-ALL/1.0.0"';
+  final api = Api();
 
   Future<Either<AccountDetailsFailures, AccountDetailsModel>>
       getAccountDetails() async {
@@ -29,5 +26,7 @@ class RemoteAccountDetailsService {
     } else {
       return left(AccountDetailsFailures());
     }
+
+    return right(AccountDetailsModel.fromJson(jsonResponse));
   }
 }
