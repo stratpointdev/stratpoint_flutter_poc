@@ -28,14 +28,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
   var remainingData;
   var dataAllocation;
   var refillDate;
+  int lastAPICall;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    remainingData = '6.4 GB';
-    dataAllocation = '10 GB';
-    refillDate = 'Apr. 24';
 
     _accountDetailsBloc = BlocProvider.of<AccountDetailsBloc>(context);
     _dataUsageBloc = BlocProvider.of<DataUsageBloc>(context);
@@ -116,6 +114,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                       remainingData = state.volumeRemaing;
                       dataAllocation = state.totalAllocated;
                       refillDate = state.endDate;
+                      lastAPICall = state.lastAPICall;
                     }
                     return DataUsageWidget(
                       onRefresh: () =>
@@ -125,7 +124,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                       onViewDetails: () => {},
                       cupLevelIndicator:
                           Image.asset('assets/duck_placeholder.png'),
-                      time: '8:30 AM',
+                      time: '8:00 AM',
                       addMoreDataButtonColor: const Color(0xff009CDF),
                       cupIndicatorTextColor: const Color(0xff9B9B9B),
                       remainingData: remainingData,

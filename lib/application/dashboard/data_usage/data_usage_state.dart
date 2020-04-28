@@ -14,9 +14,13 @@ class DataUsageSuccessState extends DataUsageState {
   final String volumeRemaing;
   final String totalAllocated;
   final String endDate;
+  final int lastAPICall;
 
   DataUsageSuccessState(
-      {this.volumeRemaing, this.totalAllocated, this.endDate});
+      {this.volumeRemaing,
+      this.totalAllocated,
+      this.endDate,
+      this.lastAPICall});
 
   @override
   List<Object> get props => [volumeRemaing, totalAllocated, endDate];

@@ -13,7 +13,6 @@ import 'package:globe_one_poc_project/application/dashboard/payment_details/paym
 
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/data_usage_widget_mobile.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/progress_indicator_widget.dart';
 import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
@@ -164,9 +163,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
                   ),
                   BlocBuilder<DataUsageBloc, DataUsageState>(
                       builder: (context, state) {
-                    var remainingData = '6.4 GB';
-                    var dataAllocation = '10 GB';
-                    var refillDate = 'Apr. 24';
+                    var remainingData = '0';
+                    var dataAllocation = '0';
+                    var refillDate = '0';
 
                     if (state is DataUsageSuccessState) {
                       remainingData = state.volumeRemaing;
