@@ -13,9 +13,8 @@ import 'package:globe_one_poc_project/application/dashboard/payment_details/paym
 
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/data_usage_widget_mobile.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/progress_indicator_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/widgets/progress_indicator_widget.dart';
 import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 import 'package:globe_one_poc_project/r.dart';
 
@@ -30,6 +29,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
   AccountDetailsBloc _accountDetailsBloc;
   PaymentDetailsBloc _paymentDetailsBloc;
   DataUsageBloc _dataUsageBloc;
+
 
   Future<Null> _refresh() async {
     _dataUsageBloc.add(RefreshDataUsageEvent());
@@ -48,10 +48,13 @@ class _DashBoardPageState extends State<DashBoardPage> {
     _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
     _dataUsageBloc.add(InitialDataUsageEvent());
   }
-
+  var remainingData = '6.4 GB';
+  var dataAllocation = '10 GB';
+  var refillDate = 'Apr. 24';
   var paymentAmountValue = '0';
   var dueDate = '';
-
+  var cupLevelIndicator = Image.asset(R.assetsDuckPlaceholder) ;
+  var lastApiCall ='8:30 AM';
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -134,26 +137,15 @@ class _DashBoardPageState extends State<DashBoardPage> {
                   BlocBuilder<PaymentDetailsBloc, PaymentDetailsState>(
                       builder: (context, state) {
                     if (state is PaymentDetailsSuccessState) {
-                      paymentAmountValue = state
-                          .paymentDetailsModel
-                          .outstandingBalanceByMsisdnResponse
-                          .outstandingBalanceByMsisdnResult
-                          .overDueBalance
-                          .toString();
-
-                      dueDate = state
-                          .paymentDetailsModel
-                          .outstandingBalanceByMsisdnResponse
-                          .outstandingBalanceByMsisdnResult
-                          .overDueDate
-                          .toString();
+                      paymentAmountValue = state.paymentAmountValue;
+                      dueDate = state.dueDate;
                     }
                     if (state is PaymentDetailsLoadingState) {
                       return ProgressIndicatorWidget();
                     }
                     return MobilePaymentDetailsWidget(
-                      paymentAmountValue: '₱ $paymentAmountValue',
-                      dueDate: 'Due on $dueDate',
+                      paymentAmountValue: paymentAmountValue,
+                      dueDate: dueDate,
                       payNowButtonOnPressed: () {},
                       viewBillButtonOnPressed: () {},
                     );
@@ -164,14 +156,14 @@ class _DashBoardPageState extends State<DashBoardPage> {
                   ),
                   BlocBuilder<DataUsageBloc, DataUsageState>(
                       builder: (context, state) {
-                    var remainingData = '6.4 GB';
-                    var dataAllocation = '10 GB';
-                    var refillDate = 'Apr. 24';
 
                     if (state is DataUsageSuccessState) {
-                      remainingData = state.volumeRemaing;
-                      dataAllocation = state.totalAllocated;
-                      refillDate = state.endDate;
+                        remainingData = state.volumeRemaing;
+                        dataAllocation = state.totalAllocated;
+                        refillDate = state.endDate;
+                        cupLevelIndicator = state.cupLevelIndicator;
+                        lastApiCall = state.lastApiCall;
+
                     }
                     if (state is DataUsageLoadingState) {
                       return ProgressIndicatorWidget();
@@ -181,12 +173,10 @@ class _DashBoardPageState extends State<DashBoardPage> {
                       isMobile: true,
                       onRefresh: () =>
                           {_dataUsageBloc.add(RefreshDataUsageEvent())},
-                      onAddMoreData: () =>
-                          {_dataUsageBloc.add(RefreshDataUsageEvent())},
+                      onAddMoreData: () => {},
                       onViewDetails: () => {},
-                      cupLevelIndicator:
-                          Image.asset('assets/duck_placeholder.png'),
-                      time: '8:30 AM',
+                      cupLevelIndicator: cupLevelIndicator,
+                      time: lastApiCall,
                       addMoreDataButtonColor: const Color(0xff009CDF),
                       cupIndicatorTextColor: const Color(0xff9B9B9B),
                       remainingData: remainingData,

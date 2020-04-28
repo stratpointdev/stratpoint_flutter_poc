@@ -33,9 +33,10 @@ class PaymentDetailsBloc
           await paymentDetailsRepository.getPaymentDetails(isLocal: isLocal);
 
       yield value.fold(
-          (failures) => PaymentDetailsFailedState(),
-          (success_entity) =>
-              PaymentDetailsSuccessState(paymentDetailsModel: success_entity));
+              (failures) => PaymentDetailsFailedState(),
+              (success_entity) => PaymentDetailsSuccessState.paymentDetailsSuccessState(paymentDetailsModel: success_entity));
+
+
       if (value.isRight()) {
         await paymentDetailsRepository.deletePaymentDetailsLocal();
         await paymentDetailsRepository
@@ -50,7 +51,7 @@ class PaymentDetailsBloc
       yield result.fold(
           (failures) => PaymentDetailsFailedState(),
           (success_entity) =>
-              PaymentDetailsSuccessState(paymentDetailsModel: success_entity));
+              PaymentDetailsSuccessState.paymentDetailsSuccessState(paymentDetailsModel: success_entity));
       if (result.isRight()) {
         await paymentDetailsRepository.deletePaymentDetailsLocal();
         await paymentDetailsRepository

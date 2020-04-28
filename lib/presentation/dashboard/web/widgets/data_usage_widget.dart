@@ -84,20 +84,11 @@ class DataUsageWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text('100%', style: cupLevelIndicatorTextStyle),
-                    Text('—', style: cupLevelIndicatorTextStyle),
-                    Text('50%', style: cupLevelIndicatorTextStyle),
-                    Text('—', style: cupLevelIndicatorTextStyle),
-                    Text('0%', style: cupLevelIndicatorTextStyle),
-                  ],
-                ),
+
                 Spacer(),
+
                 Container(
-                  width: 140,
+                  width: 200,
                   height: 190,
                   child: cupLevelIndicator,
                 ),

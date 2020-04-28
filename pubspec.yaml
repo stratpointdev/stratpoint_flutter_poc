@@ -37,6 +37,7 @@ flutter_icons:
 flutter:
   uses-material-design: true
   assets:
+    - assets/images/duck/
     # assets-generator-begin
     # assets/*
     - assets/duck_placeholder.png

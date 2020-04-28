@@ -99,38 +99,13 @@ class DataUsageWidgetMobile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: <Widget>[
-                    Text('100%',
-                        style: isMobile
-                            ? cupLevelIndicatorTextStyleMobile
-                            : cupLevelIndicatorTextStyle),
-                    Text('—',
-                        style: isMobile
-                            ? cupLevelIndicatorTextStyleMobile
-                            : cupLevelIndicatorTextStyle),
-                    Text('50%',
-                        style: isMobile
-                            ? cupLevelIndicatorTextStyleMobile
-                            : cupLevelIndicatorTextStyle),
-                    Text('—',
-                        style: isMobile
-                            ? cupLevelIndicatorTextStyleMobile
-                            : cupLevelIndicatorTextStyle),
-                    Text('0%',
-                        style: isMobile
-                            ? cupLevelIndicatorTextStyleMobile
-                            : cupLevelIndicatorTextStyle),
-                  ],
-                ),
+
                 Container(
                   width: isMobile
-                      ? MediaQueryUtil.convertWidth(screenWidth, 85)
+                      ? MediaQueryUtil.convertWidth(screenWidth, 110)
                       : 140,
                   height: isMobile
-                      ? MediaQueryUtil.convertHeight(screenHeight, 117)
+                      ? MediaQueryUtil.convertHeight(screenHeight, 120)
                       : 190,
                   child: cupLevelIndicator,
                 ),

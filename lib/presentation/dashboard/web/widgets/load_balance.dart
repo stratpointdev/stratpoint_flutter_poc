@@ -1,19 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:globe_one_poc_project/domain/dashboard/common/datetime_converter.dart';
-import 'package:globe_one_poc_project/domain/dashboard/payment_details/entities/payment_details_model.dart';
-import 'package:intl/intl.dart';
+
+
 
 class LoadBalance extends StatefulWidget {
   final String paymentAmountValue;
   final String dueDate;
-  final LastPaymentDt lastPaymentDt;
   final VoidCallback onRefresh;
-  LoadBalance(
-      {this.paymentAmountValue,
-      this.dueDate,
-      this.lastPaymentDt,
-      this.onRefresh});
+  final String lastPaymentAmount;
+  final String lastPaymentDate;
+  final String dateNow;
+   LoadBalance({this.paymentAmountValue, this.dueDate,this.onRefresh,this.lastPaymentAmount,this.lastPaymentDate,this.dateNow});
+
 
   @override
   _LoadBalance createState() => _LoadBalance();
@@ -49,10 +47,11 @@ class _LoadBalance extends State<LoadBalance> {
                     Padding(
                       padding: EdgeInsets.only(top: 10, bottom: 10),
                       child: Text(
-                          "As of " + DateTimeConverter.getDateWithYearNow(),
-                          style:
-                              TextStyle(fontSize: 18, color: Color(0xff244857)),
-                          textAlign: TextAlign.left),
+                        "As of "+widget.dateNow,
+                        style: TextStyle(fontSize: 18, color: Color(0xff244857)),
+                        textAlign: TextAlign.left
+                      ),
+
                     ),
 
                     Spacer(),
@@ -72,17 +71,15 @@ class _LoadBalance extends State<LoadBalance> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 30),
                   child: Text(
-                    "Expires on " +
-                        DateTimeConverter.convertToDateTime(widget.dueDate),
+                    "Expires on " +widget.dueDate,
+
                     style: TextStyle(fontSize: 18, color: Color(0xff244857)),
                     textAlign: TextAlign.left,
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(bottom: 30),
-                  child: Text(
-                      NumberFormat.currency(decimalDigits: 2, symbol: '₱')
-                          .format(double.parse(widget.paymentAmountValue)),
+                  child: Text(widget.paymentAmountValue,
                       style: TextStyle(fontSize: 36, color: Color(0xff244857)),
                       textAlign: TextAlign.left),
                 ),
@@ -111,13 +108,11 @@ class _LoadBalance extends State<LoadBalance> {
                     ),
                     Spacer(),
                     Padding(
-                      padding: EdgeInsets.only(bottom: 10),
-                      child: Text(
-                          NumberFormat.currency(decimalDigits: 2, symbol: '₱')
-                              .format(widget.lastPaymentDt.amount),
-                          style:
-                              TextStyle(fontSize: 16, color: Color(0xff244857)),
-                          textAlign: TextAlign.left),
+                      padding: EdgeInsets.only(top: 30,bottom: 10),
+                      child: Text(widget.lastPaymentAmount,
+                          style: TextStyle(fontSize: 16, color: Color(0xff244857)),
+                          textAlign: TextAlign.left
+                      ),
                     ),
                   ],
                 ),
@@ -134,12 +129,10 @@ class _LoadBalance extends State<LoadBalance> {
                     Spacer(),
                     Padding(
                       padding: EdgeInsets.only(bottom: 10),
-                      child: Text(
-                          DateTimeConverter.convertToDate(
-                              widget.lastPaymentDt.paymentDate),
-                          style:
-                              TextStyle(fontSize: 16, color: Color(0xff244857)),
-                          textAlign: TextAlign.left),
+                      child: Text(widget.lastPaymentDate,
+                          style: TextStyle(fontSize: 16, color: Color(0xff244857)),
+                          textAlign: TextAlign.left
+                      ),
                     ),
                   ],
                 )

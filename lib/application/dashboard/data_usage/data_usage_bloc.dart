@@ -25,9 +25,10 @@ class DataUsageBloc extends Bloc<DataUsageEvent, DataUsageState> {
       }
       var value = await dataUsageRepository.getDataUsage(isLocal: isLocal);
       yield value.fold(
-          (failed) => DataUsageFailedState(failed),
-          (succuess_entity) => dataUsageSuccesState(succuess_entity
-              .retrieveSubscriberUsageResult.buckets.dataUsageList));
+
+              (failed) => DataUsageFailedState(failed),
+              (succuess_entity) => DataUsageSuccessState.dataUsageSuccesState(succuess_entity.retrieveSubscriberUsageResult.buckets.dataUsageList));
+
 
       if (value.isRight()) {
         await dataUsageRepository.deleteDataUsageLocal();
@@ -43,8 +44,8 @@ class DataUsageBloc extends Bloc<DataUsageEvent, DataUsageState> {
 
       yield value.fold(
           (failed) => DataUsageFailedState(failed),
-          (succuess_entity) => dataUsageSuccesState(succuess_entity
-              .retrieveSubscriberUsageResult.buckets.dataUsageList));
+          (succuess_entity) =>DataUsageSuccessState.dataUsageSuccesState(succuess_entity.retrieveSubscriberUsageResult.buckets.dataUsageList));
+
 
       if (value.isRight()) {
         await dataUsageRepository.deleteDataUsageLocal();
