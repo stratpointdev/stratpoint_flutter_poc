@@ -11,9 +11,6 @@ class LocalDataUsageService {
   static const String DATA_USAGE = 'dataUsage';
   final _dataUsage = intMapStoreFactory.store(DATA_USAGE);
 
-
-
-
   Future<Database> get _db async => database();
 
   Future<Database> database() {

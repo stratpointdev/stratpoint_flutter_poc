@@ -45,7 +45,7 @@ class LocalPaymentDetailsService {
         return PaymentDetailsModel.fromJson(snapshot.value);
       }).first);
     }catch(error){
-      print('errorlocal '+error.toString());
+      print('getPaymentDetails errorlocal '+error.toString());
       return left(PaymentDetailsFailure.localError(error.toString()));
     }
   }

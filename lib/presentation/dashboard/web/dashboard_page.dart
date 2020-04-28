@@ -6,14 +6,16 @@ import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usag
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/widgets/data_usage_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/account_desktop_dashboard.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/desktop_header_menu.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/desktop_menu.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/desktop_load_rewards.dart';
 
 import 'package:flutter/material.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/widgets/progress_indicator_widget.dart';
 
+import '../../../r.dart';
 import 'widgets/desktop_header.dart';
 
 class DashBoardPage extends StatefulWidget {
@@ -28,24 +30,27 @@ class _DashBoardPageState extends State<DashBoardPage> {
   var remainingData;
   var dataAllocation;
   var refillDate;
-  int lastAPICall;
+  var cupLevelIndicator;
+  var lastApiCall;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    remainingData = '6.4 GB';
+    dataAllocation = '10 GB';
+    refillDate = 'Apr. 24';
+    cupLevelIndicator = Image.asset(R.assetsDuckPlaceholder);
+    lastApiCall = '8:30 AM';
 
     _accountDetailsBloc = BlocProvider.of<AccountDetailsBloc>(context);
     _dataUsageBloc = BlocProvider.of<DataUsageBloc>(context);
-
     _accountDetailsBloc.add(InitialAccountDetailsEvent());
-
     _dataUsageBloc.add(InitialDataUsageEvent());
   }
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
+    // double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
@@ -114,17 +119,21 @@ class _DashBoardPageState extends State<DashBoardPage> {
                       remainingData = state.volumeRemaing;
                       dataAllocation = state.totalAllocated;
                       refillDate = state.endDate;
-                      lastAPICall = state.lastAPICall;
+
+                      cupLevelIndicator = state.cupLevelIndicator;
+                      lastApiCall = state.lastApiCall;
+                    }
+
+                    if (state is DataUsageLoadingState) {
+                      return ProgressIndicatorWidget();
                     }
                     return DataUsageWidget(
                       onRefresh: () =>
                           {_dataUsageBloc.add(RefreshDataUsageEvent())},
-                      onAddMoreData: () =>
-                          {_dataUsageBloc.add(RefreshDataUsageEvent())},
+                      onAddMoreData: () => {},
                       onViewDetails: () => {},
-                      cupLevelIndicator:
-                          Image.asset('assets/duck_placeholder.png'),
-                      time: '8:00 AM',
+                      cupLevelIndicator: cupLevelIndicator,
+                      time: lastApiCall,
                       addMoreDataButtonColor: const Color(0xff009CDF),
                       cupIndicatorTextColor: const Color(0xff9B9B9B),
                       remainingData: remainingData,

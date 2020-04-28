@@ -1,5 +1,3 @@
-import 'package:globe_one_poc_project/domain/dashboard/common/datetime_converter.dart';
-
 class PaymentDetailsModel {
   int responseCode;
   List<BalanceByMsisdnError> errors;
@@ -60,7 +58,7 @@ class OutstandingBalanceByMsisdnResult {
       Map<dynamic, dynamic> json) {
     return OutstandingBalanceByMsisdnResult(
       LastPaymentDt.fromJson(json['lastPaymentDt']),
-      DateTimeConverter.convertToDate(json['overDueDate'].toString()),
+      json['overDueDate'].toString(),
       json['overDueBalance'].toString(),
       json['resultNameSpace'],
     );

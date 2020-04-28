@@ -36,15 +36,15 @@ class DataUsageWidgetMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    final TextStyle cupLevelIndicatorTextStyle = TextStyle(
-      fontSize: 17,
-      color: cupIndicatorTextColor,
-    );
-    final TextStyle cupLevelIndicatorTextStyleMobile = TextStyle(
-      fontFamily: 'FSElliotPro',
-      fontSize: MediaQueryUtil.convertHeight(screenHeight, 12),
-      color: cupIndicatorTextColor,
-    );
+    // final TextStyle cupLevelIndicatorTextStyle = TextStyle(
+    //   fontSize: 17,
+    //   color: cupIndicatorTextColor,
+    // );
+    // final TextStyle cupLevelIndicatorTextStyleMobile = TextStyle(
+    //   fontFamily: 'FSElliotPro',
+    //   fontSize: MediaQueryUtil.convertHeight(screenHeight, 12),
+    //   color: cupIndicatorTextColor,
+    // );
 
     return IntrinsicHeight(
         child: Container(
@@ -99,38 +99,12 @@ class DataUsageWidgetMobile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: <Widget>[
-                    Text('100%',
-                        style: isMobile
-                            ? cupLevelIndicatorTextStyleMobile
-                            : cupLevelIndicatorTextStyle),
-                    Text('—',
-                        style: isMobile
-                            ? cupLevelIndicatorTextStyleMobile
-                            : cupLevelIndicatorTextStyle),
-                    Text('50%',
-                        style: isMobile
-                            ? cupLevelIndicatorTextStyleMobile
-                            : cupLevelIndicatorTextStyle),
-                    Text('—',
-                        style: isMobile
-                            ? cupLevelIndicatorTextStyleMobile
-                            : cupLevelIndicatorTextStyle),
-                    Text('0%',
-                        style: isMobile
-                            ? cupLevelIndicatorTextStyleMobile
-                            : cupLevelIndicatorTextStyle),
-                  ],
-                ),
                 Container(
                   width: isMobile
-                      ? MediaQueryUtil.convertWidth(screenWidth, 85)
+                      ? MediaQueryUtil.convertWidth(screenWidth, 110)
                       : 140,
                   height: isMobile
-                      ? MediaQueryUtil.convertHeight(screenHeight, 117)
+                      ? MediaQueryUtil.convertHeight(screenHeight, 120)
                       : 190,
                   child: cupLevelIndicator,
                 ),

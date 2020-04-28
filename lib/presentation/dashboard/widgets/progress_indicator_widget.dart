@@ -17,8 +17,10 @@ class ProgressIndicatorWidget extends StatelessWidget {
             margin: EdgeInsets.all(10),
             width: width,
             height: height,
-            child: CircularProgressIndicator(
-              backgroundColor: Theme.of(context).primaryColor,
+            child: Center(
+              child: CircularProgressIndicator(
+                backgroundColor: Theme.of(context).primaryColor,
+              ),
             ),
           ),
         ],
