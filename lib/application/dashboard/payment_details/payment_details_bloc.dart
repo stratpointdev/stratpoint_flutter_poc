@@ -6,9 +6,10 @@ import 'payment_details_state.dart';
 
 class PaymentDetailsBloc
     extends Bloc<PaymentDetailsEvent, PaymentDetailsState> {
-  final PaymentDetailsRepository repository;
+  final PaymentDetailsRepository paymentDetailsRepository;
 
-  PaymentDetailsBloc(this.repository) : assert(repository != null);
+  PaymentDetailsBloc(this.paymentDetailsRepository)
+      : assert(paymentDetailsRepository != null);
 
   @override
   PaymentDetailsState get initialState => PaymentDetailsInitialState();
@@ -16,12 +17,47 @@ class PaymentDetailsBloc
   @override
   Stream<PaymentDetailsState> mapEventToState(
       PaymentDetailsEvent event) async* {
+    print("The event is: " + event.toString());
+    if (event is InitialPaymentDetailsEvent) {
+      yield PaymentDetailsLoadingState();
+      // SharedPreferences myPrefs = await SharedPreferences.getInstance();
+      // var lastAPICallDate = DateTimeConverter.convertToComparable(
+      //     myPrefs.getString('LastAccountDetailsCall'));
+      // int minutes = DateTime.now().difference(lastAPICallDate).inMinutes;
+      bool isLocal = true;
+      // if (minutes >= 15) {
+      //   isLocal = false;
+      // }
+      var value =
+          await paymentDetailsRepository.getPaymentDetails(isLocal: isLocal);
+
+      yield value.fold(
+          (failures) => PaymentDetailsFailedState(),
+          (success_entity) =>
+              PaymentDetailsSuccessState.paymentDetailsSuccessState(
+                  paymentDetailsModel: success_entity));
+
+      if (value.isRight()) {
+        await paymentDetailsRepository.deletePaymentDetailsLocal();
+        await paymentDetailsRepository
+            .insertPaymentDetailsLocal(value.getOrElse(() => null));
+      }
+    }
+
     if (event is RefreshPaymentDetailsEvent) {
-      var result = await repository.getPaymentDetails();
+      yield PaymentDetailsLoadingState();
+      var result =
+          await paymentDetailsRepository.getPaymentDetails(isLocal: false);
       yield result.fold(
           (failures) => PaymentDetailsFailedState(),
           (success_entity) =>
-              PaymentDetailsSuccessState(paymentDetailsModel: success_entity));
+              PaymentDetailsSuccessState.paymentDetailsSuccessState(
+                  paymentDetailsModel: success_entity));
+      if (result.isRight()) {
+        await paymentDetailsRepository.deletePaymentDetailsLocal();
+        await paymentDetailsRepository
+            .insertPaymentDetailsLocal(result.getOrElse(() => null));
+      }
     }
   }
 }

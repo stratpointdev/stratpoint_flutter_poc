@@ -1,62 +1,56 @@
 import 'package:dartz/dartz.dart';
-import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage.dart';
+import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage_model.dart';
 import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage_failures.dart';
 import 'package:sembast/sembast.dart';
-
+import '../../../database_factory.dart' if(dart.library.js)'package:sembast_web/sembast_web.dart';
 import '../../../app_database.dart';
 
-class LocalDataUsageService {
+import 'package:flutter/foundation.dart' show kIsWeb;
 
+class LocalDataUsageService {
   static const String DATA_USAGE = 'dataUsage';
   final _dataUsage = intMapStoreFactory.store(DATA_USAGE);
 
-  Future<Database> get _db async => await AppDatabase.instance.database;
+  Future<Database> get _db async => database();
 
-  Future insert(DataUsage dataUsage) async {
-    await _dataUsage.add(await _db, dataUsage.toMap());
+  Future<Database> database() {
+    if (!kIsWeb)
+      return AppDatabase.instance.database;
+    else
+      return databaseFactoryWeb.openDatabase(DATA_USAGE);
   }
 
-  Future update(DataUsage dataUsage) async {
-
-    final finder = Finder(filter: Filter.equals('bucketId' ,dataUsage.bucketId ));
-    await _dataUsage.update(
-      await _db,
-      dataUsage.toMap(),
-      finder: finder,
-    );
-  }
-
-  Future delete(DataUsage dataUsage) async {
-    final finder = Finder(filter: Filter.equals('bucketId' ,dataUsage.bucketId ));
-    await _dataUsage.delete(
-      await _db,
-      finder: finder,
-    );
-  }
-
-  Future<Either<DataUsageFailure, DataUsage>> getDataUsage() async {
-    final finder = Finder(limit: 1);
-    final recordSnapshots = await _dataUsage.find(
-      await _db, finder: finder
-    );
-
-    return right(recordSnapshots.map((snapshot) {
-      return DataUsage.fromMap(snapshot.value);
-    }).single);
-  }
-
-  Future<bool> checkDataUsageById(DataUsage dataUsage) async {
+  Future insert(DataUsageModel dataUsageModel) async {
+    print('insert');
     try {
-      final finder = Finder( filter: Filter.equals('bucketId' ,dataUsage.bucketId ), limit: 1 );
-      final recordSnapshots = await _dataUsage.find(
-          await _db, finder: finder
-      );
+      await _dataUsage.add(await _db, dataUsageModel.toJson());
+    } catch (error) {
+      print('insert error' + error.toString());
+    }
+  }
 
-      return recordSnapshots.map( (snapshot) {
-        return DataUsage.fromMap( snapshot.value );
-      } ).single != null;
-    }catch(error){
-      return false;
+  Future delete() async {
+    print('delete');
+    try {
+      await _dataUsage.delete(
+        await _db,
+      );
+    } catch (error) {
+      print('delate error ' + error.toString());
+    }
+  }
+
+  Future<Either<DataUsageFailure, DataUsageModel>> getDataUsage() async {
+    try {
+      final finder = Finder(limit: 1);
+      final recordSnapshots = await _dataUsage.find(await _db, finder: finder);
+
+      return right(recordSnapshots.map((snapshot) {
+        print('getDataUsage ' + snapshot.value.toString());
+        return DataUsageModel.fromJson(snapshot.value);
+      }).single);
+    } catch (error) {
+      return left(DataUsageFailure.localError(error.toString()));
     }
   }
 }

@@ -1,45 +1,24 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
-import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage.dart';
+import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage_model.dart';
 import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage_failures.dart';
-import 'package:globe_one_poc_project/infrastructure/dashboard/data_usage/remote/sample.dart';
-
-import 'package:http/http.dart' as http;
+import 'package:globe_one_poc_project/infrastructure/api.dart';
+import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RemoteDataUsageService {
+  Future<Either<DataUsageFailure, DataUsageModel>> getDataUsage() async {
+    final api = Api();
 
-  String httpUrl = 'https://virtserver.swaggerhub.com/S1723/G1ES-OCSP-API-ALL/1.0.0';
-
-  Future<http.Response> ApiClient(String extenstion) {
-    return http.post(
-      httpUrl + extenstion,
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'msisdn': '<string>',
-        'primaryResourceType': '<string>',
-        'forceRefresh': '<boolean>'
-      }),
-    );
+    final response = await get(api.getDataUsage());
+    if (response.statusCode == 200) {
+      SharedPreferences myPrefs = await SharedPreferences.getInstance();
+      myPrefs.setString('LastAccountDetailsCall', DateTime.now().toString());
+      var body = jsonDecode(response.body);
+      return right(DataUsageModel.fromJson(body));
+    } else {
+      return left(DataUsageFailure.fromJson(jsonDecode(response.body)));
+    }
   }
-
-  Future<Either<DataUsageFailure, DataUsage>>
-      getDataUsage() async {
-    // http.Response response = await createAlbum("/account/get-out-standing-balance");
-    // print(response.body);
-    // if (response.statusCode == 200) {
-    var data = json.decode(Sample.retrieveSubcriberUsage);
-    var rest = data["retrieveSubscriberUsageResult"];
-    var dd = rest["buckets"];
-    var da = dd["buckets"] as List;
-    print(da[0].toString());
-    return right(DataUsage.fromMap(da[0]));
-    //}else{
-    //  throw Exception('error');
-    //}
-  }
-
-
 }

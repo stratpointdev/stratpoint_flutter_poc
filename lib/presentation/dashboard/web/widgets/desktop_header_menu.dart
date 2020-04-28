@@ -5,7 +5,6 @@ class DesktopHeaderMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
         color: Color(0xff244A59),
         height: 30,
@@ -13,9 +12,6 @@ class DesktopHeaderMenu extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            Expanded(
-              child: Spacer(),
-            ),
             Padding(
               padding: EdgeInsets.only(right: 30),
               child: Text(

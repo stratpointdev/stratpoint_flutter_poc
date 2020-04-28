@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class AccountMobileDashboard extends StatefulWidget {
@@ -19,12 +18,11 @@ class AccountMobileDashboard extends StatefulWidget {
 }
 
 class _AccountMobileDashboard extends State<AccountMobileDashboard> {
-
-  static const IconData expand_more = IconData(0xe5cf, fontFamily: 'MaterialIcons');
+  static const IconData expand_more =
+      IconData(0xe5cf, fontFamily: 'MaterialIcons');
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
         color: Color(0xff037DB4),
         height: 165,
@@ -40,62 +38,48 @@ class _AccountMobileDashboard extends State<AccountMobileDashboard> {
                         padding: EdgeInsets.fromLTRB(10, 10, 20, 10),
                         child: CircleAvatar(
                           radius: 40.0,
-                          backgroundImage:
-                          NetworkImage(widget.profilePicture),
+                          backgroundImage: NetworkImage(widget.profilePicture),
                           backgroundColor: Colors.transparent,
                         ),
                       )
-                    ])
-            ),
-
+                    ])),
             Expanded(
-              flex: 2,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(15, 15, 15, 5),
-                    child: Text(
-                        widget.profile,
-                        style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.left
+                flex: 2,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(15, 15, 15, 5),
+                      child: Text(widget.profile,
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.left),
                     ),
-                  ),
-
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
-                    child: Text(
-                        "${widget.mobile} | ${widget.duoNumber}",
-                        style: TextStyle(fontSize: 12, color: Colors.white),
-                        textAlign: TextAlign.left
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+                      child: Text("${widget.mobile} | ${widget.duoNumber}",
+                          style: TextStyle(fontSize: 12, color: Colors.white),
+                          textAlign: TextAlign.left),
                     ),
-                  ),
-
-                  Row(
-                    children: <Widget>[
-                      Padding(
-                          padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
-                          child: Text(
-                              "View other accounts",
-                              style: TextStyle(fontSize: 12, color: Color(0x80ffffff)),
-                              textAlign: TextAlign.left
-                          )
-                      ),
-
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 5, 5, 10),
-                        child: Icon(
-                            expand_more,
-                            color: Color(0x80ffffff)
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              )
-            )
+                    Row(
+                      children: <Widget>[
+                        Padding(
+                            padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+                            child: Text("View other accounts",
+                                style: TextStyle(
+                                    fontSize: 12, color: Color(0x80ffffff)),
+                                textAlign: TextAlign.left)),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 5, 5, 10),
+                          child: Icon(expand_more, color: Color(0x80ffffff)),
+                        )
+                      ],
+                    )
+                  ],
+                ))
           ],
-        )
-    );
+        ));
   }
 }

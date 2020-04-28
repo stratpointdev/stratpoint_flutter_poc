@@ -6,3 +6,5 @@ abstract class DataUsageEvent extends Equatable {
 }
 
 class RefreshDataUsageEvent extends DataUsageEvent {}
+
+class InitialDataUsageEvent extends DataUsageEvent {}

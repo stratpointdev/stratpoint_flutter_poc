@@ -20,19 +20,23 @@ void main() {
   });
 
   test('Successful RefreshEvent should display PaymentSuccessState', () {
+    LastPaymentDt lastPaymentDt = LastPaymentDt();
     PaymentDetailsModel paymentDetailsModel = PaymentDetailsModel(
         200,
         OutstandingBalanceByMsisdnResponse(
-            OutstandingBalanceByMsisdnResult('_', '_', '_')));
+            OutstandingBalanceByMsisdnResult(lastPaymentDt, '_', '_', '_')));
 
-    when(mockRepository.getPaymentDetails())
+    when(mockRepository.getPaymentDetails(isLocal: false))
         .thenAnswer((_) async => right(paymentDetailsModel));
 
     bloc.add(RefreshPaymentDetailsEvent());
 
     expectLater(
         bloc,
-        emitsInOrder(
-            [PaymentDetailsInitialState(), PaymentDetailsSuccessState()]));
+        emitsInOrder([
+          PaymentDetailsInitialState(),
+          PaymentDetailsLoadingState(),
+          PaymentDetailsSuccessState()
+        ]));
   });
 }

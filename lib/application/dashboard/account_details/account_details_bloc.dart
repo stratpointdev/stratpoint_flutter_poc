@@ -16,14 +16,48 @@ class AccountDetailsBloc
   @override
   Stream<AccountDetailsState> mapEventToState(
       AccountDetailsEvent event) async* {
+    if (event is InitialAccountDetailsEvent) {
+      yield AccountDetailsLoadingState();
+      // SharedPreferences myPrefs = await SharedPreferences.getInstance();
+      // var lastAPICallDate = DateTimeConverter.convertToComparable(
+      //     myPrefs.getString('LastAccountDetailsCall'));
+      // int minutes = DateTime.now().difference(lastAPICallDate).inMinutes;
+      bool isLocal = true;
+      // if (minutes >= 15) {
+      //   isLocal = false;
+      // }
+      var value =
+          await accountDetailsRepository.getAccountDetails(isLocal: isLocal);
+
+      yield value.fold(
+          (failures) => AccountDetailsFailedState(),
+          (success_entity) => AccountDetailsSuccessState(
+              nameInfo: success_entity.detailsByMsisdnResponse
+                  .detailsByMsisdnResult.subscriberHeader.nameInfo));
+
+      if (value.isRight()) {
+        await accountDetailsRepository.deletePaymentDetailsLocal();
+        await accountDetailsRepository
+            .insertPaymentDetailsLocal(value.getOrElse(() => null));
+      }
+    }
+
     if (event is RefreshAccountDetailsEvent) {
       yield AccountDetailsLoadingState();
-      final result = await accountDetailsRepository.getAccountDetails();
+      final result =
+          await accountDetailsRepository.getAccountDetails(isLocal: false);
+
       yield result.fold(
           (failures) => AccountDetailsFailedState(),
           (success_entity) => AccountDetailsSuccessState(
               nameInfo: success_entity.detailsByMsisdnResponse
                   .detailsByMsisdnResult.subscriberHeader.nameInfo));
+
+      if (result.isRight()) {
+        await accountDetailsRepository.deletePaymentDetailsLocal();
+        await accountDetailsRepository
+            .insertPaymentDetailsLocal(result.getOrElse(() => null));
+      }
     }
   }
 }
