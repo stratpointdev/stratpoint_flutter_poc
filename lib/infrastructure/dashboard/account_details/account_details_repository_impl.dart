@@ -8,33 +8,32 @@ import 'package:globe_one_poc_project/infrastructure/dashboard/account_details/r
 class AccountDetailsRepositoryImpl implements AccountDetailsRepository {
   final RemoteAccountDetailsService remoteAccountDetailsService;
   final LocalAccountDetailsService localAccountDetailsService;
-  AccountDetailsRepositoryImpl(this.remoteAccountDetailsService,this.localAccountDetailsService);
+  AccountDetailsRepositoryImpl(
+      this.remoteAccountDetailsService, this.localAccountDetailsService);
 
   @override
-  Future<Either<AccountDetailsFailures, AccountDetailsModel>>
-      getAccountDetails({isLocal}) async {
-
-    if(isLocal) {
+  Future<Either<AccountDetailsFailures, AccountDetailsModel>> getAccountDetails(
+      {isLocal}) async {
+    if (isLocal) {
       return localAccountDetailsService.getAccountDetails().then((value) {
         if (value.isLeft()) {
           return remoteAccountDetailsService.getAccountDetails();
-        }else {
+        } else {
           return value;
         }
       });
-    }else {
+    } else {
       return remoteAccountDetailsService.getAccountDetails();
     }
-
   }
 
   @override
-    Future deletePaymentDetailsLocal() {
+  Future deletePaymentDetailsLocal() {
     return localAccountDetailsService.delete();
   }
 
   @override
   Future insertPaymentDetailsLocal(accountDetailsModel) {
-    throw localAccountDetailsService.insert(accountDetailsModel);
+    return localAccountDetailsService.insert(accountDetailsModel);
   }
 }

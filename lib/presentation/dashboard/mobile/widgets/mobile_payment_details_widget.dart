@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:globe_one_poc_project/common/utils/media_query_util.dart';
+import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 
 class MobilePaymentDetailsWidget extends StatefulWidget {
   final String paymentAmountValue;
@@ -39,7 +39,7 @@ class _MobilePaymentInformationWidgetState
                   fontSize: MediaQueryUtil.convertHeight(screenHeight, 14),
                   fontWeight: FontWeight.bold,
                   fontFamily: 'FSElliotPro',
-                  color: Theme.of(context).primaryColor.withOpacity(.8),
+                  color: Color(0xff019CDE),
                 ),
               ),
               Text(
@@ -88,7 +88,7 @@ class _MobilePaymentInformationWidgetState
               Expanded(
                 child: FlatButton(
                   onPressed: widget.viewBillButtonOnPressed,
-                  textColor: Theme.of(context).primaryColor.withOpacity(.8),
+                  textColor: Color(0xff007DB3),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[

@@ -80,8 +80,6 @@ class DataUsageWidget extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 36),
-
-
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -98,7 +96,6 @@ class DataUsageWidget extends StatelessWidget {
                   ],
                 ),
                 Spacer(),
-                // TODO: Change to Ratio depending on Screen Size?
                 Container(
                   width: 140,
                   height: 190,
@@ -148,12 +145,11 @@ class DataUsageWidget extends StatelessWidget {
                 const SizedBox(width: 10),
               ],
             ),
-
             const SizedBox(height: 36),
             Container(
               height: 40,
               child: RawMaterialButton(
-                onPressed:  onAddMoreData,
+                onPressed: onAddMoreData,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4.0),
                 ),
