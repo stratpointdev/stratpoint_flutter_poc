@@ -6,10 +6,11 @@ import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_
 import 'package:globe_one_poc_project/infrastructure/dashboard/data_usage/remote/sample.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RemoteDataUsageService {
-
-  String baseUrl = 'https://virtserver.swaggerhub.com/S1723/G1ES-OCSP-API-ALL/1.0.0';
+  String baseUrl =
+      'https://virtserver.swaggerhub.com/S1723/G1ES-OCSP-API-ALL/1.0.0';
 
   Future<http.Response> ApiClient(String extenstion) {
     return http.post(
@@ -25,16 +26,16 @@ class RemoteDataUsageService {
     );
   }
 
-  Future<Either<DataUsageFailure, DataUsageModel>>
-      getDataUsage() async {
+  Future<Either<DataUsageFailure, DataUsageModel>> getDataUsage() async {
     // http.Response response = await createAlbum("/account/get-out-standing-balance");
     // print(response.body);
     // if (response.statusCode == 200) {
-    
     var data = jsonDecode(Sample.retrieveSubcriberUsage);
+    SharedPreferences myPrefs = await SharedPreferences.getInstance();
+    myPrefs.setString('LastAccountDetailsCall', DateTime.now().toString());
     print('getDataUsage');
 
-    print('getDataUsage' +DataUsageModel.fromJson(data).toJson().toString());
+    print('getDataUsage' + DataUsageModel.fromJson(data).toJson().toString());
     return right(DataUsageModel.fromJson(data));
     //}else{
     //  throw Exception('error');
