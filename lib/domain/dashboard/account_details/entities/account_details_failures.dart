@@ -1,5 +1,5 @@
 class AccountDetailsFailures {
-  String code;
+  int code;
   String message;
   String parameter;
   AccountDetailsFailures({this.code, this.message, this.parameter});
@@ -11,7 +11,7 @@ class AccountDetailsFailures {
         parameter: json['parameter']);
   }
 
-  factory AccountDetailsFailures.localError(String error){
+  factory AccountDetailsFailures.localError(String error) {
     return AccountDetailsFailures(
       message: error,
     );

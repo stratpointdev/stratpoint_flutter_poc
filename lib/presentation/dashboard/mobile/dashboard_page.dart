@@ -13,7 +13,6 @@ import 'package:globe_one_poc_project/application/dashboard/payment_details/paym
 
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/data_usage_widget_mobile.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/widgets/progress_indicator_widget.dart';
 import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
@@ -55,6 +54,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
   var paymentAmountValue = '0';
   var dueDate = '';
   var cupLevelIndicator = Image.asset(R.assetsDuckPlaceholder) ;
+  var lastApiCall ='8:30 AM';
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -162,6 +162,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                         dataAllocation = state.totalAllocated;
                         refillDate = state.endDate;
                         cupLevelIndicator = state.cupLevelIndicator;
+                        lastApiCall = state.lastApiCall;
 
                     }
                     if (state is DataUsageLoadingState) {
@@ -175,7 +176,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                       onAddMoreData: () => {},
                       onViewDetails: () => {},
                       cupLevelIndicator: cupLevelIndicator,
-                      time: '8:30 AM',
+                      time: lastApiCall,
                       addMoreDataButtonColor: const Color(0xff009CDF),
                       cupIndicatorTextColor: const Color(0xff9B9B9B),
                       remainingData: remainingData,
