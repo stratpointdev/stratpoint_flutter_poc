@@ -1,43 +1,18 @@
-import 'dart:convert';
-
 import 'package:dartz/dartz.dart';
 import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage_model.dart';
 import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage_failures.dart';
-import 'package:globe_one_poc_project/infrastructure/dashboard/data_usage/remote/sample.dart';
-
-import 'package:http/http.dart' as http;
+import 'package:globe_one_poc_project/infrastructure/api.dart';
 
 class RemoteDataUsageService {
+  final api = Api();
 
-  String baseUrl = 'https://virtserver.swaggerhub.com/S1723/G1ES-OCSP-API-ALL/1.0.0';
+  Future<Either<DataUsageFailure, DataUsageModel>> getDataUsage() async {
+    final jsonResponse = await api.getJsonResponse(api.getDataUsage());
 
-  Future<http.Response> ApiClient(String extenstion) {
-    return http.post(
-      baseUrl + extenstion,
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'msisdn': '<string>',
-        'primaryResourceType': '<string>',
-        'forceRefresh': '<boolean>'
-      }),
-    );
-  }
+    if (jsonResponse == null) {
+      return left(DataUsageFailure());
+    }
 
-  Future<Either<DataUsageFailure, DataUsageModel>>
-      getDataUsage() async {
-    // http.Response response = await createAlbum("/account/get-out-standing-balance");
-    // print(response.body);
-    // if (response.statusCode == 200) {
-    
-    var data = jsonDecode(Sample.retrieveSubcriberUsage);
-    print('getDataUsage');
-
-    print('getDataUsage' +DataUsageModel.fromJson(data).toJson().toString());
-    return right(DataUsageModel.fromJson(data));
-    //}else{
-    //  throw Exception('error');
-    //}
+    return right(DataUsageModel.fromJson(jsonResponse));
   }
 }

@@ -15,6 +15,11 @@ class Api {
     return Uri.https(_baseUrl, path);
   }
 
+  Uri getDataUsage() {
+    var path = "/postpaid/v1/account/data-usage";
+    return Uri.https(_baseUrl, path);
+  }
+
   Future<Map<String, dynamic>> getJsonResponse(Uri uri) async {
     try {
       final httpRequest = await _httpClient.getUrl(uri);
