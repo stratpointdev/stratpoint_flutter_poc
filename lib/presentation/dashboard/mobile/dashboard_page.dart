@@ -17,7 +17,7 @@ import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/data_usage_widget.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/progress_indicator_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/widgets/progress_indicator_widget.dart';
 import 'package:globe_one_poc_project/r.dart';
 
 import 'widgets/mobile_payment_details_widget.dart';
@@ -138,25 +138,14 @@ class _DashBoardPageState extends State<DashBoardPage> {
                   BlocBuilder<PaymentDetailsBloc, PaymentDetailsState>(
                       builder: (context, state) {
                     if (state is PaymentDetailsSuccessState) {
-                      paymentAmountValue = state
-                          .paymentDetailsModel
-                          .outstandingBalanceByMsisdnResponse
-                          .outstandingBalanceByMsisdnResult
-                          .overDueBalance
-                          .toString();
-
-                      dueDate = state
-                          .paymentDetailsModel
-                          .outstandingBalanceByMsisdnResponse
-                          .outstandingBalanceByMsisdnResult
-                          .overDueDate
-                          .toString();
+                      paymentAmountValue = state.paymentAmountValue;
+                      dueDate = state.dueDate;
                     }
                     if (state is PaymentDetailsLoadingState) {
                       return ProgressIndicatorWidget();
                     }
                     return MobilePaymentDetailsWidget(
-                      paymentAmountValue: '₱ $paymentAmountValue',
+                      paymentAmountValue: paymentAmountValue,
                       dueDate: dueDate,
                       payNowButtonOnPressed: () {},
                       viewBillButtonOnPressed: () {},

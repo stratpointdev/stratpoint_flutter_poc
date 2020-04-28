@@ -46,7 +46,7 @@ class LocalAccountDetailsService {
         return AccountDetailsModel.fromJson(snapshot.value);
       }).first);
     }catch(error){
-      print('errorlocal '+error.toString());
+      print('getAccountDetails errorlocal '+error.toString());
       return left(AccountDetailsFailures.localError(error.toString()));
     }
   }

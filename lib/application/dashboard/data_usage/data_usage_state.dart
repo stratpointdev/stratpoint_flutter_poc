@@ -18,15 +18,16 @@ class DataUsageSuccessState extends DataUsageState {
   final String volumeRemaing;
   final String totalAllocated;
   final String endDate;
+  final String timeNow;
   final Widget cupLevelIndicator;
 
-  DataUsageSuccessState({this.volumeRemaing,this.totalAllocated,this.endDate,this.cupLevelIndicator});
+  DataUsageSuccessState({this.volumeRemaing,this.totalAllocated,this.endDate,this.timeNow,this.cupLevelIndicator});
 
   @override
   List<Object> get props => [volumeRemaing,totalAllocated,endDate];
 
   //function to sum all total allocated and remainingData;
-  static DataUsageSuccessState dataUsageSuccesState(List<DataUsage> dataUsageList){
+  factory DataUsageSuccessState.dataUsageSuccesState(List<DataUsage> dataUsageList){
 
     double sumVolumeRemaining = 0.0;
     double sumTotalAllocated = 0.0;
@@ -37,8 +38,9 @@ class DataUsageSuccessState extends DataUsageState {
     var remainingData = GBConverter.convert(sumVolumeRemaining);
     var dataAllocation = GBConverter.convert(sumTotalAllocated);
     var refillDate = DateTimeConverter.convertToDate(dataUsageList[0].endDate);
+    var timeNow = DateTimeConverter.getTimeNow();
     var cupLevelIndicator = CupLevelIndicator.cupLevelIndicator(sumVolumeRemaining,sumTotalAllocated);
-    return DataUsageSuccessState(volumeRemaing: remainingData, totalAllocated: dataAllocation , endDate: refillDate, cupLevelIndicator: cupLevelIndicator );
+    return DataUsageSuccessState(volumeRemaing: remainingData, totalAllocated: dataAllocation , endDate: refillDate, timeNow: timeNow,cupLevelIndicator: cupLevelIndicator );
   }
 }
 

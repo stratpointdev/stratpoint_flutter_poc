@@ -5,8 +5,6 @@ import 'package:globe_one_poc_project/application/dashboard/account_details/acco
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
-import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_bloc.dart';
-import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_event.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/account_desktop_dashboard.dart';
@@ -15,6 +13,7 @@ import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/desktop
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/desktop_load_rewards.dart';
 
 import 'package:flutter/material.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/widgets/progress_indicator_widget.dart';
 
 import '../../../r.dart';
 import 'widgets/desktop_header.dart';
@@ -32,6 +31,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
   var dataAllocation;
   var refillDate;
   var cupLevelIndicator;
+  var timeNow;
 
   @override
   void initState() {
@@ -40,11 +40,11 @@ class _DashBoardPageState extends State<DashBoardPage> {
      remainingData = '6.4 GB';
      dataAllocation = '10 GB';
      refillDate = 'Apr. 24';
-     cupLevelIndicator = Image.asset(R.duck5);
+     cupLevelIndicator = Image.asset(R.assetsDuckPlaceholder);
+     timeNow = '8:30 AM';
 
     _accountDetailsBloc = BlocProvider.of<AccountDetailsBloc>(context);
     _dataUsageBloc = BlocProvider.of<DataUsageBloc>(context);
-
     _accountDetailsBloc.add(InitialAccountDetailsEvent());
     _dataUsageBloc.add(InitialDataUsageEvent());
 
@@ -130,6 +130,11 @@ class _DashBoardPageState extends State<DashBoardPage> {
                       dataAllocation = state.totalAllocated;
                       refillDate = state.endDate;
                       cupLevelIndicator = state.cupLevelIndicator;
+                      timeNow = state.timeNow;
+                    }
+
+                    if (state is DataUsageLoadingState) {
+                      return ProgressIndicatorWidget();
                     }
                     return DataUsageWidget(
                       onRefresh: () =>
@@ -137,7 +142,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                       onAddMoreData: () => {},
                       onViewDetails: () => {},
                       cupLevelIndicator: cupLevelIndicator,
-                      time: '8:30 AM',
+                      time: timeNow,
                       addMoreDataButtonColor: const Color(0xff009CDF),
                       cupIndicatorTextColor: const Color(0xff9B9B9B),
                       remainingData: remainingData,
