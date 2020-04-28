@@ -11,13 +11,12 @@ import 'package:globe_one_poc_project/application/dashboard/payment_details/paym
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_state.dart';
 
-
-import 'package:globe_one_poc_project/common/utils/media_query_util.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/data_usage_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/data_usage_widget_mobile.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/widgets/progress_indicator_widget.dart';
+import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 import 'package:globe_one_poc_project/r.dart';
 
 import 'widgets/mobile_payment_details_widget.dart';
@@ -99,42 +98,42 @@ class _DashBoardPageState extends State<DashBoardPage> {
             onRefresh: _refresh,
             color: Theme.of(context).primaryColor,
             child: Container(
-              height: 620,
+              height: MediaQueryUtil.convertHeight(screenHeight, 558.9),
               child: ListView(
                 shrinkWrap: true,
                 children: <Widget>[
-                  Container(
-                    height: MediaQueryUtil.convertHeight(screenHeight, 160),
-                    child: CMSBannerWidget(
-                      onPageSelected: (index) {
-                        print(index);
-                      },
-                      onPageChange: (index) {
-                        print(index);
-                      },
-                      pages: <Widget>[
-                        Container(
-                          color: Colors.orange,
-                          height: 50,
-                          child: FlutterLogo(colors: Colors.blue),
-                        ),
-                        Container(
-                          color: Colors.orange,
-                          height: 50,
-                          child: FlutterLogo(
-                              style: FlutterLogoStyle.stacked,
-                              colors: Colors.red),
-                        ),
-                        Container(
-                          color: Colors.orange,
-                          height: 50,
-                          child: FlutterLogo(
-                              style: FlutterLogoStyle.horizontal,
-                              colors: Colors.green),
-                        ),
-                      ],
-                    ),
-                  ),
+                  // Container(
+                  //   height: MediaQueryUtil.convertHeight(screenHeight, 160),
+                  //   child: CMSBannerWidget(
+                  //     onPageSelected: (index) {
+                  //       print(index);
+                  //     },
+                  //     onPageChange: (index) {
+                  //       print(index);
+                  //     },
+                  //     pages: <Widget>[
+                  //       Container(
+                  //         color: Colors.orange,
+                  //         height: 50,
+                  //         child: FlutterLogo(colors: Colors.blue),
+                  //       ),
+                  //       Container(
+                  //         color: Colors.orange,
+                  //         height: 50,
+                  //         child: FlutterLogo(
+                  //             style: FlutterLogoStyle.stacked,
+                  //             colors: Colors.red),
+                  //       ),
+                  //       Container(
+                  //         color: Colors.orange,
+                  //         height: 50,
+                  //         child: FlutterLogo(
+                  //             style: FlutterLogoStyle.horizontal,
+                  //             colors: Colors.green),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                   BlocBuilder<PaymentDetailsBloc, PaymentDetailsState>(
                       builder: (context, state) {
                     if (state is PaymentDetailsSuccessState) {
@@ -151,22 +150,25 @@ class _DashBoardPageState extends State<DashBoardPage> {
                       viewBillButtonOnPressed: () {},
                     );
                   }),
+                  Container(
+                    color: Color(0xffD4D4D4),
+                    height: 1,
+                  ),
                   BlocBuilder<DataUsageBloc, DataUsageState>(
                       builder: (context, state) {
-
-
 
                     if (state is DataUsageSuccessState) {
                         remainingData = state.volumeRemaing;
                         dataAllocation = state.totalAllocated;
                         refillDate = state.endDate;
                         cupLevelIndicator = state.cupLevelIndicator;
+
                     }
                     if (state is DataUsageLoadingState) {
                       return ProgressIndicatorWidget();
                     }
 
-                    return DataUsageWidget(
+                    return DataUsageWidgetMobile(
                       isMobile: true,
                       onRefresh: () =>
                           {_dataUsageBloc.add(RefreshDataUsageEvent())},
@@ -182,14 +184,11 @@ class _DashBoardPageState extends State<DashBoardPage> {
                       textColor: const Color(0xff244857),
                     );
                   }),
-                  Expanded(
-                    child: Container(
-                      child: Image.asset('assets/rest_of_screen.png'),
-                    ),
-                  )
+                  Container(
+                    child: Image.asset('assets/rest_of_screen.png'),
+                  ),
                 ],
               ),
-
             ),
           ),
         ],

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:globe_one_poc_project/common/utils/datetime_converter.dart';
-import 'package:globe_one_poc_project/common/utils/number_format.dart';
+import 'package:globe_one_poc_project/domain/dashboard/common/datetime_converter.dart';
+import 'package:globe_one_poc_project/domain/dashboard/common/number_format.dart';
 import 'package:globe_one_poc_project/domain/dashboard/payment_details/entities/payment_details_model.dart';
 
 abstract class PaymentDetailsState extends Equatable {

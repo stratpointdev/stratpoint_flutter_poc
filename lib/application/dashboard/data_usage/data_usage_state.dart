@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:globe_one_poc_project/common/utils/cup_level_indicator.dart';
-import 'package:globe_one_poc_project/common/utils/datetime_converter.dart';
-import 'package:globe_one_poc_project/common/utils/gb_converter.dart';
+import 'package:globe_one_poc_project/domain/dashboard/common/cup_level_indicator.dart';
+import 'package:globe_one_poc_project/domain/dashboard/common/datetime_converter.dart';
+import 'package:globe_one_poc_project/domain/dashboard/common/gb_converter.dart';
 import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage_model.dart';
 import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage_failures.dart';
 
@@ -14,13 +14,11 @@ abstract class DataUsageState extends Equatable {
 }
 
 class DataUsageSuccessState extends DataUsageState {
-
   final String volumeRemaing;
   final String totalAllocated;
   final String endDate;
   final String timeNow;
   final Widget cupLevelIndicator;
-
   DataUsageSuccessState({this.volumeRemaing,this.totalAllocated,this.endDate,this.timeNow,this.cupLevelIndicator});
 
   @override
@@ -42,6 +40,8 @@ class DataUsageSuccessState extends DataUsageState {
     var cupLevelIndicator = CupLevelIndicator.cupLevelIndicator(sumVolumeRemaining,sumTotalAllocated);
     return DataUsageSuccessState(volumeRemaing: remainingData, totalAllocated: dataAllocation , endDate: refillDate, timeNow: timeNow,cupLevelIndicator: cupLevelIndicator );
   }
+
+
 }
 
 class DataUsageFailedState extends DataUsageState {
@@ -51,8 +51,6 @@ class DataUsageFailedState extends DataUsageState {
   @override
   List<Object> get props => [dataUsageFailure];
 }
-
-
 
 
 

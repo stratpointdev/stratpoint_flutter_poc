@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:globe_one_poc_project/common/utils/media_query_util.dart';
+import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 
 class AccountDetailsWidget extends StatefulWidget {
   @override

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../r.dart';
+import '../../../r.dart';
+
+
 
 class CupLevelIndicator{
   static  Image cupLevelIndicator(double remaining, double total){

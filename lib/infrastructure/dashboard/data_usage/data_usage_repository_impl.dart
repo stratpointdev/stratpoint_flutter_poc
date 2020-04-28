@@ -14,19 +14,17 @@ class DataUsageRepositoryImpl implements DataUsageRepository {
 
   @override
   Future<Either<DataUsageFailure, DataUsageModel>> getDataUsage({isLocal}) {
-
-   if(isLocal) {
-     return localDataUsageService.getDataUsage().then((value) {
-       if (value.isLeft()) {
-         return remoteDataUsageService.getDataUsage();
-       }else {
-         return value;
-       }
-     });
-   }else {
-     return remoteDataUsageService.getDataUsage();
-   }
-
+    if (isLocal) {
+      return localDataUsageService.getDataUsage().then((value) {
+        if (value.isLeft()) {
+          return remoteDataUsageService.getDataUsage();
+        } else {
+          return value;
+        }
+      });
+    } else {
+      return remoteDataUsageService.getDataUsage();
+    }
   }
 
   @override
@@ -38,5 +36,4 @@ class DataUsageRepositoryImpl implements DataUsageRepository {
   Future insertDataUsageLocal(dateUsageModel) {
     return localDataUsageService.insert(dateUsageModel);
   }
-
 }

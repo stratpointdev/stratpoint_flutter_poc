@@ -43,17 +43,15 @@ class _DashBoardPageState extends State<DashBoardPage> {
      cupLevelIndicator = Image.asset(R.assetsDuckPlaceholder);
      timeNow = '8:30 AM';
 
+
     _accountDetailsBloc = BlocProvider.of<AccountDetailsBloc>(context);
     _dataUsageBloc = BlocProvider.of<DataUsageBloc>(context);
     _accountDetailsBloc.add(InitialAccountDetailsEvent());
     _dataUsageBloc.add(InitialDataUsageEvent());
-
   }
-
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -65,25 +63,23 @@ class _DashBoardPageState extends State<DashBoardPage> {
               children: <Widget>[
                 DesktopHeaderMenu(),
                 DesktopHeader(),
-
                 BlocBuilder<AccountDetailsBloc, AccountDetailsState>(
                     builder: (context, state) {
-                      String userName = '';
-                      if (state is AccountDetailsSuccessState) {
-                        userName = state.nameInfo.nameElement2;
-                      } else if (state is AccountDetailsFailures) {
-                        userName = 'NA';
-                      }
-                      return  AccountDesktopDashboard(
-                        profile: userName,
-                        mobile: "0918 XXXX XXXX",
-                        duoNumber: "(02) 2920118",
-                        profilePicture: "https://i.imgur.com/BoN9kdC.png",
-                      );
-                    }),
-
+                  String userName = '';
+                  if (state is AccountDetailsSuccessState) {
+                    userName = state.nameInfo.nameElement2;
+                  } else if (state is AccountDetailsFailures) {
+                    userName = 'NA';
+                  }
+                  return AccountDesktopDashboard(
+                    profile: userName,
+                    mobile: "0918 XXXX XXXX",
+                    duoNumber: "(02) 2920118",
+                    profilePicture: "https://i.imgur.com/BoN9kdC.png",
+                  );
+                }),
                 DesktopMenu(),
-            /*    Container(
+                /*    Container(
                   height: MediaQueryUtil.convertHeight(screenHeight, 100),
                   child: CMSBannerWidget(
                     onPageSelected: (index) {
@@ -116,15 +112,11 @@ class _DashBoardPageState extends State<DashBoardPage> {
                   ),
                 ),*/
                 DesktopLoadRewards(),
-
                 Container(
                   alignment: Alignment.centerLeft,
                   width: screenWidth / 4,
-
                   child: BlocBuilder<DataUsageBloc, DataUsageState>(
                       builder: (context, state) {
-
-
                     if (state is DataUsageSuccessState) {
                       remainingData = state.volumeRemaing;
                       dataAllocation = state.totalAllocated;
