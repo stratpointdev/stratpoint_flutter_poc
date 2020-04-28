@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "globeonepoc-web",
+    "staging": "globeonepoc-web"
+  }
+}

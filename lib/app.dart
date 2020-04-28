@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_bloc.dart';
+import 'package:globe_one_poc_project/infrastructure/dashboard/account_details/local/local_account_details_service.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/data_usage/data_usage_repository_impl.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/data_usage/local/local_data_usage_service.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/data_usage/remote/remote_data_usage_service.dart';
@@ -36,9 +37,8 @@ class MyApp extends StatelessWidget {
           )),
         ),
         BlocProvider<AccountDetailsBloc>(
-          create: (context) => AccountDetailsBloc(AccountDetailsRepositoryImpl(
-            RemoteAccountDetailsService(),
-          )),
+        create: (context) => AccountDetailsBloc(
+        AccountDetailsRepositoryImpl(RemoteAccountDetailsService(),LocalAccountDetailsService())),
         ),
         BlocProvider<DataUsageBloc>(
           create: (context) => DataUsageBloc(DataUsageRepositoryImpl(
@@ -64,5 +64,6 @@ class MyApp extends StatelessWidget {
         home: DashBoardPage(),
       ),
     );
+
   }
 }

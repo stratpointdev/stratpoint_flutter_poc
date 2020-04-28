@@ -8,6 +8,12 @@ class AccountDetailsModel {
     return AccountDetailsModel(json["responseCode"],
         DetailsByMsisdnResponse.fromJson(json["detailsByMsisdnResponse"]));
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'detailsByMsisdnResponse': detailsByMsisdnResponse.toJson(),
+    };
+  }
 }
 
 class DetailsByMsisdnError {}
@@ -19,6 +25,12 @@ class DetailsByMsisdnResponse {
     return DetailsByMsisdnResponse(
         DetailsByMsisdnResult.fromJson(json["detailsByMsisdnResult"]));
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'detailsByMsisdnResult': detailsByMsisdnResult.toJson(),
+    };
+  }
 }
 
 class DetailsByMsisdnResult {
@@ -28,6 +40,12 @@ class DetailsByMsisdnResult {
     return DetailsByMsisdnResult(
         SubscriberHeader.fromJson(json["subscriberHeader"]));
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'subscriberHeader': subscriberHeader.toJson(),
+    };
+  }
 }
 
 class SubscriberHeader {
@@ -35,6 +53,12 @@ class SubscriberHeader {
   SubscriberHeader(this.nameInfo);
   factory SubscriberHeader.fromJson(Map<dynamic, dynamic> json) {
     return SubscriberHeader(NameInfo.fromJson(json["nameInfo"]));
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'nameInfo': nameInfo.toJson(),
+    };
   }
 }
 
@@ -96,5 +120,27 @@ class NameInfo {
       json['nameType'],
       json['nameUpdateType'],
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'effectiveDate' : effectiveDate ,
+      'expirationDate' :expirationDate,
+      'linkType':linkType,
+      'nameElement1':nameElement1,
+      'nameElement2':nameElement2,
+      'nameElement3':nameElement3,
+      'nameElement4':nameElement4,
+      'nameElement5':nameElement5,
+      'nameElement6':nameElement6,
+      'nameElement7':nameElement7,
+      'nameElement8':nameElement8,
+      'nameElement9':nameElement9,
+      'nameElement10':nameElement10,
+      'nameLine1':nameLine1,
+      'nameLine2':nameLine2,
+      'nameType':nameType,
+      'nameUpdateType':nameUpdateType,
+    };
   }
 }

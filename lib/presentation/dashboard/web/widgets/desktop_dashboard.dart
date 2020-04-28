@@ -3,6 +3,7 @@ import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/desktop
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/desktop_menu.dart';
 
 import 'package:flutter/material.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/web-payment-information.dart';
 
 import 'desktop_header.dart';
 
@@ -28,7 +29,11 @@ class _DesktopDashboard extends State<DesktopDashboard> {
             duoNumber: "(02) 2920118",
             profilePicture: "https://i.imgur.com/BoN9kdC.png",
           ),
+
           DesktopMenu(),
+
+          WebPaymentInformationWidget()
+
         ],
       ),
     );
