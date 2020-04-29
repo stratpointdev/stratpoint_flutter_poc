@@ -31,10 +31,12 @@ class DataUsageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     // final TextStyle cupLevelIndicatorTextStyle = TextStyle(
     //   fontSize: 17,
     //   color: cupIndicatorTextColor,
     // );
+
 
     return IntrinsicHeight(
       child: Container(
