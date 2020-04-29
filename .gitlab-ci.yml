@@ -1,4 +1,5 @@
 stages:
+  - analyze
   - test # All jobs related for testing such as Unit Test
   - build_web
   - build_android
@@ -7,12 +8,19 @@ stages:
   - deploy_android
   - deploy_ios
 
-flutter_test: # Name of the lane
-  stage: test # type of stage
+flutter_analyze: # Name of the lane
+  stage: analyze # type of stage
   script:
-    - flutter test # Run Flutter test
+    - flutter analyze # Run Flutter test
   tags:
     - flutter # Tags for runner
+    
+flutter_test: 
+  stage: test 
+  script:
+    - flutter test 
+  tags:
+    - flutter 
 
 flutter_build_web:
   stage: build_web
