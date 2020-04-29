@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_state.dart';
-import 'package:globe_one_poc_project/domain/dashboard/payment_details/entities/payment_details_model.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/load_balance.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/reward_points.dart';
 import 'package:flutter/cupertino.dart';

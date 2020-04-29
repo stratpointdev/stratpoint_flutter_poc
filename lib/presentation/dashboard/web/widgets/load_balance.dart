@@ -18,7 +18,6 @@ class LoadBalance extends StatefulWidget {
 }
 
 class _LoadBalance extends State<LoadBalance> {
-  static const IconData refresh = IconData(0xe5d5, fontFamily: 'MaterialIcons');
 
   @override
   Widget build(BuildContext context) {
