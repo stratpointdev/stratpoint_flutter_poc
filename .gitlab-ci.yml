@@ -1,7 +1,13 @@
 stages:
   - test # All jobs related for testing such as Unit Test
-  - build # All jobs related for building app for iOS and Android
-  - deploy
+#  - build_web
+#  - build_android
+  - build_ios
+#  - deploy_web
+#   - deploy_android
+#   - deploy_ios
+#   - deploy_web
+
 
 flutter_test: # Name of the lane
   stage: test # type of stage
@@ -10,34 +16,66 @@ flutter_test: # Name of the lane
   tags:
     - flutter # Tags for runner
 
-flutter_build_android:
-  stage: build
-  before_script:
-    - flutter channel stable
-    - cd android
-    - bundle install --deployment
-  script:
-    - bundle exec fastlane build
-  artifacts:
-    paths:
-      - build/app/outputs/apk/release/app-arm64-v8a-release.apk
-  tags:
-    - flutter
+# flutter_build_web:
+#   stage: build_web
+#   before_script:
+#     - flutter channel beta
+#   script:
+#     - flutter config --enable-web
+#     - flutter build web
+#   artifacts:
+#     paths:
+#       - build/web
+#   tags:
+#     - flutter
+#   only:
+#     - develop
 
-deploy_android:
-  stage: deploy
-  before_script:
-    - cd android
-    - bundle install --deployment
-  dependencies:
-    - flutter_build_android
-  script:
-    - bundle exec fastlane deploy
-  tags:
-    - flutter
+# deploy_web:
+#   stage: deploy_web
+#   before_script:
+#     - npm i -g firebase-tools
+#   dependencies:
+#     - flutter_build_web
+#   script:
+#     - firebase use staging
+#     - firebase deploy --token $FIREBASE_TOKEN
+#   only:
+#     - develop
+
+# flutter_build_android:
+#   stage: build_android
+#   before_script:
+#     - flutter channel stable
+#     - cd android
+#     - bundle install --deployment
+#   script:
+#     - bundle exec fastlane build
+#   artifacts:
+#     paths:
+#       - build/app/outputs/apk/release/app-arm64-v8a-release.apk
+#   tags:
+#     - flutter
+#   only:
+#     - develop
+
+
+# deploy_android:
+#   stage: deploy_android
+#   before_script:
+#     - cd android
+#     - bundle install --deployment
+#   dependencies:
+#     - flutter_build_android
+#   script:
+#     - bundle exec fastlane deploy
+#   tags:
+#     - flutter
+#   only:
+#     - develop
 
 flutter_build_ios:
-  stage: build
+  stage: build_ios
   before_script:
     - flutter channel stable
     - cd ios
@@ -46,40 +84,24 @@ flutter_build_ios:
     - bundle exec fastlane build
   artifacts:
     paths:
-      - build/Runner.ipa
+      - /Users/macmini/builds/a96d4856/0/thebrewery/flutter/globeone_poc/ios/build/Runner.ipa
   tags:
     - flutter
+  only:
+    - develop
 
-deploy_ios:
-  stage: deploy
-  before_script:
-    - cd ios
-    - bundle install --deployment
-  dependencies:
-    - flutter_build_ios
-  script:
-    - bundle exec fastlane deploy
-  tags:
-    - flutter
+# deploy_ios:
+#   stage: deploy_ios
+#   before_script:
+#     - cd ios
+#     - bundle install --deployment
+#   dependencies:
+#     - flutter_build_ios
+#   script:
+#     - bundle exec fastlane deploy
+#   tags:
+#     - flutter
+#   only:
+#     - develop
 
-flutter_build_web:
-  stage: build
-  before_script:
-    - flutter channel beta
-  script:
-    - flutter build web
-  artifacts:
-    paths:
-      - build/web
-  tags:
-    - flutter
 
-deploy_web:
-  image: node:12.13.0-alpine
-  stage: deploy
-  before_script:
-    - npm i -g firebase-tools
-  dependencies:
-    - flutter_build_web
-  script:
-    - firebase deploy --token $FIREBASE_TOKEN

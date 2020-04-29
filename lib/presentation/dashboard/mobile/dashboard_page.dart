@@ -30,7 +30,6 @@ class _DashBoardPageState extends State<DashBoardPage> {
   PaymentDetailsBloc _paymentDetailsBloc;
   DataUsageBloc _dataUsageBloc;
 
-
   Future<Null> _refresh() async {
     _accountDetailsBloc.add(RefreshAccountDetailsEvent());
     _dataUsageBloc.add(RefreshDataUsageEvent());
@@ -49,13 +48,14 @@ class _DashBoardPageState extends State<DashBoardPage> {
     _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
     _dataUsageBloc.add(InitialDataUsageEvent());
   }
+
   var remainingData = '6.4 GB';
   var dataAllocation = '10 GB';
   var refillDate = 'Apr. 24';
   var paymentAmountValue = '0';
   var dueDate = '';
-  var cupLevelIndicator = Image.asset(R.assetsDuckPlaceholder) ;
-  var lastApiCall ='8:30 AM';
+  var cupLevelIndicator = Image.asset(R.assetsDuckPlaceholder);
+  var lastApiCall = '8:30 AM';
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -95,101 +95,100 @@ class _DashBoardPageState extends State<DashBoardPage> {
               userDuoNumber: " | DUO 052654245",
             );
           }),
-          RefreshIndicator(
-            onRefresh: _refresh,
-            color: Theme.of(context).primaryColor,
-            child: Container(
-              height: MediaQueryUtil.convertHeight(screenHeight, 558.9),
-              child: ListView(
-                shrinkWrap: true,
-                children: <Widget>[
-                  // Container(
-                  //   height: MediaQueryUtil.convertHeight(screenHeight, 160),
-                  //   child: CMSBannerWidget(
-                  //     onPageSelected: (index) {
-                  //       print(index);
-                  //     },
-                  //     onPageChange: (index) {
-                  //       print(index);
-                  //     },
-                  //     pages: <Widget>[
-                  //       Container(
-                  //         color: Colors.orange,
-                  //         height: 50,
-                  //         child: FlutterLogo(colors: Colors.blue),
-                  //       ),
-                  //       Container(
-                  //         color: Colors.orange,
-                  //         height: 50,
-                  //         child: FlutterLogo(
-                  //             style: FlutterLogoStyle.stacked,
-                  //             colors: Colors.red),
-                  //       ),
-                  //       Container(
-                  //         color: Colors.orange,
-                  //         height: 50,
-                  //         child: FlutterLogo(
-                  //             style: FlutterLogoStyle.horizontal,
-                  //             colors: Colors.green),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                  BlocBuilder<PaymentDetailsBloc, PaymentDetailsState>(
-                      builder: (context, state) {
-                    if (state is PaymentDetailsSuccessState) {
-                      paymentAmountValue = state.paymentAmountValue;
-                      dueDate = state.dueDate;
-                    }
-                    if (state is PaymentDetailsLoadingState) {
-                      return ProgressIndicatorWidget();
-                    }
-                    return MobilePaymentDetailsWidget(
-                      paymentAmountValue: paymentAmountValue,
-                      dueDate: dueDate,
-                      payNowButtonOnPressed: () {},
-                      viewBillButtonOnPressed: () {},
-                    );
-                  }),
-                  Container(
-                    color: Color(0xffD4D4D4),
-                    height: 1,
-                  ),
-                  BlocBuilder<DataUsageBloc, DataUsageState>(
-                      builder: (context, state) {
-
-                    if (state is DataUsageSuccessState) {
+          Expanded(
+            child: RefreshIndicator(
+              onRefresh: _refresh,
+              color: Theme.of(context).primaryColor,
+              child: Container(
+                child: ListView(
+                  shrinkWrap: true,
+                  children: <Widget>[
+                    // Container(
+                    //   height: MediaQueryUtil.convertHeight(screenHeight, 160),
+                    //   child: CMSBannerWidget(
+                    //     onPageSelected: (index) {
+                    //       print(index);
+                    //     },
+                    //     onPageChange: (index) {
+                    //       print(index);
+                    //     },
+                    //     pages: <Widget>[
+                    //       Container(
+                    //         color: Colors.orange,
+                    //         height: 50,
+                    //         child: FlutterLogo(colors: Colors.blue),
+                    //       ),
+                    //       Container(
+                    //         color: Colors.orange,
+                    //         height: 50,
+                    //         child: FlutterLogo(
+                    //             style: FlutterLogoStyle.stacked,
+                    //             colors: Colors.red),
+                    //       ),
+                    //       Container(
+                    //         color: Colors.orange,
+                    //         height: 50,
+                    //         child: FlutterLogo(
+                    //             style: FlutterLogoStyle.horizontal,
+                    //             colors: Colors.green),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+                    BlocBuilder<PaymentDetailsBloc, PaymentDetailsState>(
+                        builder: (context, state) {
+                      if (state is PaymentDetailsSuccessState) {
+                        paymentAmountValue = state.paymentAmountValue;
+                        dueDate = state.dueDate;
+                      }
+                      if (state is PaymentDetailsLoadingState) {
+                        return ProgressIndicatorWidget();
+                      }
+                      return MobilePaymentDetailsWidget(
+                        paymentAmountValue: paymentAmountValue,
+                        dueDate: dueDate,
+                        payNowButtonOnPressed: () {},
+                        viewBillButtonOnPressed: () {},
+                      );
+                    }),
+                    Container(
+                      color: Color(0xffD4D4D4),
+                      height: 1,
+                    ),
+                    BlocBuilder<DataUsageBloc, DataUsageState>(
+                        builder: (context, state) {
+                      if (state is DataUsageSuccessState) {
                         remainingData = state.volumeRemaing;
                         dataAllocation = state.totalAllocated;
                         refillDate = state.endDate;
                         cupLevelIndicator = state.cupLevelIndicator;
                         lastApiCall = state.lastApiCall;
+                      }
+                      if (state is DataUsageLoadingState) {
+                        return ProgressIndicatorWidget();
+                      }
 
-                    }
-                    if (state is DataUsageLoadingState) {
-                      return ProgressIndicatorWidget();
-                    }
-
-                    return DataUsageWidgetMobile(
-                      isMobile: true,
-                      onRefresh: () =>
-                          {_dataUsageBloc.add(RefreshDataUsageEvent())},
-                      onAddMoreData: () => {},
-                      onViewDetails: () => {},
-                      cupLevelIndicator: cupLevelIndicator,
-                      time: lastApiCall,
-                      addMoreDataButtonColor: const Color(0xff009CDF),
-                      cupIndicatorTextColor: const Color(0xff9B9B9B),
-                      remainingData: remainingData,
-                      dataAllocation: dataAllocation,
-                      refillDate: refillDate,
-                      textColor: const Color(0xff244857),
-                    );
-                  }),
-                  Container(
-                    child: Image.asset('assets/rest_of_screen.png'),
-                  ),
-                ],
+                      return DataUsageWidgetMobile(
+                        isMobile: true,
+                        onRefresh: () =>
+                            {_dataUsageBloc.add(RefreshDataUsageEvent())},
+                        onAddMoreData: () => {},
+                        onViewDetails: () => {},
+                        cupLevelIndicator: cupLevelIndicator,
+                        time: lastApiCall,
+                        addMoreDataButtonColor: const Color(0xff009CDF),
+                        cupIndicatorTextColor: const Color(0xff9B9B9B),
+                        remainingData: remainingData,
+                        dataAllocation: dataAllocation,
+                        refillDate: refillDate,
+                        textColor: const Color(0xff244857),
+                      );
+                    }),
+                    Container(
+                      child: Image.asset('assets/rest_of_screen.png'),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
