@@ -37,8 +37,8 @@ class MyApp extends StatelessWidget {
           )),
         ),
         BlocProvider<AccountDetailsBloc>(
-        create: (context) => AccountDetailsBloc(
-        AccountDetailsRepositoryImpl(RemoteAccountDetailsService(),LocalAccountDetailsService())),
+          create: (context) => AccountDetailsBloc(AccountDetailsRepositoryImpl(
+              RemoteAccountDetailsService(), LocalAccountDetailsService())),
         ),
         BlocProvider<DataUsageBloc>(
           create: (context) => DataUsageBloc(DataUsageRepositoryImpl(
@@ -64,6 +64,5 @@ class MyApp extends StatelessWidget {
         home: DashBoardPage(),
       ),
     );
-
   }
 }
