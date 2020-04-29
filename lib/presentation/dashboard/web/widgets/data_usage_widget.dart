@@ -74,7 +74,12 @@ class DataUsageWidget extends StatelessWidget {
                     child: IconButton(
                       padding: EdgeInsets.zero,
                       onPressed: onRefresh,
-                      icon: Icon(Icons.refresh),
+                      icon: StreamBuilder<Object>(
+                        stream: null,
+                        builder: (context, snapshot) {
+                          return Icon(Icons.refresh);
+                        }
+                      ),
                     ),
                   ),
                 ),
@@ -157,14 +162,16 @@ class DataUsageWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            Text(
+            Expanded(
+              child: Text(
               'This includes your main data, rollover data, and free app data allowance',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 14,
                 color: textColor,
               ),
-            ),
+            ),)
+           
           ],
         ),
       ),
