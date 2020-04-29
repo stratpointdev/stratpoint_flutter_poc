@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
-
 class LoadBalance extends StatefulWidget {
   final String paymentAmountValue;
   final String dueDate;
@@ -10,8 +8,13 @@ class LoadBalance extends StatefulWidget {
   final String lastPaymentAmount;
   final String lastPaymentDate;
   final String dateNow;
-   LoadBalance({this.paymentAmountValue, this.dueDate,this.onRefresh,this.lastPaymentAmount,this.lastPaymentDate,this.dateNow});
-
+  LoadBalance(
+      {this.paymentAmountValue,
+      this.dueDate,
+      this.onRefresh,
+      this.lastPaymentAmount,
+      this.lastPaymentDate,
+      this.dateNow});
 
   @override
   _LoadBalance createState() => _LoadBalance();
@@ -19,9 +22,10 @@ class LoadBalance extends StatefulWidget {
 
 class _LoadBalance extends State<LoadBalance> {
 
+  // static const IconData refresh = IconData(0xe5d5, fontFamily: 'MaterialIcons');
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
       width: 562,
       child: Column(
@@ -45,12 +49,10 @@ class _LoadBalance extends State<LoadBalance> {
                   children: <Widget>[
                     Padding(
                       padding: EdgeInsets.only(top: 10, bottom: 10),
-                      child: Text(
-                        "As of "+widget.dateNow,
-                        style: TextStyle(fontSize: 18, color: Color(0xff244857)),
-                        textAlign: TextAlign.left
-                      ),
-
+                      child: Text("As of " + widget.dateNow,
+                          style:
+                              TextStyle(fontSize: 18, color: Color(0xff244857)),
+                          textAlign: TextAlign.left),
                     ),
 
                     Spacer(),
@@ -70,8 +72,7 @@ class _LoadBalance extends State<LoadBalance> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 30),
                   child: Text(
-                    "Expires on " +widget.dueDate,
-
+                    "Expires on " + widget.dueDate,
                     style: TextStyle(fontSize: 18, color: Color(0xff244857)),
                     textAlign: TextAlign.left,
                   ),
@@ -107,11 +108,11 @@ class _LoadBalance extends State<LoadBalance> {
                     ),
                     Spacer(),
                     Padding(
-                      padding: EdgeInsets.only(top: 30,bottom: 10),
+                      padding: EdgeInsets.only(top: 30, bottom: 10),
                       child: Text(widget.lastPaymentAmount,
-                          style: TextStyle(fontSize: 16, color: Color(0xff244857)),
-                          textAlign: TextAlign.left
-                      ),
+                          style:
+                              TextStyle(fontSize: 16, color: Color(0xff244857)),
+                          textAlign: TextAlign.left),
                     ),
                   ],
                 ),
@@ -129,9 +130,9 @@ class _LoadBalance extends State<LoadBalance> {
                     Padding(
                       padding: EdgeInsets.only(bottom: 10),
                       child: Text(widget.lastPaymentDate,
-                          style: TextStyle(fontSize: 16, color: Color(0xff244857)),
-                          textAlign: TextAlign.left
-                      ),
+                          style:
+                              TextStyle(fontSize: 16, color: Color(0xff244857)),
+                          textAlign: TextAlign.left),
                     ),
                   ],
                 )

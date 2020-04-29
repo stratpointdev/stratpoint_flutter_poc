@@ -13,21 +13,20 @@ class PaymentDetailsRepositoryImpl implements PaymentDetailsRepository {
       this.remotePaymentDetailsService, this.localPaymentDetailsService);
 
   @override
-  Future<Either<PaymentDetailsFailure, PaymentDetailsModel>>
-      getPaymentDetails({isLocal}) async{
-
-    if(isLocal) {
+  Future<Either<PaymentDetailsFailure, PaymentDetailsModel>> getPaymentDetails(
+      {isLocal}) async {
+    if (isLocal) {
       return localPaymentDetailsService.getPaymentDetails().then((value) {
         if (value.isLeft()) {
+          print('Payment details: ' + value.isLeft().toString());
           return remotePaymentDetailsService.getPaymentDetails();
-        }else {
+        } else {
           return value;
         }
       });
-    }else {
+    } else {
       return remotePaymentDetailsService.getPaymentDetails();
     }
-
   }
 
   @override
@@ -39,6 +38,4 @@ class PaymentDetailsRepositoryImpl implements PaymentDetailsRepository {
   Future insertPaymentDetailsLocal(paymentDetailsModel) {
     return localPaymentDetailsService.insert(paymentDetailsModel);
   }
-
-
 }

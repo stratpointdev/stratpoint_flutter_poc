@@ -32,6 +32,11 @@ class DataUsageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    // final TextStyle cupLevelIndicatorTextStyle = TextStyle(
+    //   fontSize: 17,
+    //   color: cupIndicatorTextColor,
+    // );
+
 
     return IntrinsicHeight(
       child: Container(
@@ -70,7 +75,7 @@ class DataUsageWidget extends StatelessWidget {
                     child: IconButton(
                       padding: EdgeInsets.zero,
                       onPressed: onRefresh,
-                      icon: Icon(Icons.refresh), // TODO: Change Icon
+                      icon: Icon(Icons.refresh),
                     ),
                   ),
                 ),
@@ -81,9 +86,7 @@ class DataUsageWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-
                 Spacer(),
-
                 Container(
                   width: 200,
                   height: 190,

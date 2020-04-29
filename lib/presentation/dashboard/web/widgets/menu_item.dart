@@ -11,7 +11,6 @@ class MenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Text(
       item,
       style: textStyle,

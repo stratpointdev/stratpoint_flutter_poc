@@ -17,7 +17,6 @@ class DesktopDashboard extends StatefulWidget {
 class _DesktopDashboard extends State<DesktopDashboard> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
       child: Column(
         children: <Widget>[
@@ -29,11 +28,8 @@ class _DesktopDashboard extends State<DesktopDashboard> {
             duoNumber: "(02) 2920118",
             profilePicture: "https://i.imgur.com/BoN9kdC.png",
           ),
-
           DesktopMenu(),
-
           WebPaymentInformationWidget()
-
         ],
       ),
     );
