@@ -22,7 +22,7 @@ class DataUsageWidget extends StatelessWidget {
     this.textColor = const Color(0xff244857),
     this.addMoreDataButtonColor = const Color(0xff009CDF),
     this.cupIndicatorTextColor = const Color(0xff9B9B9B),
-    this.padding = const EdgeInsets.fromLTRB(16, 20, 16, 35),
+    this.padding = const EdgeInsets.fromLTRB(10, 20, 10, 35),
     @required this.cupLevelIndicator,
     @required this.onRefresh,
     @required this.onAddMoreData,
@@ -31,15 +31,14 @@ class DataUsageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     // final TextStyle cupLevelIndicatorTextStyle = TextStyle(
     //   fontSize: 17,
     //   color: cupIndicatorTextColor,
     // );
 
-
     return IntrinsicHeight(
       child: Container(
+        width: 400,
         padding: padding,
         color: Colors.white,
         child: Column(
@@ -100,7 +99,7 @@ class DataUsageWidget extends StatelessWidget {
                     Text(
                       '$remainingData LEFT',
                       style: const TextStyle(
-                        fontSize: 20,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
