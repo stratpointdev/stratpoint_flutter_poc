@@ -112,7 +112,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                 DesktopLoadRewards(),
                 Container(
                   alignment: Alignment.centerLeft,
-                  width: screenWidth / 4,
+                  width: screenWidth / 3.5,
                   child: BlocBuilder<DataUsageBloc, DataUsageState>(
                       builder: (context, state) {
                     if (state is DataUsageSuccessState) {
