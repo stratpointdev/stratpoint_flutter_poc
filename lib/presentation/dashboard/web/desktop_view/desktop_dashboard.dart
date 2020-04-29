@@ -15,7 +15,6 @@ import 'widgets/desktop_load_rewards.dart';
 import 'package:flutter/material.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/widgets/progress_indicator_widget.dart';
 
-
 import 'widgets/desktop_header.dart';
 import 'widgets/desktop_menu.dart';
 

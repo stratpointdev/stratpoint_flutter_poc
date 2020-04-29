@@ -56,6 +56,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
   var dueDate = '';
   var cupLevelIndicator = Image.asset(R.assetsDuckPlaceholder);
   var lastApiCall = '8:30 AM';
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;

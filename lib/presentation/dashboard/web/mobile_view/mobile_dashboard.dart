@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_bloc.dart';
@@ -7,6 +6,7 @@ import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usag
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/widgets/reward_points_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/widgets/progress_indicator_widget.dart';
 
 import '../../../../r.dart';
@@ -22,8 +22,6 @@ class MobileDashboard extends StatefulWidget {
 }
 
 class _MobileDashboard extends State<MobileDashboard> {
-
-
   AccountDetailsBloc _accountDetailsBloc;
 
   DataUsageBloc _dataUsageBloc;
@@ -48,26 +46,26 @@ class _MobileDashboard extends State<MobileDashboard> {
     _dataUsageBloc.add(InitialDataUsageEvent());
   }
 
-
   @override
   Widget build(BuildContext context) {
-
     double screenWidth = MediaQuery.of(context).size.width;
-    return Container(
-      child: ListView(
-        children: <Widget>[
-          MobileHeader(),
-          AccountMobileDashboard(
-            profile: "Samantha",
-            mobile: "0918 XXXX XXXX",
-            duoNumber: "(02) 2920118",
-            profilePicture: "https://i.imgur.com/BoN9kdC.png",
-          ),
-          MobileMenu(),
-          Container(
-            alignment: Alignment.centerLeft,
-            width: screenWidth,
-            child: BlocBuilder<DataUsageBloc, DataUsageState>(
+    return Scaffold(
+      body: Container(
+        child: ListView(
+          children: <Widget>[
+            MobileHeader(),
+            AccountMobileDashboard(
+              profile: "Samantha",
+              mobile: "0918 XXXX XXXX",
+              duoNumber: "(02) 2920118",
+              profilePicture: "https://i.imgur.com/BoN9kdC.png",
+            ),
+            MobileMenu(),
+            RewardPointsWidget(hasTitlePadding: true),
+            Container(
+              alignment: Alignment.centerLeft,
+              width: screenWidth,
+              child: BlocBuilder<DataUsageBloc, DataUsageState>(
                 builder: (context, state) {
                   if (state is DataUsageSuccessState) {
                     remainingData = state.volumeRemaing;
@@ -83,7 +81,7 @@ class _MobileDashboard extends State<MobileDashboard> {
                   }
                   return DataUsageWidget(
                     onRefresh: () =>
-                    {_dataUsageBloc.add(RefreshDataUsageEvent())},
+                        {_dataUsageBloc.add(RefreshDataUsageEvent())},
                     onAddMoreData: () => {},
                     onViewDetails: () => {},
                     cupLevelIndicator: cupLevelIndicator,
@@ -95,10 +93,11 @@ class _MobileDashboard extends State<MobileDashboard> {
                     refillDate: refillDate,
                     textColor: const Color(0xff244857),
                   );
-                }),
-          ),
-
-        ],
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

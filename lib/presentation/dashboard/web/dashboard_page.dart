@@ -14,9 +14,10 @@ class _DashBoardPageState extends State<DashBoardPage> {
   Widget build(BuildContext context) {
     return Container(
       child: ScreenTypeLayout(
-          desktop: DesktopDashboard(),
-          tablet: DesktopDashboard(),
-          mobile: MobileDashboard()),
+        desktop: DesktopDashboard(),
+        tablet: DesktopDashboard(),
+        mobile: MobileDashboard(),
+      ),
     );
   }
 }
