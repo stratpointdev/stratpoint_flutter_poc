@@ -1,3 +1,4 @@
+
 class PaymentDetailsModel {
   int responseCode;
   List<BalanceByMsisdnError> errors;
