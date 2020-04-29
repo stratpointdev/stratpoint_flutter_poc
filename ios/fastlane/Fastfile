@@ -49,7 +49,7 @@ platform :ios do
         owner_name: "globeone_poc", # Your username on AppCenter
         owner_type: "organization",
         app_name: "globeone_poc_ios", # Your AppCenter name
-        ipa: "./build/ios/Runner.ipa",
+        ipa: "./build/Runner.ipa",
         notify_testers: true
       )
     else
