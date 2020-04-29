@@ -20,11 +20,12 @@ void main() {
   });
 
   test('Successful RefreshEvent should display PaymentSuccessState', () {
-    LastPaymentDt lastPaymentDt = LastPaymentDt();
+    LastPaymentDt lastPaymentDt =
+        LastPaymentDt(amount: 200.03, paymentDate: '2020-04-23T00:00:00+0800');
     PaymentDetailsModel paymentDetailsModel = PaymentDetailsModel(
         200,
-        OutstandingBalanceByMsisdnResponse(
-            OutstandingBalanceByMsisdnResult(lastPaymentDt, '_', '_', '_')));
+        OutstandingBalanceByMsisdnResponse(OutstandingBalanceByMsisdnResult(
+            lastPaymentDt, '2020-03-31T00:00:00+0800', '2000.03', '_')));
 
     when(mockRepository.getPaymentDetails(isLocal: false))
         .thenAnswer((_) async => right(paymentDetailsModel));
