@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_state.dart';
+import 'package:globe_one_poc_project/application/dashboard/cms_banner/cms_banner_bloc.dart';
+import 'package:globe_one_poc_project/application/dashboard/cms_banner/cms_banner_event.dart';
+import 'package:globe_one_poc_project/application/dashboard/cms_banner/cms_banner_state.dart';
 
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_event.dart';
@@ -13,8 +16,9 @@ import 'package:globe_one_poc_project/application/dashboard/payment_details/paym
 
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/data_usage_widget_mobile.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/widgets/progress_indicator_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/common/progress_indicator_widget.dart';
 import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 import 'package:globe_one_poc_project/r.dart';
 
@@ -29,6 +33,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
   AccountDetailsBloc _accountDetailsBloc;
   PaymentDetailsBloc _paymentDetailsBloc;
   DataUsageBloc _dataUsageBloc;
+  CmsBannerBloc _cmsBannerBloc;
 
   Future<Null> _refresh() async {
     _accountDetailsBloc.add(RefreshAccountDetailsEvent());
@@ -43,10 +48,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
     _accountDetailsBloc = BlocProvider.of<AccountDetailsBloc>(context);
     _paymentDetailsBloc = BlocProvider.of<PaymentDetailsBloc>(context);
     _dataUsageBloc = BlocProvider.of<DataUsageBloc>(context);
+    _cmsBannerBloc = BlocProvider.of<CmsBannerBloc>(context);
 
     _accountDetailsBloc.add(InitialAccountDetailsEvent());
     _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
     _dataUsageBloc.add(InitialDataUsageEvent());
+    _cmsBannerBloc.add(InitialCmsBannerEvent());
   }
 
   var remainingData = '6.4 GB';
@@ -56,6 +63,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
   var dueDate = '';
   var cupLevelIndicator = Image.asset(R.assetsDuckPlaceholder);
   var lastApiCall = '8:30 AM';
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -98,43 +106,34 @@ class _DashBoardPageState extends State<DashBoardPage> {
           Expanded(
             child: RefreshIndicator(
               onRefresh: _refresh,
+              key: Key('refreshIndicatorWidget'),
               color: Theme.of(context).primaryColor,
               child: Container(
                 child: ListView(
                   shrinkWrap: true,
                   children: <Widget>[
-                    // Container(
-                    //   height: MediaQueryUtil.convertHeight(screenHeight, 160),
-                    //   child: CMSBannerWidget(
-                    //     onPageSelected: (index) {
-                    //       print(index);
-                    //     },
-                    //     onPageChange: (index) {
-                    //       print(index);
-                    //     },
-                    //     pages: <Widget>[
-                    //       Container(
-                    //         color: Colors.orange,
-                    //         height: 50,
-                    //         child: FlutterLogo(colors: Colors.blue),
-                    //       ),
-                    //       Container(
-                    //         color: Colors.orange,
-                    //         height: 50,
-                    //         child: FlutterLogo(
-                    //             style: FlutterLogoStyle.stacked,
-                    //             colors: Colors.red),
-                    //       ),
-                    //       Container(
-                    //         color: Colors.orange,
-                    //         height: 50,
-                    //         child: FlutterLogo(
-                    //             style: FlutterLogoStyle.horizontal,
-                    //             colors: Colors.green),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
+                    Container(
+                      height: MediaQueryUtil.convertHeight(screenHeight, 160),
+                      child: BlocBuilder<CmsBannerBloc, CmsBannerState>(
+                          builder: (context, state) {
+                        if (state is CmsBannerLoadingState) {
+                          return ProgressIndicatorWidget();
+                        } else if (state is CmsBannerSuccessState) {
+                          return CMSBannerWidget(
+                            onPageSelected: (index) {
+                              print(index);
+                            },
+                            onPageChange: (index) {
+                              print(index);
+                            },
+                            imagePaths: state.imagePaths,
+                            imageLinks: state.imageLinks,
+                          );
+                        } else {
+                          return Container();
+                        }
+                      }),
+                    ),
                     BlocBuilder<PaymentDetailsBloc, PaymentDetailsState>(
                         builder: (context, state) {
                       if (state is PaymentDetailsSuccessState) {

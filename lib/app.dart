@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:globe_one_poc_project/application/dashboard/cms_banner/cms_banner_bloc.dart';
 
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_bloc.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/account_details/local/local_account_details_service.dart';
+import 'package:globe_one_poc_project/infrastructure/dashboard/cms_banner/cms_banner_repository_impl.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/data_usage/data_usage_repository_impl.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/data_usage/local/local_data_usage_service.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/data_usage/remote/remote_data_usage_service.dart';
@@ -15,6 +17,8 @@ import 'application/dashboard/data_usage/data_usage_bloc.dart';
 import 'application/dashboard/account_details/account_details_bloc.dart';
 import 'infrastructure/dashboard/account_details/account_details_repository_impl.dart';
 import 'infrastructure/dashboard/account_details/remote/remote_account_details_service.dart';
+import 'infrastructure/dashboard/cms_banner/local/local_cms_banner_service.dart';
+import 'infrastructure/dashboard/cms_banner/remote/remote_cms_banner_service.dart';
 import 'infrastructure/dashboard/data_usage/data_usage_repository_impl.dart';
 import 'infrastructure/dashboard/data_usage/local/local_data_usage_service.dart';
 import 'infrastructure/dashboard/data_usage/remote/remote_data_usage_service.dart';
@@ -37,13 +41,19 @@ class MyApp extends StatelessWidget {
           )),
         ),
         BlocProvider<AccountDetailsBloc>(
-        create: (context) => AccountDetailsBloc(
-        AccountDetailsRepositoryImpl(RemoteAccountDetailsService(),LocalAccountDetailsService())),
+          create: (context) => AccountDetailsBloc(AccountDetailsRepositoryImpl(
+              RemoteAccountDetailsService(), LocalAccountDetailsService())),
         ),
         BlocProvider<DataUsageBloc>(
           create: (context) => DataUsageBloc(DataUsageRepositoryImpl(
             RemoteDataUsageService(),
             LocalDataUsageService(),
+          )),
+        ),
+        BlocProvider<CmsBannerBloc>(
+          create: (context) => CmsBannerBloc(CmsBannerRepositoryImpl(
+            RemoteCmsBannerService(),
+            LocalCmsBannerService(),
           )),
         ),
       ],
@@ -64,6 +74,5 @@ class MyApp extends StatelessWidget {
         home: DashBoardPage(),
       ),
     );
-
   }
 }

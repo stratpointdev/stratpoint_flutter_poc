@@ -1,18 +1,23 @@
 class Api {
-  String _baseUrl = 'globe-one-poc.free.beeceptor.com';
+  String _baseUrl = 'gah-poc-flutter.firebaseio.com';
 
   Uri getSubscriberDetails() {
-    var path = "/postpaid/v1/account/subscriber-details";
+    var path = "/endpoint/postpaid/v1/account/subscriber-details.json";
     return Uri.https(_baseUrl, path);
   }
 
   Uri getOutStandingBalance() {
-    var path = "/postpaid/v1/account/outstanding-balance";
+    var path = "/endpoint/postpaid/v1/account/outstanding-balance.json";
     return Uri.https(_baseUrl, path);
   }
 
   Uri getDataUsage() {
-    var path = "/postpaid/v1/account/data-usage";
+    var path = "/endpoint/postpaid/v1/account/data-usage.json";
     return Uri.https(_baseUrl, path);
+  }
+
+  Uri getCms() {
+    return Uri.https('contentdev.globe.com.ph',
+        '/content/flutterpoc/stratpoint/banner-config/jcr:content/content/bannercms.json');
   }
 }
