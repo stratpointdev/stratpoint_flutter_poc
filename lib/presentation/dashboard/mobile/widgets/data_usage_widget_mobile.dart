@@ -47,7 +47,6 @@ class DataUsageWidgetMobile extends StatelessWidget {
     //   color: cupIndicatorTextColor,
     // );
 
-
     return IntrinsicHeight(
         child: Container(
       padding: padding,
@@ -79,6 +78,7 @@ class DataUsageWidgetMobile extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     'as of today, $time',
+                    key: Key('dateUsageLastCheckWidget'),
                     style: isMobile
                         ? TextStyle(
                             fontSize:
@@ -117,6 +117,7 @@ class DataUsageWidgetMobile extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       '$remainingData LEFT',
+                      key: Key('remainingDataWidget'),
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -125,6 +126,7 @@ class DataUsageWidgetMobile extends StatelessWidget {
                     const SizedBox(height: 8),
                     Text(
                       'Out of $dataAllocation',
+                      key: Key('dataAllocationWidget'),
                       style: TextStyle(
                         color: Theme.of(context).hintColor,
                         fontSize: 10,
@@ -132,6 +134,7 @@ class DataUsageWidgetMobile extends StatelessWidget {
                     ),
                     Text(
                       'Refills on $refillDate',
+                      key: Key('refillDateWidget'),
                       style: TextStyle(
                         color: Theme.of(context).hintColor,
                         fontSize: 10,

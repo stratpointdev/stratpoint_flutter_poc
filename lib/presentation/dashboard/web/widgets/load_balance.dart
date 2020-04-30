@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LoadBalance extends StatefulWidget {
+  final GlobalKey key;
   final String paymentAmountValue;
   final String dueDate;
   final VoidCallback onRefresh;
@@ -9,7 +10,8 @@ class LoadBalance extends StatefulWidget {
   final String lastPaymentDate;
   final String dateNow;
   LoadBalance(
-      {this.paymentAmountValue,
+      {this.key,
+      this.paymentAmountValue,
       this.dueDate,
       this.onRefresh,
       this.lastPaymentAmount,
@@ -21,7 +23,6 @@ class LoadBalance extends StatefulWidget {
 }
 
 class _LoadBalance extends State<LoadBalance> {
-
   // static const IconData refresh = IconData(0xe5d5, fontFamily: 'MaterialIcons');
 
   @override

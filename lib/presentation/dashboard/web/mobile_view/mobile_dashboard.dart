@@ -10,11 +10,11 @@ import 'package:globe_one_poc_project/application/dashboard/payment_details/paym
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_state.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/mobile_view/widgets/mobile_view_payment_details.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/widgets/progress_indicator_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/reward_points_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/common/progress_indicator_widget.dart';
 
 import '../../../../r.dart';
 import 'widgets/account_mobile_dashboard.dart';
-import 'widgets/mobile_header.dart';
 import 'widgets/mobile_menu.dart';
 
 class MobileDashboard extends StatefulWidget {
@@ -40,7 +40,7 @@ class _MobileDashboard extends State<MobileDashboard> {
   var refillDate;
   var cupLevelIndicator;
   var lastApiCall;
-
+  GlobalKey dataUsageKey = GlobalKey<FormState>();
   @override
   void initState() {
     super.initState();
@@ -60,76 +60,56 @@ class _MobileDashboard extends State<MobileDashboard> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    return Container(
-      child: ListView(
-        children: <Widget>[
-          MobileHeader(),
-          AccountMobileDashboard(
-            profile: "Samantha",
-            mobile: "0918 XXXX XXXX",
-            duoNumber: "(02) 2920118",
-            profilePicture: "https://i.imgur.com/BoN9kdC.png",
-          ),
-          MobileMenu(),
-          BlocBuilder<PaymentDetailsBloc, PaymentDetailsState>(
-            builder: (context, state) {
-              if (state is PaymentDetailsSuccessState) {
-                paymentAmountValue = state.paymentAmountValue;
-                dueDate = state.dueDate;
-                lastPaymentAmount = state.lastPaymentAmount;
-                lastPaymentDate = state.lastPaymentDate;
-                dateNow = state.dateNow;
-              }
+    return Scaffold(
+      body: Container(
+        child: ListView(
+          children: <Widget>[
+            // MobileHeader(),
+            AccountMobileDashboard(
+              profile: "Samantha",
+              mobile: "0918 XXXX XXXX",
+              duoNumber: "(02) 2920118",
+              profilePicture: "https://i.imgur.com/BoN9kdC.png",
+            ),
 
-              if (state is PaymentDetailsLoadingState) {
-                return ProgressIndicatorWidget();
-              }
+            MobileMenu(),
+            RewardPointsWidget(),
+            BlocBuilder<DataUsageBloc, DataUsageState>(
+              builder: (context, state) {
+                if (state is DataUsageSuccessState) {
+                  remainingData = state.volumeRemaing;
+                  dataAllocation = state.totalAllocated;
+                  refillDate = state.endDate;
 
-              return MobileViewPaymentDetails(
-                paymentAmountValue: paymentAmountValue,
-                dueDate: dueDate,
-                lastPaymentAmount: lastPaymentAmount,
-                lastPaymentDate: lastPaymentDate,
-                dateNow: dateNow,
-                onRefresh: () =>
-                    {_paymentDetailsBloc.add(RefreshPaymentDetailsEvent())},
-              );
-            },
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            width: screenWidth,
-            child: BlocBuilder<DataUsageBloc, DataUsageState>(
-                builder: (context, state) {
-              if (state is DataUsageSuccessState) {
-                remainingData = state.volumeRemaing;
-                dataAllocation = state.totalAllocated;
-                refillDate = state.endDate;
+                  cupLevelIndicator = state.cupLevelIndicator;
+                  lastApiCall = state.lastApiCall;
+                }
 
-                cupLevelIndicator = state.cupLevelIndicator;
-                lastApiCall = state.lastApiCall;
-              }
+                if (state is DataUsageLoadingState)
+                  return Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 400,
+                      child: Center(child: ProgressIndicatorWidget()));
 
-              if (state is DataUsageLoadingState) {
-                return ProgressIndicatorWidget();
-              }
-              return DataUsageWidget(
-                onRefresh: () => {_dataUsageBloc.add(RefreshDataUsageEvent())},
-                onAddMoreData: () => {},
-                onViewDetails: () => {},
-                cupLevelIndicator: cupLevelIndicator,
-                time: lastApiCall,
-                addMoreDataButtonColor: const Color(0xff009CDF),
-                cupIndicatorTextColor: const Color(0xff9B9B9B),
-                remainingData: remainingData,
-                dataAllocation: dataAllocation,
-                refillDate: refillDate,
-                textColor: const Color(0xff244857),
-              );
-            }),
-          ),
-        ],
+                return DataUsageWidget(
+                  key: dataUsageKey,
+                  onRefresh: () =>
+                      {_dataUsageBloc.add(RefreshDataUsageEvent())},
+                  onAddMoreData: () => {},
+                  onViewDetails: () => {},
+                  cupLevelIndicator: cupLevelIndicator,
+                  time: lastApiCall,
+                  addMoreDataButtonColor: const Color(0xff009CDF),
+                  cupIndicatorTextColor: const Color(0xff9B9B9B),
+                  remainingData: remainingData,
+                  dataAllocation: dataAllocation,
+                  refillDate: refillDate,
+                  textColor: const Color(0xff244857),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
