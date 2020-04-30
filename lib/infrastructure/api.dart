@@ -1,5 +1,5 @@
 class Api {
-  String _baseUrl = 'globe-one-poc.free.beeceptor.com';
+  String _baseUrl = 'mock-api.free.beeceptor.com';
 
   Uri getSubscriberDetails() {
     var path = "/postpaid/v1/account/subscriber-details";
@@ -14,5 +14,10 @@ class Api {
   Uri getDataUsage() {
     var path = "/postpaid/v1/account/data-usage";
     return Uri.https(_baseUrl, path);
+  }
+
+  Uri getCms() {
+    return Uri.https('contentdev.globe.com.ph',
+        '/content/flutterpoc/stratpoint/banner-config/jcr:content/content/bannercms.json');
   }
 }
