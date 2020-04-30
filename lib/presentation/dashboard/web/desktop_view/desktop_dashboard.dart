@@ -32,7 +32,7 @@ class _DesktopDashboardState extends State<DesktopDashboard> {
   var refillDate;
   var cupLevelIndicator;
   var lastApiCall;
-
+  GlobalKey dataUsageKey= GlobalKey<FormState>();
   @override
   void initState() {
     super.initState();
@@ -44,8 +44,8 @@ class _DesktopDashboardState extends State<DesktopDashboard> {
 
     _accountDetailsBloc = BlocProvider.of<AccountDetailsBloc>(context);
     _dataUsageBloc = BlocProvider.of<DataUsageBloc>(context);
-    _accountDetailsBloc.add(InitialAccountDetailsEvent());
-    _dataUsageBloc.add(InitialDataUsageEvent());
+  //  _accountDetailsBloc.add(InitialAccountDetailsEvent());
+  //  _dataUsageBloc.add(InitialDataUsageEvent());
   }
 
   @override
@@ -54,100 +54,107 @@ class _DesktopDashboardState extends State<DesktopDashboard> {
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
-          child: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                DesktopHeaderMenu(),
-                DesktopHeader(),
-                BlocBuilder<AccountDetailsBloc, AccountDetailsState>(
-                    builder: (context, state) {
-                  String userName = '';
-                  if (state is AccountDetailsSuccessState) {
-                    userName = state.nameInfo.nameElement2;
-                  } else if (state is AccountDetailsFailures) {
-                    userName = 'NA';
-                  }
-                  return AccountDesktopDashboard(
-                    profile: userName,
-                    mobile: "0918 XXXX XXXX",
-                    duoNumber: "(02) 2920118",
-                    profilePicture: "https://i.imgur.com/BoN9kdC.png",
-                  );
-                }),
-                DesktopMenu(),
-                /*    Container(
-                  height: MediaQueryUtil.convertHeight(screenHeight, 100),
-                  child: CMSBannerWidget(
-                    onPageSelected: (index) {
-                      print(index);
-                    },
-                    onPageChange: (index) {
-                      print(index);
-                    },
-                    pages: <Widget>[
-                      Container(
-                        color: Colors.orange,
-                        height: 50,
-                        child: FlutterLogo(colors: Colors.blue),
-                      ),
-                      Container(
-                        color: Colors.orange,
-                        height: 50,
-                        child: FlutterLogo(
-                            style: FlutterLogoStyle.stacked,
-                            colors: Colors.red),
-                      ),
-                      Container(
-                        color: Colors.orange,
-                        height: 50,
-                        child: FlutterLogo(
-                            style: FlutterLogoStyle.horizontal,
-                            colors: Colors.green),
-                      ),
-                    ],
-                  ),
-                ),*/
-                DesktopLoadRewards(),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  width: screenWidth / 3.5,
-                  child: BlocBuilder<DataUsageBloc, DataUsageState>(
+            child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  DesktopHeaderMenu(),
+                  DesktopHeader(),
+                  BlocBuilder<AccountDetailsBloc, AccountDetailsState>(
                       builder: (context, state) {
-                    if (state is DataUsageSuccessState) {
-                      remainingData = state.volumeRemaing;
-                      dataAllocation = state.totalAllocated;
-                      refillDate = state.endDate;
-
-                      cupLevelIndicator = state.cupLevelIndicator;
-                      lastApiCall = state.lastApiCall;
+                    String userName = '';
+                    if (state is AccountDetailsSuccessState) {
+                      userName = state.nameInfo.nameElement2;
+                    } else if (state is AccountDetailsFailures) {
+                      userName = 'NA';
                     }
-
-                    if (state is DataUsageLoadingState) {
-                      return ProgressIndicatorWidget();
-                    }
-                    return DataUsageWidget(
-                      onRefresh: () =>
-                          {_dataUsageBloc.add(RefreshDataUsageEvent())},
-                      onAddMoreData: () => {},
-                      onViewDetails: () => {},
-                      cupLevelIndicator: cupLevelIndicator,
-                      time: lastApiCall,
-                      addMoreDataButtonColor: const Color(0xff009CDF),
-                      cupIndicatorTextColor: const Color(0xff9B9B9B),
-                      remainingData: remainingData,
-                      dataAllocation: dataAllocation,
-                      refillDate: refillDate,
-                      textColor: const Color(0xff244857),
+                    return AccountDesktopDashboard(
+                      profile: userName,
+                      mobile: "0918 XXXX XXXX",
+                      duoNumber: "(02) 2920118",
+                      profilePicture: "https://i.imgur.com/BoN9kdC.png",
                     );
                   }),
-                ),
-              ],
-            )
-          ],
+                  DesktopMenu(),
+                  /*    Container(
+                    height: MediaQueryUtil.convertHeight(screenHeight, 100),
+                    child: CMSBannerWidget(
+                      onPageSelected: (index) {
+                        print(index);
+                      },
+                      onPageChange: (index) {
+                        print(index);
+                      },
+                      pages: <Widget>[
+                        Container(
+                          color: Colors.orange,
+                          height: 50,
+                          child: FlutterLogo(colors: Colors.blue),
+                        ),
+                        Container(
+                          color: Colors.orange,
+                          height: 50,
+                          child: FlutterLogo(
+                              style: FlutterLogoStyle.stacked,
+                              colors: Colors.red),
+                        ),
+                        Container(
+                          color: Colors.orange,
+                          height: 50,
+                          child: FlutterLogo(
+                              style: FlutterLogoStyle.horizontal,
+                              colors: Colors.green),
+                        ),
+                      ],
+                    ),
+                  ),*/
+                  DesktopLoadRewards(),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    width: screenWidth / 3.5,
+                    child: BlocBuilder<DataUsageBloc, DataUsageState>(
+                        builder: (context, state) {
+
+                          if(state is DataUsageLoadingState)
+                            return Container(
+                                width: 400,
+                                height: 400,
+                                child: Center(child: ProgressIndicatorWidget()));
+
+                      if (state is DataUsageSuccessState) {
+                        remainingData = state.volumeRemaing;
+                        dataAllocation = state.totalAllocated;
+                        refillDate = state.endDate;
+
+                        cupLevelIndicator = state.cupLevelIndicator;
+                        lastApiCall = state.lastApiCall;
+                      }
+
+
+                      return DataUsageWidget(
+                        key: dataUsageKey,
+                        onRefresh: () =>
+                            {_dataUsageBloc.add(RefreshDataUsageEvent())},
+                        onAddMoreData: () => {},
+                        onViewDetails: () => {},
+                        cupLevelIndicator: cupLevelIndicator,
+                        time: lastApiCall,
+                        addMoreDataButtonColor: const Color(0xff009CDF),
+                        cupIndicatorTextColor: const Color(0xff9B9B9B),
+                        remainingData: remainingData,
+                        dataAllocation: dataAllocation,
+                        refillDate: refillDate,
+                        textColor: const Color(0xff244857),
+                      );
+                    }),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
-      )),
+      ),
     );
   }
 }
