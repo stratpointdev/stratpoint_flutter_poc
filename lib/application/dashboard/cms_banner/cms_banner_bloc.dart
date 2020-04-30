@@ -19,29 +19,9 @@ class CmsBannerBloc extends Bloc<CmsBannerEvent, CmsBannerState> {
 
       yield value.fold(
           (failures) => CmsBannerFailedState(),
-          (success_entity) => CmsBannerSuccessState(imagePaths: [
-                success_entity.imagePath1,
-                success_entity.imagePath2,
-                success_entity.imagePath3,
-                success_entity.imagePath4,
-                success_entity.imagePath5,
-                success_entity.imagePath6,
-                success_entity.imagePath7,
-                success_entity.imagePath8,
-                success_entity.imagePath9,
-                success_entity.imagePath10,
-              ], imageLinks: [
-                success_entity.link1,
-                success_entity.link2,
-                success_entity.link3,
-                success_entity.link4,
-                success_entity.link5,
-                success_entity.link6,
-                success_entity.link7,
-                success_entity.link8,
-                success_entity.link9,
-                success_entity.link9,
-              ]));
+          (success_entity) => CmsBannerSuccessState(
+              imagePaths: success_entity.getImagePaths(),
+              imageLinks: success_entity.getImageLinks()));
     }
   }
 }

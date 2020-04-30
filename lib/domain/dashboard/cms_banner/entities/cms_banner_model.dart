@@ -81,4 +81,76 @@ class CmsBannerModel {
     jcrLastModified = json['jcr:lastModified'];
     slingResourceType = json['sling:resourceType'];
   }
+
+  List<String> getImagePaths() {
+    List<String> paths = [];
+    if (imagePath1 != null) {
+      paths.add(imagePath1);
+    }
+    if (imagePath2 != null) {
+      paths.add(imagePath2);
+    }
+    if (imagePath3 != null) {
+      paths.add(imagePath3);
+    }
+    if (imagePath4 != null) {
+      paths.add(imagePath4);
+    }
+    if (imagePath5 != null) {
+      paths.add(imagePath5);
+    }
+    if (imagePath6 != null) {
+      paths.add(imagePath6);
+    }
+    if (imagePath7 != null) {
+      paths.add(imagePath7);
+    }
+    if (imagePath8 != null) {
+      paths.add(imagePath8);
+    }
+    if (imagePath9 != null) {
+      paths.add(imagePath9);
+    }
+    if (imagePath10 != null) {
+      paths.add(imagePath10);
+    }
+
+    return paths;
+  }
+
+  List<String> getImageLinks() {
+    List<String> links = [];
+    if (link1 != null) {
+      links.add(link1);
+    }
+    if (link2 != null) {
+      links.add(link2);
+    }
+    if (link3 != null) {
+      links.add(link3);
+    }
+    if (link4 != null) {
+      links.add(link4);
+    }
+    if (link5 != null) {
+      links.add(link5);
+    }
+    if (link6 != null) {
+      links.add(link6);
+    }
+    if (link7 != null) {
+      links.add(link7);
+    }
+    if (link8 != null) {
+      links.add(link8);
+    }
+    if (link9 != null) {
+      links.add(link9);
+    }
+    if (link10 != null) {
+      links.add(link10);
+    }
+
+    return links;
+  }
 }
