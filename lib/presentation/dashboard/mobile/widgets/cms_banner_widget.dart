@@ -25,17 +25,14 @@ class CMSBannerWidget extends StatefulWidget {
 
 class _CMSBannerWidgetState extends State<CMSBannerWidget> {
   int currentPage = 0;
-  int totalPage = 0;
   PageController _pageController = PageController();
 
   @override
   void initState() {
     super.initState();
-    for (int i = 0; i < widget.imagePaths.length; i++) {
-      widget.imagePaths[i] == null ? totalPage : totalPage++;
-    }
+
     Timer.periodic(Duration(milliseconds: 3000), (Timer timer) {
-      if (currentPage < totalPage) {
+      if (currentPage < widget.imagePaths.length) {
         currentPage++;
       } else {
         currentPage = 0;
@@ -96,7 +93,7 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  for (int i = 0; i < totalPage; i++)
+                  for (int i = 0; i < widget.imagePaths.length; i++)
                     if (i == currentPage) ...[circleBar(true)] else
                       circleBar(false),
                 ],
