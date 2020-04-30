@@ -44,6 +44,7 @@ class _MobilePaymentInformationWidgetState
               ),
               Text(
                 widget.paymentAmountValue,
+                key: Key('paymentAmountWidget'),
                 style: TextStyle(
                   fontSize: MediaQueryUtil.convertHeight(screenHeight, 14),
                   fontWeight: FontWeight.bold,
@@ -58,6 +59,7 @@ class _MobilePaymentInformationWidgetState
             children: <Widget>[
               Text(
                 widget.dueDate,
+                key: Key('paymentDueDateWidget'),
                 style: TextStyle(
                   fontSize: MediaQueryUtil.convertHeight(screenHeight, 10),
                   color: Theme.of(context).hintColor,

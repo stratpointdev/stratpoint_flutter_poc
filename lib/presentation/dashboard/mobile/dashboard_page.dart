@@ -106,6 +106,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
           Expanded(
             child: RefreshIndicator(
               onRefresh: _refresh,
+              key: Key('refreshIndicatorWidget'),
               color: Theme.of(context).primaryColor,
               child: Container(
                 child: ListView(
