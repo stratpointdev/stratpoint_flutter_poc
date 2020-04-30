@@ -13,7 +13,7 @@ import 'widgets/desktop_header_menu.dart';
 import 'widgets/desktop_load_rewards.dart';
 
 import 'package:flutter/material.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/widgets/progress_indicator_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/common/progress_indicator_widget.dart';
 
 import 'widgets/desktop_header.dart';
 import 'widgets/desktop_menu.dart';
@@ -44,13 +44,13 @@ class _DesktopDashboardState extends State<DesktopDashboard> {
 
     _accountDetailsBloc = BlocProvider.of<AccountDetailsBloc>(context);
     _dataUsageBloc = BlocProvider.of<DataUsageBloc>(context);
-  //  _accountDetailsBloc.add(InitialAccountDetailsEvent());
-  //  _dataUsageBloc.add(InitialDataUsageEvent());
+    _accountDetailsBloc.add(InitialAccountDetailsEvent());
+    _dataUsageBloc.add(InitialDataUsageEvent());
   }
 
   @override
   Widget build(BuildContext context) {
-    // double screenHeight = MediaQuery.of(context).size.height;
+   //  double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(

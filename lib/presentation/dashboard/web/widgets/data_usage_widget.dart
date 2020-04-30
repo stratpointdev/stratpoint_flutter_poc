@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/widgets/progress_indicator_widget.dart';
 
 class DataUsageWidget extends StatelessWidget {
   final GlobalKey key;

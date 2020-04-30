@@ -7,7 +7,7 @@ import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usag
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/reward_points_widget.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/widgets/progress_indicator_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/common/progress_indicator_widget.dart';
 
 import '../../../../r.dart';
 import 'widgets/account_mobile_dashboard.dart';
@@ -42,8 +42,8 @@ class _MobileDashboard extends State<MobileDashboard> {
 
     _accountDetailsBloc = BlocProvider.of<AccountDetailsBloc>(context);
     _dataUsageBloc = BlocProvider.of<DataUsageBloc>(context);
-    //_accountDetailsBloc.add(InitialAccountDetailsEvent());
-  //  _dataUsageBloc.add(InitialDataUsageEvent());
+    _accountDetailsBloc.add(InitialAccountDetailsEvent());
+    _dataUsageBloc.add(InitialDataUsageEvent());
   }
 
   @override

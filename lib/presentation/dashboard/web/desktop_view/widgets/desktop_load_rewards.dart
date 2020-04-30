@@ -5,7 +5,7 @@ import 'package:globe_one_poc_project/application/dashboard/payment_details/paym
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/load_balance.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/reward_points_widget.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/widgets/progress_indicator_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/common/progress_indicator_widget.dart';
 
 class DesktopLoadRewards extends StatefulWidget {
   const DesktopLoadRewards();
@@ -21,7 +21,7 @@ class _DesktopLoadRewards extends State<DesktopLoadRewards> {
   void initState() {
     super.initState();
     _paymentDetailsBloc = BlocProvider.of<PaymentDetailsBloc>(context);
- //   _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
+    _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
   }
   GlobalKey loadBalanceKey= GlobalKey<FormState>();
   var paymentAmountValue = '₱2,327.03';
