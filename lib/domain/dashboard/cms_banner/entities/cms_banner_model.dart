@@ -153,4 +153,38 @@ class CmsBannerModel {
 
     return links;
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'jcrPrimaryType': jcrPrimaryType,
+      'jcrCreatedBy': jcrCreatedBy,
+      'imagePath1': imagePath1,
+      'imagePath2': imagePath2,
+      'imagePath3': imagePath3,
+      'imagePath4': imagePath4,
+      'imagePath5': imagePath5,
+      'imagePath6': imagePath6,
+      'imagePath7': imagePath7,
+      'imagePath8': imagePath8,
+      'imagePath9': imagePath9,
+      'imagePath10': imagePath10,
+      'jcrLastModifiedBy': jcrLastModifiedBy,
+      'jcrCreated': jcrCreated,
+      'link1': link1,
+      'link2': link2,
+      'link3': link3,
+      'link4': link4,
+      'link5': link5,
+      'link6': link6,
+      'link7': link7,
+      'link8': link8,
+      'link9': link9,
+      'link10': link10,
+      'jcrLastModified': jcrLastModified,
+      'slingResourceType': slingResourceType,
+    };
+  }
+
+
+
 }

@@ -14,6 +14,28 @@ class CmsBannerRepositoryImpl implements CmsBannerRepository {
   @override
   Future<Either<CmsBannerFailures, CmsBannerModel>> getCmsBanner(
       {bool isLocal}) {
-    return remoteCmsBannerService.getAccountDetails();
+
+/*    if (isLocal) {
+      return localCmsBannerService.getCmsBanner().then((value) {
+        if (value.isLeft()) {
+          return remoteCmsBannerService.getCmsBanner();
+        } else {
+          return value;
+        }
+      });
+    } else {
+      return remoteCmsBannerService.getCmsBanner();
+    }*/
+    return  localCmsBannerService.getCmsBanner();
+  }
+
+  @override
+  Future deleteCmsBannerLocal() {
+    return localCmsBannerService.delete();
+  }
+
+  @override
+  Future insertCmsBannerLocal(cmsBannerModel) {
+    return localCmsBannerService.insert(cmsBannerModel);
   }
 }

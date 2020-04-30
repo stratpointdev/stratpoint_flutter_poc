@@ -1,7 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/menu_item.dart';
 
-import 'menu_item.dart';
+
 
 class DesktopMenu extends StatelessWidget {
   const DesktopMenu();

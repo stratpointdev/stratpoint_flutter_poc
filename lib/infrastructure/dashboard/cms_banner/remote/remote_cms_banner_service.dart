@@ -9,7 +9,7 @@ import 'package:http/http.dart';
 class RemoteCmsBannerService {
   final api = Api();
 
-  Future<Either<CmsBannerFailures, CmsBannerModel>> getAccountDetails() async {
+  Future<Either<CmsBannerFailures, CmsBannerModel>> getCmsBanner() async {
     String username = 'flutterpoc-stratpoint';
     String password = 'Str@tp01nt';
     String basicAuth =

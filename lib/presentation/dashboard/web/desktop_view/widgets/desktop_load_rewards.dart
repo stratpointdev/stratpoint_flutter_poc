@@ -3,9 +3,9 @@ import 'package:globe_one_poc_project/application/dashboard/payment_details/paym
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_state.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/load_balance.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/reward_points.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/widgets/progress_indicator_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/reward_points_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/common/progress_indicator_widget.dart';
 
 class DesktopLoadRewards extends StatefulWidget {
   const DesktopLoadRewards();
@@ -16,13 +16,14 @@ class DesktopLoadRewards extends StatefulWidget {
 
 class _DesktopLoadRewards extends State<DesktopLoadRewards> {
   PaymentDetailsBloc _paymentDetailsBloc;
+
   @override
   void initState() {
     super.initState();
     _paymentDetailsBloc = BlocProvider.of<PaymentDetailsBloc>(context);
     _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
   }
-
+  GlobalKey loadBalanceKey= GlobalKey<FormState>();
   var paymentAmountValue = '₱2,327.03';
   var dueDate = 'Mar. 30 2020, 4:00 PM';
   var lastPaymentAmount = '₱200.00';
@@ -31,6 +32,8 @@ class _DesktopLoadRewards extends State<DesktopLoadRewards> {
 
   @override
   Widget build(BuildContext context) {
+
+
     return Container(
       child: Row(
         children: <Widget>[
@@ -49,20 +52,28 @@ class _DesktopLoadRewards extends State<DesktopLoadRewards> {
               print(lastPaymentDate);
               print(dateNow);
             }
-            if (state is PaymentDetailsLoadingState) {
-              return ProgressIndicatorWidget();
-            }
-            return LoadBalance(
-              paymentAmountValue: paymentAmountValue,
-              dueDate: dueDate,
-              lastPaymentAmount: lastPaymentAmount,
-              lastPaymentDate: lastPaymentDate,
-              dateNow: dateNow,
-              onRefresh: () =>
-                  {_paymentDetailsBloc.add(RefreshPaymentDetailsEvent())},
-            );
+
+
+            if(state is PaymentDetailsLoadingState)
+              return Container(
+                  height: 420,
+                  width: 562,
+                  child: Center(child: ProgressIndicatorWidget()));
+
+              return  LoadBalance(
+                  key : loadBalanceKey,
+                  paymentAmountValue: paymentAmountValue,
+                  dueDate: dueDate,
+                  lastPaymentAmount: lastPaymentAmount,
+                  lastPaymentDate: lastPaymentDate,
+                  dateNow: dateNow,
+                  onRefresh: () =>
+                      {_paymentDetailsBloc.add(RefreshPaymentDetailsEvent())},
+                );
+
+
           }),
-          RewardPoints(),
+          RewardPointsWidget(),
           Spacer()
         ],
       ),

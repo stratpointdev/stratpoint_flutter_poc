@@ -6,4 +6,6 @@ abstract class CmsBannerRepository {
   // isLocal - true will get local data 1st before remote
   Future<Either<CmsBannerFailures, CmsBannerModel>> getCmsBanner(
       {bool isLocal});
+  Future insertCmsBannerLocal(CmsBannerModel);
+  Future deleteCmsBannerLocal();
 }

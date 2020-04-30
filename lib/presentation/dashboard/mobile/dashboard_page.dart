@@ -18,7 +18,7 @@ import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/data_usage_widget_mobile.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/widgets/progress_indicator_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/common/progress_indicator_widget.dart';
 import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 import 'package:globe_one_poc_project/r.dart';
 
@@ -63,6 +63,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
   var dueDate = '';
   var cupLevelIndicator = Image.asset(R.assetsDuckPlaceholder);
   var lastApiCall = '8:30 AM';
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
