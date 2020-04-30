@@ -34,7 +34,7 @@ class _DesktopDashboardState extends State<DesktopDashboard> {
   var refillDate;
   var cupLevelIndicator;
   var lastApiCall;
-  GlobalKey dataUsageKey= GlobalKey<FormState>();
+  GlobalKey dataUsageKey = GlobalKey<FormState>();
   @override
   void initState() {
     super.initState();
@@ -52,11 +52,11 @@ class _DesktopDashboardState extends State<DesktopDashboard> {
 
   @override
   Widget build(BuildContext context) {
-   //  double screenHeight = MediaQuery.of(context).size.height;
+    //  double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
-            child: SingleChildScrollView(
+        child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               Column(
@@ -112,45 +112,59 @@ class _DesktopDashboardState extends State<DesktopDashboard> {
                     ),
                   ),*/
                   DesktopLoadRewards(),
+                  SizedBox(height: 24),
                   Container(
-                    alignment: Alignment.centerLeft,
-                    width: screenWidth / 3.5,
-                    child: BlocBuilder<DataUsageBloc, DataUsageState>(
-                        builder: (context, state) {
+                    child: Row(
+                      children: <Widget>[
+                        Spacer(),
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          child: BlocBuilder<DataUsageBloc, DataUsageState>(
+                              builder: (context, state) {
+                            if (state is DataUsageLoadingState)
+                              return Container(
+                                  width: 400,
+                                  height: 400,
+                                  child:
+                                      Center(child: ProgressIndicatorWidget()));
 
-                          if(state is DataUsageLoadingState)
-                            return Container(
-                                width: 400,
-                                height: 400,
-                                child: Center(child: ProgressIndicatorWidget()));
+                            if (state is DataUsageSuccessState) {
+                              remainingData = state.volumeRemaing;
+                              dataAllocation = state.totalAllocated;
+                              refillDate = state.endDate;
 
-                      if (state is DataUsageSuccessState) {
-                        remainingData = state.volumeRemaing;
-                        dataAllocation = state.totalAllocated;
-                        refillDate = state.endDate;
+                              cupLevelIndicator = state.cupLevelIndicator;
+                              lastApiCall = state.lastApiCall;
+                            }
 
-                        cupLevelIndicator = state.cupLevelIndicator;
-                        lastApiCall = state.lastApiCall;
-                      }
-
-
-                      return DataUsageWidget(
-                        key: dataUsageKey,
-                        onRefresh: () =>
-                            {_dataUsageBloc.add(RefreshDataUsageEvent())},
-                        onAddMoreData: () => {},
-                        onViewDetails: () => {},
-                        cupLevelIndicator: cupLevelIndicator,
-                        time: lastApiCall,
-                        addMoreDataButtonColor: const Color(0xff009CDF),
-                        cupIndicatorTextColor: const Color(0xff9B9B9B),
-                        remainingData: remainingData,
-                        dataAllocation: dataAllocation,
-                        refillDate: refillDate,
-                        textColor: const Color(0xff244857),
-                      );
-                    }),
+                            return DataUsageWidget(
+                              key: dataUsageKey,
+                              onRefresh: () =>
+                                  {_dataUsageBloc.add(RefreshDataUsageEvent())},
+                              onAddMoreData: () => {},
+                              onViewDetails: () => {},
+                              cupLevelIndicator: cupLevelIndicator,
+                              time: lastApiCall,
+                              addMoreDataButtonColor: const Color(0xff009CDF),
+                              cupIndicatorTextColor: const Color(0xff9B9B9B),
+                              remainingData: remainingData,
+                              dataAllocation: dataAllocation,
+                              refillDate: refillDate,
+                              textColor: const Color(0xff244857),
+                            );
+                          }),
+                        ),
+                        SizedBox(width: 20),
+                        SpendingLimitWidget(),
+                        Spacer(),
+                      ],
+                    ),
                   ),
+                  Container(
+                    width: screenWidth / 1.26,
+                    child: PlanDetailsWidget(),
+                  ),
+                  SizedBox(height: 24),
                 ],
               )
             ],

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:globe_one_poc_project/r.dart';
 
 class SpendingLimitWidget extends StatefulWidget {
   @override
@@ -10,6 +9,7 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 720,
       padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 30),
       color: Colors.white,
       child: Column(
@@ -92,7 +92,7 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
                       ),
                     ),
                     Text(
-                      'P 0.00',
+                      '\u20B1 0.00',
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'FSElliotPro',
@@ -108,12 +108,14 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
                     SizedBox(width: 10),
                     BulletWidget(),
                     SizedBox(width: 10),
-                    Text(
-                      'There are charges that used your Spending Limit and may consist of call, text, and mobile data that are not part of your plan.',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'FSElliotPro',
-                        fontSize: 14,
+                    Flexible(
+                      child: Text(
+                        'There are charges that used your Spending Limit and may consist of call, text, and mobile data that are not part of your plan.',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'FSElliotPro',
+                          fontSize: 14,
+                        ),
                       ),
                     ),
                   ],
