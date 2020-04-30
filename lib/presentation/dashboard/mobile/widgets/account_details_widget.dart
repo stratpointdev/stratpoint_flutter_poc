@@ -42,6 +42,7 @@ class _AccountDetailsWidgetState extends State<AccountDetailsWidget> {
                 children: <Widget>[
                   Text(
                     widget.userName,
+                    key: Key('userNameWidget'),
                     style: TextStyle(
                         fontFamily: 'FSElliotPro',
                         fontSize:
