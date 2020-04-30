@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_bloc.dart';
@@ -6,6 +5,10 @@ import 'package:globe_one_poc_project/application/dashboard/account_details/acco
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
+import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_bloc.dart';
+import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_event.dart';
+import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_state.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/web/mobile_view/widgets/mobile_view_payment_details.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/widgets/progress_indicator_widget.dart';
 
@@ -22,9 +25,14 @@ class MobileDashboard extends StatefulWidget {
 }
 
 class _MobileDashboard extends State<MobileDashboard> {
-
-
   AccountDetailsBloc _accountDetailsBloc;
+
+  PaymentDetailsBloc _paymentDetailsBloc;
+  var paymentAmountValue = '₱2,327.03';
+  var dueDate = 'Mar. 30 2020, 4:00 PM';
+  var lastPaymentAmount = '₱200.00';
+  var lastPaymentDate = 'Apr 22';
+  var dateNow = 'Apr. 28 2020';
 
   DataUsageBloc _dataUsageBloc;
   var remainingData;
@@ -46,12 +54,12 @@ class _MobileDashboard extends State<MobileDashboard> {
     _dataUsageBloc = BlocProvider.of<DataUsageBloc>(context);
     _accountDetailsBloc.add(InitialAccountDetailsEvent());
     _dataUsageBloc.add(InitialDataUsageEvent());
+    _paymentDetailsBloc = BlocProvider.of<PaymentDetailsBloc>(context);
+    _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
   }
-
 
   @override
   Widget build(BuildContext context) {
-
     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       child: ListView(
@@ -64,40 +72,63 @@ class _MobileDashboard extends State<MobileDashboard> {
             profilePicture: "https://i.imgur.com/BoN9kdC.png",
           ),
           MobileMenu(),
+          BlocBuilder<PaymentDetailsBloc, PaymentDetailsState>(
+            builder: (context, state) {
+              if (state is PaymentDetailsSuccessState) {
+                paymentAmountValue = state.paymentAmountValue;
+                dueDate = state.dueDate;
+                lastPaymentAmount = state.lastPaymentAmount;
+                lastPaymentDate = state.lastPaymentDate;
+                dateNow = state.dateNow;
+              }
+
+              if (state is PaymentDetailsLoadingState) {
+                return ProgressIndicatorWidget();
+              }
+
+              return MobileViewPaymentDetails(
+                paymentAmountValue: paymentAmountValue,
+                dueDate: dueDate,
+                lastPaymentAmount: lastPaymentAmount,
+                lastPaymentDate: lastPaymentDate,
+                dateNow: dateNow,
+                onRefresh: () =>
+                    {_paymentDetailsBloc.add(RefreshPaymentDetailsEvent())},
+              );
+            },
+          ),
           Container(
             alignment: Alignment.centerLeft,
             width: screenWidth,
             child: BlocBuilder<DataUsageBloc, DataUsageState>(
                 builder: (context, state) {
-                  if (state is DataUsageSuccessState) {
-                    remainingData = state.volumeRemaing;
-                    dataAllocation = state.totalAllocated;
-                    refillDate = state.endDate;
+              if (state is DataUsageSuccessState) {
+                remainingData = state.volumeRemaing;
+                dataAllocation = state.totalAllocated;
+                refillDate = state.endDate;
 
-                    cupLevelIndicator = state.cupLevelIndicator;
-                    lastApiCall = state.lastApiCall;
-                  }
+                cupLevelIndicator = state.cupLevelIndicator;
+                lastApiCall = state.lastApiCall;
+              }
 
-                  if (state is DataUsageLoadingState) {
-                    return ProgressIndicatorWidget();
-                  }
-                  return DataUsageWidget(
-                    onRefresh: () =>
-                    {_dataUsageBloc.add(RefreshDataUsageEvent())},
-                    onAddMoreData: () => {},
-                    onViewDetails: () => {},
-                    cupLevelIndicator: cupLevelIndicator,
-                    time: lastApiCall,
-                    addMoreDataButtonColor: const Color(0xff009CDF),
-                    cupIndicatorTextColor: const Color(0xff9B9B9B),
-                    remainingData: remainingData,
-                    dataAllocation: dataAllocation,
-                    refillDate: refillDate,
-                    textColor: const Color(0xff244857),
-                  );
-                }),
+              if (state is DataUsageLoadingState) {
+                return ProgressIndicatorWidget();
+              }
+              return DataUsageWidget(
+                onRefresh: () => {_dataUsageBloc.add(RefreshDataUsageEvent())},
+                onAddMoreData: () => {},
+                onViewDetails: () => {},
+                cupLevelIndicator: cupLevelIndicator,
+                time: lastApiCall,
+                addMoreDataButtonColor: const Color(0xff009CDF),
+                cupIndicatorTextColor: const Color(0xff9B9B9B),
+                remainingData: remainingData,
+                dataAllocation: dataAllocation,
+                refillDate: refillDate,
+                textColor: const Color(0xff244857),
+              );
+            }),
           ),
-
         ],
       ),
     );
