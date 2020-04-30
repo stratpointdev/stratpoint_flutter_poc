@@ -20,14 +20,14 @@ class AccountDetailsBloc
       AccountDetailsEvent event) async* {
     if (event is InitialAccountDetailsEvent) {
       yield AccountDetailsLoadingState();
-       SharedPreferences myPrefs = await SharedPreferences.getInstance();
-       var lastAPICallDate = DateTimeConverter.convertToComparable(
-           myPrefs.getString('LastAccountDetailsCall'));
-       int minutes = DateTime.now().difference(lastAPICallDate).inMinutes;
+      SharedPreferences myPrefs = await SharedPreferences.getInstance();
+      var lastAPICallDate = DateTimeConverter.convertToComparable(
+          myPrefs.getString('LastAccountDetailsCall'));
+      int minutes = DateTime.now().difference(lastAPICallDate).inMinutes;
       bool isLocal = true;
-       if (minutes >= 15) {
-         isLocal = false;
-       }
+      if (minutes >= 5) {
+        isLocal = false;
+      }
       var value =
           await accountDetailsRepository.getAccountDetails(isLocal: isLocal);
 

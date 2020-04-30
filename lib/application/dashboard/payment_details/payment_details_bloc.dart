@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:globe_one_poc_project/domain/dashboard/common/datetime_converter.dart';
 import 'package:globe_one_poc_project/domain/dashboard/payment_details/payment_details_repository.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'payment_details_event.dart';
 import 'payment_details_state.dart';
@@ -20,14 +22,14 @@ class PaymentDetailsBloc
     print("The event is: " + event.toString());
     if (event is InitialPaymentDetailsEvent) {
       yield PaymentDetailsLoadingState();
-      // SharedPreferences myPrefs = await SharedPreferences.getInstance();
-      // var lastAPICallDate = DateTimeConverter.convertToComparable(
-      //     myPrefs.getString('LastAccountDetailsCall'));
-      // int minutes = DateTime.now().difference(lastAPICallDate).inMinutes;
+      SharedPreferences myPrefs = await SharedPreferences.getInstance();
+      var lastAPICallDate = DateTimeConverter.convertToComparable(
+          myPrefs.getString('LastAccountDetailsCall'));
+      int minutes = DateTime.now().difference(lastAPICallDate).inMinutes;
       bool isLocal = true;
-      // if (minutes >= 15) {
-      //   isLocal = false;
-      // }
+      if (minutes >= 15) {
+        isLocal = false;
+      }
       var value =
           await paymentDetailsRepository.getPaymentDetails(isLocal: isLocal);
 
