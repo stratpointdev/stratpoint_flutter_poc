@@ -2,10 +2,10 @@ stages:
   - analyze
   - test # All jobs related for testing such as Unit Test
   - build_web
-  - build_android
-  - build_ios
   - deploy_web
+  - build_android
   - deploy_android
+  - build_ios
   - deploy_ios
 
 flutter_analyze: # Name of the lane
