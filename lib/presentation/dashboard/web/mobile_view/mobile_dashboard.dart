@@ -11,7 +11,6 @@ import 'package:globe_one_poc_project/presentation/dashboard/common/progress_ind
 
 import '../../../../r.dart';
 import 'widgets/account_mobile_dashboard.dart';
-import 'widgets/mobile_header.dart';
 import 'widgets/mobile_menu.dart';
 
 class MobileDashboard extends StatefulWidget {
@@ -30,7 +29,7 @@ class _MobileDashboard extends State<MobileDashboard> {
   var refillDate;
   var cupLevelIndicator;
   var lastApiCall;
-  GlobalKey dataUsageKey= GlobalKey<FormState>();
+  GlobalKey dataUsageKey = GlobalKey<FormState>();
   @override
   void initState() {
     super.initState();
@@ -48,59 +47,56 @@ class _MobileDashboard extends State<MobileDashboard> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    return  Scaffold(
+    return Scaffold(
       body: Container(
-          child: ListView(
-            children: <Widget>[
-             // MobileHeader(),
-              AccountMobileDashboard(
-                profile: "Samantha",
-                mobile: "0918 XXXX XXXX",
-                duoNumber: "(02) 2920118",
-                profilePicture: "https://i.imgur.com/BoN9kdC.png",
-              ),
-
-              MobileMenu(),
-              RewardPointsWidget(),
-             BlocBuilder<DataUsageBloc, DataUsageState>(
-                    builder: (context, state) {
-                      if (state is DataUsageSuccessState) {
-                        remainingData = state.volumeRemaing;
-                        dataAllocation = state.totalAllocated;
-                        refillDate = state.endDate;
-
-                        cupLevelIndicator = state.cupLevelIndicator;
-                        lastApiCall = state.lastApiCall;
-                      }
-
-                      if(state is DataUsageLoadingState)
-                        return Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 400,
-                            child: Center(child: ProgressIndicatorWidget()));
-
-                      return DataUsageWidget(
-                        key: dataUsageKey,
-                        onRefresh: () =>
-                            {_dataUsageBloc.add(RefreshDataUsageEvent())},
-                        onAddMoreData: () => {},
-                        onViewDetails: () => {},
-                        cupLevelIndicator: cupLevelIndicator,
-                        time: lastApiCall,
-                        addMoreDataButtonColor: const Color(0xff009CDF),
-                        cupIndicatorTextColor: const Color(0xff9B9B9B),
-                        remainingData: remainingData,
-                        dataAllocation: dataAllocation,
-                        refillDate: refillDate,
-                        textColor: const Color(0xff244857),
-                      );
-                    },
-                  ),
-
-              ],
+        child: ListView(
+          children: <Widget>[
+            // MobileHeader(),
+            AccountMobileDashboard(
+              profile: "Samantha",
+              mobile: "0918 XXXX XXXX",
+              duoNumber: "(02) 2920118",
+              profilePicture: "https://i.imgur.com/BoN9kdC.png",
             ),
 
+            MobileMenu(),
+            RewardPointsWidget(),
+            BlocBuilder<DataUsageBloc, DataUsageState>(
+              builder: (context, state) {
+                if (state is DataUsageSuccessState) {
+                  remainingData = state.volumeRemaing;
+                  dataAllocation = state.totalAllocated;
+                  refillDate = state.endDate;
+
+                  cupLevelIndicator = state.cupLevelIndicator;
+                  lastApiCall = state.lastApiCall;
+                }
+
+                if (state is DataUsageLoadingState)
+                  return Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 400,
+                      child: Center(child: ProgressIndicatorWidget()));
+
+                return DataUsageWidget(
+                  key: dataUsageKey,
+                  onRefresh: () =>
+                      {_dataUsageBloc.add(RefreshDataUsageEvent())},
+                  onAddMoreData: () => {},
+                  onViewDetails: () => {},
+                  cupLevelIndicator: cupLevelIndicator,
+                  time: lastApiCall,
+                  addMoreDataButtonColor: const Color(0xff009CDF),
+                  cupIndicatorTextColor: const Color(0xff9B9B9B),
+                  remainingData: remainingData,
+                  dataAllocation: dataAllocation,
+                  refillDate: refillDate,
+                  textColor: const Color(0xff244857),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
