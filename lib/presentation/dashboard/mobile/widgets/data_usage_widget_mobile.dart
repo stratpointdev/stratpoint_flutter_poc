@@ -82,7 +82,7 @@ class DataUsageWidgetMobile extends StatelessWidget {
                     style: isMobile
                         ? TextStyle(
                             fontSize:
-                                MediaQueryUtil.convertHeight(screenHeight, 10),
+                                MediaQueryUtil.convertHeight(screenHeight, 11),
                             color: Theme.of(context).hintColor,
                           )
                         : TextStyle(
@@ -103,17 +103,17 @@ class DataUsageWidgetMobile extends StatelessWidget {
               children: <Widget>[
                 Container(
                   width: isMobile
-                      ? MediaQueryUtil.convertWidth(screenWidth, 110)
+                      ? MediaQueryUtil.convertWidth(screenWidth, 120)
                       : 140,
                   height: isMobile
-                      ? MediaQueryUtil.convertHeight(screenHeight, 120)
+                      ? MediaQueryUtil.convertHeight(screenHeight, 130)
                       : 190,
                   child: cupLevelIndicator,
                 ),
                 const SizedBox(width: 20),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     Text(
                       '$remainingData LEFT',
@@ -129,7 +129,7 @@ class DataUsageWidgetMobile extends StatelessWidget {
                       key: Key('dataAllocationWidget'),
                       style: TextStyle(
                         color: Theme.of(context).hintColor,
-                        fontSize: 10,
+                        fontSize: 11,
                       ),
                     ),
                     Text(
@@ -137,10 +137,9 @@ class DataUsageWidgetMobile extends StatelessWidget {
                       key: Key('refillDateWidget'),
                       style: TextStyle(
                         color: Theme.of(context).hintColor,
-                        fontSize: 10,
+                        fontSize: 11,
                       ),
                     ),
-                    const SizedBox(height: 20),
                     RawMaterialButton(
                       onPressed: onViewDetails,
                       child: isMobile
