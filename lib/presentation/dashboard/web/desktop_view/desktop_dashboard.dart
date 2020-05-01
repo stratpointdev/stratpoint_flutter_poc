@@ -2,11 +2,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_state.dart';
+import 'package:globe_one_poc_project/application/dashboard/cms_banner/cms_banner_bloc.dart';
+import 'package:globe_one_poc_project/application/dashboard/cms_banner/cms_banner_event.dart';
+import 'package:globe_one_poc_project/application/dashboard/cms_banner/cms_banner_state.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';
+import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 import '../../../../r.dart';
 import 'widgets/account_desktop_dashboard.dart';
 import 'widgets/desktop_header_menu.dart';
@@ -17,6 +22,8 @@ import 'package:globe_one_poc_project/presentation/dashboard/common/progress_ind
 
 import 'widgets/desktop_header.dart';
 import 'widgets/desktop_menu.dart';
+import 'widgets/plan_detaiils_dashboard.dart';
+import 'widgets/spending_limit.dart';
 
 class DesktopDashboard extends StatefulWidget {
   @override
@@ -25,14 +32,14 @@ class DesktopDashboard extends StatefulWidget {
 
 class _DesktopDashboardState extends State<DesktopDashboard> {
   AccountDetailsBloc _accountDetailsBloc;
-
   DataUsageBloc _dataUsageBloc;
+  CmsBannerBloc _cmsBannerBloc;
   var remainingData;
   var dataAllocation;
   var refillDate;
   var cupLevelIndicator;
   var lastApiCall;
-  GlobalKey dataUsageKey= GlobalKey<FormState>();
+  GlobalKey dataUsageKey = GlobalKey<FormState>();
   @override
   void initState() {
     super.initState();
@@ -44,17 +51,19 @@ class _DesktopDashboardState extends State<DesktopDashboard> {
 
     _accountDetailsBloc = BlocProvider.of<AccountDetailsBloc>(context);
     _dataUsageBloc = BlocProvider.of<DataUsageBloc>(context);
+    _cmsBannerBloc = BlocProvider.of<CmsBannerBloc>(context);
     _accountDetailsBloc.add(InitialAccountDetailsEvent());
     _dataUsageBloc.add(InitialDataUsageEvent());
+    _cmsBannerBloc.add(InitialCmsBannerEvent());
   }
 
   @override
   Widget build(BuildContext context) {
-   //  double screenHeight = MediaQuery.of(context).size.height;
+    double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
-            child: SingleChildScrollView(
+        child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               Column(
@@ -77,78 +86,82 @@ class _DesktopDashboardState extends State<DesktopDashboard> {
                     );
                   }),
                   DesktopMenu(),
-                  /*    Container(
-                    height: MediaQueryUtil.convertHeight(screenHeight, 100),
-                    child: CMSBannerWidget(
-                      onPageSelected: (index) {
-                        print(index);
-                      },
-                      onPageChange: (index) {
-                        print(index);
-                      },
-                      pages: <Widget>[
+                  Container(
+                    height: MediaQueryUtil.convertHeight(screenHeight, 160),
+                    child: BlocBuilder<CmsBannerBloc, CmsBannerState>(
+                        builder: (context, state) {
+                          if (state is CmsBannerLoadingState) {
+                            return ProgressIndicatorWidget();
+                          } else if (state is CmsBannerSuccessState) {
+                            return CMSBannerWidget(
+                              onPageSelected: (index) {
+                                print(index);
+                              },
+                              onPageChange: (index) {
+                                print(index);
+                              },
+                              imagePaths: state.imagePaths,
+                              imageLinks: state.imageLinks,
+                            );
+                          } else {
+                            return Container();
+                          }
+                        }),
+                  ),
+                  DesktopLoadRewards(),
+                  SizedBox(height: 12),
+                  Container(
+                    child: Row(
+                      children: <Widget>[
+                        Spacer(),
                         Container(
-                          color: Colors.orange,
-                          height: 50,
-                          child: FlutterLogo(colors: Colors.blue),
+                          alignment: Alignment.centerLeft,
+                          child: BlocBuilder<DataUsageBloc, DataUsageState>(
+                              builder: (context, state) {
+                            if (state is DataUsageLoadingState)
+                              return Container(
+                                  width: 400,
+                                  height: 400,
+                                  child:
+                                      Center(child: ProgressIndicatorWidget()));
+
+                            if (state is DataUsageSuccessState) {
+                              remainingData = state.volumeRemaing;
+                              dataAllocation = state.totalAllocated;
+                              refillDate = state.endDate;
+
+                              cupLevelIndicator = state.cupLevelIndicator;
+                              lastApiCall = state.lastApiCall;
+                            }
+
+                            return DataUsageWidget(
+                              key: dataUsageKey,
+                              onRefresh: () =>
+                                  {_dataUsageBloc.add(RefreshDataUsageEvent())},
+                              onAddMoreData: () => {},
+                              onViewDetails: () => {},
+                              cupLevelIndicator: cupLevelIndicator,
+                              time: lastApiCall,
+                              addMoreDataButtonColor: const Color(0xff009CDF),
+                              cupIndicatorTextColor: const Color(0xff9B9B9B),
+                              remainingData: remainingData,
+                              dataAllocation: dataAllocation,
+                              refillDate: refillDate,
+                              textColor: const Color(0xff244857),
+                            );
+                          }),
                         ),
-                        Container(
-                          color: Colors.orange,
-                          height: 50,
-                          child: FlutterLogo(
-                              style: FlutterLogoStyle.stacked,
-                              colors: Colors.red),
-                        ),
-                        Container(
-                          color: Colors.orange,
-                          height: 50,
-                          child: FlutterLogo(
-                              style: FlutterLogoStyle.horizontal,
-                              colors: Colors.green),
-                        ),
+                        SizedBox(width: 20),
+                        SpendingLimitWidget(),
+                        Spacer(),
                       ],
                     ),
-                  ),*/
-                  DesktopLoadRewards(),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    width: screenWidth / 3.5,
-                    child: BlocBuilder<DataUsageBloc, DataUsageState>(
-                        builder: (context, state) {
-
-                          if(state is DataUsageLoadingState)
-                            return Container(
-                                width: 400,
-                                height: 400,
-                                child: Center(child: ProgressIndicatorWidget()));
-
-                      if (state is DataUsageSuccessState) {
-                        remainingData = state.volumeRemaing;
-                        dataAllocation = state.totalAllocated;
-                        refillDate = state.endDate;
-
-                        cupLevelIndicator = state.cupLevelIndicator;
-                        lastApiCall = state.lastApiCall;
-                      }
-
-
-                      return DataUsageWidget(
-                        key: dataUsageKey,
-                        onRefresh: () =>
-                            {_dataUsageBloc.add(RefreshDataUsageEvent())},
-                        onAddMoreData: () => {},
-                        onViewDetails: () => {},
-                        cupLevelIndicator: cupLevelIndicator,
-                        time: lastApiCall,
-                        addMoreDataButtonColor: const Color(0xff009CDF),
-                        cupIndicatorTextColor: const Color(0xff9B9B9B),
-                        remainingData: remainingData,
-                        dataAllocation: dataAllocation,
-                        refillDate: refillDate,
-                        textColor: const Color(0xff244857),
-                      );
-                    }),
                   ),
+                  Container(
+                    width: screenWidth / 1.26,
+                    child: PlanDetailsWidget(),
+                  ),
+                  SizedBox(height: 24),
                 ],
               )
             ],

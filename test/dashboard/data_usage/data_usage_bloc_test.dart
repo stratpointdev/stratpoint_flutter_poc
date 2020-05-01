@@ -35,7 +35,7 @@ void main() {
         RetrieveSubscriberUsageResult(buckets: buckets);
     DataUsageModel dataUsageModel =
         DataUsageModel(retrieveSubscriberUsageResult: result);
-    when(mockRepository.getDataUsage(isLocal: false))
+    when(mockRepository.getDataUsage())
         .thenAnswer((_) async => right(dataUsageModel));
 
     bloc.add(RefreshDataUsageEvent());

@@ -24,12 +24,9 @@ class AccountDetailsBloc
       var lastAPICallDate = DateTimeConverter.convertToComparable(
           myPrefs.getString('LastAccountDetailsCall'));
       int minutes = DateTime.now().difference(lastAPICallDate).inMinutes;
-      bool isLocal = true;
-      if (minutes >= 5) {
-        isLocal = false;
-      }
+
       var value =
-          await accountDetailsRepository.getAccountDetails(isLocal: isLocal);
+          await accountDetailsRepository.getAccountDetails();
 
       yield value.fold(
           (failures) => AccountDetailsFailedState(),
@@ -37,7 +34,7 @@ class AccountDetailsBloc
               nameInfo: success_entity.detailsByMsisdnResponse
                   .detailsByMsisdnResult.subscriberHeader.nameInfo));
 
-      if (value.isRight()) {
+      if (value.isRight()&& minutes >= 5) {
         await accountDetailsRepository.deletePaymentDetailsLocal();
         await accountDetailsRepository
             .insertPaymentDetailsLocal(value.getOrElse(() => null));
@@ -47,7 +44,7 @@ class AccountDetailsBloc
     if (event is RefreshAccountDetailsEvent) {
       yield AccountDetailsLoadingState();
       final result =
-          await accountDetailsRepository.getAccountDetails(isLocal: false);
+          await accountDetailsRepository.getAccountDetails();
 
       yield result.fold(
           (failures) => AccountDetailsFailedState(),

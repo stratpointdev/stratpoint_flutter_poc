@@ -19,18 +19,15 @@ class DataUsageBloc extends Bloc<DataUsageEvent, DataUsageState> {
       var lastAPICallDate = DateTimeConverter.convertToComparable(
           myPrefs.getString('LastAccountDetailsCall'));
       int minutes = DateTime.now().difference(lastAPICallDate).inMinutes;
-      bool isLocal = true;
-      if (minutes >= 15) {
-        isLocal = false;
-      }
-      var value = await dataUsageRepository.getDataUsage(isLocal: isLocal);
+
+      var value = await dataUsageRepository.getDataUsage();
       yield value.fold(
           (failed) => DataUsageFailedState(failed),
           (succuess_entity) => DataUsageSuccessState.dataUsageSuccesState(
               succuess_entity
                   .retrieveSubscriberUsageResult.buckets.dataUsageList));
 
-      if (value.isRight()) {
+      if (value.isRight() && minutes >= 5) {
         await dataUsageRepository.deleteDataUsageLocal();
         await dataUsageRepository
             .insertDataUsageLocal(value.getOrElse(() => null));
@@ -40,7 +37,7 @@ class DataUsageBloc extends Bloc<DataUsageEvent, DataUsageState> {
     if (event is RefreshDataUsageEvent) {
       yield DataUsageLoadingState();
 
-      var value = await dataUsageRepository.getDataUsage(isLocal: false);
+      var value = await dataUsageRepository.getDataUsage();
 
       yield value.fold(
           (failed) => DataUsageFailedState(failed),
