@@ -13,18 +13,16 @@ class DataUsageRepositoryImpl implements DataUsageRepository {
       this.remoteDataUsageService, this.localDataUsageService);
 
   @override
-  Future<Either<DataUsageFailure, DataUsageModel>> getDataUsage({isLocal}) {
-    if (isLocal) {
-      return localDataUsageService.getDataUsage().then((value) {
+  Future<Either<DataUsageFailure, DataUsageModel>> getDataUsage() {
+
+      return remoteDataUsageService.getDataUsage().then((value) {
         if (value.isLeft()) {
-          return remoteDataUsageService.getDataUsage();
+          return localDataUsageService.getDataUsage();
         } else {
           return value;
         }
       });
-    } else {
-      return remoteDataUsageService.getDataUsage();
-    }
+
   }
 
   @override

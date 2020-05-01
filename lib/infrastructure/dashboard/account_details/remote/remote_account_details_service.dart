@@ -12,14 +12,19 @@ class RemoteAccountDetailsService {
 
   Future<Either<AccountDetailsFailures, AccountDetailsModel>>
       getAccountDetails() async {
-    final response = await get(api.getSubscriberDetails());
-    if (response.statusCode == 200) {
-      SharedPreferences myPrefs = await SharedPreferences.getInstance();
-      myPrefs.setString('LastAccountDetailsCall', DateTime.now().toString());
-      var body = jsonDecode(response.body);
-      return right(AccountDetailsModel.fromJson(body));
-    } else {
-      return left(AccountDetailsFailures.fromJson(jsonDecode(response.body)));
+    try {
+      final response = await get(api.getSubscriberDetails())
+          .timeout(const Duration(seconds: 3));
+      if (response.statusCode == 200) {
+        SharedPreferences myPrefs = await SharedPreferences.getInstance();
+        myPrefs.setString('LastAccountDetailsCall', DateTime.now().toString());
+        var body = jsonDecode(response.body);
+        return right(AccountDetailsModel.fromJson(body));
+      } else {
+        return left(AccountDetailsFailures.fromJson(jsonDecode(response.body)));
+      }
+    } catch (_) {
+      return left(AccountDetailsFailures.localError(_));
     }
   }
 }
