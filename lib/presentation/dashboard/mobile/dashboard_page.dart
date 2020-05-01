@@ -39,6 +39,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
     _accountDetailsBloc.add(RefreshAccountDetailsEvent());
     _dataUsageBloc.add(RefreshDataUsageEvent());
     _paymentDetailsBloc.add(RefreshPaymentDetailsEvent());
+    _cmsBannerBloc.add(RefreshCmsBannerEvent());
     return null;
   }
 
@@ -113,7 +114,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                   shrinkWrap: true,
                   children: <Widget>[
                     Container(
-                      height: MediaQueryUtil.convertHeight(screenHeight, 160),
+                      height: MediaQueryUtil.convertHeight(screenHeight, 100),
                       child: BlocBuilder<CmsBannerBloc, CmsBannerState>(
                           builder: (context, state) {
                         if (state is CmsBannerLoadingState) {

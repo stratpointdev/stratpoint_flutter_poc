@@ -58,10 +58,10 @@ class _MobilePaymentInformationWidgetState
           Row(
             children: <Widget>[
               Text(
-                widget.dueDate,
+                'Due on ' + widget.dueDate,
                 key: Key('paymentDueDateWidget'),
                 style: TextStyle(
-                  fontSize: MediaQueryUtil.convertHeight(screenHeight, 10),
+                  fontSize: MediaQueryUtil.convertHeight(screenHeight, 11),
                   color: Theme.of(context).hintColor,
                 ),
               )

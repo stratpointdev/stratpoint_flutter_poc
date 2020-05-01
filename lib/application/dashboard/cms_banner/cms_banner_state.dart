@@ -12,8 +12,8 @@ class CmsBannerInitialState extends CmsBannerState {}
 class CmsBannerLoadingState extends CmsBannerState {}
 
 class CmsBannerSuccessState extends CmsBannerState {
-  final List<String> imagePaths;
-  final List<String> imageLinks;
+  final Map<String, String> imagePaths;
+  final Map<String, String> imageLinks;
 
   const CmsBannerSuccessState({this.imagePaths, this.imageLinks});
 
