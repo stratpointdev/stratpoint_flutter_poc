@@ -73,6 +73,7 @@ class _MobileDashboard extends State<MobileDashboard> {
             ),
 
             MobileMenu(),
+            MobileViewPaymentDetails(),
             RewardPointsWidget(),
             BlocBuilder<DataUsageBloc, DataUsageState>(
               builder: (context, state) {
