@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_event.dart';
+import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_state.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_event.dart';
+
+import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_state.dart';
+import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/mobile_view/widgets/mobile_view_payment_details.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/reward_points_widget.dart';
@@ -64,15 +68,46 @@ class _MobileDashboard extends State<MobileDashboard> {
         child: ListView(
           children: <Widget>[
             // MobileHeader(),
-            AccountMobileDashboard(
-              profile: "Samantha",
-              mobile: "0918 XXXX XXXX",
-              duoNumber: "(02) 2920118",
-              profilePicture: "https://i.imgur.com/BoN9kdC.png",
-            ),
+
+            BlocBuilder<AccountDetailsBloc, AccountDetailsState>(
+                builder: (context, state) {
+                  String userName = '';
+                  if (state is AccountDetailsSuccessState) {
+                    userName = state.nameInfo.nameElement2;
+                  } else if (state is AccountDetailsFailures) {
+                    userName = 'NA';
+                  }
+                  return AccountMobileDashboard(
+                    profile: userName,
+                    mobile: "0918 XXXX XXXX",
+                    duoNumber: "(02) 2920118",
+                    profilePicture: "https://i.imgur.com/BoN9kdC.png",
+                  );
+                }),
 
             MobileMenu(),
-            MobileViewPaymentDetails(),
+            BlocBuilder<PaymentDetailsBloc, PaymentDetailsState>(
+                builder: (context, state) {
+                  if (state is PaymentDetailsSuccessState) {
+                    paymentAmountValue = state.paymentAmountValue;
+                    dueDate = state.dueDate;
+                    dateNow = state.dateNow;
+                  }
+
+                  if(state is PaymentDetailsLoadingState)
+                    return Container(
+                        width:  MediaQuery.of(context).size.width,
+                        child: Center(child: ProgressIndicatorWidget()));
+
+                  return  MobileViewPaymentDetails(
+                    paymentAmountValue: paymentAmountValue,
+                    dueDate: dueDate,
+                    dateNow: dateNow,
+                    onRefresh: () =>
+                    {_paymentDetailsBloc.add(RefreshPaymentDetailsEvent())},
+                  );
+
+                }),
             RewardPointsWidget(),
             BlocBuilder<DataUsageBloc, DataUsageState>(
               builder: (context, state) {
@@ -88,7 +123,6 @@ class _MobileDashboard extends State<MobileDashboard> {
                 if (state is DataUsageLoadingState)
                   return Container(
                       width: MediaQuery.of(context).size.width,
-                      height: 400,
                       child: Center(child: ProgressIndicatorWidget()));
 
                 return DataUsageWidget(

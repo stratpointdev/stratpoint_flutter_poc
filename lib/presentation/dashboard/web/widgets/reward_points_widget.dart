@@ -19,7 +19,6 @@ class RewardPointsWidget extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: EdgeInsets.only(
-              top: 30,
               bottom: 10,
               left: hasTitlePadding ? leftPadding : 0,
             ),
@@ -48,7 +47,7 @@ class RewardPointsWidget extends StatelessWidget {
                     Spacer(),
                     Text(
                       '$points ' + (points == 1 ? 'point' : 'points'),
-                      style: TextStyle(fontSize: 36, color: Color(0xff244857)),
+                      style: TextStyle(fontSize: 36, color: Color(0xff244857),fontWeight: FontWeight.w700),
                       textAlign: TextAlign.left,
                     ),
                     SizedBox(height: 16),
@@ -65,7 +64,7 @@ class RewardPointsWidget extends StatelessWidget {
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: [R.image1, R.image2, R.image3, R.image4]
+                    children: [R.assetsImagesImage1, R.assetsImagesImage2, R.assetsImagesImage3, R.assetsImagesImage4]
                         .map(
                           (image) => Container(
                             padding: EdgeInsets.only(top: 16),

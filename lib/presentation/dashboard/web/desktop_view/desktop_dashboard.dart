@@ -11,7 +11,6 @@ import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usag
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';
-import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 import '../../../../r.dart';
 import 'widgets/account_desktop_dashboard.dart';
 import 'widgets/desktop_header_menu.dart';
@@ -59,111 +58,110 @@ class _DesktopDashboardState extends State<DesktopDashboard> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
+        color:  Color(0xffD2D8DB),
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Column(
-                children: <Widget>[
-                  DesktopHeaderMenu(),
-                  DesktopHeader(),
-                  BlocBuilder<AccountDetailsBloc, AccountDetailsState>(
-                      builder: (context, state) {
-                    String userName = '';
-                    if (state is AccountDetailsSuccessState) {
-                      userName = state.nameInfo.nameElement2;
-                    } else if (state is AccountDetailsFailures) {
-                      userName = 'NA';
-                    }
-                    return AccountDesktopDashboard(
-                      profile: userName,
-                      mobile: "0918 XXXX XXXX",
-                      duoNumber: "(02) 2920118",
-                      profilePicture: "https://i.imgur.com/BoN9kdC.png",
-                    );
-                  }),
-                  DesktopMenu(),
-                  Container(
-                    height: MediaQueryUtil.convertHeight(screenHeight, 160),
-                    child: BlocBuilder<CmsBannerBloc, CmsBannerState>(
-                        builder: (context, state) {
-                          if (state is CmsBannerLoadingState) {
-                            return ProgressIndicatorWidget();
-                          } else if (state is CmsBannerSuccessState) {
-                            return CMSBannerWidget(
-                              onPageSelected: (index) {
-                                print(index);
-                              },
-                              onPageChange: (index) {
-                                print(index);
-                              },
-                              imagePaths: state.imagePaths,
-                              imageLinks: state.imageLinks,
-                            );
-                          } else {
-                            return Container();
-                          }
-                        }),
-                  ),
-                  DesktopLoadRewards(),
-                  SizedBox(height: 12),
-                  Container(
-                    child: Row(
-                      children: <Widget>[
-                        Spacer(),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          child: BlocBuilder<DataUsageBloc, DataUsageState>(
-                              builder: (context, state) {
-                            if (state is DataUsageLoadingState)
-                              return Container(
-                                  width: 400,
-                                  height: 400,
-                                  child:
-                                      Center(child: ProgressIndicatorWidget()));
+              DesktopHeaderMenu(),
+              DesktopHeader(),
+              BlocBuilder<AccountDetailsBloc, AccountDetailsState>(
+                  builder: (context, state) {
+                String userName = '';
+                if (state is AccountDetailsSuccessState) {
+                  userName = state.nameInfo.nameElement2;
+                } else if (state is AccountDetailsFailures) {
+                  userName = 'NA';
+                }
+                return AccountDesktopDashboard(
+                  profile: userName,
+                  mobile: "0918 XXXX XXXX",
+                  duoNumber: "(02) 2920118",
+                  profilePicture: "https://i.imgur.com/BoN9kdC.png",
+                );
+              }),
+              DesktopMenu(),
+              Container(
+                height: 109,
+                child: BlocBuilder<CmsBannerBloc, CmsBannerState>(
+                    builder: (context, state) {
+                      if (state is CmsBannerLoadingState) {
+                        return ProgressIndicatorWidget();
+                      } else if (state is CmsBannerSuccessState) {
+                        return CMSBannerWidget(
+                          onPageSelected: (index) {
+                            print(index);
+                          },
+                          onPageChange: (index) {
+                            print(index);
+                          },
+                          imagePaths: state.imagePaths,
+                          imageLinks: state.imageLinks,
+                        );
+                      } else {
+                        return Container();
+                      }
+                    }),
+              ),
+              DesktopLoadRewards(),
+              SizedBox(height: 12),
+              Container(
+                child: Row(
+                  children: <Widget>[
+                    Spacer(),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      child: BlocBuilder<DataUsageBloc, DataUsageState>(
+                          builder: (context, state) {
+                        if (state is DataUsageLoadingState)
+                          return Container(
+                              width: 437,
+                              height: 500,
+                              child:
+                                  Center(child: ProgressIndicatorWidget()));
 
-                            if (state is DataUsageSuccessState) {
-                              remainingData = state.volumeRemaing;
-                              dataAllocation = state.totalAllocated;
-                              refillDate = state.endDate;
+                        if (state is DataUsageSuccessState) {
+                          remainingData = state.volumeRemaing;
+                          dataAllocation = state.totalAllocated;
+                          refillDate = state.endDate;
 
-                              cupLevelIndicator = state.cupLevelIndicator;
-                              lastApiCall = state.lastApiCall;
-                            }
+                          cupLevelIndicator = state.cupLevelIndicator;
+                          lastApiCall = state.lastApiCall;
+                        }
 
-                            return DataUsageWidget(
-                              key: dataUsageKey,
-                              onRefresh: () =>
-                                  {_dataUsageBloc.add(RefreshDataUsageEvent())},
-                              onAddMoreData: () => {},
-                              onViewDetails: () => {},
-                              cupLevelIndicator: cupLevelIndicator,
-                              time: lastApiCall,
-                              addMoreDataButtonColor: const Color(0xff009CDF),
-                              cupIndicatorTextColor: const Color(0xff9B9B9B),
-                              remainingData: remainingData,
-                              dataAllocation: dataAllocation,
-                              refillDate: refillDate,
-                              textColor: const Color(0xff244857),
-                            );
-                          }),
-                        ),
-                        SizedBox(width: 20),
-                        SpendingLimitWidget(),
-                        Spacer(),
-                      ],
+                        return DataUsageWidget(
+                          key: dataUsageKey,
+                          onRefresh: () =>
+                              {_dataUsageBloc.add(InitialDataUsageEvent())},
+                          onAddMoreData: () => {},
+                          onViewDetails: () => {},
+                          cupLevelIndicator: cupLevelIndicator,
+                          time: lastApiCall,
+                          addMoreDataButtonColor: const Color(0xff009CDF),
+                          cupIndicatorTextColor: const Color(0xff9B9B9B),
+                          remainingData: remainingData,
+                          dataAllocation: dataAllocation,
+                          refillDate: refillDate,
+                          textColor: const Color(0xff244857),
+                        );
+                      }),
                     ),
-                  ),
-                  Container(
-                    width: screenWidth / 1.26,
-                    child: PlanDetailsWidget(),
-                  ),
-                  SizedBox(height: 24),
-                ],
-              )
+                    SizedBox(width: 12),
+                    Padding(
+                      padding: const EdgeInsets.only(top:65.0),
+                      child: SpendingLimitWidget(),
+                    ),
+                    Spacer(),
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 38.0),
+                width: 1138,
+                child: PlanDetailsWidget(),
+              ),
+              SizedBox(height: 24),
             ],
           ),
         ),

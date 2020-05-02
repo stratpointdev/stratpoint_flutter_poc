@@ -16,7 +16,7 @@ class CmsBannerBloc extends Bloc<CmsBannerEvent, CmsBannerState> {
     if (event is InitialCmsBannerEvent) {
       yield CmsBannerLoadingState();
     }
-    if (event is RefreshCmsBannerEvent) {
+    if (event is RefreshCmsBannerEvent || event is InitialCmsBannerEvent) {
       var value = await cmsBannerRepository.getCmsBanner();
 
       yield value.fold(
