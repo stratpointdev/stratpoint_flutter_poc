@@ -27,7 +27,7 @@ class DataUsageWidget extends StatelessWidget {
     this.textColor = const Color(0xff244857),
     this.addMoreDataButtonColor = const Color(0xff009CDF),
     this.cupIndicatorTextColor = const Color(0xff9B9B9B),
-    this.padding = const EdgeInsets.fromLTRB(21, 24, 61, 35),
+    this.padding = const EdgeInsets.fromLTRB(21, 24, 20, 35),
     @required this.cupLevelIndicator,
     @required this.onRefresh,
     @required this.onAddMoreData,
@@ -43,7 +43,6 @@ class DataUsageWidget extends StatelessWidget {
 
     return Container(
       width: 437,
-      height: 539,
       alignment: Alignment.centerLeft,
       child: Column(
         children: <Widget>[
@@ -63,7 +62,7 @@ class DataUsageWidget extends StatelessWidget {
           BlocBuilder<DataUsageBloc, DataUsageState>(builder: (context, state) {
             return IntrinsicHeight(
               child: Container(
-                width: 437,
+                height: 500,
                 padding: padding,
                 color: Colors.white,
                 child: Column(
@@ -146,17 +145,17 @@ class DataUsageWidget extends StatelessWidget {
                             Text(
                               'View Details',
                               style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w700,
-                                decoration: TextDecoration.underline,
-                                color: Color(0xff244857),),
+
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700,
+                                  decoration: TextDecoration.underline,
+                                  color: Color(0xff244857),),
                             ),
                           ],
                         ),
                         Spacer(),
                       ],
                     ),
-
                     const SizedBox(height: 50),
                     Container(
                       height: 40,
@@ -193,8 +192,10 @@ class DataUsageWidget extends StatelessWidget {
                 ),
               ),
             );
-        }),
-      ]),
+
+          }),
+        ],
+      ),
     );
 
   }

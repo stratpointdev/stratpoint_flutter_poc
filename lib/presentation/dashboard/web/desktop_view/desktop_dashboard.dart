@@ -11,7 +11,6 @@ import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usag
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';
-import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 import '../../../../r.dart';
 import 'widgets/account_desktop_dashboard.dart';
 import 'widgets/desktop_header_menu.dart';
@@ -59,7 +58,6 @@ class _DesktopDashboardState extends State<DesktopDashboard> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
         color:  Color(0xffD2D8DB),
