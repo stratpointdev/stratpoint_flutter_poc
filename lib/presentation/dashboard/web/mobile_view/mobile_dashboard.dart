@@ -5,6 +5,10 @@ import 'package:globe_one_poc_project/application/dashboard/account_details/acco
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
+import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_bloc.dart';
+import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_event.dart';
+import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_state.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/web/mobile_view/widgets/mobile_view_payment_details.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/reward_points_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/common/progress_indicator_widget.dart';
@@ -22,6 +26,13 @@ class MobileDashboard extends StatefulWidget {
 
 class _MobileDashboard extends State<MobileDashboard> {
   AccountDetailsBloc _accountDetailsBloc;
+
+  PaymentDetailsBloc _paymentDetailsBloc;
+  var paymentAmountValue = '₱2,327.03';
+  var dueDate = 'Mar. 30 2020, 4:00 PM';
+  var lastPaymentAmount = '₱200.00';
+  var lastPaymentDate = 'Apr 22';
+  var dateNow = 'Apr. 28 2020';
 
   DataUsageBloc _dataUsageBloc;
   var remainingData;
@@ -43,6 +54,8 @@ class _MobileDashboard extends State<MobileDashboard> {
     _dataUsageBloc = BlocProvider.of<DataUsageBloc>(context);
     _accountDetailsBloc.add(InitialAccountDetailsEvent());
     _dataUsageBloc.add(InitialDataUsageEvent());
+    _paymentDetailsBloc = BlocProvider.of<PaymentDetailsBloc>(context);
+    _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
   }
 
   @override
@@ -60,6 +73,7 @@ class _MobileDashboard extends State<MobileDashboard> {
             ),
 
             MobileMenu(),
+            MobileViewPaymentDetails(),
             RewardPointsWidget(),
             BlocBuilder<DataUsageBloc, DataUsageState>(
               builder: (context, state) {

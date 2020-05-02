@@ -18,12 +18,13 @@ class DataUsageSuccessState extends DataUsageState {
   final String endDate;
   final String lastApiCall;
   final Widget cupLevelIndicator;
-  DataUsageSuccessState(
-      {this.volumeRemaing,
-      this.totalAllocated,
-      this.endDate,
-      this.lastApiCall,
-      this.cupLevelIndicator,});
+  DataUsageSuccessState({
+    this.volumeRemaing,
+    this.totalAllocated,
+    this.endDate,
+    this.lastApiCall,
+    this.cupLevelIndicator,
+  });
 
   @override
   List<Object> get props => [volumeRemaing, totalAllocated, endDate];

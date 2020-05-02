@@ -11,14 +11,19 @@ class RemoteDataUsageService {
   Future<Either<DataUsageFailure, DataUsageModel>> getDataUsage() async {
     final api = Api();
 
-    final response = await get(api.getDataUsage());
-    if (response.statusCode == 200) {
-      SharedPreferences myPrefs = await SharedPreferences.getInstance();
-      myPrefs.setString('LastAccountDetailsCall', DateTime.now().toString());
-      var body = jsonDecode(response.body);
-      return right(DataUsageModel.fromJson(body));
-    } else {
-      return left(DataUsageFailure.fromJson(jsonDecode(response.body)));
+    try {
+      final response =
+          await get(api.getDataUsage()).timeout(const Duration(seconds: 3));
+      if (response.statusCode == 200) {
+        SharedPreferences myPrefs = await SharedPreferences.getInstance();
+        myPrefs.setString('LastAccountDetailsCall', DateTime.now().toString());
+        var body = jsonDecode(response.body);
+        return right(DataUsageModel.fromJson(body));
+      } else {
+        return left(DataUsageFailure.fromJson(jsonDecode(response.body)));
+      }
+    } catch (_) {
+      return left(DataUsageFailure.localError(_));
     }
   }
 }

@@ -1,13 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CMSBannerWidget extends StatefulWidget {
   final Color pageIndicatorBackgroundColor;
-  final List<String> imagePaths;
-  final List<String> imageLinks;
+  final Map<String, String> imagePaths;
+  final Map<String, String> imageLinks;
   final Function onPageChange;
   final Function onPageSelected;
 
@@ -51,6 +52,7 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
     String _baseUrl = 'https://contentdev.globe.com.ph';
     String basicAuth = 'Basic ' +
         base64Encode(utf8.encode('flutterpoc-stratpoint:Str@tp01nt'));
+
     return Stack(
       children: <Widget>[
         PageView.builder(
@@ -62,26 +64,20 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
           controller: _pageController,
           itemCount: widget.imagePaths.length,
           itemBuilder: (BuildContext context, int index) {
-            return widget.imagePaths[index] != null
-                ? Material(
-                    child: InkWell(
-                    onTap: () {
-                      _launchURL(widget.imageLinks[index]);
-                    },
-                    child: Container(
-                        decoration: BoxDecoration(
-                      color: const Color(0xff7c94b6),
-                      image: new DecorationImage(
-                        image: new NetworkImage(
-                            _baseUrl + widget.imagePaths[index],
-                            headers: <String, String>{
-                              'authorization': basicAuth
-                            }),
-                        fit: BoxFit.cover,
-                      ),
-                    )),
-                  ))
-                : null;
+            return Material(
+                child: InkWell(
+              onTap: () {
+                String currentImage = widget.imagePaths.keys.toList()[index];
+                _launchURL(widget.imageLinks[
+                    'link' + currentImage.substring(currentImage.length - 1)]);
+              },
+              child: Container(
+                  child: CachedNetworkImage(
+                      imageUrl:
+                          _baseUrl + widget.imagePaths.values.toList()[index],
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                      httpHeaders: {'authorization': basicAuth})),
+            ));
           },
         ),
         Positioned.fill(

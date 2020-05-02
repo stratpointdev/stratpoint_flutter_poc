@@ -12,19 +12,14 @@ class AccountDetailsRepositoryImpl implements AccountDetailsRepository {
       this.remoteAccountDetailsService, this.localAccountDetailsService);
 
   @override
-  Future<Either<AccountDetailsFailures, AccountDetailsModel>> getAccountDetails(
-      {isLocal}) async {
-    if (isLocal) {
-      return localAccountDetailsService.getAccountDetails().then((value) {
-        if (value.isLeft()) {
-          return remoteAccountDetailsService.getAccountDetails();
-        } else {
-          return value;
-        }
-      });
-    } else {
-      return remoteAccountDetailsService.getAccountDetails();
-    }
+  Future<Either<AccountDetailsFailures, AccountDetailsModel>> getAccountDetails() async {
+    return remoteAccountDetailsService.getAccountDetails().then((value) {
+      if (value.isLeft()) {
+        return localAccountDetailsService.getAccountDetails();
+      } else {
+        return value;
+      }
+    });
   }
 
   @override

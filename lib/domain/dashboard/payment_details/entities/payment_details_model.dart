@@ -75,7 +75,7 @@ class OutstandingBalanceByMsisdnResult {
 }
 
 class LastPaymentDt {
-  double amount;
+  var amount;
   int creditId;
   String paymentDate;
   LastPaymentDt({this.amount, this.creditId, this.paymentDate});

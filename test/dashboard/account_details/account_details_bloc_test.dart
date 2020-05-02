@@ -32,7 +32,7 @@ void main() {
     AccountDetailsModel accountDetailsModel =
         AccountDetailsModel(200, detailsByMsisdnResponse);
 
-    when(mockRepository.getAccountDetails(isLocal: false))
+    when(mockRepository.getAccountDetails())
         .thenAnswer((_) async => right(accountDetailsModel));
 
     bloc.add(RefreshAccountDetailsEvent());

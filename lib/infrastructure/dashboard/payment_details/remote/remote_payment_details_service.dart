@@ -13,15 +13,19 @@ class RemotePaymentDetailsService {
   Future<Either<PaymentDetailsFailure, PaymentDetailsModel>>
       getPaymentDetails() async {
     final api = Api();
-
-    final response = await get(api.getOutStandingBalance());
-    if (response.statusCode == 200) {
-      SharedPreferences myPrefs = await SharedPreferences.getInstance();
-      myPrefs.setString('LastAccountDetailsCall', DateTime.now().toString());
-      var body = jsonDecode(response.body);
-      return right(PaymentDetailsModel.fromJson(body));
-    } else {
-      return left(PaymentDetailsFailure.fromJson(jsonDecode(response.body)));
+    try {
+      final response = await get(api.getOutStandingBalance())
+          .timeout(const Duration(seconds: 3));
+      if (response.statusCode == 200) {
+        SharedPreferences myPrefs = await SharedPreferences.getInstance();
+        myPrefs.setString('LastAccountDetailsCall', DateTime.now().toString());
+        var body = jsonDecode(response.body);
+        return right(PaymentDetailsModel.fromJson(body));
+      } else {
+        return left(PaymentDetailsFailure.fromJson(jsonDecode(response.body)));
+      }
+    } catch (_) {
+      return left(PaymentDetailsFailure.localError(_));
     }
   }
 }

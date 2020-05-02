@@ -27,7 +27,7 @@ void main() {
         OutstandingBalanceByMsisdnResponse(OutstandingBalanceByMsisdnResult(
             lastPaymentDt, '2020-03-31T00:00:00+0800', '2000.03', '_')));
 
-    when(mockRepository.getPaymentDetails(isLocal: false))
+    when(mockRepository.getPaymentDetails())
         .thenAnswer((_) async => right(paymentDetailsModel));
 
     bloc.add(RefreshPaymentDetailsEvent());

@@ -26,12 +26,9 @@ class PaymentDetailsBloc
       var lastAPICallDate = DateTimeConverter.convertToComparable(
           myPrefs.getString('LastAccountDetailsCall'));
       int minutes = DateTime.now().difference(lastAPICallDate).inMinutes;
-      bool isLocal = true;
-      if (minutes >= 15) {
-        isLocal = false;
-      }
+
       var value =
-          await paymentDetailsRepository.getPaymentDetails(isLocal: isLocal);
+          await paymentDetailsRepository.getPaymentDetails();
 
       yield value.fold(
           (failures) => PaymentDetailsFailedState(),
@@ -39,7 +36,7 @@ class PaymentDetailsBloc
               PaymentDetailsSuccessState.paymentDetailsSuccessState(
                   paymentDetailsModel: success_entity));
 
-      if (value.isRight()) {
+      if (value.isRight() && minutes >= 15) {
         await paymentDetailsRepository.deletePaymentDetailsLocal();
         await paymentDetailsRepository
             .insertPaymentDetailsLocal(value.getOrElse(() => null));
@@ -49,7 +46,7 @@ class PaymentDetailsBloc
     if (event is RefreshPaymentDetailsEvent) {
       yield PaymentDetailsLoadingState();
       var result =
-          await paymentDetailsRepository.getPaymentDetails(isLocal: false);
+          await paymentDetailsRepository.getPaymentDetails();
       yield result.fold(
           (failures) => PaymentDetailsFailedState(),
           (success_entity) =>

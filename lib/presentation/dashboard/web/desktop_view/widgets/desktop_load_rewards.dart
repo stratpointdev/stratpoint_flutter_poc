@@ -73,6 +73,7 @@ class _DesktopLoadRewards extends State<DesktopLoadRewards> {
 
 
           }),
+          SizedBox(width: 20),
           RewardPointsWidget(),
           Spacer()
         ],
