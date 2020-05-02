@@ -44,7 +44,6 @@ void main() {
         bloc,
         emitsInOrder([
           DataUsageInitialState(),
-          DataUsageLoadingState(),
           DataUsageSuccessState.dataUsageSuccesState(dataUsages)
         ]));
   });
