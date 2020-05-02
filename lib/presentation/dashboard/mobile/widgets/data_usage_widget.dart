@@ -192,7 +192,7 @@ class DataUsageWidget extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             isMobile
-                ? []
+                ? Container()
                 : Text(
                     'This includes your main data, rollover data, and free app data allowance',
                     textAlign: TextAlign.center,
