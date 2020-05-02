@@ -25,7 +25,7 @@ class RemotePaymentDetailsService {
         return left(PaymentDetailsFailure.fromJson(jsonDecode(response.body)));
       }
     } catch (_) {
-      return left(PaymentDetailsFailure.localError(_));
+      return left(PaymentDetailsFailure.localError(''));
     }
   }
 }
