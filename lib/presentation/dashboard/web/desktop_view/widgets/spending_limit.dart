@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:globe_one_poc_project/r.dart';
 
 class SpendingLimitWidget extends StatefulWidget {
   @override
@@ -56,7 +57,7 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
             ),
           ),
           SizedBox(height: 12),
-          Image.asset("assets/images/webspeedlimit.png"),
+          Image.asset(R.assetsImagesWebspeedlimit),
           SizedBox(height: 12),
           Text(
             'REMEMBER: Reaching your speed limit due to excess usage charge may cause temporary disconnect of line',

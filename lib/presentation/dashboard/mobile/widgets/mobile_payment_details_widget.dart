@@ -36,7 +36,7 @@ class _MobilePaymentInformationWidgetState
               FittedBox(
                 fit: BoxFit.fitWidth,
                 child: Text(
-                  "Amount to pay",
+                  'Amount to pay',
                   style: TextStyle(
                     fontSize: MediaQueryUtil.convertHeight(screenHeight, 16),
                     fontWeight: FontWeight.bold,
