@@ -1,14 +1,14 @@
-class CmsBannerFailures {
+class CmsBannerFailure {
   int code;
   String message;
-  CmsBannerFailures({this.code, this.message});
+  CmsBannerFailure({this.code, this.message});
 
-  factory CmsBannerFailures.fromJson(Map<String, dynamic> json) {
-    return CmsBannerFailures(code: json['code'], message: json['message']);
+  factory CmsBannerFailure.fromJson(Map<String, dynamic> json) {
+    return CmsBannerFailure(code: json['code'], message: json['message']);
   }
 
-  factory CmsBannerFailures.localError(String error) {
-    return CmsBannerFailures(
+  factory CmsBannerFailure.localError(String error) {
+    return CmsBannerFailure(
       message: error,
     );
   }

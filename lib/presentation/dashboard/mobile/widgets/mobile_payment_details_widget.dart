@@ -33,20 +33,23 @@ class _MobilePaymentInformationWidgetState
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text(
-                "Amount to pay",
-                style: TextStyle(
-                  fontSize: MediaQueryUtil.convertHeight(screenHeight, 14),
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'FSElliotPro',
-                  color: Color(0xff019CDE),
+              FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text(
+                  "Amount to pay",
+                  style: TextStyle(
+                    fontSize: MediaQueryUtil.convertHeight(screenHeight, 16),
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'FSElliotPro',
+                    color: Color(0xff019CDE),
+                  ),
                 ),
               ),
               Text(
                 widget.paymentAmountValue,
                 key: Key('paymentAmountWidget'),
                 style: TextStyle(
-                  fontSize: MediaQueryUtil.convertHeight(screenHeight, 14),
+                  fontSize: MediaQueryUtil.convertHeight(screenHeight, 16),
                   fontWeight: FontWeight.bold,
                   fontFamily: 'FSElliotPro',
                   color: Colors.black,
@@ -61,7 +64,7 @@ class _MobilePaymentInformationWidgetState
                 'Due on ' + widget.dueDate,
                 key: Key('paymentDueDateWidget'),
                 style: TextStyle(
-                  fontSize: MediaQueryUtil.convertHeight(screenHeight, 11),
+                  fontSize: MediaQueryUtil.convertHeight(screenHeight, 12),
                   color: Theme.of(context).hintColor,
                 ),
               )
@@ -80,7 +83,7 @@ class _MobilePaymentInformationWidgetState
                   child: Text(
                     'Pay now',
                     style: TextStyle(
-                      fontSize: MediaQueryUtil.convertHeight(screenHeight, 11),
+                      fontSize: MediaQueryUtil.convertHeight(screenHeight, 13),
                       fontWeight: FontWeight.bold,
                       fontFamily: 'FSElliotPro',
                     ),
@@ -98,7 +101,7 @@ class _MobilePaymentInformationWidgetState
                         'View My Bill',
                         style: TextStyle(
                           fontSize:
-                              MediaQueryUtil.convertHeight(screenHeight, 11),
+                              MediaQueryUtil.convertHeight(screenHeight, 12),
                           fontWeight: FontWeight.bold,
                           fontFamily: 'FSElliotPro',
                         ),

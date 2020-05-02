@@ -36,11 +36,13 @@ class _DashBoardPageState extends State<DashBoardPage> {
   CmsBannerBloc _cmsBannerBloc;
 
   Future<Null> _refresh() async {
-    _accountDetailsBloc.add(RefreshAccountDetailsEvent());
-    _dataUsageBloc.add(RefreshDataUsageEvent());
-    _paymentDetailsBloc.add(RefreshPaymentDetailsEvent());
-    _cmsBannerBloc.add(RefreshCmsBannerEvent());
-    return null;
+    await Future.delayed(const Duration(milliseconds: 700), () {
+      _accountDetailsBloc.add(RefreshAccountDetailsEvent());
+      _dataUsageBloc.add(RefreshDataUsageEvent());
+      _paymentDetailsBloc.add(RefreshPaymentDetailsEvent());
+      _cmsBannerBloc.add(RefreshCmsBannerEvent());
+      return null;
+    });
   }
 
   @override
@@ -55,6 +57,10 @@ class _DashBoardPageState extends State<DashBoardPage> {
     _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
     _dataUsageBloc.add(InitialDataUsageEvent());
     _cmsBannerBloc.add(InitialCmsBannerEvent());
+    _accountDetailsBloc.add(RefreshAccountDetailsEvent());
+    _dataUsageBloc.add(RefreshDataUsageEvent());
+    _paymentDetailsBloc.add(RefreshPaymentDetailsEvent());
+    _cmsBannerBloc.add(RefreshCmsBannerEvent());
   }
 
   var remainingData = '6.4 GB';
@@ -114,7 +120,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                   shrinkWrap: true,
                   children: <Widget>[
                     Container(
-                      height: MediaQueryUtil.convertHeight(screenHeight, 100),
+                      width: MediaQueryUtil.convertWidth(screenWidth, 320),
+                      height: MediaQueryUtil.convertHeight(screenHeight, 102),
                       child: BlocBuilder<CmsBannerBloc, CmsBannerState>(
                           builder: (context, state) {
                         if (state is CmsBannerLoadingState) {
@@ -130,6 +137,11 @@ class _DashBoardPageState extends State<DashBoardPage> {
                             imagePaths: state.imagePaths,
                             imageLinks: state.imageLinks,
                           );
+                        } else if (state is CmsBannerFailedState) {
+                          return Center(
+                            child: Container(
+                                height: 100, child: Icon(Icons.error_outline)),
+                          );
                         } else {
                           return Container();
                         }
@@ -143,6 +155,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
                       }
                       if (state is PaymentDetailsLoadingState) {
                         return ProgressIndicatorWidget();
+                      }
+                      if (state is PaymentDetailsFailedState) {
+                        return Center(
+                          child: Container(
+                              height: 100, child: Icon(Icons.error_outline)),
+                        );
                       }
                       return MobilePaymentDetailsWidget(
                         paymentAmountValue: paymentAmountValue,
@@ -166,6 +184,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
                       }
                       if (state is DataUsageLoadingState) {
                         return ProgressIndicatorWidget();
+                      }
+                      if (state is DataUsageFailedState) {
+                        return Center(
+                          child: Container(
+                              height: 100, child: Icon(Icons.error_outline)),
+                        );
                       }
 
                       return DataUsageWidgetMobile(

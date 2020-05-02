@@ -1,9 +1,11 @@
 import 'package:dartz/dartz.dart';
+import 'package:globe_one_poc_project/domain/dashboard/common/datetime_converter.dart';
 import 'package:globe_one_poc_project/domain/dashboard/payment_details/entities/payment_details_failure.dart';
 import 'package:globe_one_poc_project/domain/dashboard/payment_details/entities/payment_details_model.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/local/local_payment_details_service.dart';
 import 'package:globe_one_poc_project/domain/dashboard/payment_details/payment_details_repository.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/remote/remote_payment_details_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PaymentDetailsRepositoryImpl implements PaymentDetailsRepository {
   final RemotePaymentDetailsService remotePaymentDetailsService;
@@ -13,8 +15,14 @@ class PaymentDetailsRepositoryImpl implements PaymentDetailsRepository {
       this.remotePaymentDetailsService, this.localPaymentDetailsService);
 
   @override
-  Future<Either<PaymentDetailsFailure, PaymentDetailsModel>> getPaymentDetails() async {
+  Future<Either<PaymentDetailsFailure, PaymentDetailsModel>>
+      getPaymentDetails() async {
+    SharedPreferences myPrefs = await SharedPreferences.getInstance();
+    int secs = DateTimeConverter.getSecsDiff(myPrefs.getString('LastApiCall'));
 
+    if (secs <= 5) {
+      return localPaymentDetailsService.getPaymentDetails();
+    } else {
       return remotePaymentDetailsService.getPaymentDetails().then((value) {
         if (value.isLeft()) {
           return localPaymentDetailsService.getPaymentDetails();
@@ -22,7 +30,7 @@ class PaymentDetailsRepositoryImpl implements PaymentDetailsRepository {
           return value;
         }
       });
-
+    }
   }
 
   @override

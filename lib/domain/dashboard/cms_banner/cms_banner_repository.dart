@@ -4,8 +4,7 @@ import 'package:globe_one_poc_project/domain/dashboard/cms_banner/entities/cms_b
 
 abstract class CmsBannerRepository {
   // isLocal - true will get local data 1st before remote
-  Future<Either<CmsBannerFailures, CmsBannerModel>> getCmsBanner(
-      {bool isLocal});
+  Future<Either<CmsBannerFailure, CmsBannerModel>> getCmsBanner();
   Future insertCmsBannerLocal(CmsBannerModel);
   Future deleteCmsBannerLocal();
 }
