@@ -2,10 +2,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_state.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/load_balance.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/web/desktop_view/widgets/bill_payment.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/reward_points_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/common/progress_indicator_widget.dart';
+
 
 class DesktopLoadRewards extends StatefulWidget {
   const DesktopLoadRewards();
@@ -56,11 +57,12 @@ class _DesktopLoadRewards extends State<DesktopLoadRewards> {
 
             if(state is PaymentDetailsLoadingState)
               return Container(
+                  color:  Color(0xffD2D8DB),
                   height: 420,
                   width: 562,
                   child: Center(child: ProgressIndicatorWidget()));
 
-              return  LoadBalance(
+              return  BillPayment(
                   key : loadBalanceKey,
                   paymentAmountValue: paymentAmountValue,
                   dueDate: dueDate,
@@ -68,12 +70,12 @@ class _DesktopLoadRewards extends State<DesktopLoadRewards> {
                   lastPaymentDate: lastPaymentDate,
                   dateNow: dateNow,
                   onRefresh: () =>
-                      {_paymentDetailsBloc.add(RefreshPaymentDetailsEvent())},
+                      {_paymentDetailsBloc.add(InitialPaymentDetailsEvent())},
                 );
 
 
           }),
-          SizedBox(width: 20),
+          SizedBox(width: 12),
           RewardPointsWidget(),
           Spacer()
         ],

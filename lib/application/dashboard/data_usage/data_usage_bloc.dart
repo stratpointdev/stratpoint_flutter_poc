@@ -14,7 +14,7 @@ class DataUsageBloc extends Bloc<DataUsageEvent, DataUsageState> {
     if (event is InitialDataUsageEvent) {
       yield DataUsageLoadingState();
     }
-    if (event is RefreshDataUsageEvent) {
+    if (event is RefreshDataUsageEvent || event is InitialDataUsageEvent) {
       var value = await dataUsageRepository.getDataUsage();
 
       yield value.fold(

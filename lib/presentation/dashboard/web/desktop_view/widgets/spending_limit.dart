@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:globe_one_poc_project/r.dart';
 
 class SpendingLimitWidget extends StatefulWidget {
   @override
@@ -9,8 +10,8 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 720,
-      height: 440,
+      width: 689,
+      height: 500,
       padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 30),
       color: Colors.white,
       child: Column(
@@ -21,7 +22,7 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
             style: TextStyle(
               color: Color(0xff244857),
               fontFamily: 'FSElliotPro',
-              fontSize: 16,
+              fontSize: 20,
             ),
           ),
           SizedBox(height: 4),
@@ -33,7 +34,7 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
                 style: TextStyle(
                   color: Color(0xff244857),
                   fontFamily: 'FSElliotPro',
-                  fontSize: 12,
+                  fontSize: 14,
                 ),
               ),
               Text(
@@ -41,7 +42,7 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
                 style: TextStyle(
                   color: Color(0xff244857),
                   fontFamily: 'FSElliotPro',
-                  fontSize: 12,
+                  fontSize: 14,
                 ),
               ),
             ],
@@ -52,12 +53,12 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
             style: TextStyle(
               color: Color(0xff244857),
               fontFamily: 'FSElliotPro',
-              fontSize: 12,
+              fontSize: 14,
             ),
           ),
           SizedBox(height: 12),
-          Image.asset("assets/images/webspeedlimit.png"),
-          SizedBox(height: 12),
+          Image.asset(R.assetsImagesWebspeedlimit),
+          SizedBox(height: 30),
           Text(
             'REMEMBER: Reaching your speed limit due to excess usage charge may cause temporary disconnect of line',
             style: TextStyle(
@@ -77,7 +78,7 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
           ),
           SizedBox(height: 12),
           Container(
-            padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 30),
+            padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 29),
             color: Color(0xff7F959D),
             child: Column(
               children: <Widget>[
@@ -89,7 +90,7 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'FSElliotPro',
-                        fontSize: 16,
+                        fontSize: 18,
                       ),
                     ),
                     Text(
@@ -97,7 +98,7 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'FSElliotPro',
-                        fontSize: 16,
+                        fontSize: 18,
                       ),
                     ),
                   ],
@@ -115,7 +116,7 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'FSElliotPro',
-                          fontSize: 12,
+                          fontSize: 14,
                         ),
                       ),
                     ),
@@ -133,7 +134,7 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'FSElliotPro',
-                        fontSize: 12,
+                        fontSize: 14,
                       ),
                     ),
                   ],
@@ -148,7 +149,7 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
                       fontFamily: 'FSElliotPro',
                       fontWeight: FontWeight.bold,
                       decoration: TextDecoration.underline,
-                      fontSize: 12,
+                      fontSize: 14,
                     ),
                   ),
                 ),

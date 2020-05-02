@@ -22,10 +22,10 @@ class _PlanDetailsWidget extends State<PlanDetailsWidget> {
                 fontSize: 22,
               ),
             ),
-            SizedBox(height: 14),
+            SizedBox(height: 12),
             Container(
               padding:
-                  EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 30),
+                  EdgeInsets.only(top: 24, left: 20, right: 20, bottom: 24),
               color: Colors.white,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,7 +36,6 @@ class _PlanDetailsWidget extends State<PlanDetailsWidget> {
                         'Your current plan:',
                         style: TextStyle(
                           color: Color(0xff244857),
-                          fontFamily: 'FSElliotPro',
                           fontSize: 18,
                         ),
                       ),
@@ -45,72 +44,66 @@ class _PlanDetailsWidget extends State<PlanDetailsWidget> {
                         'ThePlan 1799',
                         style: TextStyle(
                           color: Color(0xff244857),
-                          fontFamily: 'FSElliotPro',
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w700,
                           fontSize: 18,
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 15),
+                  SizedBox(height: 16),
                   Row(
                     children: [
                       Text(
                         'Cut off date:',
                         style: TextStyle(
                           color: Color(0xff244857),
-                          fontFamily: 'FSElliotPro',
                           fontSize: 14,
                         ),
                       ),
-                      SizedBox(width: 15),
+                      SizedBox(width: 16),
                       Text(
                         '23rd of the month',
                         style: TextStyle(
                           color: Color(0xff244857),
-                          fontFamily: 'FSElliotPro',
+                          fontWeight: FontWeight.w100,
                           fontSize: 14,
                         ),
                       ),
-                      Spacer(),
+                      SizedBox(width: 36),
                       Text(
                         'Contract Expiry:',
                         style: TextStyle(
                           color: Color(0xff244857),
-                          fontFamily: 'FSElliotPro',
                           fontSize: 14,
                         ),
                       ),
-                      SizedBox(width: 15),
+                      SizedBox(width: 16),
                       Text(
                         'December 12, 2020',
                         style: TextStyle(
                           color: Color(0xff244857),
-                          fontFamily: 'FSElliotPro',
+                          fontWeight: FontWeight.w100,
                           fontSize: 14,
                         ),
                       ),
-                      Spacer(),
+                      SizedBox(width: 56),
                       Text(
                         'Months remaining:',
                         style: TextStyle(
                           color: Color(0xff244857),
-                          fontFamily: 'FSElliotPro',
                           fontSize: 14,
                         ),
                       ),
-                      SizedBox(width: 15),
+                      SizedBox(width: 16),
                       Text(
                         '8 months(s)',
                         style: TextStyle(
                           color: Color(0xff244857),
-                          fontFamily: 'FSElliotPro',
+                          fontWeight: FontWeight.w100,
                           fontSize: 14,
                         ),
                       ),
-                      Spacer(),
-                      Spacer(),
-                      Spacer(),
+                      SizedBox(width: 276),
                     ],
                   ),
                 ],
@@ -121,7 +114,7 @@ class _PlanDetailsWidget extends State<PlanDetailsWidget> {
         Positioned(
           top: 70,
           bottom: 30,
-          right: 30,
+          right: 23,
           child: SizedBox(
             width: 210,
             height: 40,

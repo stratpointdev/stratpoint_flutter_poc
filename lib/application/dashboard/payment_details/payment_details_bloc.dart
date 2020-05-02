@@ -20,7 +20,7 @@ class PaymentDetailsBloc
     if (event is InitialPaymentDetailsEvent) {
       yield PaymentDetailsLoadingState();
     }
-    if (event is RefreshPaymentDetailsEvent) {
+    if (event is RefreshPaymentDetailsEvent || event is InitialPaymentDetailsEvent) {
       var result = await paymentDetailsRepository.getPaymentDetails();
       yield result.fold(
           (failures) => PaymentDetailsFailedState(),

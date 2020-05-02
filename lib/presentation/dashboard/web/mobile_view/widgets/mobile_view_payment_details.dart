@@ -4,8 +4,6 @@ class MobileViewPaymentDetails extends StatefulWidget {
   final String paymentAmountValue;
   final String dueDate;
   final GestureTapCallback onRefresh;
-  final String lastPaymentAmount;
-  final String lastPaymentDate;
   final String dateNow;
 
   MobileViewPaymentDetails(
@@ -13,8 +11,6 @@ class MobileViewPaymentDetails extends StatefulWidget {
       this.paymentAmountValue = "P123.45",
       this.dueDate,
       this.onRefresh,
-      this.lastPaymentAmount,
-      this.lastPaymentDate,
       this.dateNow})
       : super(key: key);
 

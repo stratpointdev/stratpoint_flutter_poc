@@ -35,7 +35,6 @@ class _WebPaymentInformationWidget extends State<WebPaymentInformationWidget> {
               textAlign: TextAlign.left,
               style: TextStyle(
                 color: Color(0xff244857),
-                fontFamily: 'FSElliotPro',
                 fontSize: 22,
               ),
             ),
@@ -102,7 +101,7 @@ class _WebPaymentInformationWidget extends State<WebPaymentInformationWidget> {
                           'View Details',
                           style: TextStyle(
                             fontSize: 14,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w700,
                             decoration: TextDecoration.underline,
                           ),
                         ),
@@ -121,7 +120,7 @@ class _WebPaymentInformationWidget extends State<WebPaymentInformationWidget> {
                               'Pay Now',
                               style: TextStyle(
                                 fontSize: 14,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w700,
                                 color: Colors.white,
                               ),
                             ),

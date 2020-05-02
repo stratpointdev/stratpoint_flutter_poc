@@ -23,7 +23,7 @@ class RemoteDataUsageService {
         return left(DataUsageFailure.fromJson(jsonDecode(response.body)));
       }
     } catch (_) {
-      return left(DataUsageFailure.localError(''));
+  return left(DataUsageFailure.localError(''));
     }
   }
 }

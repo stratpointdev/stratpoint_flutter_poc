@@ -20,7 +20,8 @@ dependencies:
   sembast_web: '>=1.1.0-dev.3'
   cached_network_image: ^2.1.0+1
   url_launcher: ^5.4.2
-
+  dio: ^3.0.9
+  universal_io: ^1.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -57,7 +58,10 @@ flutter:
   fonts:
     - family: FSElliotPro
       fonts:
-        - asset: assets/fonts/FSElloitPro/FS-Elliot-Pro-Bold.otf
-        - asset: assets/fonts/FSElloitPro/FS-Elliot-Pro-Italic.otf
-        - asset: assets/fonts/FSElloitPro/FS-Elliot-Pro-Regular.otf
-          style: italic
+        - asset: assets/font/FS-Elliot-Pro-Regular.otf
+        - asset: assets/font/FS-Elliot-Pro-Light.otf
+          weight: 100
+        - asset: assets/font/FS-Elliot-Pro-Bold.otf
+          weight: 700
+
+
