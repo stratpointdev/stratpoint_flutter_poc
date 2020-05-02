@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 
-class DataUsageWidgetMobile extends StatelessWidget {
+class DataUsageWidget extends StatelessWidget {
   final bool isMobile;
   final String time;
   final String remainingData;
@@ -16,7 +16,7 @@ class DataUsageWidgetMobile extends StatelessWidget {
   final VoidCallback onAddMoreData;
   final VoidCallback onViewDetails;
 
-  const DataUsageWidgetMobile({
+  const DataUsageWidget({
     this.isMobile = false,
     @required this.time,
     @required this.remainingData,

@@ -17,7 +17,7 @@ import 'package:globe_one_poc_project/application/dashboard/payment_details/paym
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/data_usage_widget_mobile.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/data_usage_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/common/progress_indicator_widget.dart';
 import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 import 'package:globe_one_poc_project/r.dart';
@@ -192,7 +192,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                         );
                       }
 
-                      return DataUsageWidgetMobile(
+                      return DataUsageWidget(
                         isMobile: true,
                         onRefresh: () =>
                             {_dataUsageBloc.add(RefreshDataUsageEvent())},
