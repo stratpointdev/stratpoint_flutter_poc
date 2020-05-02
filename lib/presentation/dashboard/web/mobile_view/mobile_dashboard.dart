@@ -7,7 +7,6 @@ import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usag
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_event.dart';
-import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_state.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/mobile_view/widgets/mobile_view_payment_details.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/reward_points_widget.dart';

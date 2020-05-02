@@ -27,8 +27,7 @@ class PaymentDetailsBloc
           myPrefs.getString('LastAccountDetailsCall'));
       int minutes = DateTime.now().difference(lastAPICallDate).inMinutes;
 
-      var value =
-          await paymentDetailsRepository.getPaymentDetails();
+      var value = await paymentDetailsRepository.getPaymentDetails();
 
       yield value.fold(
           (failures) => PaymentDetailsFailedState(),
@@ -45,8 +44,7 @@ class PaymentDetailsBloc
 
     if (event is RefreshPaymentDetailsEvent) {
       yield PaymentDetailsLoadingState();
-      var result =
-          await paymentDetailsRepository.getPaymentDetails();
+      var result = await paymentDetailsRepository.getPaymentDetails();
       yield result.fold(
           (failures) => PaymentDetailsFailedState(),
           (success_entity) =>
