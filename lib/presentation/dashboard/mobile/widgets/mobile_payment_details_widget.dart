@@ -38,7 +38,7 @@ class _MobilePaymentInformationWidgetState
                 child: Text(
                   'Amount to pay',
                   style: TextStyle(
-                    fontSize: MediaQueryUtil.convertHeight(screenHeight, 16),
+                    fontSize: MediaQueryUtil.convertHeight(screenHeight, 15),
                     fontWeight: FontWeight.bold,
                     fontFamily: 'FSElliotPro',
                     color: Color(0xff019CDE),
@@ -49,7 +49,7 @@ class _MobilePaymentInformationWidgetState
                 widget.paymentAmountValue,
                 key: Key('paymentAmountWidget'),
                 style: TextStyle(
-                  fontSize: MediaQueryUtil.convertHeight(screenHeight, 16),
+                  fontSize: MediaQueryUtil.convertHeight(screenHeight, 15),
                   fontWeight: FontWeight.bold,
                   fontFamily: 'FSElliotPro',
                   color: Colors.black,
@@ -64,7 +64,7 @@ class _MobilePaymentInformationWidgetState
                 'Due on ' + widget.dueDate,
                 key: Key('paymentDueDateWidget'),
                 style: TextStyle(
-                  fontSize: MediaQueryUtil.convertHeight(screenHeight, 12),
+                  fontSize: MediaQueryUtil.convertHeight(screenHeight, 11),
                   color: Theme.of(context).hintColor,
                 ),
               )
@@ -83,7 +83,7 @@ class _MobilePaymentInformationWidgetState
                   child: Text(
                     'Pay now',
                     style: TextStyle(
-                      fontSize: MediaQueryUtil.convertHeight(screenHeight, 13),
+                      fontSize: MediaQueryUtil.convertHeight(screenHeight, 12),
                       fontWeight: FontWeight.bold,
                       fontFamily: 'FSElliotPro',
                     ),
