@@ -24,7 +24,7 @@ class RemoteAccountDetailsService {
         return left(AccountDetailsFailures.fromJson(jsonDecode(response.body)));
       }
     } catch (_) {
-      return left(AccountDetailsFailures.localError(_));
+      return left(AccountDetailsFailures.localError(''));
     }
   }
 }
