@@ -8,6 +8,4 @@ abstract class AccountDetailsRepository {
       getAccountDetails();
   Future insertPaymentDetailsLocal(AccountDetailsModel);
   Future deletePaymentDetailsLocal();
-
-
 }

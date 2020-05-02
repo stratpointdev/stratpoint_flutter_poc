@@ -6,5 +6,4 @@ abstract class DataUsageRepository {
   Future<Either<DataUsageFailure, DataUsageModel>> getDataUsage();
   Future insertDataUsageLocal(DataUsageModel);
   Future deleteDataUsageLocal();
-
 }

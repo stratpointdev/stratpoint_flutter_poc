@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -72,11 +71,13 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
                     'link' + currentImage.substring(currentImage.length - 1)]);
               },
               child: Container(
-                  child: CachedNetworkImage(
-                      imageUrl:
-                          _baseUrl + widget.imagePaths.values.toList()[index],
-                      errorWidget: (context, url, error) => Icon(Icons.error),
-                      httpHeaders: {'authorization': basicAuth})),
+                  color: Colors.blue,
+                  child: FittedBox(
+                    fit: BoxFit.cover,
+                    child: Image.network(
+                        _baseUrl + widget.imagePaths.values.toList()[index],
+                        headers: {'authorization': basicAuth}),
+                  )),
             ));
           },
         ),

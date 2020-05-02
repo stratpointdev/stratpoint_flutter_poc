@@ -36,7 +36,7 @@ class PaymentDetailsSuccessState extends PaymentDetailsState {
       paymentAmountValue: NumberConverter.pesoCurrency(double.parse(
           paymentDetailsModel.outstandingBalanceByMsisdnResponse
               .outstandingBalanceByMsisdnResult.overDueBalance)),
-      dueDate: DateTimeConverter.convertToDateTime(paymentDetailsModel
+      dueDate: DateTimeConverter.convertToDate(paymentDetailsModel
           .outstandingBalanceByMsisdnResponse
           .outstandingBalanceByMsisdnResult
           .overDueDate),

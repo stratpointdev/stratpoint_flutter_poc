@@ -13,10 +13,10 @@ class RemoteDataUsageService {
 
     try {
       final response =
-          await get(api.getDataUsage()).timeout(const Duration(seconds: 3));
+          await get(api.getDataUsage()).timeout(const Duration(seconds: 5));
       if (response.statusCode == 200) {
         SharedPreferences myPrefs = await SharedPreferences.getInstance();
-        myPrefs.setString('LastAccountDetailsCall', DateTime.now().toString());
+        myPrefs.setString('LastApiCall', DateTime.now().toString());
         var body = jsonDecode(response.body);
         return right(DataUsageModel.fromJson(body));
       } else {

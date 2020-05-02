@@ -15,10 +15,10 @@ class RemotePaymentDetailsService {
     final api = Api();
     try {
       final response = await get(api.getOutStandingBalance())
-          .timeout(const Duration(seconds: 3));
+          .timeout(const Duration(seconds: 5));
       if (response.statusCode == 200) {
         SharedPreferences myPrefs = await SharedPreferences.getInstance();
-        myPrefs.setString('LastAccountDetailsCall', DateTime.now().toString());
+        myPrefs.setString('LastApiCall', DateTime.now().toString());
         var body = jsonDecode(response.body);
         return right(PaymentDetailsModel.fromJson(body));
       } else {

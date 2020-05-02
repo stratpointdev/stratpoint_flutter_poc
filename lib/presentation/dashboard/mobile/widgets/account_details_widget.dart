@@ -46,14 +46,14 @@ class _AccountDetailsWidgetState extends State<AccountDetailsWidget> {
                     style: TextStyle(
                         fontFamily: 'FSElliotPro',
                         fontSize:
-                            MediaQueryUtil.convertHeight(screenHeight, 14),
+                            MediaQueryUtil.convertHeight(screenHeight, 16),
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
                     widget.userMobileNumber + widget.userDuoNumber,
                     style: TextStyle(
                       fontFamily: 'FSElliotPro',
-                      fontSize: MediaQueryUtil.convertHeight(screenHeight, 10),
+                      fontSize: MediaQueryUtil.convertHeight(screenHeight, 12),
                     ),
                   )
                 ],

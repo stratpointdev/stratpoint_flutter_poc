@@ -2,7 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage_model.dart';
 import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage_failures.dart';
 import 'package:sembast/sembast.dart';
-import '../../../database_factory.dart' if(dart.library.js)'package:sembast_web/sembast_web.dart';
+import '../../../database_factory.dart'
+    if (dart.library.js) 'package:sembast_web/sembast_web.dart';
 import '../../../app_database.dart';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -44,7 +45,6 @@ class LocalDataUsageService {
     try {
       final finder = Finder(limit: 1);
       final recordSnapshots = await _dataUsage.find(await _db, finder: finder);
-
       return right(recordSnapshots.map((snapshot) {
         print('getDataUsage ' + snapshot.value.toString());
         return DataUsageModel.fromJson(snapshot.value);
