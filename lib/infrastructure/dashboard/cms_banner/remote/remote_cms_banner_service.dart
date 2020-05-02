@@ -9,22 +9,28 @@ import 'package:http/http.dart';
 class RemoteCmsBannerService {
   final api = Api();
 
-  Future<Either<CmsBannerFailures, CmsBannerModel>> getCmsBanner() async {
+  Future<Either<CmsBannerFailure, CmsBannerModel>> getCmsBanner() async {
     String username = 'flutterpoc-stratpoint';
     String password = 'Str@tp01nt';
     String basicAuth =
         'Basic ' + base64Encode(utf8.encode('$username:$password'));
     Map<String, String> headers = {"Authorization": basicAuth};
-    final response = await get(api.getCms(), headers: headers);
-    print(response.body);
-    print(response.statusCode);
-    if (response.statusCode == 200) {
-      var body = jsonDecode(response.body);
+    try {
+      final response = await get(api.getCms(), headers: headers)
+          .timeout(const Duration(seconds: 5));
+      print(response.body);
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        var body = jsonDecode(response.body);
 
-      return right(CmsBannerModel.fromJson(body));
-    } else {
-      return left(CmsBannerFailures(
-          code: response.statusCode, message: response.body.toString()));
+        return right(CmsBannerModel.fromJson(body));
+      } else {
+        return left(CmsBannerFailure(
+            code: response.statusCode, message: response.body.toString()));
+      }
+    } catch (e) {
+      print(e.toString);
+      return left(CmsBannerFailure.localError(''));
     }
   }
 }

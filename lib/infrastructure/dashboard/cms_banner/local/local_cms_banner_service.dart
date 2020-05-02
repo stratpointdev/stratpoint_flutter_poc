@@ -2,7 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:globe_one_poc_project/domain/dashboard/cms_banner/entities/cms_banner_failure.dart';
 import 'package:globe_one_poc_project/domain/dashboard/cms_banner/entities/cms_banner_model.dart';
 import 'package:sembast/sembast.dart';
-import '../../../database_factory.dart' if(dart.library.js)'package:sembast_web/sembast_web.dart';
+import '../../../database_factory.dart'
+    if (dart.library.js) 'package:sembast_web/sembast_web.dart';
 import '../../../app_database.dart';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -40,17 +41,15 @@ class LocalCmsBannerService {
     }
   }
 
-  Future<Either<CmsBannerFailures, CmsBannerModel>> getCmsBanner() async {
-
+  Future<Either<CmsBannerFailure, CmsBannerModel>> getCmsBanner() async {
     try {
       final finder = Finder(limit: 1);
       final recordSnapshots = await _cmsBanner.find(await _db, finder: finder);
-
       return right(recordSnapshots.map((snapshot) {
         return CmsBannerModel.fromJson(snapshot.value);
       }).single);
     } catch (error) {
-      return left(CmsBannerFailures.localError(error.toString()));
+      return left(CmsBannerFailure.localError(error.toString()));
     }
   }
 }

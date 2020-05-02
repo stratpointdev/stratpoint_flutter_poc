@@ -15,23 +15,9 @@ class CmsBannerBloc extends Bloc<CmsBannerEvent, CmsBannerState> {
   Stream<CmsBannerState> mapEventToState(CmsBannerEvent event) async* {
     if (event is InitialCmsBannerEvent) {
       yield CmsBannerLoadingState();
-      var value = await cmsBannerRepository.getCmsBanner(isLocal: true);
-
-      yield value.fold(
-          (failures) => CmsBannerFailedState(),
-          (success_entity) => CmsBannerSuccessState(
-              imagePaths: success_entity.getImagePaths(),
-              imageLinks: success_entity.getImageLinks()));
-
-      if (value.isRight()) {
-        await cmsBannerRepository.deleteCmsBannerLocal();
-        await cmsBannerRepository
-            .insertCmsBannerLocal(value.getOrElse(() => null));
-      }
     }
     if (event is RefreshCmsBannerEvent) {
-      yield CmsBannerLoadingState();
-      var value = await cmsBannerRepository.getCmsBanner(isLocal: true);
+      var value = await cmsBannerRepository.getCmsBanner();
 
       yield value.fold(
           (failures) => CmsBannerFailedState(),

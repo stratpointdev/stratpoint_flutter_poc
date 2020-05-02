@@ -25,7 +25,7 @@ class DataUsageWidgetMobile extends StatelessWidget {
     this.textColor = const Color(0xff244857),
     this.addMoreDataButtonColor = const Color(0xff009CDF),
     this.cupIndicatorTextColor = const Color(0xff9B9B9B),
-    this.padding = const EdgeInsets.fromLTRB(16, 20, 16, 35),
+    this.padding = const EdgeInsets.fromLTRB(16, 20, 16, 0),
     @required this.cupLevelIndicator,
     @required this.onRefresh,
     @required this.onAddMoreData,
@@ -65,7 +65,7 @@ class DataUsageWidgetMobile extends StatelessWidget {
                     style: isMobile
                         ? TextStyle(
                             fontSize:
-                                MediaQueryUtil.convertHeight(screenHeight, 14),
+                                MediaQueryUtil.convertHeight(screenHeight, 16),
                             fontWeight: FontWeight.bold,
                             fontFamily: 'FSElliotPro',
                             color: Color(0xff019CDE),
@@ -82,7 +82,7 @@ class DataUsageWidgetMobile extends StatelessWidget {
                     style: isMobile
                         ? TextStyle(
                             fontSize:
-                                MediaQueryUtil.convertHeight(screenHeight, 11),
+                                MediaQueryUtil.convertHeight(screenHeight, 12),
                             color: Theme.of(context).hintColor,
                           )
                         : TextStyle(
@@ -119,7 +119,7 @@ class DataUsageWidgetMobile extends StatelessWidget {
                       '$remainingData LEFT',
                       key: Key('remainingDataWidget'),
                       style: const TextStyle(
-                        fontSize: 20,
+                        fontSize: 22,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -129,7 +129,7 @@ class DataUsageWidgetMobile extends StatelessWidget {
                       key: Key('dataAllocationWidget'),
                       style: TextStyle(
                         color: Theme.of(context).hintColor,
-                        fontSize: 11,
+                        fontSize: 12,
                       ),
                     ),
                     Text(
@@ -137,7 +137,7 @@ class DataUsageWidgetMobile extends StatelessWidget {
                       key: Key('refillDateWidget'),
                       style: TextStyle(
                         color: Theme.of(context).hintColor,
-                        fontSize: 11,
+                        fontSize: 12,
                       ),
                     ),
                     RawMaterialButton(
@@ -147,7 +147,7 @@ class DataUsageWidgetMobile extends StatelessWidget {
                               'View Details >',
                               style: TextStyle(
                                   fontSize: MediaQueryUtil.convertHeight(
-                                      screenHeight, 11),
+                                      screenHeight, 12),
                                   fontWeight: FontWeight.bold,
                                   color: Color(0xff007CB5)),
                             )
@@ -181,10 +181,10 @@ class DataUsageWidgetMobile extends StatelessWidget {
                 child: Text(
                   'Add More Data',
                   style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
+                      fontSize: MediaQueryUtil.convertHeight(screenHeight, 13),
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'FSElliotPro',
+                      color: Theme.of(context).accentColor),
                 ),
               ),
             ),
