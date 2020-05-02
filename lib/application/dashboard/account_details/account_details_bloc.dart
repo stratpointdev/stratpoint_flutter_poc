@@ -20,7 +20,7 @@ class AccountDetailsBloc
       yield AccountDetailsLoadingState();
     }
 
-    if (event is RefreshAccountDetailsEvent) {
+    if (event is RefreshAccountDetailsEvent || event is InitialAccountDetailsEvent) {
       final result = await accountDetailsRepository.getAccountDetails();
 
       yield result.fold(

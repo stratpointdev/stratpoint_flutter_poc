@@ -12,8 +12,7 @@ class DesktopHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: EdgeInsets.fromLTRB(40, 20, 40, 20),
-      height: 200,
+      padding: EdgeInsets.only(left: 40,right: 40 , bottom: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
@@ -21,31 +20,44 @@ class DesktopHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(left: 30, right: 30),
-                child: Text(
-                  "Personal",
-                  style: TextStyle(
-                      color: Color(0xff009CDF),
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold),
+                padding: EdgeInsets.only(left: 29, right: 23),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide( //                    <--- top side
+                        color: Color(0xff009CDF),
+                        width: 3.0,
+                      ),
+                    ),
+                  ),
+                  child: Padding(
+                    padding:  EdgeInsets.only(top: 16.5),
+                    child: Text(
+                      "Personal",
+                      style: TextStyle(
+                          color: Color(0xff009CDF),
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(right: 30),
+                padding: EdgeInsets.only(right: 23 , top: 19),
                 child: Text(
                   "Business",
                   style: TextStyle(color: Color(0xff009CDF), fontSize: 14),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(right: 30),
+                padding: EdgeInsets.only(right: 24 , top: 19),
                 child: Text(
                   "Shop",
                   style: TextStyle(color: Color(0xff009CDF), fontSize: 14),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(right: 30),
+                padding: const EdgeInsets.only( top: 19),
                 child: Text(
                   "G Community",
                   style: TextStyle(color: Color(0xff009CDF), fontSize: 14),
@@ -53,7 +65,7 @@ class DesktopHeader extends StatelessWidget {
               ),
               Spacer(),
               Padding(
-                padding: EdgeInsets.only(right: 30),
+                padding: EdgeInsets.only(right: 29 , top: 19),
                 child: Text(
                   "Help & Support",
                   style: TextStyle(
@@ -63,7 +75,7 @@ class DesktopHeader extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(right: 30),
+                padding: EdgeInsets.only(right: 42 , top: 19),
                 child: Text(
                   "Contact Us",
                   style: TextStyle(
@@ -73,14 +85,14 @@ class DesktopHeader extends StatelessWidget {
                 ),
               ),
               Padding(
-                  padding: EdgeInsets.only(right: 15),
+                  padding: EdgeInsets.only(right: 14 , top: 19),
                   child: CircleAvatar(
-                    radius: 15.0,
+                    radius: 12.0,
                     backgroundImage: NetworkImage(R.assetsImagesUser),
                     backgroundColor: Colors.transparent,
                   )),
               Padding(
-                padding: EdgeInsets.only(right: 10),
+                padding: EdgeInsets.only(right: 8 , top: 19),
                 child: Text(
                   "Logged In",
                   style: TextStyle(
@@ -90,7 +102,7 @@ class DesktopHeader extends StatelessWidget {
                 ),
               ),
               Padding(
-                  padding: EdgeInsets.only(right: 30),
+                  padding: EdgeInsets.only(right: 30 , top: 19),
                   child: Icon(search, color: Color(0xff33464D))),
             ],
           ),
@@ -98,90 +110,116 @@ class DesktopHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Padding(
-                  padding: EdgeInsets.only(left: 30, top: 20),
+                  padding: EdgeInsets.only(left: 12, top: 16),
                   child: Container(
                     width: 173,
                     height: 70,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        fit: BoxFit.fill,
                         image: NetworkImage(R.assetsImagesGlobelogo),
                       ),
                     ),
                   )),
               Spacer(),
               Padding(
-                  padding: EdgeInsets.only(right: 15, top: 20),
-                  child: Text(
-                    "STAY SAFE AT HOME",
-                    style: TextStyle(color: Color(0xff33464D), fontSize: 14),
+                  padding: EdgeInsets.only(right: 18, top: 20),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        right: BorderSide( //                    <--- top side
+                          color: Color(0xff979797),
+                          width: 1.0,
+                        ),
+                      ),
+                    ),
+                    child: Padding(
+                      padding:  EdgeInsets.only(right: 10.0),
+                      child: Text(
+                        "STAY SAFE AT HOME",
+                        style: TextStyle(color: Color(0xff33464D), fontSize: 14),
+                      ),
+                    ),
+                  )),
+
+              Padding(
+                  padding: EdgeInsets.only(right: 18, top: 20),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        right: BorderSide( //                    <--- top side
+                          color: Color(0xff979797),
+                          width: 1.0,
+                        ),
+                      ),
+                    ),
+                    child: Padding(
+                      padding:  EdgeInsets.only(right: 10.0),
+                      child: Text(
+                        "MOBILE",
+                        style: TextStyle(color: Color(0xff33464D), fontSize: 14),
+                      ),
+                    ),
                   )),
               Padding(
-                  padding: EdgeInsets.only(right: 15, top: 20),
-                  child: Text(
-                    "|",
-                    style: TextStyle(color: Color(0xff33464D), fontSize: 14),
+                  padding: EdgeInsets.only(right: 18, top: 20),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        right: BorderSide( //                    <--- top side
+                          color: Color(0xff979797),
+                          width: 1.0,
+                        ),
+                      ),
+                    ),
+                    child: Padding(
+                      padding:  EdgeInsets.only(right: 10.0),
+                      child: Text(
+                        "GLOBE AT HOME",
+                        style: TextStyle(color: Color(0xff33464D), fontSize: 14),
+                      ),
+                    ),
+                  )),
+
+              Padding(
+                  padding: EdgeInsets.only(right: 18, top: 20),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        right: BorderSide( //                    <--- top side
+                          color: Color(0xff979797),
+                          width: 1.0,
+                        ),
+                      ),
+                    ),
+                    child: Padding(
+                      padding:  EdgeInsets.only(right: 10.0),
+                      child: Text(
+                        "INTERNATIONAL",
+                        style: TextStyle(color: Color(0xff33464D), fontSize: 14),
+                      ),
+                    ),
                   )),
               Padding(
-                  padding: EdgeInsets.only(right: 15, top: 20),
-                  child: Text(
-                    "MOBILE",
-                    style: TextStyle(color: Color(0xff33464D), fontSize: 14),
+                  padding: EdgeInsets.only(right: 19, top: 20),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        right: BorderSide( //                    <--- top side
+                          color: Color(0xff979797),
+                          width: 1.0,
+                        ),
+                      ),
+                    ),
+                    child: Padding(
+                      padding:  EdgeInsets.only(right: 9.0),
+                      child: Text(
+                        "GLOBE LIFE",
+                        style: TextStyle(color: Color(0xff33464D), fontSize: 14),
+                      ),
+                    ),
                   )),
-              Padding(
-                  padding: EdgeInsets.only(right: 15, top: 20),
-                  child: Text(
-                    "|",
-                    style: TextStyle(color: Color(0xff33464D), fontSize: 14),
-                  )),
-              Padding(
-                  padding: EdgeInsets.only(right: 15, top: 20),
-                  child: Text(
-                    "MOBILE",
-                    style: TextStyle(color: Color(0xff33464D), fontSize: 14),
-                  )),
-              Padding(
-                  padding: EdgeInsets.only(right: 15, top: 20),
-                  child: Text(
-                    "|",
-                    style: TextStyle(color: Color(0xff33464D), fontSize: 14),
-                  )),
-              Padding(
-                  padding: EdgeInsets.only(right: 15, top: 20),
-                  child: Text(
-                    "GLOBE AT HOME",
-                    style: TextStyle(color: Color(0xff33464D), fontSize: 14),
-                  )),
-              Padding(
-                  padding: EdgeInsets.only(right: 15, top: 20),
-                  child: Text(
-                    "|",
-                    style: TextStyle(color: Color(0xff33464D), fontSize: 14),
-                  )),
-              Padding(
-                  padding: EdgeInsets.only(right: 15, top: 20),
-                  child: Text(
-                    "INTERNATIONAL",
-                    style: TextStyle(color: Color(0xff33464D), fontSize: 14),
-                  )),
-              Padding(
-                  padding: EdgeInsets.only(right: 15, top: 20),
-                  child: Text(
-                    "|",
-                    style: TextStyle(color: Color(0xff33464D), fontSize: 14),
-                  )),
-              Padding(
-                  padding: EdgeInsets.only(right: 15, top: 20),
-                  child: Text(
-                    "GLOBE LOFE",
-                    style: TextStyle(color: Color(0xff33464D), fontSize: 14),
-                  )),
-              Padding(
-                  padding: EdgeInsets.only(right: 15, top: 20),
-                  child: Text(
-                    "|",
-                    style: TextStyle(color: Color(0xff33464D), fontSize: 14),
-                  )),
+
+
               Padding(
                   padding: EdgeInsets.only(right: 30, top: 20),
                   child: Text(
