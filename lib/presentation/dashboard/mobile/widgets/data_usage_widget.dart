@@ -37,15 +37,15 @@ class DataUsageWidget extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-    // final TextStyle cupLevelIndicatorTextStyle = TextStyle(
-    //   fontSize: 17,
-    //   color: cupIndicatorTextColor,
-    // );
-    // final TextStyle cupLevelIndicatorTextStyleMobile = TextStyle(
-    //   fontFamily: 'FSElliotPro',
-    //   fontSize: MediaQueryUtil.convertHeight(screenHeight, 12),
-    //   color: cupIndicatorTextColor,
-    // );
+    final TextStyle cupLevelIndicatorTextStyle = TextStyle(
+      fontSize: 17,
+      color: cupIndicatorTextColor,
+    );
+    final TextStyle cupLevelIndicatorTextStyleMobile = TextStyle(
+      fontFamily: 'FSElliotPro',
+      fontSize: MediaQueryUtil.convertHeight(screenHeight, 12),
+      color: cupIndicatorTextColor,
+    );
 
     return IntrinsicHeight(
       child: Container(
@@ -101,6 +101,20 @@ class DataUsageWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
+                  isMobile
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text('100%', style: cupLevelIndicatorTextStyle),
+                            Text('—', style: cupLevelIndicatorTextStyle),
+                            Text('50%', style: cupLevelIndicatorTextStyle),
+                            Text('—', style: cupLevelIndicatorTextStyle),
+                            Text('0%', style: cupLevelIndicatorTextStyle),
+                          ],
+                        )
+                      : Container(),
+                  // Expanded(child: Container()),
                   Container(
                     width: isMobile
                         ? MediaQueryUtil.convertWidth(screenWidth, 120)
@@ -110,10 +124,10 @@ class DataUsageWidget extends StatelessWidget {
                         : 190,
                     child: cupLevelIndicator,
                   ),
-                  const SizedBox(width: 20),
+                  isMobile ? Container() : const SizedBox(width: 20),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
                         '$remainingData LEFT',
@@ -162,7 +176,8 @@ class DataUsageWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(width: 40),
+                  // isMobile ? Container() : const SizedBox(width: 20),
+                  // const SizedBox(width: 40),
                 ],
               ),
             ),
@@ -181,11 +196,11 @@ class DataUsageWidget extends StatelessWidget {
                   child: Text(
                     'Add More Data',
                     style: TextStyle(
-                        fontSize:
-                            MediaQueryUtil.convertHeight(screenHeight, 13),
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'FSElliotPro',
-                        color: Theme.of(context).accentColor),
+                      fontSize: MediaQueryUtil.convertHeight(screenHeight, 13),
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'FSElliotPro',
+                      color: Theme.of(context).accentColor,
+                    ),
                   ),
                 ),
               ),
