@@ -191,16 +191,16 @@ class DataUsageWidgetMobile extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            Text(
-              isMobile
-                  ? ""
-                  : 'This includes your main data, rollover data, and free app data allowance',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 14,
-                color: textColor,
-              ),
-            ),
+            isMobile
+                ? []
+                : Text(
+                    'This includes your main data, rollover data, and free app data allowance',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: textColor,
+                    ),
+                  ),
           ],
         ),
       ),
