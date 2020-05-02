@@ -40,145 +40,142 @@ class DataUsageWidget extends StatelessWidget {
     //   fontSize: 17,
     //   color: cupIndicatorTextColor,
     // );
-    return BlocBuilder<DataUsageBloc,DataUsageState>(
-      builder: (context, state) {
-
-        return IntrinsicHeight(
-          child: Container(
-            width: 400,
-            padding: padding,
-            color: Colors.white,
-            child: Column(
-              children: <Widget>[
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Data Allowance',
-                          style: TextStyle(
-                            color: textColor,
-                            fontSize: 16,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          'As of today, $time',
-                          style: TextStyle(
-                            color: textColor,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Center(
-                      child: SizedBox(
-                        height: 24,
-                        width: 24,
-                        child: IconButton(
-                          padding: EdgeInsets.zero,
-                          onPressed: onRefresh,
-                          icon: Icon(Icons.refresh),
+    return BlocBuilder<DataUsageBloc, DataUsageState>(
+        builder: (context, state) {
+      return IntrinsicHeight(
+        child: Container(
+          width: 400,
+          padding: padding,
+          color: Colors.white,
+          child: Column(
+            children: <Widget>[
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Data Allowance',
+                        style: TextStyle(
+                          color: textColor,
+                          fontSize: 16,
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 36),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Spacer(),
-                    Container(
-                      width: 200,
-                      height: 190,
-                      child: cupLevelIndicator,
-                    ),
-                    Spacer(),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          '$remainingData LEFT',
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          'Out of $dataAllocation',
-                          style: TextStyle(
-                            color: textColor,
-                            fontSize: 12,
-                          ),
-                        ),
-                        Text(
-                          'Refills on $refillDate',
-                          style: TextStyle(
-                            color: textColor,
-                            fontSize: 12,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        RawMaterialButton(
-                          onPressed: onViewDetails,
-                          child: Text(
-                            'View Details',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(width: 10),
-                  ],
-                ),
-                const SizedBox(height: 36),
-                Container(
-                  height: 40,
-                  child: RawMaterialButton(
-                    onPressed: onAddMoreData,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                    fillColor: addMoreDataButtonColor,
-                    child: Center(
-                      child: Text(
-                        'Add More Data',
+                      const SizedBox(height: 4),
+                      Text(
+                        'As of today, $time',
                         style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: textColor,
+                          fontSize: 12,
                         ),
+                      ),
+                    ],
+                  ),
+                  Center(
+                    child: SizedBox(
+                      height: 24,
+                      width: 24,
+                      child: IconButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: onRefresh,
+                        icon: Icon(Icons.refresh),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 36),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Spacer(),
+                  Container(
+                    width: 200,
+                    height: 190,
+                    child: cupLevelIndicator,
+                  ),
+                  Spacer(),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        '$remainingData LEFT',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Out of $dataAllocation',
+                        style: TextStyle(
+                          color: textColor,
+                          fontSize: 12,
+                        ),
+                      ),
+                      Text(
+                        'Refills on $refillDate',
+                        style: TextStyle(
+                          color: textColor,
+                          fontSize: 12,
+                        ),
+                      ),
+                      RawMaterialButton(
+                        onPressed: onViewDetails,
+                        child: Text(
+                          'View Details',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(width: 10),
+                ],
+              ),
+              const SizedBox(height: 36),
+              Container(
+                height: 40,
+                child: RawMaterialButton(
+                  onPressed: onAddMoreData,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4.0),
+                  ),
+                  fillColor: addMoreDataButtonColor,
+                  child: Center(
+                    child: Text(
+                      'Add More Data',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
-                Expanded(
-                  child: Text(
+              ),
+              const SizedBox(height: 16),
+              Expanded(
+                child: Text(
                   'This includes your main data, rollover data, and free app data allowance',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14,
                     color: textColor,
                   ),
-                ),)
-
-              ],
-            ),
+                ),
+              )
+            ],
           ),
-        );
-      }
-    );
+        ),
+      );
+    });
   }
 }

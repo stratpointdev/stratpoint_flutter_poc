@@ -48,160 +48,162 @@ class DataUsageWidgetMobile extends StatelessWidget {
     // );
 
     return IntrinsicHeight(
-        child: Container(
-      padding: padding,
-      color: Colors.white,
-      child: Column(
-        children: <Widget>[
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    'Data Allowance',
-                    style: isMobile
-                        ? TextStyle(
-                            fontSize:
-                                MediaQueryUtil.convertHeight(screenHeight, 16),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'FSElliotPro',
-                            color: Color(0xff019CDE),
-                          )
-                        : TextStyle(
-                            color: textColor,
-                            fontSize: 16,
-                          ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    'as of today, $time',
-                    key: Key('dateUsageLastCheckWidget'),
-                    style: isMobile
-                        ? TextStyle(
-                            fontSize:
-                                MediaQueryUtil.convertHeight(screenHeight, 12),
-                            color: Theme.of(context).hintColor,
-                          )
-                        : TextStyle(
-                            color: textColor,
-                            fontSize: 12,
-                          ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(height: 36),
-          Expanded(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              mainAxisSize: MainAxisSize.max,
+      child: Container(
+        padding: padding,
+        color: Colors.white,
+        child: Column(
+          children: <Widget>[
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Container(
-                  width: isMobile
-                      ? MediaQueryUtil.convertWidth(screenWidth, 120)
-                      : 140,
-                  height: isMobile
-                      ? MediaQueryUtil.convertHeight(screenHeight, 130)
-                      : 190,
-                  child: cupLevelIndicator,
-                ),
-                const SizedBox(width: 20),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     Text(
-                      '$remainingData LEFT',
-                      key: Key('remainingDataWidget'),
-                      style: const TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Out of $dataAllocation',
-                      key: Key('dataAllocationWidget'),
-                      style: TextStyle(
-                        color: Theme.of(context).hintColor,
-                        fontSize: 12,
-                      ),
-                    ),
-                    Text(
-                      'Refills on $refillDate',
-                      key: Key('refillDateWidget'),
-                      style: TextStyle(
-                        color: Theme.of(context).hintColor,
-                        fontSize: 12,
-                      ),
-                    ),
-                    RawMaterialButton(
-                      onPressed: onViewDetails,
-                      child: isMobile
-                          ? Text(
-                              'View Details >',
-                              style: TextStyle(
-                                  fontSize: MediaQueryUtil.convertHeight(
-                                      screenHeight, 12),
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xff007CB5)),
+                      'Data Allowance',
+                      style: isMobile
+                          ? TextStyle(
+                              fontSize: MediaQueryUtil.convertHeight(
+                                  screenHeight, 16),
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'FSElliotPro',
+                              color: Color(0xff019CDE),
                             )
-                          : Text(
-                              'View Details',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.underline,
-                              ),
+                          : TextStyle(
+                              color: textColor,
+                              fontSize: 16,
+                            ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      'as of today, $time',
+                      key: Key('dateUsageLastCheckWidget'),
+                      style: isMobile
+                          ? TextStyle(
+                              fontSize: MediaQueryUtil.convertHeight(
+                                  screenHeight, 12),
+                              color: Theme.of(context).hintColor,
+                            )
+                          : TextStyle(
+                              color: textColor,
+                              fontSize: 12,
                             ),
                     ),
                   ],
                 ),
-                const SizedBox(width: 40),
               ],
             ),
-          ),
-          const SizedBox(height: 36),
-          Container(
-            height: 40,
-            child: RawMaterialButton(
-              onPressed: onAddMoreData,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(4.0),
+            const SizedBox(height: 36),
+            Expanded(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  Container(
+                    width: isMobile
+                        ? MediaQueryUtil.convertWidth(screenWidth, 120)
+                        : 140,
+                    height: isMobile
+                        ? MediaQueryUtil.convertHeight(screenHeight, 130)
+                        : 190,
+                    child: cupLevelIndicator,
+                  ),
+                  const SizedBox(width: 20),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Text(
+                        '$remainingData LEFT',
+                        key: Key('remainingDataWidget'),
+                        style: const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Out of $dataAllocation',
+                        key: Key('dataAllocationWidget'),
+                        style: TextStyle(
+                          color: Theme.of(context).hintColor,
+                          fontSize: 12,
+                        ),
+                      ),
+                      Text(
+                        'Refills on $refillDate',
+                        key: Key('refillDateWidget'),
+                        style: TextStyle(
+                          color: Theme.of(context).hintColor,
+                          fontSize: 12,
+                        ),
+                      ),
+                      RawMaterialButton(
+                        onPressed: onViewDetails,
+                        child: isMobile
+                            ? Text(
+                                'View Details >',
+                                style: TextStyle(
+                                    fontSize: MediaQueryUtil.convertHeight(
+                                        screenHeight, 12),
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xff007CB5)),
+                              )
+                            : Text(
+                                'View Details',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(width: 40),
+                ],
               ),
-              fillColor: isMobile
-                  ? Theme.of(context).primaryColor
-                  : addMoreDataButtonColor,
-              child: Center(
-                child: Text(
-                  'Add More Data',
-                  style: TextStyle(
-                      fontSize: MediaQueryUtil.convertHeight(screenHeight, 13),
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'FSElliotPro',
-                      color: Theme.of(context).accentColor),
+            ),
+            const SizedBox(height: 36),
+            Container(
+              height: 40,
+              child: RawMaterialButton(
+                onPressed: onAddMoreData,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4.0),
+                ),
+                fillColor: isMobile
+                    ? Theme.of(context).primaryColor
+                    : addMoreDataButtonColor,
+                child: Center(
+                  child: Text(
+                    'Add More Data',
+                    style: TextStyle(
+                        fontSize:
+                            MediaQueryUtil.convertHeight(screenHeight, 13),
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'FSElliotPro',
+                        color: Theme.of(context).accentColor),
+                  ),
                 ),
               ),
             ),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            isMobile
-                ? ""
-                : 'This includes your main data, rollover data, and free app data allowance',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 14,
-              color: textColor,
+            const SizedBox(height: 16),
+            Text(
+              isMobile
+                  ? ""
+                  : 'This includes your main data, rollover data, and free app data allowance',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 14,
+                color: textColor,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ));
+    );
   }
 }
