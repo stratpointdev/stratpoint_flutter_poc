@@ -13,10 +13,10 @@ class _DashBoardPageState extends State<DashBoardPage> {
   Widget build(BuildContext context) {
 
     return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
-          if(constraints.maxWidth > 1150){
-              return DesktopDashboard();
+          if(constraints.maxWidth > 1150) {
+            return DesktopDashboard();
           }else {
-              return MobileDashboard();
+            return MobileDashboard();
           }
       },
     );

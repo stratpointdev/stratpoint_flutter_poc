@@ -11,7 +11,7 @@ class RewardPointsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double leftPadding = 24;
+    const double leftPadding = 16;
     return Container(
       width: 562,
       child: Column(
@@ -21,17 +21,18 @@ class RewardPointsWidget extends StatelessWidget {
             padding: EdgeInsets.only(
               bottom: 10,
               left: hasTitlePadding ? leftPadding : 0,
+              top: hasTitlePadding ? 30 : 0,
             ),
             child: Text(
               'Reward Points',
-              style: TextStyle(fontSize: 22, color: Color(0xff244857)),
+              style: TextStyle(fontSize: 22, color: Color(0xff244857), fontWeight: FontWeight.w100),
               textAlign: TextAlign.left,
             ),
           ),
           Container(
             color: Colors.white,
             padding: EdgeInsets.all(leftPadding),
-            height: 382,
+            height: hasTitlePadding ? 361 : 343,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
@@ -47,7 +48,7 @@ class RewardPointsWidget extends StatelessWidget {
                     Spacer(),
                     Text(
                       '$points ' + (points == 1 ? 'point' : 'points'),
-                      style: TextStyle(fontSize: 36, color: Color(0xff244857),fontWeight: FontWeight.w700),
+                      style: TextStyle(fontSize:hasTitlePadding ? 26 : 36, color: Color(0xff244857),fontWeight: FontWeight.w700),
                       textAlign: TextAlign.left,
                     ),
                     SizedBox(height: 16),

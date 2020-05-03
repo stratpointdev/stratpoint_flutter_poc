@@ -125,7 +125,6 @@ class _DesktopDashboardState extends State<DesktopDashboard> {
                           remainingData = state.volumeRemaing;
                           dataAllocation = state.totalAllocated;
                           refillDate = state.endDate;
-
                           cupLevelIndicator = state.cupLevelIndicator;
                           lastApiCall = state.lastApiCall;
                         }

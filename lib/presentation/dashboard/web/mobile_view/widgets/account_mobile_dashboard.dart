@@ -25,7 +25,7 @@ class _AccountMobileDashboard extends State<AccountMobileDashboard> {
   Widget build(BuildContext context) {
 
     return Container(
-        color: Color(0xff037DB4),
+        color: Color(0xff16A3C7),
         height: 165,
         padding: EdgeInsets.only(left: 20, top: 20, bottom: 20),
         child: Row(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BillPayment extends StatefulWidget {
+class MobileViewBillPayment extends StatefulWidget {
   final GlobalKey key;
   final String paymentAmountValue;
   final String dueDate;
@@ -8,7 +8,7 @@ class BillPayment extends StatefulWidget {
   final String lastPaymentAmount;
   final String lastPaymentDate;
   final String dateNow;
-  BillPayment(
+  MobileViewBillPayment(
       {this.key,
       this.paymentAmountValue,
       this.dueDate,
@@ -18,21 +18,20 @@ class BillPayment extends StatefulWidget {
       this.dateNow});
 
   @override
-  _BillPayment createState() => _BillPayment();
+  _MobileViewBillPayment createState() => _MobileViewBillPayment();
 }
 
-class _BillPayment extends State<BillPayment> {
+class _MobileViewBillPayment extends State<MobileViewBillPayment> {
   // static const IconData refresh = IconData(0xe5d5, fontFamily: 'MaterialIcons');
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 562,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.only(bottom: 12),
+            padding: EdgeInsets.only(left: 16,top: 16,bottom: 12),
             child: Text("Bills Payment",
                 style: TextStyle(fontSize: 22, color: Color(0xff244857), fontWeight: FontWeight.w100),
                 textAlign: TextAlign.left, ),
@@ -40,7 +39,7 @@ class _BillPayment extends State<BillPayment> {
           Container(
             color: Colors.white,
             padding: EdgeInsets.only(left: 20,top: 20,bottom: 20),
-            height: 343,
+            height: 199,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
@@ -52,7 +51,7 @@ class _BillPayment extends State<BillPayment> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text("Amount to pay :",
-                            style:TextStyle(fontSize: 18, color: Color(0xff244857)),
+                            style:TextStyle(fontSize: 16, color: Color(0xff244857)),
                             textAlign: TextAlign.left),
                         const SizedBox(height: 4),
                         Text(
@@ -64,8 +63,8 @@ class _BillPayment extends State<BillPayment> {
                     ),
                     Center(
                       child: SizedBox(
-                        height: 18,
-                        width: 18,
+                        height: 15,
+                        width: 15,
                         child:   IconButton(
                           onPressed: widget.onRefresh,
                           icon: Icon(Icons.refresh),
@@ -83,9 +82,9 @@ class _BillPayment extends State<BillPayment> {
                       Spacer(),
                       //add refresh icon here
                       Padding(
-                        padding:  EdgeInsets.only(right: 33.0),
+                        padding:  EdgeInsets.only(right: 20.0),
                         child: Text(widget.paymentAmountValue,
-                            style: TextStyle(fontSize: 36, color: Color(0xff244857),fontWeight: FontWeight.w700),
+                            style: TextStyle(fontSize: 26, color: Color(0xff244857),fontWeight: FontWeight.w700),
                             textAlign: TextAlign.left),
                       ),
                       //end of refresh icon here
@@ -106,7 +105,7 @@ class _BillPayment extends State<BillPayment> {
                       Spacer(),
                       Container(
                         height: 40,
-                        width: 211,
+                        width: 179,
                         child: RawMaterialButton(
                           onPressed: (){},
                           shape: RoundedRectangleBorder(
@@ -128,44 +127,6 @@ class _BillPayment extends State<BillPayment> {
                   ),
                 ),
 
-                Padding(
-                    padding: EdgeInsets.only(right: 20),
-                    child: Container(
-                        height: 0.5, width: 130.0, color: Color(0xff979797))),
-                Padding(
-                  padding:  EdgeInsets.only(right : 20.0,top:30.0,bottom: 16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Text("Last Payment Amount",
-                          style:
-                              TextStyle(fontSize: 16, color: Color(0xff244857)),
-                          textAlign: TextAlign.left),
-                      Spacer(),
-                      Text(widget.lastPaymentAmount,
-                          style:
-                              TextStyle(fontSize: 16, color: Color(0xff244857)),
-                          textAlign: TextAlign.left),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Text("Last Payment Date",
-                          style:
-                              TextStyle(fontSize: 16, color: Color(0xff244857)),
-                          textAlign: TextAlign.left),
-                      Spacer(),
-                      Text(widget.lastPaymentDate,
-                          style:
-                              TextStyle(fontSize: 16, color: Color(0xff244857)),
-                          textAlign: TextAlign.left),
-                    ],
-                  ),
-                ),
               ],
             ),
           )
