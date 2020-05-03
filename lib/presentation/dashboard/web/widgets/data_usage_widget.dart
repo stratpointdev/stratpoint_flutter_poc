@@ -5,6 +5,7 @@ import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usag
 
 class DataUsageWidget extends StatelessWidget {
   final GlobalKey key;
+  final bool isMobileView;
   final String time;
   final String remainingData;
   final String dataAllocation;
@@ -20,6 +21,7 @@ class DataUsageWidget extends StatelessWidget {
 
   const DataUsageWidget({
     @required this.key,
+    this.isMobileView: false,
     @required this.time,
     @required this.remainingData,
     @required this.dataAllocation,
@@ -50,10 +52,15 @@ class DataUsageWidget extends StatelessWidget {
             padding: const EdgeInsets.only(top: 28.0, bottom: 12.0),
             child: Row(
               children: <Widget>[
-                Text(
-                  'Usage',
-                  style: TextStyle(fontSize: 22, color: Color(0xff244857), fontWeight: FontWeight.w100),
-                  textAlign: TextAlign.left,
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: isMobileView ? 16 : 0,
+                  ),
+                  child: Text(
+                    'Usage',
+                    style: TextStyle(fontSize: 22, color: Color(0xff244857), fontWeight: FontWeight.w100),
+                    textAlign: TextAlign.left,
+                  ),
                 ),
                 Spacer()
               ],
@@ -62,7 +69,7 @@ class DataUsageWidget extends StatelessWidget {
           BlocBuilder<DataUsageBloc, DataUsageState>(builder: (context, state) {
             return IntrinsicHeight(
               child: Container(
-                height: 500,
+                height: isMobileView ? 374 : 500,
                 padding: padding,
                 color: Colors.white,
                 child: Column(
@@ -78,7 +85,7 @@ class DataUsageWidget extends StatelessWidget {
                               'Data Allowance',
                               style: TextStyle(
                                 color: textColor,
-                                fontSize: 20,
+                                fontSize: isMobileView ? 16 :20,
                               ),
                             ),
                             const SizedBox(height: 4),
@@ -86,7 +93,7 @@ class DataUsageWidget extends StatelessWidget {
                               'As of today, $time',
                               style: TextStyle(
                                 color: textColor,
-                                fontSize: 14,
+                                fontSize: isMobileView ? 12 :14,
                               ),
                             ),
                           ],
@@ -110,8 +117,8 @@ class DataUsageWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Container(
-                          width: 224,
-                          height: 180,
+                          width: isMobileView ? 224 : 224,
+                          height: isMobileView ? 122 : 180,
                           child: cupLevelIndicator,
                         ),
                         Spacer(),
@@ -131,14 +138,14 @@ class DataUsageWidget extends StatelessWidget {
                               'Out of $dataAllocation',
                               style: TextStyle(
                                 color: textColor,
-                                fontSize: 14,
+                                fontSize: isMobileView ? 12 : 14,
                               ),
                             ),
                             Text(
                               'Refills on $refillDate',
                               style: TextStyle(
                                 color: textColor,
-                                fontSize: 14,
+                                fontSize:isMobileView ? 12:  14,
                               ),
                             ),
                             const SizedBox(height: 18),
