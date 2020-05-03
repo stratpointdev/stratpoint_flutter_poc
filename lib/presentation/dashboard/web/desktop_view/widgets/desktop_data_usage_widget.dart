@@ -52,7 +52,7 @@ class DataUsageWidget extends StatelessWidget {
               children: <Widget>[
                 Text(
                   'Usage',
-                  style: TextStyle(fontSize: 22, color: Color(0xff244857)),
+                  style: TextStyle(fontSize: 22, color: Color(0xff244857), fontWeight: FontWeight.w100),
                   textAlign: TextAlign.left,
                 ),
                 Spacer()
@@ -93,8 +93,8 @@ class DataUsageWidget extends StatelessWidget {
                         ),
                         Center(
                           child: SizedBox(
-                            height: 24,
-                            width: 24,
+                            height: 18,
+                            width: 18,
                             child: IconButton(
                               padding: EdgeInsets.zero,
                               onPressed: onRefresh,

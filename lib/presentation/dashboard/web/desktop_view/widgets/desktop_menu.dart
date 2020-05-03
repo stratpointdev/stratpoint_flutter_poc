@@ -16,14 +16,14 @@ class DesktopMenu extends StatelessWidget {
         children: <Widget>[
           MenuItem(
               item: "Dashboard",
-              textStyle: TextStyle(fontSize: 14, color: Colors.white, fontWeight: FontWeight.bold)
+              textStyle: TextStyle(fontSize: 14, color: Colors.white, fontWeight: FontWeight.w700)
           ),
 
           Padding(
             padding: EdgeInsets.only(left: 23, right: 22),
             child: MenuItem(
                 item: "My Plan & Usage",
-                textStyle: TextStyle(fontSize: 14, color: Colors.white)
+                textStyle: TextStyle(fontSize: 14, color: Colors.white,fontWeight: FontWeight.w300)
             ),
           ),
 
@@ -31,21 +31,21 @@ class DesktopMenu extends StatelessWidget {
             padding: EdgeInsets.only(right: 23),
             child: MenuItem(
                 item: "Bills & Payment",
-                textStyle: TextStyle(fontSize: 14, color: Colors.white)
+                textStyle: TextStyle(fontSize: 14, color: Colors.white,fontWeight: FontWeight.w300)
             ),
           ),
 
           Padding(
             padding: EdgeInsets.only(right: 22),
             child: MenuItem(
-                item: "Account Details & Request",
-                textStyle: TextStyle(fontSize: 14, color: Colors.white)
+                item: "Account Details and Requests",
+                textStyle: TextStyle(fontSize: 14, color: Colors.white,fontWeight: FontWeight.w300)
             ),
           ),
 
           MenuItem(
               item: "Inbox",
-              textStyle: TextStyle(fontSize: 14, color: Colors.white)
+              textStyle: TextStyle(fontSize: 14, color: Colors.white,fontWeight: FontWeight.w300)
           ),
 
           Spacer()

@@ -33,40 +33,47 @@ class _BillPayment extends State<BillPayment> {
         children: <Widget>[
           Padding(
             padding: EdgeInsets.only(bottom: 12),
-            child: Text("Bill Payment",
-                style: TextStyle(fontSize: 22, color: Color(0xff244857)),
-                textAlign: TextAlign.left),
+            child: Text("Bills Payment",
+                style: TextStyle(fontSize: 22, color: Color(0xff244857), fontWeight: FontWeight.w100),
+                textAlign: TextAlign.left, ),
           ),
           Container(
             color: Colors.white,
             padding: EdgeInsets.only(left: 20,top: 20,bottom: 20),
-            height: 382,
+            height: 343,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
+
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text("Amount to pay :",
-                        style:TextStyle(fontSize: 18, color: Color(0xff244857)),
-                        textAlign: TextAlign.left),
-
-                    Spacer(),
-                    //add refresh icon here
-
-                    IconButton(
-                      onPressed: widget.onRefresh,
-                      icon: Icon(Icons.refresh),
-                    )
-                    //end of refresh icon here
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text("Amount to pay :",
+                            style:TextStyle(fontSize: 18, color: Color(0xff244857)),
+                            textAlign: TextAlign.left),
+                        const SizedBox(height: 4),
+                        Text(
+                          "Due on " + widget.dueDate,
+                          style: TextStyle(fontSize: 14, color: Color(0xff244857)),
+                          textAlign: TextAlign.left,
+                        ),
+                      ],
+                    ),
+                    Center(
+                      child: SizedBox(
+                        height: 18,
+                        width: 18,
+                        child:   IconButton(
+                          onPressed: widget.onRefresh,
+                          icon: Icon(Icons.refresh),
+                        )
+                      ),
+                    ),
                   ],
                 ),
-
-                Text(
-                  "Due on " + widget.dueDate,
-                  style: TextStyle(fontSize: 14, color: Color(0xff244857)),
-                  textAlign: TextAlign.left,
-                ),
-
 
                 Padding(
                   padding:  EdgeInsets.only(bottom : 12.0),
@@ -130,7 +137,7 @@ class _BillPayment extends State<BillPayment> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Text("Last Load Amount",
+                      Text("Last Payment Amount",
                           style:
                               TextStyle(fontSize: 16, color: Color(0xff244857)),
                           textAlign: TextAlign.left),
@@ -147,7 +154,7 @@ class _BillPayment extends State<BillPayment> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Text("Last Load Date",
+                      Text("Last Payment Date",
                           style:
                               TextStyle(fontSize: 16, color: Color(0xff244857)),
                           textAlign: TextAlign.left),

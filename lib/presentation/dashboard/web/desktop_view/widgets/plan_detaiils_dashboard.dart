@@ -17,10 +17,10 @@ class _PlanDetailsWidget extends State<PlanDetailsWidget> {
               'Plan Details',
               textAlign: TextAlign.left,
               style: TextStyle(
-                color: Color(0xff244857),
-                fontFamily: 'FSElliotPro',
-                fontSize: 22,
-              ),
+                  color: Color(0xff244857),
+                  fontFamily: 'FSElliotPro',
+                  fontSize: 22,
+                  fontWeight: FontWeight.w100),
             ),
             SizedBox(height: 12),
             Container(

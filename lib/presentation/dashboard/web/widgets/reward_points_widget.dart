@@ -24,14 +24,14 @@ class RewardPointsWidget extends StatelessWidget {
             ),
             child: Text(
               'Reward Points',
-              style: TextStyle(fontSize: 22, color: Color(0xff244857)),
+              style: TextStyle(fontSize: 22, color: Color(0xff244857), fontWeight: FontWeight.w100),
               textAlign: TextAlign.left,
             ),
           ),
           Container(
             color: Colors.white,
             padding: EdgeInsets.all(leftPadding),
-            height: 382,
+            height: 343,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
