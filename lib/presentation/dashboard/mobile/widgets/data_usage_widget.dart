@@ -41,12 +41,6 @@ class DataUsageWidget extends StatelessWidget {
       fontSize: 17,
       color: cupIndicatorTextColor,
     );
- /*   final TextStyle cupLevelIndicatorTextStyleMobile = TextStyle(
-      fontFamily: 'FSElliotPro',
-      fontSize: MediaQueryUtil.convertHeight(screenHeight, 12),
-      color: cupIndicatorTextColor,
-    );
-*/
     return IntrinsicHeight(
       child: Container(
         padding: padding,
