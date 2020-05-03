@@ -34,10 +34,7 @@ void main() {
 
     expectLater(
         bloc,
-        emitsInOrder([
-          PaymentDetailsInitialState(),
-          PaymentDetailsLoadingState(),
-          PaymentDetailsSuccessState()
-        ]));
+        emitsInOrder(
+            [PaymentDetailsInitialState(), PaymentDetailsSuccessState()]));
   });
 }

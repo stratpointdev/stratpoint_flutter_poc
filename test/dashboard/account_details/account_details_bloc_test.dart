@@ -41,7 +41,6 @@ void main() {
         bloc,
         emitsInOrder([
           AccountDetailsInitialState(),
-          AccountDetailsLoadingState(),
           AccountDetailsSuccessState(nameInfo: nameInfo)
         ]));
   });
