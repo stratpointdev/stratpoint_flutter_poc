@@ -15,10 +15,8 @@ import 'package:globe_one_poc_project/application/dashboard/payment_details/paym
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_state.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/web/desktop_view/widgets/plan_detaiils_dashboard.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/desktop_view/widgets/spending_limit.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/mobile_view/widgets/mobile_bill_payment.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/web/mobile_view/widgets/mobile_view_payment_details.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/reward_points_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/common/progress_indicator_widget.dart';
