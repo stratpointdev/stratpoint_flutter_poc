@@ -49,7 +49,7 @@ class _AccountDesktopDashboard extends State<AccountDesktopDashboard> {
                 width: 215,
                 padding: const EdgeInsets.only(left : 24.0),
                 child: Text(widget.mobile,
-                    style: TextStyle(fontSize: 14, color: Colors.white),
+                    style: TextStyle(fontSize: 14, color: Colors.white,fontWeight: FontWeight.w200),
                     textAlign: TextAlign.left),
               ),
               Row(
@@ -75,11 +75,11 @@ class _AccountDesktopDashboard extends State<AccountDesktopDashboard> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("Duo Number",
-                    style: TextStyle(fontSize: 14, color: Colors.white,fontWeight: FontWeight.w400),
+                Text("DUO Number",
+                    style: TextStyle(fontSize: 14, color: Colors.white,fontWeight: FontWeight.w200),
                     textAlign: TextAlign.left),
                 Text(widget.duoNumber,
-                    style: TextStyle(fontSize: 14, color: Colors.white),
+                    style: TextStyle(fontSize: 14, color: Colors.white,fontWeight: FontWeight.w200),
                     textAlign: TextAlign.left)
               ],
             ),
