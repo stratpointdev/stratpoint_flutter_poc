@@ -115,7 +115,6 @@ class _MobileDashboard extends State<MobileDashboard> {
                   remainingData = state.volumeRemaing;
                   dataAllocation = state.totalAllocated;
                   refillDate = state.endDate;
-
                   cupLevelIndicator = state.cupLevelIndicator;
                   lastApiCall = state.lastApiCall;
                 }
