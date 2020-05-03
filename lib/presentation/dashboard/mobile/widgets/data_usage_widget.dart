@@ -37,10 +37,6 @@ class DataUsageWidget extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-    final TextStyle cupLevelIndicatorTextStyle = TextStyle(
-      fontSize: 17,
-      color: cupIndicatorTextColor,
-    );
     return IntrinsicHeight(
       child: Container(
         padding: padding,
