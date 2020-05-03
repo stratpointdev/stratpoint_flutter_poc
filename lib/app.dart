@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
           textSelectionColor: Color(0xff001B58),
           errorColor: Color(0xffE02020),
           disabledColor: Color(0xff007AFF),
-          hintColor: Color(0xffA1A1A1),
+          hintColor: Color(0xff7F7F7F),
           primaryColor: Color(0xff0056BF),
           accentColor: Colors.white,
         ),
