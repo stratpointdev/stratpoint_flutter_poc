@@ -227,7 +227,8 @@ class DesktopHeader extends StatelessWidget {
                     style: TextStyle(color: Color(0xff33464D), fontSize: 14),
                   ))
             ],
-          )
+          ),
+
         ],
       ),
     );

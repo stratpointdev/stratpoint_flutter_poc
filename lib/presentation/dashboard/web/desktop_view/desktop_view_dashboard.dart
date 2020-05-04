@@ -13,16 +13,16 @@ import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/spending_limit.dart';
 import '../../../../r.dart';
-import 'widgets/account_desktop_dashboard.dart';
-import 'widgets/desktop_header_menu.dart';
-import 'widgets/desktop_load_rewards.dart';
+import 'widgets/desktop_view_account_details.dart';
+import 'widgets/desktop_view_header_menu.dart';
+import 'widgets/desktop_view_load_rewards.dart';
 
 import 'package:flutter/material.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/common/progress_indicator_widget.dart';
 
-import 'widgets/desktop_header.dart';
-import 'widgets/desktop_menu.dart';
-import 'widgets/plan_detaiils_dashboard.dart';
+import 'widgets/desktop_view_header.dart';
+import 'widgets/desktop_view_menu.dart';
+import 'widgets/desktop_view_plan_detaiils.dart';
 
 class DesktopDashboard extends StatefulWidget {
   @override
@@ -66,6 +66,20 @@ class _DesktopDashboardState extends State<DesktopDashboard> {
             children: <Widget>[
               DesktopHeaderMenu(),
               DesktopHeader(),
+
+              Container(
+                width: MediaQuery.of(context).size.width,
+                color: Color(0xff93B9C0),
+                padding: EdgeInsets.all(12),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 57),
+                  child: Text(
+                    "GLOBEONE",
+                    style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w200),
+                  ),
+                ),
+              ),
+
               BlocBuilder<AccountDetailsBloc, AccountDetailsState>(
                   builder: (context, state) {
                 String userName = '';
@@ -117,9 +131,8 @@ class _DesktopDashboardState extends State<DesktopDashboard> {
                         if (state is DataUsageLoadingState)
                           return Container(
                               width: 437,
-                              height: 500,
-                              child:
-                                  Center(child: ProgressIndicatorWidget()));
+                              height: 539,
+                              child: Center(child: ProgressIndicatorWidget()));
 
                         if (state is DataUsageSuccessState) {
                           remainingData = state.volumeRemaing;
