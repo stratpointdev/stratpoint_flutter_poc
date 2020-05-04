@@ -16,7 +16,7 @@ class DesktopHeaderMenu extends StatelessWidget {
               child: FittedBox(fit: BoxFit.fitWidth,
                 child: Text(
                   "About Us",
-                  style: TextStyle(color: Colors.white, fontSize: 12),
+                  style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w200),
                 ),
               ),
             ),
@@ -25,7 +25,7 @@ class DesktopHeaderMenu extends StatelessWidget {
               child:FittedBox(fit: BoxFit.fitWidth,
                 child: Text(
                   "Governance",
-                  style: TextStyle(color: Colors.white, fontSize: 12),
+                  style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w200),
                 ),
               ),
             ),
@@ -34,7 +34,7 @@ class DesktopHeaderMenu extends StatelessWidget {
               child: FittedBox(fit: BoxFit.fitWidth,
                 child: Text(
                   "Investor",
-                  style: TextStyle(color: Colors.white, fontSize: 12),
+                  style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w200),
                 ),
               ),
             ),
@@ -43,7 +43,7 @@ class DesktopHeaderMenu extends StatelessWidget {
               child: FittedBox(fit: BoxFit.fitWidth,
                 child: Text(
                   "News",
-                  style: TextStyle(color: Colors.white, fontSize: 12),
+                  style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w200),
                 ),
               ),
             ),
@@ -52,7 +52,7 @@ class DesktopHeaderMenu extends StatelessWidget {
               child: FittedBox(fit: BoxFit.fitWidth,
                 child: Text(
                   "Sustainability",
-                  style: TextStyle(color: Colors.white, fontSize: 12),
+                  style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w200),
                 ),
               ),
             ),
@@ -61,7 +61,7 @@ class DesktopHeaderMenu extends StatelessWidget {
               child: FittedBox(fit: BoxFit.fitWidth,
                 child: Text(
                   "Careers",
-                  style: TextStyle(color: Colors.white, fontSize: 12),
+                  style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w200),
                 ),
               ),
             ),

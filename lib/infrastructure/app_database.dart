@@ -6,6 +6,8 @@ import 'package:sembast/sembast.dart';
 
 import 'package:sembast/sembast_io.dart';
 
+import 'encryption.dart';
+
 class AppDatabase {
   static final AppDatabase _singleton = AppDatabase._();
   static AppDatabase get instance => _singleton;
@@ -25,10 +27,8 @@ class AppDatabase {
     final appDocumentDir = await getApplicationDocumentsDirectory();
     final dbPath = join(appDocumentDir.path, 'globeone.db');
 
-    final database = await databaseFactoryIo.openDatabase(dbPath);
+    var codec = getEncryptSembastCodec(password: 'Str@tpo1nt');
+    final database = await databaseFactoryIo.openDatabase(dbPath, codec: codec);
     _dbOpenCompleter.complete(database);
   }
-
-
 }
-

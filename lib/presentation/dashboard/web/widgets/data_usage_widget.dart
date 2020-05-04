@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
+import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 
 class DataUsageWidget extends StatelessWidget {
   final GlobalKey key;
@@ -38,6 +39,7 @@ class DataUsageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
 
     return Container(
       width: 437,
@@ -107,7 +109,7 @@ class DataUsageWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Container(
-                          width: isMobileView ? 224 : 224,
+                          width: isMobileView ? MediaQueryUtil.convertWidth(screenWidth, 130) : 224,
                           height: isMobileView ? 122 : 180,
                           child: cupLevelIndicator,
                         ),
@@ -116,37 +118,45 @@ class DataUsageWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text(
-                              '$remainingData LEFT',
-                              style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w700,
-                                  color: Color(0xff244857)),
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              'Out of $dataAllocation',
-                              style: TextStyle(
-                                color: textColor,
-                                fontSize: isMobileView ? 12 : 14,
+                            FittedBox(fit: BoxFit.fitWidth,
+                              child: Text(
+                                '$remainingData LEFT',
+                                style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w700,
+                                    color: Color(0xff244857)),
                               ),
                             ),
-                            Text(
-                              'Refills on $refillDate',
-                              style: TextStyle(
-                                color: textColor,
-                                fontSize:isMobileView ? 12:  14,
+                            const SizedBox(height: 8),
+                            FittedBox(fit: BoxFit.fitWidth,
+                              child: Text(
+                                'Out of $dataAllocation',
+                                style: TextStyle(
+                                  color: textColor,
+                                  fontSize: isMobileView ? 12 : 14,
+                                ),
+                              ),
+                            ),
+                            FittedBox(fit: BoxFit.fitWidth,
+                              child: Text(
+                                'Refills on $refillDate',
+                                style: TextStyle(
+                                  color: textColor,
+                                  fontSize:isMobileView ? 12:  14,
+                                ),
                               ),
                             ),
                             const SizedBox(height: 18),
-                            Text(
-                              'View Details',
-                              style: TextStyle(
+                            FittedBox(fit: BoxFit.fitWidth,
+                              child: Text(
+                                'View Details',
+                                style: TextStyle(
 
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w700,
-                                  decoration: TextDecoration.underline,
-                                  color: Color(0xff244857),),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700,
+                                    decoration: TextDecoration.underline,
+                                    color: Color(0xff244857),),
+                              ),
                             ),
                           ],
                         ),
@@ -176,12 +186,14 @@ class DataUsageWidget extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     Expanded(
-                      child: Text(
-                        'This includes your main data, rollover data, and free app data allowance',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: textColor,
+                      child: FittedBox(fit: BoxFit.fitWidth,
+                        child: Text(
+                          'This includes your main data, rollover data, and free app data allowance',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: textColor,
+                          ),
                         ),
                       ),
                     )

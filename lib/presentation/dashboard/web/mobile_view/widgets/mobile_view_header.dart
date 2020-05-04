@@ -59,17 +59,12 @@ class MobileHeader extends StatelessWidget {
         Container(
           color: Color(0xff93B9C0),
           padding: EdgeInsets.all(20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(right: 30),
-                child: Text(
-                  "GLOBEONE",
-                  style: TextStyle(color: Colors.white, fontSize: 14),
-                ),
-              )
-            ],
+          child: Padding(
+            padding: EdgeInsets.only(right: 30),
+            child: Text(
+              "GLOBEONE",
+              style: TextStyle(color: Colors.white, fontSize: 14),
+            ),
           ),
         )
       ],
