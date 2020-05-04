@@ -32,7 +32,7 @@ class MobileHeader extends StatelessWidget {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: NetworkImage(R.assetsImagesGlobelogo),
+                        image: AssetImage(R.assetsImagesGlobelogo),
                       ),
                     ),
                   )),
@@ -43,7 +43,7 @@ class MobileHeader extends StatelessWidget {
                   padding: EdgeInsets.only(right: 20),
                   child: CircleAvatar(
                     radius: 15.0,
-                    backgroundImage: NetworkImage(R.assetsImagesUser),
+                    backgroundImage: AssetImage(R.assetsImagesUser),
                     backgroundColor: Colors.transparent,
                   )),
               Padding(

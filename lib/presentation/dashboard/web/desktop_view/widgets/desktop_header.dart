@@ -88,7 +88,7 @@ class DesktopHeader extends StatelessWidget {
                   padding: EdgeInsets.only(right: 14 , top: 19),
                   child: CircleAvatar(
                     radius: 12.0,
-                    backgroundImage: NetworkImage(R.assetsImagesUser),
+                    backgroundImage: AssetImage(R.assetsImagesUser),
                     backgroundColor: Colors.transparent,
                   )),
               Padding(
@@ -116,7 +116,7 @@ class DesktopHeader extends StatelessWidget {
                     height: 70,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: NetworkImage(R.assetsImagesGlobelogo),
+                        image: AssetImage(R.assetsImagesGlobelogo),
                       ),
                     ),
                   )),

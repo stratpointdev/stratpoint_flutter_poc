@@ -53,6 +53,7 @@ flutter:
     - assets/images/topbanner.png
     - assets/images/user.png
     - assets/images/webspeedlimit.png
+    - assets/images/webmobileview_speedlimit.png
     # assets-generator-end
   
   fonts:
