@@ -72,7 +72,7 @@ class _BillPayment extends State<BillPayment> {
                 ),
 
                 Padding(
-                  padding:  EdgeInsets.only(bottom : 12.0),
+                  padding:  EdgeInsets.only(top: 22,bottom : 12.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[

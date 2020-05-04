@@ -45,7 +45,7 @@ class PaymentDetailsSuccessState extends PaymentDetailsState {
           .outstandingBalanceByMsisdnResult
           .lastPaymentDt
           .amount),
-      lastPaymentDate: DateTimeConverter.convertToDate(paymentDetailsModel
+      lastPaymentDate: DateTimeConverter.convertToDateWithYear(paymentDetailsModel
           .outstandingBalanceByMsisdnResponse
           .outstandingBalanceByMsisdnResult
           .lastPaymentDt

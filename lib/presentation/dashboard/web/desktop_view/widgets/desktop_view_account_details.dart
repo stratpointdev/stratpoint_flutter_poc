@@ -25,8 +25,9 @@ class _AccountDesktopDashboard extends State<AccountDesktopDashboard> {
   Widget build(BuildContext context) {
     return Container(
       color: Color(0xff037DB4),
-      padding: EdgeInsets.only(left: 150, top: 26, bottom: 49),
+      padding: EdgeInsets.only(left: 150, top: 38, bottom: 37),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           CircleAvatar(
             radius: 35,
@@ -34,6 +35,7 @@ class _AccountDesktopDashboard extends State<AccountDesktopDashboard> {
             backgroundColor: Colors.transparent,
           ),
           Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
@@ -71,7 +73,7 @@ class _AccountDesktopDashboard extends State<AccountDesktopDashboard> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 31.0),
+            padding: const EdgeInsets.only( bottom: 30),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -82,9 +84,11 @@ class _AccountDesktopDashboard extends State<AccountDesktopDashboard> {
                     style: TextStyle(fontSize: 14, color: Colors.white,fontWeight: FontWeight.w200),
                     textAlign: TextAlign.left)
               ],
+
             ),
           ),
-          Spacer()
+          Spacer(),
+          Spacer(),
         ],
       ),
     );

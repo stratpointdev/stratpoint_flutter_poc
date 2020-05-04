@@ -3,7 +3,7 @@ import 'package:globe_one_poc_project/application/dashboard/payment_details/paym
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_state.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/web/desktop_view/widgets/bill_payment.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/web/desktop_view/widgets/desktop_view_bill_payment.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/reward_points_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/common/progress_indicator_widget.dart';
 
@@ -58,7 +58,7 @@ class _DesktopLoadRewards extends State<DesktopLoadRewards> {
             if(state is PaymentDetailsLoadingState)
               return Container(
                   color:  Color(0xffD2D8DB),
-                  height: 420,
+                  height: 382,
                   width: 562,
                   child: Center(child: ProgressIndicatorWidget()));
 
