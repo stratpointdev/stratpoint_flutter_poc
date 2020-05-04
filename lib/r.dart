@@ -27,6 +27,8 @@ class R {
   static final String assetsImagesUser = 'assets/images/user.png';
   /// ![](http://127.0.0.1:9527/assets/images/webspeedlimit.png)
   static final String assetsImagesWebspeedlimit = 'assets/images/webspeedlimit.png';
+  /// ![](http://127.0.0.1:9527/assets/images/webmobileview_speedlimit.png)
+  static final String assetsImagesMobilespeedlimit = 'assets/images/webmobileview_speedlimit.png';
   /// ![](http://127.0.0.1:9527/assets/images/duck/0.png)
   static final String assetsImagesDuck0 = 'assets/images/duck/0.png';
   /// ![](http://127.0.0.1:9527/assets/images/duck/100_.png)

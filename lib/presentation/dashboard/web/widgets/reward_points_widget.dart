@@ -74,7 +74,7 @@ class RewardPointsWidget extends StatelessWidget {
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 fit: BoxFit.fill,
-                                image: NetworkImage(image),
+                                image: AssetImage(image),
                               ),
                             ),
                           ),
