@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:globe_one_poc_project/r.dart';
 
 class SpendingLimitWidget extends StatefulWidget {
+
+  final  bool isMobileView;
+  const SpendingLimitWidget({this.isMobileView = false});
+
   @override
   _SpendingLimitWidget createState() => _SpendingLimitWidget();
 }
@@ -57,7 +61,7 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
             ),
           ),
           SizedBox(height: 12),
-          Image.asset(R.assetsImagesWebspeedlimit),
+          Image.asset(widget.isMobileView ?  R.assetsImagesMobilespeedlimit : R.assetsImagesWebspeedlimit,),
           SizedBox(height: 30),
           Text(
             'REMEMBER: Reaching your speed limit due to excess usage charge may cause temporary disconnect of line',

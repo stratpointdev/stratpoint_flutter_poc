@@ -46,7 +46,7 @@ class _BillPayment extends State<BillPayment> {
               children: <Widget>[
 
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,16 +62,12 @@ class _BillPayment extends State<BillPayment> {
                         ),
                       ],
                     ),
-                    Center(
-                      child: SizedBox(
-                        height: 18,
-                        width: 18,
-                        child:   IconButton(
-                          onPressed: widget.onRefresh,
-                          icon: Icon(Icons.refresh),
-                        )
-                      ),
-                    ),
+
+                    IconButton(
+                      alignment: Alignment.topCenter,
+                      onPressed: widget.onRefresh,
+                      icon: Icon(Icons.refresh),
+                    )
                   ],
                 ),
 
