@@ -28,7 +28,7 @@ class PaymentDetailsSuccessState extends PaymentDetailsState {
       this.dateNow});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [paymentAmountValue,dueDate,lastPaymentAmount,lastPaymentDate,dateNow];
 
   factory PaymentDetailsSuccessState.paymentDetailsSuccessState(
       {PaymentDetailsModel paymentDetailsModel}) {

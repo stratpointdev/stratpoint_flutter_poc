@@ -60,7 +60,7 @@ class _AccountDesktopDashboard extends State<AccountDesktopDashboard> {
                     padding: EdgeInsets.fromLTRB(24, 8,0,0),
                     child: Text("View other accounts",
                         style:
-                            TextStyle(fontSize: 12, color: Color(0x80ffffff)),
+                            TextStyle(fontSize: 15, color: Color(0x80ffffff), fontWeight: FontWeight.w200),
                         textAlign: TextAlign.left),
                   ),
                   Padding(
