@@ -11,25 +11,28 @@ class _MobileViewPlanDetailsWidget extends State<MobileViewPlanDetailsWidget> {
     return  Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              'Plan Details',
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                  color: Color(0xff244857),
-                  fontFamily: 'FSElliotPro',
-                  fontSize: 22,
-                  fontWeight: FontWeight.w100),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Text(
+                'Plan Details',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                    color: Color(0xff244857),
+                    fontFamily: 'FSElliotPro',
+                    fontSize: 22,
+                    fontWeight: FontWeight.w100),
+              ),
             ),
             SizedBox(height: 12),
             Container(
               padding:
-                  EdgeInsets.only(top: 24, left: 20, right: 20, bottom: 24),
+                  EdgeInsets.only(top: 24, left: 16, right: 20, bottom: 24),
               color: Colors.white,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'Your current plan:',
@@ -49,30 +52,11 @@ class _MobileViewPlanDetailsWidget extends State<MobileViewPlanDetailsWidget> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 16),
+                  SizedBox(height: 24),
 
                   Row(
-                    children: <Widget>[
-                      SizedBox(width: 36),
-                      Text(
-                        'Contract Expiry:',
-                        style: TextStyle(
-                          color: Color(0xff244857),
-                          fontSize: 14,
-                        ),
-                      ),
-                      SizedBox(width: 16),
-                      Text(
-                        'December 12, 2020',
-                        style: TextStyle(
-                          color: Color(0xff244857),
-                          fontWeight: FontWeight.w100,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
                         'Cut off date:',
@@ -81,7 +65,7 @@ class _MobileViewPlanDetailsWidget extends State<MobileViewPlanDetailsWidget> {
                           fontSize: 14,
                         ),
                       ),
-                      SizedBox(width: 16),
+                      SizedBox(width: 57),
                       Text(
                         '23rd of the month',
                         style: TextStyle(
@@ -92,10 +76,33 @@ class _MobileViewPlanDetailsWidget extends State<MobileViewPlanDetailsWidget> {
                       ),
                     ],
                   ),
+                  SizedBox(height: 16),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'Contract Expiry:',
+                        style: TextStyle(
+                          color: Color(0xff244857),
+                          fontSize: 14,
+                        ),
+                      ),
+                      SizedBox(width: 32),
+                      Text(
+                        'December 12, 2020',
+                        style: TextStyle(
+                          color: Color(0xff244857),
+                          fontWeight: FontWeight.w100,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 16),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-
-                      SizedBox(width: 56),
                       Text(
                         'Months remaining:',
                         style: TextStyle(
@@ -114,9 +121,11 @@ class _MobileViewPlanDetailsWidget extends State<MobileViewPlanDetailsWidget> {
                       ),
                     ],
                   ),
+                  SizedBox(height: 32),
                   SizedBox(
                     width: 210,
                     height: 40,
+
                     child: RawMaterialButton(
                       onPressed: () => {},
                       shape: RoundedRectangleBorder(

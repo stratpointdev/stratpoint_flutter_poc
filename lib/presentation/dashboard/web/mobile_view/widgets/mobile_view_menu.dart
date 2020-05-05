@@ -10,12 +10,12 @@ class MobileMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-        color: Color(0xff3DB0CD),
+        color: Color(0xff1587B7),
         height: 40,
         child:
             Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
           Text("Dashboard",
-              style: TextStyle(fontSize: 14, color: Colors.white),
+              style: TextStyle(fontSize: 14, color: Colors.white, fontWeight: FontWeight.w200),
               textAlign: TextAlign.left),
           Expanded(
             child: Spacer(),

@@ -47,7 +47,7 @@ class DataUsageWidget extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(top: 28.0, bottom: 12.0),
+            padding:  EdgeInsets.only(top: 28.0, bottom:  12.0),
             child: Row(
               children: <Widget>[
                 Padding(
@@ -67,7 +67,7 @@ class DataUsageWidget extends StatelessWidget {
           BlocBuilder<DataUsageBloc, DataUsageState>(builder: (context, state) {
             return IntrinsicHeight(
               child: Container(
-                height: isMobileView ? 374 : 500,
+                height: isMobileView ? 400 : 500,
                 padding: padding,
                 color: Colors.white,
                 child: Column(
@@ -184,16 +184,14 @@ class DataUsageWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 16),
+                     SizedBox(height: 16 ),
                     Expanded(
-                      child: FittedBox(fit: BoxFit.fitWidth,
-                        child: Text(
-                          'This includes your main data, rollover data, and free app data allowance',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: textColor,
-                          ),
+                      child: Text(
+                        'This includes your main data, rollover data, and free app data allowance',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: textColor,
                         ),
                       ),
                     )

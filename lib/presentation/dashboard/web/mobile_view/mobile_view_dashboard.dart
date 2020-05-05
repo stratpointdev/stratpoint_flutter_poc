@@ -128,6 +128,7 @@ class _MobileDashboard extends State<MobileDashboard> {
 
                   if(state is PaymentDetailsLoadingState)
                     return Container(
+                      height: 238,
                         width:  MediaQuery.of(context).size.width,
                         child: Center(child: ProgressIndicatorWidget()));
 
@@ -153,6 +154,7 @@ class _MobileDashboard extends State<MobileDashboard> {
 
                 if (state is DataUsageLoadingState)
                   return Container(
+                    height: 413,
                       width: MediaQuery.of(context).size.width,
                       child: Center(child: ProgressIndicatorWidget()));
 

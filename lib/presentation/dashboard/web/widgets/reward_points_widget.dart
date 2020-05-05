@@ -31,7 +31,7 @@ class RewardPointsWidget extends StatelessWidget {
           ),
           Container(
             color: Colors.white,
-            padding: EdgeInsets.all(leftPadding),
+            padding: EdgeInsets.only(left: leftPadding, top: 24, right: 20, bottom: 20),
             height: hasTitlePadding ? 361 : 343,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -51,10 +51,9 @@ class RewardPointsWidget extends StatelessWidget {
                       style: TextStyle(fontSize:hasTitlePadding ? 26 : 36, color: Color(0xff244857),fontWeight: FontWeight.w700),
                       textAlign: TextAlign.left,
                     ),
-                    SizedBox(height: 16),
                   ],
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 16),
                 Text(
                   'As our customer, you’re in for a surprise every day! from your favorite mobile promos to treats, there’s a world of wonderful rewards that awaits you!',
                   style: TextStyle(fontSize: 14, color: Color(0xff244857)),
@@ -93,6 +92,7 @@ class RewardPointsWidget extends StatelessWidget {
                           fontSize: 14,
                           color: Color(0xff244857),
                           decoration: TextDecoration.underline,
+                          fontWeight: FontWeight.w700,
                         ),
                         textAlign: TextAlign.left,
                       ),
