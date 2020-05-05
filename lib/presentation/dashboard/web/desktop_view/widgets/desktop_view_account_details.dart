@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AccountDesktopDashboard extends StatefulWidget {
-  const AccountDesktopDashboard({
+class DesktopViewAccountDetails extends StatefulWidget {
+  const DesktopViewAccountDetails({
     this.profile,
     this.mobile,
     this.duoNumber,
@@ -14,10 +14,10 @@ class AccountDesktopDashboard extends StatefulWidget {
   final String profilePicture;
 
   @override
-  _AccountDesktopDashboard createState() => _AccountDesktopDashboard();
+  _DesktopViewAccountDetails createState() => _DesktopViewAccountDetails();
 }
 
-class _AccountDesktopDashboard extends State<AccountDesktopDashboard> {
+class _DesktopViewAccountDetails extends State<DesktopViewAccountDetails> {
   static const IconData expand_more =
       IconData(0xe5cf, fontFamily: 'MaterialIcons');
 
