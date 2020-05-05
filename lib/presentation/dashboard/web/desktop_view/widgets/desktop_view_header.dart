@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:globe_one_poc_project/r.dart';
 
-class DesktopHeader extends StatelessWidget {
-  const DesktopHeader();
+class DesktopViewHeader extends StatelessWidget {
+  const DesktopViewHeader();
 
   static const IconData search = IconData(0xe8b6, fontFamily: 'MaterialIcons');
   static const IconData userIcon =

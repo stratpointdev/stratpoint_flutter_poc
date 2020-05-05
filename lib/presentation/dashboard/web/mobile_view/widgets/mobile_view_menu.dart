@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class MobileMenu extends StatelessWidget {
-  const MobileMenu();
+class MobileViewMenu extends StatelessWidget {
+  const MobileViewMenu();
 
   static const IconData expand_more =
       IconData(0xe5cf, fontFamily: 'MaterialIcons');

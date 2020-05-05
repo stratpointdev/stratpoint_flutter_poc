@@ -4,8 +4,8 @@ import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/menu_it
 
 
 
-class DesktopMenu extends StatelessWidget {
-  const DesktopMenu();
+class DesktopViewMenu extends StatelessWidget {
+  const DesktopViewMenu();
 
   @override
   Widget build(BuildContext context) {

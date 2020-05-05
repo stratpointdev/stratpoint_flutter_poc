@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-class LoadBalance extends StatefulWidget {
+class DesktopViewLoadBalance extends StatefulWidget {
   final GlobalKey key;
   final String paymentAmountValue;
   final String dueDate;
@@ -9,7 +9,7 @@ class LoadBalance extends StatefulWidget {
   final String lastPaymentAmount;
   final String lastPaymentDate;
   final String dateNow;
-  LoadBalance(
+  DesktopViewLoadBalance(
       {this.key,
       this.paymentAmountValue,
       this.dueDate,
@@ -19,10 +19,10 @@ class LoadBalance extends StatefulWidget {
       this.dateNow});
 
   @override
-  _LoadBalance createState() => _LoadBalance();
+  _DesktopViewLoadBalance createState() => _DesktopViewLoadBalance();
 }
 
-class _LoadBalance extends State<LoadBalance> {
+class _DesktopViewLoadBalance extends State<DesktopViewLoadBalance> {
   // static const IconData refresh = IconData(0xe5d5, fontFamily: 'MaterialIcons');
 
   @override

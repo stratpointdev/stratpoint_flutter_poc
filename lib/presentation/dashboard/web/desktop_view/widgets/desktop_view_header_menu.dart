@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class DesktopHeaderMenu extends StatelessWidget {
-  const DesktopHeaderMenu();
+class DesktopViewHeaderMenu extends StatelessWidget {
+  const DesktopViewHeaderMenu();
 
   @override
   Widget build(BuildContext context) {

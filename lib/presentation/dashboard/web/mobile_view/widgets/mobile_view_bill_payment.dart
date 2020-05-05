@@ -27,6 +27,7 @@ class _MobileViewBillPayment extends State<MobileViewBillPayment> {
   @override
   Widget build(BuildContext context) {
     return Container(
+
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class PlanDetailsWidget extends StatefulWidget {
+class DesktopViewPlanDetails extends StatefulWidget {
   @override
-  _PlanDetailsWidget createState() => _PlanDetailsWidget();
+  _DesktopViewPlanDetails createState() => _DesktopViewPlanDetails();
 }
 
-class _PlanDetailsWidget extends State<PlanDetailsWidget> {
+class _DesktopViewPlanDetails extends State<DesktopViewPlanDetails> {
   @override
   Widget build(BuildContext context) {
     return Stack(
