@@ -28,7 +28,7 @@ class PaymentDetailsSuccessState extends PaymentDetailsState {
       this.dateNow});
 
   @override
-  List<Object> get props => [paymentAmountValue,dueDate,lastPaymentAmount,lastPaymentDate,dateNow];
+  List<Object> get props => [];
 
   factory PaymentDetailsSuccessState.paymentDetailsSuccessState(
       {PaymentDetailsModel paymentDetailsModel}) {
@@ -45,11 +45,9 @@ class PaymentDetailsSuccessState extends PaymentDetailsState {
           .outstandingBalanceByMsisdnResult
           .lastPaymentDt
           .amount),
-      lastPaymentDate: DateTimeConverter.convertToDateWithYear(paymentDetailsModel
-          .outstandingBalanceByMsisdnResponse
-          .outstandingBalanceByMsisdnResult
-          .lastPaymentDt
-          .paymentDate),
+      lastPaymentDate: DateTimeConverter.convertToDateWithYear(
+          paymentDetailsModel.outstandingBalanceByMsisdnResponse
+              .outstandingBalanceByMsisdnResult.lastPaymentDt.paymentDate),
       dateNow: DateTimeConverter.getDateWithYearNow(),
     );
   }
