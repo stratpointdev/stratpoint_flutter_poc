@@ -35,6 +35,7 @@ void main() {
         RetrieveSubscriberUsageResult(buckets: buckets);
     DataUsageModel dataUsageModel =
         DataUsageModel(retrieveSubscriberUsageResult: result);
+
     when(mockRepository.getDataUsage())
         .thenAnswer((_) async => right(dataUsageModel));
 
@@ -44,7 +45,8 @@ void main() {
         bloc,
         emitsInOrder([
           DataUsageInitialState(),
-          DataUsageSuccessState.dataUsageSuccesState(dataUsages)
+          DataUsageSuccessState.dataUsageSuccesState(dataUsageModel
+              .retrieveSubscriberUsageResult.buckets.dataUsageList)
         ]));
   });
 }

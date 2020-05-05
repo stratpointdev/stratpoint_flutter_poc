@@ -27,7 +27,7 @@ class DataUsageSuccessState extends DataUsageState {
   });
 
   @override
-  List<Object> get props => [volumeRemaing, totalAllocated, endDate,lastApiCall,cupLevelIndicator];
+  List<Object> get props => [];
 
   //function to sum all total allocated and remainingData;
   factory DataUsageSuccessState.dataUsageSuccesState(
