@@ -24,12 +24,12 @@ import 'widgets/desktop_view_header.dart';
 import 'widgets/desktop_view_menu.dart';
 import 'widgets/desktop_view_plan_detaiils.dart';
 
-class DesktopDashboard extends StatefulWidget {
+class DesktopViewDashboard extends StatefulWidget {
   @override
-  _DesktopDashboardState createState() => _DesktopDashboardState();
+  _DesktopViewDashboardState createState() => _DesktopViewDashboardState();
 }
 
-class _DesktopDashboardState extends State<DesktopDashboard> {
+class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
   AccountDetailsBloc _accountDetailsBloc;
   DataUsageBloc _dataUsageBloc;
   CmsBannerBloc _cmsBannerBloc;
@@ -64,8 +64,8 @@ class _DesktopDashboardState extends State<DesktopDashboard> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              DesktopHeaderMenu(),
-              DesktopHeader(),
+              DesktopViewHeaderMenu(),
+              DesktopViewHeader(),
 
               Container(
                 width: MediaQuery.of(context).size.width,
@@ -88,37 +88,34 @@ class _DesktopDashboardState extends State<DesktopDashboard> {
                 } else if (state is AccountDetailsFailures) {
                   userName = 'NA';
                 }
-                return AccountDesktopDashboard(
+                return DesktopViewAccountDetails(
                   profile: userName,
                   mobile: "0918 XXXX XXXX",
                   duoNumber: "(02) 2920118",
                   profilePicture: "https://i.imgur.com/BoN9kdC.png",
                 );
               }),
-              DesktopMenu(),
-              Container(
-                height: 109,
-                child: BlocBuilder<CmsBannerBloc, CmsBannerState>(
-                    builder: (context, state) {
-                      if (state is CmsBannerLoadingState) {
-                        return ProgressIndicatorWidget();
-                      } else if (state is CmsBannerSuccessState) {
-                        return CMSBannerWidget(
-                          onPageSelected: (index) {
-                            print(index);
-                          },
-                          onPageChange: (index) {
-                            print(index);
-                          },
-                          imagePaths: state.imagePaths,
-                          imageLinks: state.imageLinks,
-                        );
-                      } else {
-                        return Container();
-                      }
-                    }),
-              ),
-              DesktopLoadRewards(),
+              DesktopViewMenu(),
+              BlocBuilder<CmsBannerBloc, CmsBannerState>(
+                  builder: (context, state) {
+                    if (state is CmsBannerLoadingState) {
+                      return ProgressIndicatorWidget();
+                    } else if (state is CmsBannerSuccessState) {
+                      return CMSBannerWidget(
+                        onPageSelected: (index) {
+                          print(index);
+                        },
+                        onPageChange: (index) {
+                          print(index);
+                        },
+                        imagePaths: state.imagePaths,
+                        imageLinks: state.imageLinks,
+                      );
+                    } else {
+                      return Container();
+                    }
+                  }),
+              DesktopViewLoadRewards(),
               SizedBox(height: 12),
               Container(
                 child: Row(
@@ -171,7 +168,7 @@ class _DesktopDashboardState extends State<DesktopDashboard> {
               Container(
                 padding: EdgeInsets.only(top: 38.0),
                 width: 1138,
-                child: PlanDetailsWidget(),
+                child: DesktopViewPlanDetails(),
               ),
               SizedBox(height: 24),
             ],

@@ -27,6 +27,7 @@ class _MobileViewBillPayment extends State<MobileViewBillPayment> {
   @override
   Widget build(BuildContext context) {
     return Container(
+
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -46,6 +47,7 @@ class _MobileViewBillPayment extends State<MobileViewBillPayment> {
 
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,16 +63,11 @@ class _MobileViewBillPayment extends State<MobileViewBillPayment> {
                         ),
                       ],
                     ),
-                    Center(
-                      child: SizedBox(
-                        height: 15,
-                        width: 15,
-                        child:   IconButton(
-                          onPressed: widget.onRefresh,
-                          icon: Icon(Icons.refresh),
-                        )
-                      ),
-                    ),
+                    IconButton(
+                      alignment: Alignment.topCenter,
+                      onPressed: widget.onRefresh,
+                      icon: Icon(Icons.refresh),
+                    )
                   ],
                 ),
 

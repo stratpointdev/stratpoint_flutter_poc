@@ -11,25 +11,28 @@ class _MobileViewPlanDetailsWidget extends State<MobileViewPlanDetailsWidget> {
     return  Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              'Plan Details',
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                  color: Color(0xff244857),
-                  fontFamily: 'FSElliotPro',
-                  fontSize: 22,
-                  fontWeight: FontWeight.w100),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Text(
+                'Plan Details',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                    color: Color(0xff244857),
+                    fontFamily: 'FSElliotPro',
+                    fontSize: 22,
+                    fontWeight: FontWeight.w100),
+              ),
             ),
             SizedBox(height: 12),
             Container(
               padding:
-                  EdgeInsets.only(top: 24, left: 20, right: 20, bottom: 24),
+                  EdgeInsets.only(top: 24, left: 16, right: 20, bottom: 24),
               color: Colors.white,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'Your current plan:',
@@ -49,71 +52,88 @@ class _MobileViewPlanDetailsWidget extends State<MobileViewPlanDetailsWidget> {
                       ),
                     ],
                   ),
+                  SizedBox(height: 24),
+
+                  Container(
+                    width: 270,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'Cut off date:',
+                          style: TextStyle(
+                            color: Color(0xff244857),
+                            fontSize: 14,
+                          ),
+                        ),
+                        SizedBox(width: 57),
+                        Text(
+                          '23rd of the month',
+                          style: TextStyle(
+                            color: Color(0xff244857),
+                            fontWeight: FontWeight.w100,
+                            fontSize: 14,
+                          ),
+                        ),
+                        Spacer(),
+                      ],
+                    ),
+                  ),
                   SizedBox(height: 16),
-
-                  Row(
-                    children: <Widget>[
-                      SizedBox(width: 36),
-                      Text(
-                        'Contract Expiry:',
-                        style: TextStyle(
-                          color: Color(0xff244857),
-                          fontSize: 14,
+                  Container(
+                    width: 270,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'Contract Expiry:',
+                          style: TextStyle(
+                            color: Color(0xff244857),
+                            fontSize: 14,
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 16),
-                      Text(
-                        'December 12, 2020',
-                        style: TextStyle(
-                          color: Color(0xff244857),
-                          fontWeight: FontWeight.w100,
-                          fontSize: 14,
+                        SizedBox(width: 32),
+                        Text(
+                          'December 12, 2020',
+                          style: TextStyle(
+                            color: Color(0xff244857),
+                            fontWeight: FontWeight.w100,
+                            fontSize: 14,
+                          ),
                         ),
-                      ),
-                    ],
+                        Spacer(),
+                      ],
+                    ),
                   ),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        'Cut off date:',
-                        style: TextStyle(
-                          color: Color(0xff244857),
-                          fontSize: 14,
+                  SizedBox(height: 16),
+                  Container(
+                    width: 270,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Months remaining:',
+                          style: TextStyle(
+                            color: Color(0xff244857),
+                            fontSize: 14,
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 16),
-                      Text(
-                        '23rd of the month',
-                        style: TextStyle(
-                          color: Color(0xff244857),
-                          fontWeight: FontWeight.w100,
-                          fontSize: 14,
+                        SizedBox(width: 16),
+                        Text(
+                          '8 months(s)',
+                          style: TextStyle(
+                            color: Color(0xff244857),
+                            fontWeight: FontWeight.w100,
+                            fontSize: 14,
+                          ),
                         ),
-                      ),
-                    ],
+                        Spacer(),
+                      ],
+                    ),
                   ),
-                  Row(
-                    children: [
-
-                      SizedBox(width: 56),
-                      Text(
-                        'Months remaining:',
-                        style: TextStyle(
-                          color: Color(0xff244857),
-                          fontSize: 14,
-                        ),
-                      ),
-                      SizedBox(width: 16),
-                      Text(
-                        '8 months(s)',
-                        style: TextStyle(
-                          color: Color(0xff244857),
-                          fontWeight: FontWeight.w100,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ],
-                  ),
+                  SizedBox(height: 32),
                   SizedBox(
                     width: 210,
                     height: 40,

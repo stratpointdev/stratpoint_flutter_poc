@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BillPayment extends StatefulWidget {
+class DesktopViewBillPayment extends StatefulWidget {
   final GlobalKey key;
   final String paymentAmountValue;
   final String dueDate;
@@ -8,7 +8,7 @@ class BillPayment extends StatefulWidget {
   final String lastPaymentAmount;
   final String lastPaymentDate;
   final String dateNow;
-  BillPayment(
+  DesktopViewBillPayment(
       {this.key,
       this.paymentAmountValue,
       this.dueDate,
@@ -18,10 +18,10 @@ class BillPayment extends StatefulWidget {
       this.dateNow});
 
   @override
-  _BillPayment createState() => _BillPayment();
+  _DesktopViewBillPayment createState() => _DesktopViewBillPayment();
 }
 
-class _BillPayment extends State<BillPayment> {
+class _DesktopViewBillPayment extends State<DesktopViewBillPayment> {
   // static const IconData refresh = IconData(0xe5d5, fontFamily: 'MaterialIcons');
 
   @override

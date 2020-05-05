@@ -77,7 +77,7 @@ class _MobileDashboard extends State<MobileDashboard> {
         color:  Color(0xffD2D8DB),
         child: ListView(
           children: <Widget>[
-            MobileHeader(),
+            MobileViewHeader(),
             BlocBuilder<AccountDetailsBloc, AccountDetailsState>(
                 builder: (context, state) {
                   String userName = '';
@@ -86,7 +86,7 @@ class _MobileDashboard extends State<MobileDashboard> {
                   } else if (state is AccountDetailsFailures) {
                     userName = 'NA';
                   }
-                  return AccountMobileDashboard(
+                  return MobileViewAccountDetails(
                     profile: userName,
                     mobile: "0918 XXXX XXXX",
                     duoNumber: "(02) 2920118",
@@ -94,30 +94,27 @@ class _MobileDashboard extends State<MobileDashboard> {
                   );
                 }),
 
-            MobileMenu(),
+            MobileViewMenu(),
 
-            Container(
-              height: 114,
-              child: BlocBuilder<CmsBannerBloc, CmsBannerState>(
-                  builder: (context, state) {
-                    if (state is CmsBannerLoadingState) {
-                      return ProgressIndicatorWidget();
-                    } else if (state is CmsBannerSuccessState) {
-                      return CMSBannerWidget(
-                        onPageSelected: (index) {
-                          print(index);
-                        },
-                        onPageChange: (index) {
-                          print(index);
-                        },
-                        imagePaths: state.imagePaths,
-                        imageLinks: state.imageLinks,
-                      );
-                    } else {
-                      return Container();
-                    }
-                  }),
-            ),
+            BlocBuilder<CmsBannerBloc, CmsBannerState>(
+                builder: (context, state) {
+                  if (state is CmsBannerLoadingState) {
+                    return ProgressIndicatorWidget();
+                  } else if (state is CmsBannerSuccessState) {
+                    return CMSBannerWidget(
+                      onPageSelected: (index) {
+                        print(index);
+                      },
+                      onPageChange: (index) {
+                        print(index);
+                      },
+                      imagePaths: state.imagePaths,
+                      imageLinks: state.imageLinks,
+                    );
+                  } else {
+                    return Container();
+                  }
+                }),
             BlocBuilder<PaymentDetailsBloc, PaymentDetailsState>(
                 builder: (context, state) {
                   if (state is PaymentDetailsSuccessState) {
@@ -128,6 +125,7 @@ class _MobileDashboard extends State<MobileDashboard> {
 
                   if(state is PaymentDetailsLoadingState)
                     return Container(
+                      height: 238,
                         width:  MediaQuery.of(context).size.width,
                         child: Center(child: ProgressIndicatorWidget()));
 
@@ -153,6 +151,7 @@ class _MobileDashboard extends State<MobileDashboard> {
 
                 if (state is DataUsageLoadingState)
                   return Container(
+                    height: 413,
                       width: MediaQuery.of(context).size.width,
                       child: Center(child: ProgressIndicatorWidget()));
 

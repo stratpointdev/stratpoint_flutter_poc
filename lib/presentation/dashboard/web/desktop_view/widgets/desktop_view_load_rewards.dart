@@ -8,14 +8,14 @@ import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/reward_
 import 'package:globe_one_poc_project/presentation/dashboard/common/progress_indicator_widget.dart';
 
 
-class DesktopLoadRewards extends StatefulWidget {
-  const DesktopLoadRewards();
+class DesktopViewLoadRewards extends StatefulWidget {
+  const DesktopViewLoadRewards();
 
   @override
-  _DesktopLoadRewards createState() => _DesktopLoadRewards();
+  _DesktopViewLoadRewards createState() => _DesktopViewLoadRewards();
 }
 
-class _DesktopLoadRewards extends State<DesktopLoadRewards> {
+class _DesktopViewLoadRewards extends State<DesktopViewLoadRewards> {
   PaymentDetailsBloc _paymentDetailsBloc;
 
   @override
@@ -36,6 +36,7 @@ class _DesktopLoadRewards extends State<DesktopLoadRewards> {
 
 
     return Container(
+      padding: EdgeInsets.only(top: 16.0),
       child: Row(
         children: <Widget>[
           Spacer(),
@@ -62,7 +63,7 @@ class _DesktopLoadRewards extends State<DesktopLoadRewards> {
                   width: 562,
                   child: Center(child: ProgressIndicatorWidget()));
 
-              return  BillPayment(
+              return  DesktopViewBillPayment(
                   key : loadBalanceKey,
                   paymentAmountValue: paymentAmountValue,
                   dueDate: dueDate,
