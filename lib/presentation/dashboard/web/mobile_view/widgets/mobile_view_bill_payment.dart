@@ -76,18 +76,18 @@ class _MobileViewBillPayment extends State<MobileViewBillPayment> {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 12.0),
+                  padding: const EdgeInsets.only(bottom: 12.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Spacer(),
+                      const Spacer(),
                       //add refresh icon here
                       Padding(
-                        padding: EdgeInsets.only(right: 20.0),
+                        padding: const EdgeInsets.only(right: 20.0),
                         child: Text(widget.paymentAmountValue,
                             style: TextStyle(
                                 fontSize: 26,
-                                color: Color(0xff244857),
+                                color: const Color(0xff244857),
                                 fontWeight: FontWeight.w700),
                             textAlign: TextAlign.left),
                       ),
@@ -99,14 +99,14 @@ class _MobileViewBillPayment extends State<MobileViewBillPayment> {
                   padding: const EdgeInsets.only(right: 20.0, bottom: 26.0),
                   child: Row(
                     children: <Widget>[
-                      Text("View Bills",
+                      Text('View Bills',
                           style: TextStyle(
                               fontSize: 14,
-                              color: Color(0xff244857),
+                              color: const Color(0xff244857),
                               decoration: TextDecoration.underline,
                               fontWeight: FontWeight.w700),
                           textAlign: TextAlign.left),
-                      Spacer(),
+                      const Spacer(),
                       Container(
                         height: 40,
                         width: 179,

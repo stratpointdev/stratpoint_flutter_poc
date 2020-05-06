@@ -17,12 +17,11 @@ class MobileViewHeader extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(right: 30),
+              const Padding(
+                padding: EdgeInsets.only(right: 30),
                 child: Text(
                   'Menu',
-                  style:
-                      const TextStyle(color: Color(0xff244958), fontSize: 14),
+                  style: TextStyle(color: Color(0xff244958), fontSize: 14),
                 ),
               ),
               Padding(
