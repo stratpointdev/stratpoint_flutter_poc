@@ -9,10 +9,9 @@ import 'payment_details_state.dart';
 
 class PaymentDetailsBloc
     extends Bloc<PaymentDetailsEvent, PaymentDetailsState> {
-  final PaymentDetailsRepository paymentDetailsRepository;
-
   PaymentDetailsBloc(this.paymentDetailsRepository)
       : assert(paymentDetailsRepository != null);
+  final PaymentDetailsRepository paymentDetailsRepository;
 
   @override
   PaymentDetailsState get initialState => PaymentDetailsInitialState();
