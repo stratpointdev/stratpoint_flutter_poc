@@ -1,15 +1,13 @@
 class CmsBannerModel {
-  Map<String, dynamic> cms;
-
   CmsBannerModel({this.cms});
 
   CmsBannerModel.fromJson(Map<String, dynamic> json) {
     print('last: ' + json['jcr:lastModifiedBy']);
     cms = json;
   }
-
+  Map<String, dynamic> cms;
   Map<String, String> getImagePaths() {
-    Map<String, String> paths = {};
+    final Map<String, String> paths = {};
 
     cms.forEach((key, value) {
       if (key.contains('imagePathMobile')) {
@@ -20,7 +18,7 @@ class CmsBannerModel {
   }
 
   Map<String, String> getImageLinks() {
-    Map<String, String> paths = {};
+    final Map<String, String> paths = {};
 
     cms.forEach((key, value) {
       if (key.contains('link')) {

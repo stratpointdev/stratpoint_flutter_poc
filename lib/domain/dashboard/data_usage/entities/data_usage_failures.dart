@@ -1,7 +1,4 @@
 class DataUsageFailure {
-  int code;
-  String message;
-  String parameter;
   DataUsageFailure({this.code, this.message, this.parameter});
 
   factory DataUsageFailure.fromJson(Map<String, dynamic> json) {
@@ -16,4 +13,7 @@ class DataUsageFailure {
       message: error,
     );
   }
+  int code;
+  String message;
+  String parameter;
 }

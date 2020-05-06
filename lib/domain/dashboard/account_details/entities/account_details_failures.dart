@@ -13,7 +13,6 @@ class AccountDetailsFailures {
       message: error,
     );
   }
-
   int code;
   String message;
   String parameter;
