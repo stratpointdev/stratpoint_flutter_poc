@@ -8,12 +8,12 @@ import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RemoteAccountDetailsService {
-  final api = Api();
+  final Api api = Api();
 
   Future<Either<AccountDetailsFailures, AccountDetailsModel>>
       getAccountDetails() async {
     try {
-      final response = await get(api.getSubscriberDetails())
+      final Response response = await get(api.getSubscriberDetails())
           .timeout(const Duration(seconds: 5));
       if (response.statusCode == 200) {
         final SharedPreferences myPrefs = await SharedPreferences.getInstance();

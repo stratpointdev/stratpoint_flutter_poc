@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:dartz/dartz.dart';
 import 'package:globe_one_poc_project/domain/dashboard/payment_details/entities/payment_details_failure.dart';
 import 'package:globe_one_poc_project/domain/dashboard/payment_details/entities/payment_details_model.dart';
@@ -20,7 +19,7 @@ class RemotePaymentDetailsService {
         final SharedPreferences myPrefs = await SharedPreferences.getInstance();
         myPrefs.setString('LastApiCall', DateTime.now().toString());
 
-        Map<String, dynamic> user = jsonDecode(asdasd);
+        user = jsonDecode(response.body);
         return right(PaymentDetailsModel.fromJson(body));
       } else {
         return left(PaymentDetailsFailure.fromJson(jsonDecode(response.body)));

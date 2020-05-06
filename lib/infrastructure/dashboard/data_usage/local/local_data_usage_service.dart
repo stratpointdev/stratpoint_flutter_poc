@@ -1,16 +1,16 @@
 import 'package:dartz/dartz.dart';
 import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage_model.dart';
 import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage_failures.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:sembast/sembast.dart';
+import '../../../app_database.dart';
 import '../../../database_factory.dart'
     if (dart.library.js) 'package:sembast_web/sembast_web.dart';
-import '../../../app_database.dart';
-
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 class LocalDataUsageService {
   static const String DATA_USAGE = 'dataUsage';
-  final _dataUsage = intMapStoreFactory.store(DATA_USAGE);
+  final StoreRef<int, Map<String, dynamic>> _dataUsage =
+      intMapStoreFactory.store(DATA_USAGE);
 
   Future<Database> get _db async => database();
 
@@ -21,7 +21,7 @@ class LocalDataUsageService {
       return databaseFactoryWeb.openDatabase(DATA_USAGE);
   }
 
-  Future insert(DataUsageModel dataUsageModel) async {
+  Future<void> insert(DataUsageModel dataUsageModel) async {
     print('insert');
     try {
       await _dataUsage.add(await _db, dataUsageModel.toJson());
@@ -30,7 +30,7 @@ class LocalDataUsageService {
     }
   }
 
-  Future delete() async {
+  Future<void> delete() async {
     print('delete');
     try {
       await _dataUsage.delete(
@@ -43,9 +43,11 @@ class LocalDataUsageService {
 
   Future<Either<DataUsageFailure, DataUsageModel>> getDataUsage() async {
     try {
-      final finder = Finder(limit: 1);
-      final recordSnapshots = await _dataUsage.find(await _db, finder: finder);
-      return right(recordSnapshots.map((snapshot) {
+      final Finder finder = Finder(limit: 1);
+      final List<RecordSnapshot<int, Map<String, dynamic>>> recordSnapshots =
+          await _dataUsage.find(await _db, finder: finder);
+      return right(recordSnapshots
+          .map((RecordSnapshot<int, Map<String, dynamic>> snapshot) {
         print('getDataUsage ' + snapshot.value.toString());
         return DataUsageModel.fromJson(snapshot.value);
       }).single);

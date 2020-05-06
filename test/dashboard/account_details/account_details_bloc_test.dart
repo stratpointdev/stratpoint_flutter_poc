@@ -22,14 +22,14 @@ void main() {
   test(
       'Successful RefreshAccountDetailsEvent should display AccountDetailsSuccessState',
       () {
-    NameInfo nameInfo = NameInfo(0, " ", 0, " ", " ", " ", " ", " ", " ", " ",
-        " ", " ", " ", " ", " ", 0, 0);
-    SubscriberHeader subscriberHeader = SubscriberHeader(nameInfo);
-    DetailsByMsisdnResult detailsByMsisdnResult =
+    final NameInfo nameInfo = NameInfo(0, ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+        ' ', ' ', ' ', ' ', ' ', 0, 0);
+    final SubscriberHeader subscriberHeader = SubscriberHeader(nameInfo);
+    final DetailsByMsisdnResult detailsByMsisdnResult =
         DetailsByMsisdnResult(subscriberHeader);
-    DetailsByMsisdnResponse detailsByMsisdnResponse =
+    final DetailsByMsisdnResponse detailsByMsisdnResponse =
         DetailsByMsisdnResponse(detailsByMsisdnResult);
-    AccountDetailsModel accountDetailsModel =
+    final AccountDetailsModel accountDetailsModel =
         AccountDetailsModel(200, detailsByMsisdnResponse);
 
     when(mockRepository.getAccountDetails())

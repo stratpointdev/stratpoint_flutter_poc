@@ -2,50 +2,50 @@ import 'package:intl/intl.dart';
 
 class DateTimeConverter {
   static String getDateWithYearNow() {
-    DateTime dateTime = DateTime.now();
-    var formatter = new DateFormat('MMM. dd yyyy');
-    String formatted = formatter.format(dateTime);
+    final DateTime dateTime = DateTime.now();
+    final formatter = DateFormat('MMM. dd yyyy');
+    final String formatted = formatter.format(dateTime);
     return formatted;
   }
 
   static String convertToDate(String date) {
-    DateTime dateTime = DateTime.parse(date);
-    var formatter = new DateFormat('MMM dd');
-    String formatted = formatter.format(dateTime);
+    final DateTime dateTime = DateTime.parse(date);
+    final formatter = DateFormat('MMM dd');
+    final String formatted = formatter.format(dateTime);
     return formatted;
   }
 
   static String convertToDateWithYear(String date) {
-    DateTime dateTime = DateTime.parse(date);
-    var formatter = new DateFormat('MMM. dd yyyy');
-    String formatted = formatter.format(dateTime);
+    final DateTime dateTime = DateTime.parse(date);
+    final formatter = DateFormat('MMM. dd yyyy');
+    final String formatted = formatter.format(dateTime);
     return formatted;
   }
 
   static String convertToDateTime(String date) {
-    DateTime dateTime = DateTime.parse(date);
-    var dateFormatter = new DateFormat('MMM. dd yyyy,');
-    var timeFormatter = new DateFormat(' hh:mm aa');
-    String formatted = dateFormatter.format(dateTime) +
+    final DateTime dateTime = DateTime.parse(date);
+    final dateFormatter = DateFormat('MMM. dd yyyy,');
+    final timeFormatter = DateFormat(' hh:mm aa');
+    final String formatted = dateFormatter.format(dateTime) +
         timeFormatter.format(dateTime).replaceFirst('0', '');
     return formatted;
   }
 
   static String getTimeNow() {
-    DateTime dateTime = DateTime.now();
-    var formatter = new DateFormat('hh:mm aa');
-    String formatted = formatter.format(dateTime).replaceFirst('0', '');
+    final DateTime dateTime = DateTime.now();
+    final formatter = DateFormat('hh:mm aa');
+    final String formatted = formatter.format(dateTime).replaceFirst('0', '');
     return formatted;
   }
 
   static int getSecsDiff(String date) {
-    var lastAPICallDate = convertToComparable(date);
+    final lastAPICallDate = convertToComparable(date);
     return DateTime.now().difference(lastAPICallDate).inSeconds;
   }
 
   static DateTime convertToComparable(String date) {
     if (date != null) {
-      List<String> list = date.split(new RegExp(r"[- :.]"));
+      final List<String> list = date.split(RegExp(r'[- :.]'));
       return DateTime(
           int.parse(list[0]),
           int.parse(list[1]),
