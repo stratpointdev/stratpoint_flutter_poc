@@ -5,7 +5,7 @@ abstract class AccountDetailsState extends Equatable {
   const AccountDetailsState();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 }
 
 class AccountDetailsInitialState extends AccountDetailsState {}
