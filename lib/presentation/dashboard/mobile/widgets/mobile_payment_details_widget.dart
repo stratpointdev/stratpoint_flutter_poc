@@ -2,11 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 
 class MobilePaymentDetailsWidget extends StatefulWidget {
-  final String paymentAmountValue;
-  final String dueDate;
-  final GestureTapCallback payNowButtonOnPressed;
-  final GestureTapCallback viewBillButtonOnPressed;
-
   const MobilePaymentDetailsWidget({
     Key key,
     this.paymentAmountValue,
@@ -14,6 +9,11 @@ class MobilePaymentDetailsWidget extends StatefulWidget {
     this.payNowButtonOnPressed,
     this.viewBillButtonOnPressed,
   }) : super(key: key);
+
+  final String paymentAmountValue;
+  final String dueDate;
+  final GestureTapCallback payNowButtonOnPressed;
+  final GestureTapCallback viewBillButtonOnPressed;
 
   @override
   _MobilePaymentInformationWidgetState createState() =>

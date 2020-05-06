@@ -195,8 +195,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
 
                       return DataUsageWidget(
                         isMobile: true,
-                        onRefresh: () =>
-                            {_dataUsageBloc.add(RefreshDataUsageEvent())},
+                        onRefresh: () {
+                          _dataUsageBloc.add(RefreshDataUsageEvent());
+                        },
                         onAddMoreData: () {},
                         onViewDetails: () {},
                         cupLevelIndicator: cupLevelIndicator,
