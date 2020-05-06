@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 
 class AccountDetailsWidget extends StatefulWidget {
-  @override
-  _AccountDetailsWidgetState createState() => _AccountDetailsWidgetState();
+  const AccountDetailsWidget(
+      {this.userName, this.userMobileNumber, this.userDuoNumber});
 
   final String userName;
   final String userMobileNumber;
   final String userDuoNumber;
 
-  const AccountDetailsWidget(
-      {this.userName, this.userMobileNumber, this.userDuoNumber});
+  @override
+  _AccountDetailsWidgetState createState() => _AccountDetailsWidgetState();
 }
 
 class _AccountDetailsWidgetState extends State<AccountDetailsWidget> {
