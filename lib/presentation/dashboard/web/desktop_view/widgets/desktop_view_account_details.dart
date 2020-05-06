@@ -24,8 +24,8 @@ class _DesktopViewAccountDetails extends State<DesktopViewAccountDetails> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xff037DB4),
-      padding: EdgeInsets.only(left: 150, top: 38, bottom: 37),
+      color: const Color(0xff037DB4),
+      padding: const EdgeInsets.only(left: 150, top: 38, bottom: 37),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -39,7 +39,7 @@ class _DesktopViewAccountDetails extends State<DesktopViewAccountDetails> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(left : 24.0),
+                padding: const EdgeInsets.only(left: 24.0),
                 child: Text(widget.profile,
                     style: TextStyle(
                         fontSize: 16,
@@ -49,46 +49,55 @@ class _DesktopViewAccountDetails extends State<DesktopViewAccountDetails> {
               ),
               Container(
                 width: 215,
-                padding: const EdgeInsets.only(left : 24.0),
+                padding: const EdgeInsets.only(left: 24.0),
                 child: Text(widget.mobile,
-                    style: TextStyle(fontSize: 14, color: Colors.white,fontWeight: FontWeight.w200),
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w200),
                     textAlign: TextAlign.left),
               ),
               Row(
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.fromLTRB(24, 8,0,0),
-                    child: Text("View other accounts",
-                        style:
-                            TextStyle(fontSize: 15, color: Color(0x80ffffff), fontWeight: FontWeight.w200),
+                    padding: const EdgeInsets.fromLTRB(24, 8, 0, 0),
+                    child: Text('View other accounts',
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: const Color(0x80ffffff),
+                            fontWeight: FontWeight.w200),
                         textAlign: TextAlign.left),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.fromLTRB(8, 8, 0, 0),
                     child: Icon(expand_more, color: Color(0x80ffffff)),
                   )
                 ],
               ),
-
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only( bottom: 30),
+            padding: const EdgeInsets.only(bottom: 30),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("DUO Number",
-                    style: TextStyle(fontSize: 14, color: Colors.white,fontWeight: FontWeight.w200),
+                Text('DUO Number',
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w200),
                     textAlign: TextAlign.left),
                 Text(widget.duoNumber,
-                    style: TextStyle(fontSize: 14, color: Colors.white,fontWeight: FontWeight.w200),
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w200),
                     textAlign: TextAlign.left)
               ],
-
             ),
           ),
-          Spacer(),
-          Spacer(),
+          const Spacer(),
+          const Spacer(),
         ],
       ),
     );

@@ -6,62 +6,86 @@ class DesktopViewHeaderMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Color(0xff244A59),
-        padding: EdgeInsets.only(top: 7, bottom: 7, right: 20),
+        color: const Color(0xff244A59),
+        padding: const EdgeInsets.only(top: 7, bottom: 7, right: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(right: 29),
-              child: FittedBox(fit: BoxFit.fitWidth,
+              padding: const EdgeInsets.only(right: 29),
+              child: FittedBox(
+                fit: BoxFit.fitWidth,
                 child: Text(
-                  "About Us",
-                  style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w200),
+                  'About Us',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w200),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(right: 24),
-              child:FittedBox(fit: BoxFit.fitWidth,
+              padding: const EdgeInsets.only(right: 24),
+              child: FittedBox(
+                fit: BoxFit.fitWidth,
                 child: Text(
-                  "Governance",
-                  style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w200),
+                  'Governance',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w200),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(right: 30),
-              child: FittedBox(fit: BoxFit.fitWidth,
+              padding: const EdgeInsets.only(right: 30),
+              child: FittedBox(
+                fit: BoxFit.fitWidth,
                 child: Text(
-                  "Investor",
-                  style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w200),
+                  'Inv`estor',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w200),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(right: 28),
-              child: FittedBox(fit: BoxFit.fitWidth,
+              padding: const EdgeInsets.only(right: 28),
+              child: FittedBox(
+                fit: BoxFit.fitWidth,
                 child: Text(
-                  "News",
-                  style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w200),
+                  'News',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w200),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(right: 27),
-              child: FittedBox(fit: BoxFit.fitWidth,
+              padding: const EdgeInsets.only(right: 27),
+              child: FittedBox(
+                fit: BoxFit.fitWidth,
                 child: Text(
-                  "Sustainability",
-                  style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w200),
+                  'Sustainability',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w200),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(right: 30),
-              child: FittedBox(fit: BoxFit.fitWidth,
+              padding: const EdgeInsets.only(right: 30),
+              child: FittedBox(
+                fit: BoxFit.fitWidth,
                 child: Text(
-                  "Careers",
-                  style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w200),
+                  'Careers',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w200),
                 ),
               ),
             ),
