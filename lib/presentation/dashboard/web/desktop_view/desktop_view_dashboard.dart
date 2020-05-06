@@ -10,6 +10,7 @@ import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usag
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/web/desktop_view/widgets/desktop_view_header.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/spending_limit.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +21,6 @@ import 'widgets/desktop_view_account_details.dart';
 import 'widgets/desktop_view_header_menu.dart';
 import 'widgets/desktop_view_load_rewards.dart';
 
-
-import 'widgets/desktop_view_header.dart';
 import 'widgets/desktop_view_menu.dart';
 import 'widgets/desktop_view_plan_detaiils.dart';
 
@@ -34,11 +33,11 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
   AccountDetailsBloc _accountDetailsBloc;
   DataUsageBloc _dataUsageBloc;
   CmsBannerBloc _cmsBannerBloc;
-  var remainingData;
-  var dataAllocation;
-  var refillDate;
-  var cupLevelIndicator;
-  var lastApiCall;
+  String remainingData;
+  String dataAllocation;
+  String refillDate;
+  Widget cupLevelIndicator;
+  String lastApiCall;
   GlobalKey dataUsageKey = GlobalKey<FormState>();
   @override
   void initState() {
@@ -83,7 +82,7 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
                 ),
               ),
               BlocBuilder<AccountDetailsBloc, AccountDetailsState>(
-                  builder: (context, state) {
+                  builder: (BuildContext context, AccountDetailsState state) {
                 String userName = '';
                 if (state is AccountDetailsSuccessState) {
                   userName = state.nameInfo.nameElement2;
@@ -99,17 +98,13 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
               }),
               const DesktopViewMenu(),
               BlocBuilder<CmsBannerBloc, CmsBannerState>(
-                  builder: (context, state) {
+                  builder: (BuildContext context, CmsBannerState state) {
                 if (state is CmsBannerLoadingState) {
-                  return ProgressIndicatorWidget();
+                  return const ProgressIndicatorWidget();
                 } else if (state is CmsBannerSuccessState) {
                   return CMSBannerWidget(
-                    onPageSelected: (index) {
-                      print(index);
-                    },
-                    onPageChange: (index) {
-                      print(index);
-                    },
+                    onPageSelected: () {},
+                    onPageChange: () {},
                     imagePaths: state.imagePaths,
                     imageLinks: state.imageLinks,
                   );
@@ -125,13 +120,14 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
                     const Spacer(),
                     Container(
                       alignment: Alignment.centerLeft,
-                      child: BlocBuilder<DataUsageBloc, DataUsageState>(
-                          builder: (context, state) {
+                      child: BlocBuilder<DataUsageBloc, DataUsageState>(builder:
+                          (BuildContext context, DataUsageState state) {
                         if (state is DataUsageLoadingState)
                           return Container(
                               width: 437,
                               height: 539,
-                              child: Center(child: ProgressIndicatorWidget()));
+                              child: const Center(
+                                  child: ProgressIndicatorWidget()));
 
                         if (state is DataUsageSuccessState) {
                           remainingData = state.volumeRemaing;
@@ -143,10 +139,11 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
 
                         return DataUsageWidget(
                           key: dataUsageKey,
-                          onRefresh: () =>
-                              {_dataUsageBloc.add(InitialDataUsageEvent())},
-                          onAddMoreData: () => {},
-                          onViewDetails: () => {},
+                          onRefresh: () {
+                            _dataUsageBloc.add(InitialDataUsageEvent());
+                          },
+                          onAddMoreData: () {},
+                          onViewDetails: () {},
                           cupLevelIndicator: cupLevelIndicator,
                           time: lastApiCall,
                           addMoreDataButtonColor: const Color(0xff009CDF),
