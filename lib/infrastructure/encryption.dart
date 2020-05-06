@@ -5,14 +5,14 @@ import 'dart:typed_data';
 import 'package:crypto/crypto.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:meta/meta.dart';
-import 'package:sembast/src/api/v2/sembast.dart';
+import 'package:sembast/sembast.dart';
 
 Random _random = Random.secure();
 
 /// Random bytes generator
 Uint8List _randBytes(int length) {
   return Uint8List.fromList(
-      List<int>.generate(length, (i) => _random.nextInt(256)));
+      List<int>.generate(length, (int i) => _random.nextInt(256)));
 }
 
 /// Generate an encryption password based on a user input password
@@ -55,7 +55,7 @@ class _EncryptDecoder extends Converter<String, dynamic> {
   dynamic convert(String input) {
     // Read the initial value that was prepended
     assert(input.length >= 12);
-    final iv = base64.decode(input.substring(0, 12));
+    final Uint8List iv = base64.decode(input.substring(0, 12));
 
     // Extract the real input
     input = input.substring(12);
