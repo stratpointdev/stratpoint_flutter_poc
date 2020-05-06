@@ -8,21 +8,24 @@ import 'package:globe_one_poc_project/infrastructure/dashboard/account_details/r
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AccountDetailsRepositoryImpl implements AccountDetailsRepository {
-  final RemoteAccountDetailsService remoteAccountDetailsService;
-  final LocalAccountDetailsService localAccountDetailsService;
   AccountDetailsRepositoryImpl(
       this.remoteAccountDetailsService, this.localAccountDetailsService);
+  final RemoteAccountDetailsService remoteAccountDetailsService;
+  final LocalAccountDetailsService localAccountDetailsService;
 
   @override
   Future<Either<AccountDetailsFailures, AccountDetailsModel>>
       getAccountDetails() async {
-    SharedPreferences myPrefs = await SharedPreferences.getInstance();
-    int secs = DateTimeConverter.getSecsDiff(myPrefs.getString('LastApiCall'));
+    final SharedPreferences myPrefs = await SharedPreferences.getInstance();
+    final int secs =
+        DateTimeConverter.getSecsDiff(myPrefs.getString('LastApiCall'));
 
     if (secs <= 5) {
       return localAccountDetailsService.getAccountDetails();
     } else {
-      return remoteAccountDetailsService.getAccountDetails().then((value) {
+      return remoteAccountDetailsService
+          .getAccountDetails()
+          .then((Either<AccountDetailsFailures, AccountDetailsModel> value) {
         if (value.isLeft()) {
           return localAccountDetailsService.getAccountDetails();
         } else {
@@ -33,12 +36,13 @@ class AccountDetailsRepositoryImpl implements AccountDetailsRepository {
   }
 
   @override
-  Future deletePaymentDetailsLocal() {
+  Future<void> deletePaymentDetailsLocal() {
     return localAccountDetailsService.delete();
   }
 
   @override
-  Future insertPaymentDetailsLocal(accountDetailsModel) {
+  Future<void> insertPaymentDetailsLocal(
+      AccountDetailsModel accountDetailsModel) {
     return localAccountDetailsService.insert(accountDetailsModel);
   }
 }

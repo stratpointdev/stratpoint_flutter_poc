@@ -10,17 +10,17 @@ import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usag
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/web/desktop_view/widgets/desktop_view_header.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/spending_limit.dart';
+import 'package:flutter/material.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/common/progress_indicator_widget.dart';
+
 import '../../../../r.dart';
 import 'widgets/desktop_view_account_details.dart';
 import 'widgets/desktop_view_header_menu.dart';
 import 'widgets/desktop_view_load_rewards.dart';
 
-import 'package:flutter/material.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/common/progress_indicator_widget.dart';
-
-import 'widgets/desktop_view_header.dart';
 import 'widgets/desktop_view_menu.dart';
 import 'widgets/desktop_view_plan_detaiils.dart';
 
@@ -33,11 +33,11 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
   AccountDetailsBloc _accountDetailsBloc;
   DataUsageBloc _dataUsageBloc;
   CmsBannerBloc _cmsBannerBloc;
-  var remainingData;
-  var dataAllocation;
-  var refillDate;
-  var cupLevelIndicator;
-  var lastApiCall;
+  String remainingData;
+  String dataAllocation;
+  String refillDate;
+  Widget cupLevelIndicator;
+  String lastApiCall;
   GlobalKey dataUsageKey = GlobalKey<FormState>();
   @override
   void initState() {
@@ -60,28 +60,29 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color:  Color(0xffD2D8DB),
+        color: const Color(0xffD2D8DB),
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              DesktopViewHeaderMenu(),
-              DesktopViewHeader(),
-
+              const DesktopViewHeaderMenu(),
+              const DesktopViewHeader(),
               Container(
                 width: MediaQuery.of(context).size.width,
-                color: Color(0xff93B9C0),
-                padding: EdgeInsets.all(12),
+                color: const Color(0xff93B9C0),
+                padding: const EdgeInsets.all(12),
                 child: Padding(
-                  padding: EdgeInsets.only(left: 57),
+                  padding: const EdgeInsets.only(left: 57),
                   child: Text(
-                    "GLOBEONE",
-                    style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w200),
+                    'GLOBEONE',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w200),
                   ),
                 ),
               ),
-
               BlocBuilder<AccountDetailsBloc, AccountDetailsState>(
-                  builder: (context, state) {
+                  builder: (BuildContext context, AccountDetailsState state) {
                 String userName = '';
                 if (state is AccountDetailsSuccessState) {
                   userName = state.nameInfo.nameElement2;
@@ -90,46 +91,43 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
                 }
                 return DesktopViewAccountDetails(
                   profile: userName,
-                  mobile: "0918 XXXX XXXX",
-                  duoNumber: "(02) 2920118",
-                  profilePicture: "https://i.imgur.com/BoN9kdC.png",
+                  mobile: '0918 XXXX XXXX',
+                  duoNumber: '(02) 2920118',
+                  profilePicture: 'https://i.imgur.com/BoN9kdC.png',
                 );
               }),
-              DesktopViewMenu(),
+              const DesktopViewMenu(),
               BlocBuilder<CmsBannerBloc, CmsBannerState>(
-                  builder: (context, state) {
-                    if (state is CmsBannerLoadingState) {
-                      return ProgressIndicatorWidget();
-                    } else if (state is CmsBannerSuccessState) {
-                      return CMSBannerWidget(
-                        onPageSelected: (index) {
-                          print(index);
-                        },
-                        onPageChange: (index) {
-                          print(index);
-                        },
-                        imagePaths: state.imagePaths,
-                        imageLinks: state.imageLinks,
-                      );
-                    } else {
-                      return Container();
-                    }
-                  }),
-              DesktopViewLoadRewards(),
-              SizedBox(height: 12),
+                  builder: (BuildContext context, CmsBannerState state) {
+                if (state is CmsBannerLoadingState) {
+                  return const ProgressIndicatorWidget();
+                } else if (state is CmsBannerSuccessState) {
+                  return CMSBannerWidget(
+                    onPageSelected: () {},
+                    onPageChange: () {},
+                    imagePaths: state.imagePaths,
+                    imageLinks: state.imageLinks,
+                  );
+                } else {
+                  return Container();
+                }
+              }),
+              const DesktopViewLoadRewards(),
+              const SizedBox(height: 12),
               Container(
                 child: Row(
                   children: <Widget>[
-                    Spacer(),
+                    const Spacer(),
                     Container(
                       alignment: Alignment.centerLeft,
-                      child: BlocBuilder<DataUsageBloc, DataUsageState>(
-                          builder: (context, state) {
+                      child: BlocBuilder<DataUsageBloc, DataUsageState>(builder:
+                          (BuildContext context, DataUsageState state) {
                         if (state is DataUsageLoadingState)
                           return Container(
                               width: 437,
                               height: 539,
-                              child: Center(child: ProgressIndicatorWidget()));
+                              child: const Center(
+                                  child: ProgressIndicatorWidget()));
 
                         if (state is DataUsageSuccessState) {
                           remainingData = state.volumeRemaing;
@@ -140,11 +138,11 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
                         }
 
                         return DataUsageWidget(
-                          key: dataUsageKey,
-                          onRefresh: () =>
-                              {_dataUsageBloc.add(InitialDataUsageEvent())},
-                          onAddMoreData: () => {},
-                          onViewDetails: () => {},
+                          onRefresh: () {
+                            _dataUsageBloc.add(InitialDataUsageEvent());
+                          },
+                          onAddMoreData: () {},
+                          onViewDetails: () {},
                           cupLevelIndicator: cupLevelIndicator,
                           time: lastApiCall,
                           addMoreDataButtonColor: const Color(0xff009CDF),
@@ -156,21 +154,21 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
                         );
                       }),
                     ),
-                    SizedBox(width: 12),
-                    Padding(
-                      padding: const EdgeInsets.only(top:65.0),
+                    const SizedBox(width: 12),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 65.0),
                       child: SpendingLimitWidget(),
                     ),
-                    Spacer(),
+                    const Spacer(),
                   ],
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(top: 38.0),
+                padding: const EdgeInsets.only(top: 38.0),
                 width: 1138,
                 child: DesktopViewPlanDetails(),
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
             ],
           ),
         ),

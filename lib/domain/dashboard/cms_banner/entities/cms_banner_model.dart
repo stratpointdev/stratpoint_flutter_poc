@@ -1,30 +1,30 @@
 class CmsBannerModel {
-  Map<String, dynamic> cms;
-
   CmsBannerModel({this.cms});
 
-  CmsBannerModel.fromJson(Map<String, dynamic> json) {
-    print('last: ' + json['jcr:lastModifiedBy']);
-    cms = json;
+  factory CmsBannerModel.fromJson(Map<String, dynamic> json) {
+    print("last: ${json['jcr:lastModifiedBy']}");
+    return CmsBannerModel(cms: json);
   }
 
-  Map<String, String> getImagePaths() {
-    Map<String, String> paths = {};
+  Map<String, dynamic> cms;
 
-    cms.forEach((key, value) {
+  Map<String, String> getImagePaths() {
+    final Map<String, String> paths = <String, String>{};
+
+    cms.forEach((String key, dynamic value) {
       if (key.contains('imagePathMobile')) {
-        paths.putIfAbsent(key, () => value);
+        paths.putIfAbsent(key, () => value as String);
       }
     });
     return paths;
   }
 
   Map<String, String> getImageLinks() {
-    Map<String, String> paths = {};
+    final Map<String, String> paths = <String, String>{};
 
-    cms.forEach((key, value) {
+    cms.forEach((String key, dynamic value) {
       if (key.contains('link')) {
-        paths.putIfAbsent(key, () => value);
+        paths.putIfAbsent(key, () => value as String);
       }
     });
     return paths;

@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 
 class WebPaymentInformationWidget extends StatefulWidget {
-
+  const WebPaymentInformationWidget({
+    this.dueDate = 'May 3',
+    this.dueAmount = '1,798.03',
+    this.lastPaymentAmount = '1,839.00',
+    this.lastPaymentDate = 'Mar. 15, 2020',
+    this.onRefresh,
+    this.onPayNow
+  });
   final String dueDate;
   final String dueAmount;
   final String lastPaymentAmount;
   final String lastPaymentDate;
   final VoidCallback onRefresh;
   final VoidCallback onPayNow;
-
-  WebPaymentInformationWidget({
-    this.dueDate: 'May 3',
-    this.dueAmount: '1,798.03',
-    this.lastPaymentAmount: '1,839.00',
-    this.lastPaymentDate: 'Mar. 15, 2020',
-    this.onRefresh,
-    this.onPayNow
-  });
 
   @override
   _WebPaymentInformationWidget createState() => _WebPaymentInformationWidget();
@@ -30,7 +28,7 @@ class _WebPaymentInformationWidget extends State<WebPaymentInformationWidget> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
+            const Text(
               'Bills Payment',
               textAlign: TextAlign.left,
               style: TextStyle(
@@ -38,17 +36,17 @@ class _WebPaymentInformationWidget extends State<WebPaymentInformationWidget> {
                 fontSize: 22,
               ),
             ),
-            SizedBox(height: 14),
+            const SizedBox(height: 14),
             Container(
-              padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 40),
+              padding: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 40),
               color: Colors.white,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
+                    children: <Widget>[
+                      const Text(
                         'Amount to pay :',
                         style: TextStyle(
                           color: Color(0xff244857),
@@ -67,23 +65,23 @@ class _WebPaymentInformationWidget extends State<WebPaymentInformationWidget> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   Text(
                     'Due on ${widget.dueDate}',
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color(0xff244857),
                       fontFamily: 'FSElliotPro',
                       fontSize: 14,
                     ),
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       Text(
                         '\u20B1${widget.dueAmount}',
                         style: TextStyle(
-                          color: Color(0xff244857),
+                          color: const Color(0xff244857),
                           fontFamily: 'FSElliotPro',
                           fontWeight: FontWeight.bold,
                           fontSize: 36,
@@ -91,10 +89,10 @@ class _WebPaymentInformationWidget extends State<WebPaymentInformationWidget> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: <Widget>[
                       RawMaterialButton(
                         onPressed: () => null,
                         child: Text(
@@ -114,7 +112,7 @@ class _WebPaymentInformationWidget extends State<WebPaymentInformationWidget> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4.0),
                           ),
-                          fillColor: Color(0xff009CDF),
+                          fillColor: const Color(0xff009CDF),
                           child: Center(
                             child: Text(
                               'Pay Now',
@@ -129,20 +127,20 @@ class _WebPaymentInformationWidget extends State<WebPaymentInformationWidget> {
                       )
                     ],
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   Container(
                     decoration: BoxDecoration(
                       border: Border(
                         bottom:
-                            BorderSide(color: Color(0xffD4D4D4).withOpacity(0.5), width: 1.0),
+                            BorderSide(color: const Color(0xffD4D4D4).withOpacity(0.5), width: 1.0),
                       ),
                     ),
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
+                    children: <Widget>[
+                      const Text(
                         'Last Payment Amount',
                         style: TextStyle(
                           fontSize: 16,
@@ -150,17 +148,17 @@ class _WebPaymentInformationWidget extends State<WebPaymentInformationWidget> {
                       ),
                       Text(
                         '\u20B1${widget.lastPaymentAmount}',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
+                    children: <Widget>[
+                      const Text(
                         'Last Payment Date',
                         style: TextStyle(
                           fontSize: 16,
@@ -168,7 +166,7 @@ class _WebPaymentInformationWidget extends State<WebPaymentInformationWidget> {
                       ),
                       Text(
                         widget.lastPaymentDate,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                         ),
                       ),

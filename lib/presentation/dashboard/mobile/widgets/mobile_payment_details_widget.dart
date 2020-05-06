@@ -2,11 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 
 class MobilePaymentDetailsWidget extends StatefulWidget {
-  final String paymentAmountValue;
-  final String dueDate;
-  final GestureTapCallback payNowButtonOnPressed;
-  final GestureTapCallback viewBillButtonOnPressed;
-
   const MobilePaymentDetailsWidget({
     Key key,
     this.paymentAmountValue,
@@ -14,6 +9,11 @@ class MobilePaymentDetailsWidget extends StatefulWidget {
     this.payNowButtonOnPressed,
     this.viewBillButtonOnPressed,
   }) : super(key: key);
+
+  final String paymentAmountValue;
+  final String dueDate;
+  final GestureTapCallback payNowButtonOnPressed;
+  final GestureTapCallback viewBillButtonOnPressed;
 
   @override
   _MobilePaymentInformationWidgetState createState() =>
@@ -24,7 +24,7 @@ class _MobilePaymentInformationWidgetState
     extends State<MobilePaymentDetailsWidget> {
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
+    final double screenHeight = MediaQuery.of(context).size.height;
     return Container(
       padding: const EdgeInsets.all(20.0),
       color: Colors.white,
@@ -41,13 +41,13 @@ class _MobilePaymentInformationWidgetState
                     fontSize: MediaQueryUtil.convertHeight(screenHeight, 15),
                     fontWeight: FontWeight.bold,
                     fontFamily: 'FSElliotPro',
-                    color: Color(0xff019CDE),
+                    color: const Color(0xff019CDE),
                   ),
                 ),
               ),
               Text(
                 widget.paymentAmountValue,
-                key: Key('paymentAmountWidget'),
+                key: const Key('paymentAmountWidget'),
                 style: TextStyle(
                   fontSize: MediaQueryUtil.convertHeight(screenHeight, 15),
                   fontWeight: FontWeight.bold,
@@ -62,7 +62,7 @@ class _MobilePaymentInformationWidgetState
             children: <Widget>[
               Text(
                 'Due on ' + widget.dueDate,
-                key: Key('paymentDueDateWidget'),
+                key: const Key('paymentDueDateWidget'),
                 style: TextStyle(
                   fontSize: MediaQueryUtil.convertHeight(screenHeight, 11),
                   color: Theme.of(context).hintColor,
@@ -93,7 +93,7 @@ class _MobilePaymentInformationWidgetState
               Expanded(
                 child: FlatButton(
                   onPressed: widget.viewBillButtonOnPressed,
-                  textColor: Color(0xff007DB3),
+                  textColor: const Color(0xff007DB3),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[

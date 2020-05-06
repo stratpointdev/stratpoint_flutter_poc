@@ -7,7 +7,6 @@ import 'package:globe_one_poc_project/presentation/dashboard/web/desktop_view/wi
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/reward_points_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/common/progress_indicator_widget.dart';
 
-
 class DesktopViewLoadRewards extends StatefulWidget {
   const DesktopViewLoadRewards();
 
@@ -24,24 +23,23 @@ class _DesktopViewLoadRewards extends State<DesktopViewLoadRewards> {
     _paymentDetailsBloc = BlocProvider.of<PaymentDetailsBloc>(context);
     _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
   }
-  GlobalKey loadBalanceKey= GlobalKey<FormState>();
-  var paymentAmountValue = '₱2,327.03';
-  var dueDate = 'Mar. 30 2020, 4:00 PM';
-  var lastPaymentAmount = '₱200.00';
-  var lastPaymentDate = 'Apr 22';
-  var dateNow = 'Apr. 28 2020';
+
+  GlobalKey loadBalanceKey = GlobalKey<FormState>();
+  String paymentAmountValue = '₱2,327.03';
+  String dueDate = 'Mar. 30 2020, 4:00 PM';
+  String lastPaymentAmount = '₱200.00';
+  String lastPaymentDate = 'Apr 22';
+  String dateNow = 'Apr. 28 2020';
 
   @override
   Widget build(BuildContext context) {
-
-
     return Container(
-      padding: EdgeInsets.only(top: 16.0),
+      padding: const EdgeInsets.only(top: 16.0),
       child: Row(
         children: <Widget>[
-          Spacer(),
+          const Spacer(),
           BlocBuilder<PaymentDetailsBloc, PaymentDetailsState>(
-              builder: (context, state) {
+              builder: (BuildContext context, PaymentDetailsState state) {
             if (state is PaymentDetailsSuccessState) {
               paymentAmountValue = state.paymentAmountValue;
               dueDate = state.dueDate;
@@ -55,30 +53,28 @@ class _DesktopViewLoadRewards extends State<DesktopViewLoadRewards> {
               print(dateNow);
             }
 
-
-            if(state is PaymentDetailsLoadingState)
+            if (state is PaymentDetailsLoadingState)
               return Container(
-                  color:  Color(0xffD2D8DB),
+                  color: const Color(0xffD2D8DB),
                   height: 382,
                   width: 562,
-                  child: Center(child: ProgressIndicatorWidget()));
+                  child: const Center(child: ProgressIndicatorWidget()));
 
-              return  DesktopViewBillPayment(
-                  key : loadBalanceKey,
-                  paymentAmountValue: paymentAmountValue,
-                  dueDate: dueDate,
-                  lastPaymentAmount: lastPaymentAmount,
-                  lastPaymentDate: lastPaymentDate,
-                  dateNow: dateNow,
-                  onRefresh: () =>
-                      {_paymentDetailsBloc.add(InitialPaymentDetailsEvent())},
-                );
-
-
+            return DesktopViewBillPayment(
+              key: loadBalanceKey,
+              paymentAmountValue: paymentAmountValue,
+              dueDate: dueDate,
+              lastPaymentAmount: lastPaymentAmount,
+              lastPaymentDate: lastPaymentDate,
+              dateNow: dateNow,
+              onRefresh: () {
+                _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
+              },
+            );
           }),
-          SizedBox(width: 12),
-          RewardPointsWidget(),
-          Spacer()
+          const SizedBox(width: 12),
+          const RewardPointsWidget(),
+          const Spacer()
         ],
       ),
     );

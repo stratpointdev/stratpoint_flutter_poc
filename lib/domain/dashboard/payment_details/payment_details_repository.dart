@@ -7,7 +7,7 @@ abstract class PaymentDetailsRepository {
   Future<Either<PaymentDetailsFailure, PaymentDetailsModel>>
       getPaymentDetails();
 
-  Future insertPaymentDetailsLocal(PaymentDetailsModel);
-  Future deletePaymentDetailsLocal();
-
+  Future<void> insertPaymentDetailsLocal(
+      PaymentDetailsModel paymentDetailsModel);
+  Future<void> deletePaymentDetailsLocal();
 }

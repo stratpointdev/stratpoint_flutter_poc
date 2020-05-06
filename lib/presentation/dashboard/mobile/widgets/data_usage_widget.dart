@@ -2,20 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 
 class DataUsageWidget extends StatelessWidget {
-  final bool isMobile;
-  final String time;
-  final String remainingData;
-  final String dataAllocation;
-  final String refillDate;
-  final Color textColor;
-  final Color cupIndicatorTextColor;
-  final Color addMoreDataButtonColor;
-  final Widget cupLevelIndicator;
-  final EdgeInsetsGeometry padding;
-  final VoidCallback onRefresh;
-  final VoidCallback onAddMoreData;
-  final VoidCallback onViewDetails;
-
   const DataUsageWidget({
     this.isMobile = false,
     @required this.time,
@@ -32,10 +18,24 @@ class DataUsageWidget extends StatelessWidget {
     @required this.onViewDetails,
   });
 
+  final bool isMobile;
+  final String time;
+  final String remainingData;
+  final String dataAllocation;
+  final String refillDate;
+  final Color textColor;
+  final Color cupIndicatorTextColor;
+  final Color addMoreDataButtonColor;
+  final Widget cupLevelIndicator;
+  final EdgeInsetsGeometry padding;
+  final VoidCallback onRefresh;
+  final VoidCallback onAddMoreData;
+  final VoidCallback onViewDetails;
+
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
 
     return IntrinsicHeight(
       child: Container(
@@ -58,7 +58,7 @@ class DataUsageWidget extends StatelessWidget {
                                   screenHeight, 15),
                               fontWeight: FontWeight.bold,
                               fontFamily: 'FSElliotPro',
-                              color: Color(0xff019CDE),
+                              color: const Color(0xff019CDE),
                             )
                           : TextStyle(
                               color: textColor,
@@ -68,7 +68,7 @@ class DataUsageWidget extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       'as of today, $time',
-                      key: Key('dateUsageLastCheckWidget'),
+                      key: const Key('dateUsageLastCheckWidget'),
                       style: isMobile
                           ? TextStyle(
                               fontSize: MediaQueryUtil.convertHeight(
@@ -99,14 +99,14 @@ class DataUsageWidget extends StatelessWidget {
                         : 190,
                     child: cupLevelIndicator,
                   ),
-                  SizedBox(width: 30),
+                  const SizedBox(width: 30),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       Text(
                         '$remainingData LEFT',
-                        key: Key('remainingDataWidget'),
+                        key: const Key('remainingDataWidget'),
                         style: TextStyle(
                           fontSize:
                               MediaQueryUtil.convertHeight(screenHeight, 19),
@@ -116,7 +116,7 @@ class DataUsageWidget extends StatelessWidget {
                       const SizedBox(height: 8),
                       Text(
                         'Out of $dataAllocation',
-                        key: Key('dataAllocationWidget'),
+                        key: const Key('dataAllocationWidget'),
                         style: TextStyle(
                           color: Theme.of(context).hintColor,
                           fontSize:
@@ -125,7 +125,7 @@ class DataUsageWidget extends StatelessWidget {
                       ),
                       Text(
                         'Refills on $refillDate',
-                        key: Key('refillDateWidget'),
+                        key: const Key('refillDateWidget'),
                         style: TextStyle(
                           color: Theme.of(context).hintColor,
                           fontSize:
@@ -141,7 +141,7 @@ class DataUsageWidget extends StatelessWidget {
                                     fontSize: MediaQueryUtil.convertHeight(
                                         screenHeight, 12),
                                     fontWeight: FontWeight.bold,
-                                    color: Color(0xff007CB5)),
+                                    color: const Color(0xff007CB5)),
                               )
                             : Text(
                                 'View Details',
@@ -184,16 +184,17 @@ class DataUsageWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 30),
-            isMobile
-                ? Container()
-                : Text(
-                    'This includes your main data, rollover data, and free app data allowance',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: textColor,
-                    ),
-                  ),
+            if (isMobile)
+              Container()
+            else
+              Text(
+                'This includes your main data, rollover data, and free app data allowance',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: textColor,
+                ),
+              ),
           ],
         ),
       ),

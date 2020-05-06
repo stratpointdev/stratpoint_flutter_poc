@@ -38,19 +38,18 @@ class _MobileDashboard extends State<MobileDashboard> {
   AccountDetailsBloc _accountDetailsBloc;
   CmsBannerBloc _cmsBannerBloc;
   PaymentDetailsBloc _paymentDetailsBloc;
-  var paymentAmountValue = '₱2,327.03';
-  var dueDate = 'Mar. 30 2020, 4:00 PM';
-  var lastPaymentAmount = '₱200.00';
-  var lastPaymentDate = 'Apr 22';
-  var dateNow = 'Apr. 28 2020';
+  String paymentAmountValue = '₱2,327.03';
+  String dueDate = 'Mar. 30 2020, 4:00 PM';
+  String lastPaymentAmount = '₱200.00';
+  String lastPaymentDate = 'Apr 22';
+  String dateNow = 'Apr. 28 2020';
 
   DataUsageBloc _dataUsageBloc;
-  var remainingData;
-  var dataAllocation;
-  var refillDate;
-  var cupLevelIndicator;
-  var lastApiCall;
-  GlobalKey dataUsageKey = GlobalKey<FormState>();
+  String remainingData;
+  String dataAllocation;
+  String refillDate;
+  Widget cupLevelIndicator;
+  String lastApiCall;
   @override
   void initState() {
     super.initState();
@@ -74,73 +73,67 @@ class _MobileDashboard extends State<MobileDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color:  Color(0xffD2D8DB),
+        color: const Color(0xffD2D8DB),
         child: ListView(
           children: <Widget>[
-            MobileViewHeader(),
+            const MobileViewHeader(),
             BlocBuilder<AccountDetailsBloc, AccountDetailsState>(
-                builder: (context, state) {
-                  String userName = '';
-                  if (state is AccountDetailsSuccessState) {
-                    userName = state.nameInfo.nameElement2;
-                  } else if (state is AccountDetailsFailures) {
-                    userName = 'NA';
-                  }
-                  return MobileViewAccountDetails(
-                    profile: userName,
-                    mobile: "0918 XXXX XXXX",
-                    duoNumber: "(02) 2920118",
-                    profilePicture: "https://i.imgur.com/BoN9kdC.png",
-                  );
-                }),
-
-            MobileViewMenu(),
-
+                builder: (BuildContext context, AccountDetailsState state) {
+              String userName = '';
+              if (state is AccountDetailsSuccessState) {
+                userName = state.nameInfo.nameElement2;
+              } else if (state is AccountDetailsFailures) {
+                userName = 'NA';
+              }
+              return MobileViewAccountDetails(
+                profile: userName,
+                mobile: '0918 XXXX XXXX',
+                duoNumber: '(02) 2920118',
+                profilePicture: 'https://i.imgur.com/BoN9kdC.png',
+              );
+            }),
+            const MobileViewMenu(),
             BlocBuilder<CmsBannerBloc, CmsBannerState>(
-                builder: (context, state) {
-                  if (state is CmsBannerLoadingState) {
-                    return ProgressIndicatorWidget();
-                  } else if (state is CmsBannerSuccessState) {
-                    return CMSBannerWidget(
-                      onPageSelected: (index) {
-                        print(index);
-                      },
-                      onPageChange: (index) {
-                        print(index);
-                      },
-                      imagePaths: state.imagePaths,
-                      imageLinks: state.imageLinks,
-                    );
-                  } else {
-                    return Container();
-                  }
-                }),
+                builder: (BuildContext context, CmsBannerState state) {
+              if (state is CmsBannerLoadingState) {
+                return const ProgressIndicatorWidget();
+              } else if (state is CmsBannerSuccessState) {
+                return CMSBannerWidget(
+                  onPageSelected: () {},
+                  onPageChange: () {},
+                  imagePaths: state.imagePaths,
+                  imageLinks: state.imageLinks,
+                );
+              } else {
+                return Container();
+              }
+            }),
             BlocBuilder<PaymentDetailsBloc, PaymentDetailsState>(
-                builder: (context, state) {
-                  if (state is PaymentDetailsSuccessState) {
-                    paymentAmountValue = state.paymentAmountValue;
-                    dueDate = state.dueDate;
-                    dateNow = state.dateNow;
-                  }
+                builder: (BuildContext context, PaymentDetailsState state) {
+              if (state is PaymentDetailsSuccessState) {
+                paymentAmountValue = state.paymentAmountValue;
+                dueDate = state.dueDate;
+                dateNow = state.dateNow;
+              }
 
-                  if(state is PaymentDetailsLoadingState)
-                    return Container(
-                      height: 238,
-                        width:  MediaQuery.of(context).size.width,
-                        child: Center(child: ProgressIndicatorWidget()));
+              if (state is PaymentDetailsLoadingState)
+                return Container(
+                    height: 238,
+                    width: MediaQuery.of(context).size.width,
+                    child: const Center(child: ProgressIndicatorWidget()));
 
-                  return  MobileViewBillPayment(
-                    paymentAmountValue: paymentAmountValue,
-                    dueDate: dueDate,
-                    dateNow: dateNow,
-                    onRefresh: () =>
-                    {_paymentDetailsBloc.add(InitialPaymentDetailsEvent())},
-                  );
-
-                }),
-            RewardPointsWidget(hasTitlePadding : true),
+              return MobileViewBillPayment(
+                paymentAmountValue: paymentAmountValue,
+                dueDate: dueDate,
+                dateNow: dateNow,
+                onRefresh: () {
+                  _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
+                },
+              );
+            }),
+            const RewardPointsWidget(hasTitlePadding: true),
             BlocBuilder<DataUsageBloc, DataUsageState>(
-              builder: (context, state) {
+              builder: (BuildContext context, DataUsageState state) {
                 if (state is DataUsageSuccessState) {
                   remainingData = state.volumeRemaing;
                   dataAllocation = state.totalAllocated;
@@ -151,17 +144,17 @@ class _MobileDashboard extends State<MobileDashboard> {
 
                 if (state is DataUsageLoadingState)
                   return Container(
-                    height: 413,
+                      height: 413,
                       width: MediaQuery.of(context).size.width,
-                      child: Center(child: ProgressIndicatorWidget()));
+                      child: const Center(child: ProgressIndicatorWidget()));
 
                 return DataUsageWidget(
-                  key: dataUsageKey,
                   isMobileView: true,
-                  onRefresh: () =>
-                      {_dataUsageBloc.add(InitialDataUsageEvent())},
-                  onAddMoreData: () => {},
-                  onViewDetails: () => {},
+                  onRefresh: () {
+                    _dataUsageBloc.add(InitialDataUsageEvent());
+                  },
+                  onAddMoreData: () {},
+                  onViewDetails: () {},
                   cupLevelIndicator: cupLevelIndicator,
                   time: lastApiCall,
                   addMoreDataButtonColor: const Color(0xff009CDF),
@@ -173,12 +166,14 @@ class _MobileDashboard extends State<MobileDashboard> {
                 );
               },
             ),
-            Padding(
-              padding: const EdgeInsets.only(top :30.0),
-              child: SpendingLimitWidget(isMobileView: true,),
+            const Padding(
+              padding: EdgeInsets.only(top: 30.0),
+              child: SpendingLimitWidget(
+                isMobileView: true,
+              ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top :30.0),
+              padding: const EdgeInsets.only(top: 30.0),
               child: MobileViewPlanDetailsWidget(),
             ),
           ],

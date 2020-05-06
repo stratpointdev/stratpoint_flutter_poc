@@ -9,25 +9,17 @@ import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_
 abstract class DataUsageState extends Equatable {
   const DataUsageState();
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 }
 
 class DataUsageSuccessState extends DataUsageState {
-  final String volumeRemaing;
-  final String totalAllocated;
-  final String endDate;
-  final String lastApiCall;
-  final Widget cupLevelIndicator;
-  DataUsageSuccessState({
+  const DataUsageSuccessState({
     this.volumeRemaing,
     this.totalAllocated,
     this.endDate,
     this.lastApiCall,
     this.cupLevelIndicator,
   });
-
-  @override
-  List<Object> get props => [];
 
   //function to sum all total allocated and remainingData;
   factory DataUsageSuccessState.dataUsageSuccesState(
@@ -40,11 +32,12 @@ class DataUsageSuccessState extends DataUsageState {
       sumTotalAllocated =
           sumTotalAllocated + double.parse(dataUsageList[i].totalAllocated);
     }
-    var remainingData = GBConverter.convert(sumVolumeRemaining);
-    var dataAllocation = GBConverter.convert(sumTotalAllocated);
-    var refillDate = DateTimeConverter.convertToDate(dataUsageList[0].endDate);
-    var lastApiCall = DateTimeConverter.getTimeNow();
-    var cupLevelIndicator = CupLevelIndicator.cupLevelIndicator(
+    final String remainingData = GBConverter.convert(sumVolumeRemaining);
+    final String dataAllocation = GBConverter.convert(sumTotalAllocated);
+    final String refillDate =
+        DateTimeConverter.convertToDate(dataUsageList[0].endDate);
+    final String lastApiCall = DateTimeConverter.getTimeNow();
+    final Widget cupLevelIndicator = CupLevelIndicator.cupLevelIndicator(
         sumVolumeRemaining, sumTotalAllocated);
     return DataUsageSuccessState(
         volumeRemaing: remainingData,
@@ -53,14 +46,24 @@ class DataUsageSuccessState extends DataUsageState {
         lastApiCall: lastApiCall,
         cupLevelIndicator: cupLevelIndicator);
   }
+
+  final String volumeRemaing;
+  final String totalAllocated;
+  final String endDate;
+  final String lastApiCall;
+  final Widget cupLevelIndicator;
+
+  @override
+  List<Object> get props => <Object>[];
 }
 
 class DataUsageFailedState extends DataUsageState {
+  const DataUsageFailedState(this.dataUsageFailure);
+
   final DataUsageFailure dataUsageFailure;
-  DataUsageFailedState(this.dataUsageFailure);
 
   @override
-  List<Object> get props => [dataUsageFailure];
+  List<Object> get props => <Object>[dataUsageFailure];
 }
 
 class DataUsageInitialState extends DataUsageState {}

@@ -5,24 +5,8 @@ import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usag
 import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 
 class DataUsageWidget extends StatelessWidget {
-  final GlobalKey key;
-  final bool isMobileView;
-  final String time;
-  final String remainingData;
-  final String dataAllocation;
-  final String refillDate;
-  final Color textColor;
-  final Color cupIndicatorTextColor;
-  final Color addMoreDataButtonColor;
-  final Widget cupLevelIndicator;
-  final EdgeInsetsGeometry padding;
-  final VoidCallback onRefresh;
-  final VoidCallback onAddMoreData;
-  final VoidCallback onViewDetails;
-
   const DataUsageWidget({
-    @required this.key,
-    this.isMobileView: false,
+    this.isMobileView = false,
     @required this.time,
     @required this.remainingData,
     @required this.dataAllocation,
@@ -37,9 +21,23 @@ class DataUsageWidget extends StatelessWidget {
     @required this.onViewDetails,
   });
 
+  final bool isMobileView;
+  final String time;
+  final String remainingData;
+  final String dataAllocation;
+  final String refillDate;
+  final Color textColor;
+  final Color cupIndicatorTextColor;
+  final Color addMoreDataButtonColor;
+  final Widget cupLevelIndicator;
+  final EdgeInsetsGeometry padding;
+  final VoidCallback onRefresh;
+  final VoidCallback onAddMoreData;
+  final VoidCallback onViewDetails;
+
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
+    final double screenWidth = MediaQuery.of(context).size.width;
 
     return Container(
       width: 437,
@@ -47,7 +45,7 @@ class DataUsageWidget extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Padding(
-            padding:  EdgeInsets.only(top: 28.0, bottom:  12.0),
+            padding: const EdgeInsets.only(top: 28.0, bottom: 12.0),
             child: Row(
               children: <Widget>[
                 Padding(
@@ -56,15 +54,19 @@ class DataUsageWidget extends StatelessWidget {
                   ),
                   child: Text(
                     'Usage',
-                    style: TextStyle(fontSize: 22, color: Color(0xff244857), fontWeight: FontWeight.w100),
+                    style: TextStyle(
+                        fontSize: 22,
+                        color: const Color(0xff244857),
+                        fontWeight: FontWeight.w100),
                     textAlign: TextAlign.left,
                   ),
                 ),
-                Spacer()
+                const Spacer()
               ],
             ),
           ),
-          BlocBuilder<DataUsageBloc, DataUsageState>(builder: (context, state) {
+          BlocBuilder<DataUsageBloc, DataUsageState>(
+              builder: (BuildContext context, DataUsageState state) {
             return IntrinsicHeight(
               child: Container(
                 height: isMobileView ? 400 : 500,
@@ -83,7 +85,7 @@ class DataUsageWidget extends StatelessWidget {
                               'Data Allowance',
                               style: TextStyle(
                                 color: textColor,
-                                fontSize: isMobileView ? 16 :20,
+                                fontSize: isMobileView ? 16 : 20,
                               ),
                             ),
                             const SizedBox(height: 4),
@@ -91,7 +93,7 @@ class DataUsageWidget extends StatelessWidget {
                               'As of today, $time',
                               style: TextStyle(
                                 color: textColor,
-                                fontSize: isMobileView ? 12 :14,
+                                fontSize: isMobileView ? 12 : 14,
                               ),
                             ),
                           ],
@@ -109,16 +111,19 @@ class DataUsageWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Container(
-                          width: isMobileView ? MediaQueryUtil.convertWidth(screenWidth, 130) : 224,
+                          width: isMobileView
+                              ? MediaQueryUtil.convertWidth(screenWidth, 130)
+                              : 224,
                           height: isMobileView ? 122 : 180,
                           child: cupLevelIndicator,
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            FittedBox(fit: BoxFit.fitWidth,
+                            FittedBox(
+                              fit: BoxFit.fitWidth,
                               child: Text(
                                 '$remainingData LEFT',
                                 style: const TextStyle(
@@ -128,7 +133,8 @@ class DataUsageWidget extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 8),
-                            FittedBox(fit: BoxFit.fitWidth,
+                            FittedBox(
+                              fit: BoxFit.fitWidth,
                               child: Text(
                                 'Out of $dataAllocation',
                                 style: TextStyle(
@@ -137,30 +143,32 @@ class DataUsageWidget extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            FittedBox(fit: BoxFit.fitWidth,
+                            FittedBox(
+                              fit: BoxFit.fitWidth,
                               child: Text(
                                 'Refills on $refillDate',
                                 style: TextStyle(
                                   color: textColor,
-                                  fontSize:isMobileView ? 12:  14,
+                                  fontSize: isMobileView ? 12 : 14,
                                 ),
                               ),
                             ),
                             const SizedBox(height: 18),
-                            FittedBox(fit: BoxFit.fitWidth,
+                            FittedBox(
+                              fit: BoxFit.fitWidth,
                               child: Text(
                                 'View Details',
                                 style: TextStyle(
-
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700,
-                                    decoration: TextDecoration.underline,
-                                    color: Color(0xff244857),),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700,
+                                  decoration: TextDecoration.underline,
+                                  color: const Color(0xff244857),
+                                ),
                               ),
                             ),
                           ],
                         ),
-                        Spacer(),
+                        const Spacer(),
                       ],
                     ),
                     const SizedBox(height: 50),
@@ -184,7 +192,7 @@ class DataUsageWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                     SizedBox(height: 16 ),
+                    const SizedBox(height: 16),
                     Expanded(
                       child: Text(
                         'This includes your main data, rollover data, and free app data allowance',
@@ -199,13 +207,9 @@ class DataUsageWidget extends StatelessWidget {
                 ),
               ),
             );
-
           }),
         ],
       ),
     );
-
   }
 }
-
-

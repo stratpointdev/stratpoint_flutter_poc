@@ -1,14 +1,11 @@
 class AccountDetailsFailures {
-  int code;
-  String message;
-  String parameter;
   AccountDetailsFailures({this.code, this.message, this.parameter});
 
   factory AccountDetailsFailures.fromJson(Map<String, dynamic> json) {
     return AccountDetailsFailures(
-        code: json['code'],
-        message: json['message'],
-        parameter: json['parameter']);
+        code: json['code'] as int,
+        message: json['message'] as String,
+        parameter: json['parameter'] as String);
   }
 
   factory AccountDetailsFailures.localError(String error) {
@@ -16,4 +13,7 @@ class AccountDetailsFailures {
       message: error,
     );
   }
+  int code;
+  String message;
+  String parameter;
 }

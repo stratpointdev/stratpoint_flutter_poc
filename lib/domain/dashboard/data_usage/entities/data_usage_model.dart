@@ -1,77 +1,70 @@
-
-class DataUsageModel{
-  int responseCode;
-  List<BalanceByMsisdnError> errors;
-  RetrieveSubscriberUsageResult retrieveSubscriberUsageResult;
-  DataUsageModel({this.responseCode,this.retrieveSubscriberUsageResult});
+class DataUsageModel {
+  DataUsageModel({this.responseCode, this.retrieveSubscriberUsageResult});
 
   factory DataUsageModel.fromJson(Map<String, dynamic> json) {
     print('retrieveSubscriberUsageResult ' + json.toString());
-    return DataUsageModel(responseCode:  json["responseCode"],
-      retrieveSubscriberUsageResult: RetrieveSubscriberUsageResult.fromJson(json['retrieveSubscriberUsageResult']),
+    return DataUsageModel(
+      responseCode: json['responseCode'] as int,
+      retrieveSubscriberUsageResult: RetrieveSubscriberUsageResult.fromJson(
+          json['retrieveSubscriberUsageResult'] as Map<String, dynamic>),
     );
   }
 
   Map<String, dynamic> toJson() {
     print(retrieveSubscriberUsageResult.toJson().toString());
-    return {
+    return <String, dynamic>{
       'retrieveSubscriberUsageResult': retrieveSubscriberUsageResult.toJson(),
     };
   }
+
+  int responseCode;
+  List<BalanceByMsisdnError> errors;
+  RetrieveSubscriberUsageResult retrieveSubscriberUsageResult;
 }
 
-class BalanceByMsisdnError {
-}
+class BalanceByMsisdnError {}
 
-
-class RetrieveSubscriberUsageResult{
-  Buckets buckets;
+class RetrieveSubscriberUsageResult {
   RetrieveSubscriberUsageResult({this.buckets});
 
   factory RetrieveSubscriberUsageResult.fromJson(Map<String, dynamic> json) {
-
     return RetrieveSubscriberUsageResult(
-      buckets: Buckets.fromJson(json['buckets']),
+      buckets: Buckets.fromJson(json['buckets'] as Map<String, dynamic>),
     );
   }
 
   Map<String, dynamic> toJson() {
     print('Buckets');
-    return {
+    return <String, dynamic>{
       'buckets': buckets.toJson(),
     };
   }
 
+  Buckets buckets;
 }
-
 
 class Buckets {
-  List<DataUsage> dataUsageList;
   Buckets({this.dataUsageList});
 
-   factory Buckets.fromJson(Map<String,dynamic> json) {
-     return Buckets(dataUsageList: (json['buckets'] as List).map((e) => DataUsage.fromJson(e as Map<String, dynamic>)).toList());
+  factory Buckets.fromJson(Map<String, dynamic> json) {
+    return Buckets(
+        dataUsageList: (json['buckets'] as List<dynamic>)
+            .map((dynamic e) => DataUsage.fromJson(e as Map<String, dynamic>))
+            .toList());
   }
 
-  Map<String,dynamic> toJson() {
-    return {
-      'buckets': dataUsageList.map((dataUsage) => dataUsage.toJson()).toList(),
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'buckets': dataUsageList
+          .map((DataUsage dataUsage) => dataUsage.toJson())
+          .toList(),
     };
   }
+
+  List<DataUsage> dataUsageList;
 }
 
-
 class DataUsage {
-
-  final String bucketId;
-  final String startDate;
-  final String endDate;
-  final String state;
-  final String volumeRemaining;
-  final String totalAllocated;
-  final String volumeUsed;
-  final String unit;
-
   DataUsage({
     this.bucketId,
     this.startDate,
@@ -84,21 +77,20 @@ class DataUsage {
   });
 
   factory DataUsage.fromJson(Map<String, dynamic> json) {
-  print('DataUsage'+ json['bucketId'].toString());
+    print('DataUsage' + json['bucketId'].toString());
     return DataUsage(
-        bucketId: json['bucketId'],
-        startDate: json['startDate'],
-        endDate: json['endDate'],
-        state: json['state'],
-        volumeRemaining: json['volumeRemaining'],
-        totalAllocated: json['totalAllocated'],
-        volumeUsed: json['volumeUsed'],
-        unit: json['unit']
-    );
+        bucketId: json['bucketId'] as String,
+        startDate: json['startDate'] as String,
+        endDate: json['endDate'] as String,
+        state: json['state'] as String,
+        volumeRemaining: json['volumeRemaining'] as String,
+        totalAllocated: json['totalAllocated'] as String,
+        volumeUsed: json['volumeUsed'] as String,
+        unit: json['unit'] as String);
   }
 
- Map<String, dynamic> toJson() {
-    return {
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
       'bucketId': bucketId,
       'startDate': startDate,
       'endDate': endDate,
@@ -110,11 +102,12 @@ class DataUsage {
     };
   }
 
-
-
-
+  final String bucketId;
+  final String startDate;
+  final String endDate;
+  final String state;
+  final String volumeRemaining;
+  final String totalAllocated;
+  final String volumeUsed;
+  final String unit;
 }
-
-
-
-

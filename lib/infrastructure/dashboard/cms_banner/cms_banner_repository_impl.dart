@@ -8,20 +8,22 @@ import 'package:globe_one_poc_project/infrastructure/dashboard/cms_banner/remote
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CmsBannerRepositoryImpl implements CmsBannerRepository {
-  final RemoteCmsBannerService remoteCmsBannerService;
-  final LocalCmsBannerService localCmsBannerService;
   CmsBannerRepositoryImpl(
       this.remoteCmsBannerService, this.localCmsBannerService);
-
+  final RemoteCmsBannerService remoteCmsBannerService;
+  final LocalCmsBannerService localCmsBannerService;
   @override
   Future<Either<CmsBannerFailure, CmsBannerModel>> getCmsBanner() async {
-    SharedPreferences myPrefs = await SharedPreferences.getInstance();
-    int secs = DateTimeConverter.getSecsDiff(myPrefs.getString('LastApiCall'));
+    final SharedPreferences myPrefs = await SharedPreferences.getInstance();
+    final int secs =
+        DateTimeConverter.getSecsDiff(myPrefs.getString('LastApiCall'));
 
     if (secs <= 5) {
       return localCmsBannerService.getCmsBanner();
     } else {
-      return remoteCmsBannerService.getCmsBanner().then((value) {
+      return remoteCmsBannerService
+          .getCmsBanner()
+          .then((Either<CmsBannerFailure, CmsBannerModel> value) {
         if (value.isLeft()) {
           return localCmsBannerService.getCmsBanner();
         } else {
@@ -32,12 +34,12 @@ class CmsBannerRepositoryImpl implements CmsBannerRepository {
   }
 
   @override
-  Future deleteCmsBannerLocal() {
+  Future<void> deleteCmsBannerLocal() async {
     return localCmsBannerService.delete();
   }
 
   @override
-  Future insertCmsBannerLocal(cmsBannerModel) {
+  Future<void> insertCmsBannerLocal(CmsBannerModel cmsBannerModel) async {
     return localCmsBannerService.insert(cmsBannerModel);
   }
 }

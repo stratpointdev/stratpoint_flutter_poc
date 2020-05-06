@@ -1,16 +1,19 @@
 class AccountDetailsModel {
-  int responseCode;
-  List<DetailsByMsisdnError> accountDetailsErrors;
-  DetailsByMsisdnResponse detailsByMsisdnResponse;
   AccountDetailsModel(this.responseCode, this.detailsByMsisdnResponse);
 
   factory AccountDetailsModel.fromJson(Map<dynamic, dynamic> json) {
-    return AccountDetailsModel(json["responseCode"],
-        DetailsByMsisdnResponse.fromJson(json["detailsByMsisdnResponse"]));
+    return AccountDetailsModel(
+        json['responseCode'] as int,
+        DetailsByMsisdnResponse.fromJson(
+            json['detailsByMsisdnResponse'] as Map<dynamic, dynamic>));
   }
 
+  int responseCode;
+  List<DetailsByMsisdnError> accountDetailsErrors;
+  DetailsByMsisdnResponse detailsByMsisdnResponse;
+
   Map<String, dynamic> toJson() {
-    return {
+    return <String, dynamic>{
       'detailsByMsisdnResponse': detailsByMsisdnResponse.toJson(),
     };
   }
@@ -19,68 +22,57 @@ class AccountDetailsModel {
 class DetailsByMsisdnError {}
 
 class DetailsByMsisdnResponse {
-  DetailsByMsisdnResult detailsByMsisdnResult;
   DetailsByMsisdnResponse(this.detailsByMsisdnResult);
+
   factory DetailsByMsisdnResponse.fromJson(Map<dynamic, dynamic> json) {
-    return DetailsByMsisdnResponse(
-        DetailsByMsisdnResult.fromJson(json["detailsByMsisdnResult"]));
+    return DetailsByMsisdnResponse(DetailsByMsisdnResult.fromJson(
+        json['detailsByMsisdnResult'] as Map<dynamic, dynamic>));
   }
 
+  DetailsByMsisdnResult detailsByMsisdnResult;
+
   Map<String, dynamic> toJson() {
-    return {
+    return <String, dynamic>{
       'detailsByMsisdnResult': detailsByMsisdnResult.toJson(),
     };
   }
 }
 
 class DetailsByMsisdnResult {
-  SubscriberHeader subscriberHeader;
   DetailsByMsisdnResult(this.subscriberHeader);
+
   factory DetailsByMsisdnResult.fromJson(Map<dynamic, dynamic> json) {
-    return DetailsByMsisdnResult(
-        SubscriberHeader.fromJson(json["subscriberHeader"]));
+    return DetailsByMsisdnResult(SubscriberHeader.fromJson(
+        json['subscriberHeader'] as Map<dynamic, dynamic>));
   }
 
+  SubscriberHeader subscriberHeader;
+
   Map<String, dynamic> toJson() {
-    return {
+    return <String, dynamic>{
       'subscriberHeader': subscriberHeader.toJson(),
     };
   }
 }
 
 class SubscriberHeader {
-  NameInfo nameInfo;
   SubscriberHeader(this.nameInfo);
+
   factory SubscriberHeader.fromJson(Map<dynamic, dynamic> json) {
-    return SubscriberHeader(NameInfo.fromJson(json["nameInfo"]));
+    return SubscriberHeader(
+        NameInfo.fromJson(json['nameInfo'] as Map<dynamic, dynamic>));
   }
 
+  NameInfo nameInfo;
+
   Map<String, dynamic> toJson() {
-    return {
+    return <String, dynamic>{
       'nameInfo': nameInfo.toJson(),
     };
   }
 }
 
 class NameInfo {
-  int effectiveDate;
-  String expirationDate;
-  int linkType;
-  String nameElement1;
-  String nameElement2;
-  String nameElement3;
-  String nameElement4;
-  String nameElement5;
-  String nameElement6;
-  String nameElement7;
-  String nameElement8;
-  String nameElement9;
-  String nameElement10;
-  String nameLine1;
-  String nameLine2;
-  int nameType;
-  int nameUpdateType;
-
   NameInfo(
       this.effectiveDate,
       this.expirationDate,
@@ -102,9 +94,9 @@ class NameInfo {
 
   factory NameInfo.fromJson(Map<dynamic, dynamic> json) {
     return NameInfo(
-      json['effectiveDate'],
+      json['effectiveDate'] as int,
       json['expirationDate'].toString(),
-      json['linkType'],
+      json['linkType'] as int,
       json['nameElement1'].toString(),
       json['nameElement2'].toString(),
       json['nameElement3'].toString(),
@@ -117,30 +109,48 @@ class NameInfo {
       json['nameElement10'].toString(),
       json['nameLine1'].toString(),
       json['nameLine2'].toString(),
-      json['nameType'],
-      json['nameUpdateType'],
+      json['nameType'] as int,
+      json['nameUpdateType'] as int,
     );
   }
 
+  int effectiveDate;
+  String expirationDate;
+  int linkType;
+  String nameElement1;
+  String nameElement2;
+  String nameElement3;
+  String nameElement4;
+  String nameElement5;
+  String nameElement6;
+  String nameElement7;
+  String nameElement8;
+  String nameElement9;
+  String nameElement10;
+  String nameLine1;
+  String nameLine2;
+  int nameType;
+  int nameUpdateType;
+
   Map<String, dynamic> toJson() {
-    return {
-      'effectiveDate' : effectiveDate ,
-      'expirationDate' :expirationDate,
-      'linkType':linkType,
-      'nameElement1':nameElement1,
-      'nameElement2':nameElement2,
-      'nameElement3':nameElement3,
-      'nameElement4':nameElement4,
-      'nameElement5':nameElement5,
-      'nameElement6':nameElement6,
-      'nameElement7':nameElement7,
-      'nameElement8':nameElement8,
-      'nameElement9':nameElement9,
-      'nameElement10':nameElement10,
-      'nameLine1':nameLine1,
-      'nameLine2':nameLine2,
-      'nameType':nameType,
-      'nameUpdateType':nameUpdateType,
+    return <String, dynamic>{
+      'effectiveDate': effectiveDate,
+      'expirationDate': expirationDate,
+      'linkType': linkType,
+      'nameElement1': nameElement1,
+      'nameElement2': nameElement2,
+      'nameElement3': nameElement3,
+      'nameElement4': nameElement4,
+      'nameElement5': nameElement5,
+      'nameElement6': nameElement6,
+      'nameElement7': nameElement7,
+      'nameElement8': nameElement8,
+      'nameElement9': nameElement9,
+      'nameElement10': nameElement10,
+      'nameLine1': nameLine1,
+      'nameLine2': nameLine2,
+      'nameType': nameType,
+      'nameUpdateType': nameUpdateType,
     };
   }
 }

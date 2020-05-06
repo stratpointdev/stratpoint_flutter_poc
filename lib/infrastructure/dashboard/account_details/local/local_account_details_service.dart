@@ -1,15 +1,18 @@
+import 'dart:wasm';
+
 import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_model.dart';
 import 'package:sembast/sembast.dart';
+import '../../../app_database.dart';
 import '../../../database_factory.dart'
     if (dart.library.js) 'package:sembast_web/sembast_web.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
-import '../../../app_database.dart';
 
 class LocalAccountDetailsService {
   static const String ACCOUNT_DETAILS = 'accountDetails';
-  final _accountDetails = intMapStoreFactory.store(ACCOUNT_DETAILS);
+  final StoreRef<int, Map<String, dynamic>> _accountDetails =
+      intMapStoreFactory.store(ACCOUNT_DETAILS);
 
   Future<Database> get _db async => database();
   Future<Database> database() {
@@ -19,29 +22,32 @@ class LocalAccountDetailsService {
       return databaseFactoryWeb.openDatabase(ACCOUNT_DETAILS);
   }
 
-  Future insert(AccountDetailsModel accountDetailsModel) async {
+  Future<Void> insert(AccountDetailsModel accountDetailsModel) async {
     print('insert ');
     try {
       await _accountDetails.add(await _db, accountDetailsModel.toJson());
     } catch (error) {
       print('insert ' + error.toString());
     }
+    return null;
   }
 
-  Future delete() async {
+  Future<Void> delete() async {
     print('delete');
     await _accountDetails.delete(
       await _db,
     );
+    return null;
   }
 
   Future<Either<AccountDetailsFailures, AccountDetailsModel>>
       getAccountDetails() async {
     try {
-      final finder = Finder(limit: 1);
-      final recordSnapshots =
+      final Finder finder = Finder(limit: 1);
+      final List<RecordSnapshot<int, Map<String, dynamic>>> recordSnapshots =
           await _accountDetails.find(await _db, finder: finder);
-      return right(recordSnapshots.map((snapshot) {
+      return right(recordSnapshots
+          .map((RecordSnapshot<int, Map<String, dynamic>> snapshot) {
         return AccountDetailsModel.fromJson(snapshot.value);
       }).first);
     } catch (error) {
