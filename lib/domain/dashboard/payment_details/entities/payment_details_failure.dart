@@ -3,13 +3,13 @@ class PaymentDetailsFailure {
 
   factory PaymentDetailsFailure.fromJson(Map<String, dynamic> json) {
     return PaymentDetailsFailure(
-      code: json['code'],
-      message: json['message'],
-      parameter: json['parameter'],
+      code: json['code'] as String,
+      message: json['message'] as String,
+      parameter: json['parameter'] as String,
     );
   }
 
-  factory PaymentDetailsFailure.localError(String error){
+  factory PaymentDetailsFailure.localError(String error) {
     return PaymentDetailsFailure(
       message: error,
     );

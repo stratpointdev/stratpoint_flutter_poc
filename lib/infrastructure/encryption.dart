@@ -7,7 +7,7 @@ import 'package:encrypt/encrypt.dart';
 import 'package:meta/meta.dart';
 import 'package:sembast/src/api/v2/sembast.dart';
 
-var _random = Random.secure();
+Random _random = Random.secure();
 
 /// Random bytes generator
 Uint8List _randBytes(int length) {
@@ -16,29 +16,29 @@ Uint8List _randBytes(int length) {
 }
 
 /// Generate an encryption password based on a user input password
-///
+
 /// It uses MD5 which generates a 16 bytes blob, size needed for Salsa20
 Uint8List _generateEncryptPassword(String password) {
-  var blob = Uint8List.fromList(md5.convert(utf8.encode(password)).bytes);
+  final Uint8List blob =
+      Uint8List.fromList(md5.convert(utf8.encode(password)).bytes);
   assert(blob.length == 16);
   return blob;
 }
 
 /// Salsa20 based encoder
 class _EncryptEncoder extends Converter<dynamic, String> {
-  final Salsa20 salsa20;
-
   _EncryptEncoder(this.salsa20);
+  final Salsa20 salsa20;
 
   @override
   String convert(dynamic input) {
     // Generate random initial value
-    final iv = _randBytes(8);
-    final ivEncoded = base64.encode(iv);
+    final Uint8List iv = _randBytes(8);
+    final String ivEncoded = base64.encode(iv);
     assert(ivEncoded.length == 12);
 
     // Encode the input value
-    final encoded =
+    final String encoded =
         Encrypter(salsa20).encrypt(json.encode(input), iv: IV(iv)).base64;
 
     // Prepend the initial value
@@ -48,9 +48,8 @@ class _EncryptEncoder extends Converter<dynamic, String> {
 
 /// Salsa20 based decoder
 class _EncryptDecoder extends Converter<String, dynamic> {
-  final Salsa20 salsa20;
-
   _EncryptDecoder(this.salsa20);
+  final Salsa20 salsa20;
 
   @override
   dynamic convert(String input) {
@@ -72,14 +71,13 @@ class _EncryptDecoder extends Converter<String, dynamic> {
 
 /// Salsa20 based Codec
 class _EncryptCodec extends Codec<dynamic, String> {
-  _EncryptEncoder _encoder;
-  _EncryptDecoder _decoder;
-
   _EncryptCodec(Uint8List passwordBytes) {
-    var salsa20 = Salsa20(Key(passwordBytes));
+    final Salsa20 salsa20 = Salsa20(Key(passwordBytes));
     _encoder = _EncryptEncoder(salsa20);
     _decoder = _EncryptDecoder(salsa20);
   }
+  _EncryptEncoder _encoder;
+  _EncryptDecoder _decoder;
 
   @override
   Converter<String, dynamic> get decoder => _decoder;
@@ -89,7 +87,7 @@ class _EncryptCodec extends Codec<dynamic, String> {
 }
 
 /// Our plain text signature
-const _encryptCodecSignature = 'encrypt';
+const String _encryptCodecSignature = 'encrypt';
 
 /// Create a codec to use to open a database with encrypted stored data.
 ///
