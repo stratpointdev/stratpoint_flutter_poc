@@ -19,10 +19,12 @@ class RemotePaymentDetailsService {
         final SharedPreferences myPrefs = await SharedPreferences.getInstance();
         myPrefs.setString('LastApiCall', DateTime.now().toString());
 
-        user = jsonDecode(response.body);
-        return right(PaymentDetailsModel.fromJson(body));
+        final dynamic body = jsonDecode(response.body.toString());
+        return right(
+            PaymentDetailsModel.fromJson(body as Map<String, dynamic>));
       } else {
-        return left(PaymentDetailsFailure.fromJson(jsonDecode(response.body)));
+        return left(PaymentDetailsFailure.fromJson(
+            jsonDecode(response.body) as Map<String, dynamic>));
       }
     } catch (_) {
       return left(PaymentDetailsFailure.localError(''));
