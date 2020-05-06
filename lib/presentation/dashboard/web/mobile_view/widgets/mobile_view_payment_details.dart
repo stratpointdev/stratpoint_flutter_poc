@@ -39,7 +39,8 @@ class _MobileViewPaymentDetailsState extends State<MobileViewPaymentDetails> {
                     textAlign: TextAlign.left,
                   ),
                 ),
-              ],
+                textAlign: TextAlign.left,
+              ),
             ),
           ),
           Container(

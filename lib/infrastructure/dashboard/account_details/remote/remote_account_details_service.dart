@@ -18,7 +18,7 @@ class RemoteAccountDetailsService {
       if (response.statusCode == 200) {
         final SharedPreferences myPrefs = await SharedPreferences.getInstance();
         myPrefs.setString('LastApiCall', DateTime.now().toString());
-        final body = jsonDecode(response.body);
+        body = jsonDecode(response.body);
         return right(AccountDetailsModel.fromJson(body));
       } else {
         return left(AccountDetailsFailures.fromJson(jsonDecode(response.body)));
