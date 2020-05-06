@@ -26,6 +26,7 @@ class PaymentDetailsBloc
         event is InitialPaymentDetailsEvent) {
       final Either<PaymentDetailsFailure, PaymentDetailsModel> result =
           await paymentDetailsRepository.getPaymentDetails();
+      print('IS RIGHT $result');
       yield result.fold(
           (PaymentDetailsFailure failures) => PaymentDetailsFailedState(),
           (PaymentDetailsModel successEntity) =>

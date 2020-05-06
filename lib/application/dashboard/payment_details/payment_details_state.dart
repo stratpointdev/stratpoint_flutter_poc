@@ -31,11 +31,9 @@ class PaymentDetailsSuccessState extends PaymentDetailsState {
           .outstandingBalanceByMsisdnResponse
           .outstandingBalanceByMsisdnResult
           .overDueDate),
-      lastPaymentAmount: NumberConverter.pesoCurrency(paymentDetailsModel
-          .outstandingBalanceByMsisdnResponse
-          .outstandingBalanceByMsisdnResult
-          .lastPaymentDt
-          .amount as double),
+      lastPaymentAmount: NumberConverter.pesoCurrency(double.parse(
+          paymentDetailsModel.outstandingBalanceByMsisdnResponse
+              .outstandingBalanceByMsisdnResult.lastPaymentDt.amount)),
       lastPaymentDate: DateTimeConverter.convertToDateWithYear(
           paymentDetailsModel.outstandingBalanceByMsisdnResponse
               .outstandingBalanceByMsisdnResult.lastPaymentDt.paymentDate),
