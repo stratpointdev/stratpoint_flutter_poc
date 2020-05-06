@@ -20,9 +20,9 @@ void main() {
 
   test('Successful RefreshCmsBannerEvent should display CmsBannerSuccessState',
       () {
-    Map<String, dynamic> mockCmsResponse = {};
+    final Map<String, dynamic> mockCmsResponse = <String, dynamic>{};
 
-    CmsBannerModel cmsBannerModel = CmsBannerModel(cms: mockCmsResponse);
+    final CmsBannerModel cmsBannerModel = CmsBannerModel(cms: mockCmsResponse);
 
     when(mockRepository.getCmsBanner())
         .thenAnswer((_) async => right(cmsBannerModel));
@@ -31,7 +31,7 @@ void main() {
 
     expectLater(
         bloc,
-        emitsInOrder([
+        emitsInOrder(<CmsBannerState>[
           CmsBannerInitialState(),
           CmsBannerSuccessState(
               imagePaths: cmsBannerModel.getImagePaths(),
