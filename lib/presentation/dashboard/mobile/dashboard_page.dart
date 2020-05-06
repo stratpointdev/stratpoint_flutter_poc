@@ -125,7 +125,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                       child: BlocBuilder<CmsBannerBloc, CmsBannerState>(builder:
                           (BuildContext context, CmsBannerState state) {
                         if (state is CmsBannerLoadingState) {
-                          return ProgressIndicatorWidget();
+                          return const ProgressIndicatorWidget();
                         } else if (state is CmsBannerSuccessState) {
                           return CMSBannerWidget(
                             onPageSelected: (int index) {
@@ -155,7 +155,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                         dueDate = state.dueDate;
                       }
                       if (state is PaymentDetailsLoadingState) {
-                        return ProgressIndicatorWidget();
+                        return const ProgressIndicatorWidget();
                       }
                       if (state is PaymentDetailsFailedState) {
                         return Center(
@@ -184,7 +184,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                         lastApiCall = state.lastApiCall;
                       }
                       if (state is DataUsageLoadingState) {
-                        return ProgressIndicatorWidget();
+                        return const ProgressIndicatorWidget();
                       }
                       if (state is DataUsageFailedState) {
                         return Center(
