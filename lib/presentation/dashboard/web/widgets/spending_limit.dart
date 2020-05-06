@@ -31,8 +31,8 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
           const SizedBox(height: 4),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
+            children: const <Widget>[
+              Text(
                 'From Mar. 24 up to present',
                 style: TextStyle(
                   color: Color(0xff244857),
@@ -40,7 +40,7 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
                   fontSize: 14,
                 ),
               ),
-              const Text(
+              Text(
                 'Reset on Apr. 24',
                 style: TextStyle(
                   color: Color(0xff244857),
@@ -87,7 +87,7 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
               children: <Widget>[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: <Widget>[
                     Text(
                       'Excess Usage',
                       style: TextStyle(
@@ -109,7 +109,7 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
                 const SizedBox(height: 12),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
+                  children: <Widget>[
                     const SizedBox(width: 10),
                     BulletWidget(),
                     const SizedBox(width: 10),
@@ -128,7 +128,7 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
                 const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
+                  children: <Widget>[
                     const SizedBox(width: 10),
                     BulletWidget(),
                     const SizedBox(width: 10),
