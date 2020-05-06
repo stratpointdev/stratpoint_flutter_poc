@@ -3,9 +3,9 @@ class DataUsageFailure {
 
   factory DataUsageFailure.fromJson(Map<String, dynamic> json) {
     return DataUsageFailure(
-        code: json['code'],
-        message: json['message'],
-        parameter: json['parameter']);
+        code: json['code'] as int,
+        message: json['message'] as String,
+        parameter: json['parameter'] as String);
   }
 
   factory DataUsageFailure.localError(String error) {
