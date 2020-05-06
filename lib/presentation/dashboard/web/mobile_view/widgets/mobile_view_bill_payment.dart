@@ -27,24 +27,27 @@ class _MobileViewBillPayment extends State<MobileViewBillPayment> {
   @override
   Widget build(BuildContext context) {
     return Container(
-
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.only(left: 16,top: 16,bottom: 12),
-            child: Text("Bills Payment",
-                style: TextStyle(fontSize: 22, color: Color(0xff244857), fontWeight: FontWeight.w100),
-                textAlign: TextAlign.left, ),
+            padding: const EdgeInsets.only(left: 16, top: 16, bottom: 12),
+            child: Text(
+              'Bills Payment',
+              style: TextStyle(
+                  fontSize: 22,
+                  color: const Color(0xff244857),
+                  fontWeight: FontWeight.w100),
+              textAlign: TextAlign.left,
+            ),
           ),
           Container(
             color: Colors.white,
-            padding: EdgeInsets.only(left: 20,top: 20,bottom: 20),
+            padding: const EdgeInsets.only(left: 20, top: 20, bottom: 20),
             height: 199,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -52,13 +55,15 @@ class _MobileViewBillPayment extends State<MobileViewBillPayment> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text("Amount to pay :",
-                            style:TextStyle(fontSize: 16, color: Color(0xff244857)),
+                        const Text('Amount to pay :',
+                            style: TextStyle(
+                                fontSize: 16, color: Color(0xff244857)),
                             textAlign: TextAlign.left),
                         const SizedBox(height: 4),
                         Text(
-                          "Due on " + widget.dueDate,
-                          style: TextStyle(fontSize: 14, color: Color(0xff244857)),
+                          'Due on ' + widget.dueDate,
+                          style: const TextStyle(
+                              fontSize: 14, color: Color(0xff244857)),
                           textAlign: TextAlign.left,
                         ),
                       ],
@@ -70,41 +75,43 @@ class _MobileViewBillPayment extends State<MobileViewBillPayment> {
                     )
                   ],
                 ),
-
                 Padding(
-                  padding:  EdgeInsets.only(bottom : 12.0),
+                  padding: EdgeInsets.only(bottom: 12.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Spacer(),
                       //add refresh icon here
                       Padding(
-                        padding:  EdgeInsets.only(right: 20.0),
+                        padding: EdgeInsets.only(right: 20.0),
                         child: Text(widget.paymentAmountValue,
-                            style: TextStyle(fontSize: 26, color: Color(0xff244857),fontWeight: FontWeight.w700),
+                            style: TextStyle(
+                                fontSize: 26,
+                                color: Color(0xff244857),
+                                fontWeight: FontWeight.w700),
                             textAlign: TextAlign.left),
                       ),
                       //end of refresh icon here
                     ],
                   ),
                 ),
-
                 Padding(
-                  padding: const EdgeInsets.only(right: 20.0,bottom: 26.0),
+                  padding: const EdgeInsets.only(right: 20.0, bottom: 26.0),
                   child: Row(
                     children: <Widget>[
                       Text("View Bills",
                           style: TextStyle(
                               fontSize: 14,
                               color: Color(0xff244857),
-                              decoration: TextDecoration.underline,fontWeight: FontWeight.w700),
+                              decoration: TextDecoration.underline,
+                              fontWeight: FontWeight.w700),
                           textAlign: TextAlign.left),
                       Spacer(),
                       Container(
                         height: 40,
                         width: 179,
                         child: RawMaterialButton(
-                          onPressed: (){},
+                          onPressed: () {},
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4.0),
                           ),
@@ -123,7 +130,6 @@ class _MobileViewBillPayment extends State<MobileViewBillPayment> {
                     ],
                   ),
                 ),
-
               ],
             ),
           )
