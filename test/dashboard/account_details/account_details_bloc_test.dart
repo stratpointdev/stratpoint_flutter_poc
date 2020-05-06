@@ -22,8 +22,8 @@ void main() {
   test(
       'Successful RefreshAccountDetailsEvent should display AccountDetailsSuccessState',
       () {
-    final NameInfo nameInfo = NameInfo(0, ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-        ' ', ' ', ' ', ' ', ' ', 0, 0);
+    final NameInfo nameInfo = NameInfo(0, ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ',
+        ' ', ' ', ' ', ' ', ' ', ' ', 0, 0);
     final SubscriberHeader subscriberHeader = SubscriberHeader(nameInfo);
     final DetailsByMsisdnResult detailsByMsisdnResult =
         DetailsByMsisdnResult(subscriberHeader);
@@ -39,7 +39,7 @@ void main() {
 
     expectLater(
         bloc,
-        emitsInOrder([
+        emitsInOrder(<AccountDetailsState>[
           AccountDetailsInitialState(),
           AccountDetailsSuccessState(nameInfo: nameInfo)
         ]));

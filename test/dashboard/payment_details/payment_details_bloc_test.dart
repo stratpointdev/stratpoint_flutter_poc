@@ -20,9 +20,9 @@ void main() {
   });
 
   test('Successful RefreshEvent should display PaymentSuccessState', () {
-    LastPaymentDt lastPaymentDt =
+    final LastPaymentDt lastPaymentDt =
         LastPaymentDt(amount: 200.03, paymentDate: '2020-04-23T00:00:00+0800');
-    PaymentDetailsModel paymentDetailsModel = PaymentDetailsModel(
+    final PaymentDetailsModel paymentDetailsModel = PaymentDetailsModel(
         200,
         OutstandingBalanceByMsisdnResponse(OutstandingBalanceByMsisdnResult(
             lastPaymentDt, '2020-03-31T00:00:00+0800', '2000.03', '_')));
@@ -34,7 +34,9 @@ void main() {
 
     expectLater(
         bloc,
-        emitsInOrder(
-            [PaymentDetailsInitialState(), PaymentDetailsSuccessState()]));
+        emitsInOrder(<PaymentDetailsState>[
+          PaymentDetailsInitialState(),
+          const PaymentDetailsSuccessState()
+        ]));
   });
 }
