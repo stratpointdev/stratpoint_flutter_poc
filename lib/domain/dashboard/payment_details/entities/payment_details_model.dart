@@ -81,7 +81,7 @@ class LastPaymentDt {
 
   factory LastPaymentDt.fromJson(Map<dynamic, dynamic> json) {
     return LastPaymentDt(
-      amount: json['amount'],
+      amount: json['amount'].toString(),
       creditId: json['creditId'] as int,
       paymentDate: json['paymentDate'].toString(),
     );
@@ -95,7 +95,7 @@ class LastPaymentDt {
     };
   }
 
-  dynamic amount;
+  String amount;
   int creditId;
   String paymentDate;
 }

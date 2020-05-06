@@ -15,18 +15,20 @@ class RemotePaymentDetailsService {
     try {
       final Response response = await get(api.getOutStandingBalance())
           .timeout(const Duration(seconds: 5));
+      print(response.statusCode);
       if (response.statusCode == 200) {
         final SharedPreferences myPrefs = await SharedPreferences.getInstance();
         myPrefs.setString('LastApiCall', DateTime.now().toString());
-
+        print('RESPONSE CODE: $response');
         final dynamic body = jsonDecode(response.body.toString());
         return right(
-            PaymentDetailsModel.fromJson(body as Map<String, dynamic>));
+            PaymentDetailsModel.fromJson(body as Map<dynamic, dynamic>));
       } else {
         return left(PaymentDetailsFailure.fromJson(
             jsonDecode(response.body) as Map<String, dynamic>));
       }
-    } catch (_) {
+    } catch (e) {
+      print('ERRORRRRR: $e');
       return left(PaymentDetailsFailure.localError(''));
     }
   }
