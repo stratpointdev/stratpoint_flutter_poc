@@ -31,7 +31,7 @@ class _DesktopViewPlanDetails extends State<DesktopViewPlanDetails> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Row(
-                    children: [
+                    children: <Widget>[
                       const Text(
                         'Your current plan:',
                         style: TextStyle(
@@ -52,7 +52,7 @@ class _DesktopViewPlanDetails extends State<DesktopViewPlanDetails> {
                   ),
                   const SizedBox(height: 16),
                   Row(
-                    children: [
+                    children: <Widget>[
                       const Text(
                         'Cut off date:',
                         style: TextStyle(
@@ -119,7 +119,7 @@ class _DesktopViewPlanDetails extends State<DesktopViewPlanDetails> {
             width: 210,
             height: 40,
             child: RawMaterialButton(
-              onPressed: () => {},
+              onPressed: null,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(4.0),
               ),

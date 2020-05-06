@@ -9,6 +9,7 @@ class MobileViewBillPayment extends StatefulWidget {
       this.lastPaymentAmount,
       this.lastPaymentDate,
       this.dateNow});
+
   @override
   final GlobalKey key;
   final String paymentAmountValue;

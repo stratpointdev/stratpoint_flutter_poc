@@ -33,7 +33,7 @@ class _MobileViewPlanDetailsWidget extends State<MobileViewPlanDetailsWidget> {
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: <Widget>[
                   const Text(
                     'Your current plan:',
                     style: TextStyle(
@@ -111,7 +111,7 @@ class _MobileViewPlanDetailsWidget extends State<MobileViewPlanDetailsWidget> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: <Widget>[
                     const Text(
                       'Months remaining:',
                       style: TextStyle(

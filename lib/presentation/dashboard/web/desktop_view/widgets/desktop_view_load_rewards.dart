@@ -58,7 +58,7 @@ class _DesktopViewLoadRewards extends State<DesktopViewLoadRewards> {
                   color: const Color(0xffD2D8DB),
                   height: 382,
                   width: 562,
-                  child: Center(child: ProgressIndicatorWidget()));
+                  child: const Center(child: ProgressIndicatorWidget()));
 
             return DesktopViewBillPayment(
               key: loadBalanceKey,
