@@ -67,8 +67,9 @@ class _DesktopViewLoadRewards extends State<DesktopViewLoadRewards> {
               lastPaymentAmount: lastPaymentAmount,
               lastPaymentDate: lastPaymentDate,
               dateNow: dateNow,
-              onRefresh: () =>
-                  {_paymentDetailsBloc.add(InitialPaymentDetailsEvent())},
+              onRefresh: () {
+                _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
+              },
             );
           }),
           const SizedBox(width: 12),
