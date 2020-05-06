@@ -18,10 +18,12 @@ class RemoteAccountDetailsService {
       if (response.statusCode == 200) {
         final SharedPreferences myPrefs = await SharedPreferences.getInstance();
         myPrefs.setString('LastApiCall', DateTime.now().toString());
-        body = jsonDecode(response.body);
-        return right(AccountDetailsModel.fromJson(body));
+        final dynamic body = jsonDecode(response.body);
+        return right(
+            AccountDetailsModel.fromJson(body as Map<dynamic, dynamic>));
       } else {
-        return left(AccountDetailsFailures.fromJson(jsonDecode(response.body)));
+        return left(AccountDetailsFailures.fromJson(
+            jsonDecode(response.body) as Map<String, dynamic>));
       }
     } catch (_) {
       return left(AccountDetailsFailures.localError(''));
