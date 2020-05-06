@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class WebPaymentInformationWidget extends StatefulWidget {
-  WebPaymentInformationWidget({
+  const WebPaymentInformationWidget({
     this.dueDate = 'May 3',
     this.dueAmount = '1,798.03',
     this.lastPaymentAmount = '1,839.00',
@@ -45,7 +45,7 @@ class _WebPaymentInformationWidget extends State<WebPaymentInformationWidget> {
                 children: <Widget>[
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: <Widget>[
                       const Text(
                         'Amount to pay :',
                         style: TextStyle(
@@ -92,7 +92,7 @@ class _WebPaymentInformationWidget extends State<WebPaymentInformationWidget> {
                   const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: <Widget>[
                       RawMaterialButton(
                         onPressed: () => null,
                         child: Text(
@@ -139,7 +139,7 @@ class _WebPaymentInformationWidget extends State<WebPaymentInformationWidget> {
                   const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: <Widget>[
                       const Text(
                         'Last Payment Amount',
                         style: TextStyle(
@@ -157,7 +157,7 @@ class _WebPaymentInformationWidget extends State<WebPaymentInformationWidget> {
                   const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: <Widget>[
                       const Text(
                         'Last Payment Date',
                         style: TextStyle(
