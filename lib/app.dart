@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsFlutterBinding.ensureInitialized();
     return MultiBlocProvider(
-      providers: [
+      providers: <BlocProvider<Bloc<dynamic, dynamic>>>[
         BlocProvider<PaymentDetailsBloc>(
           create: (BuildContext context) =>
               PaymentDetailsBloc(PaymentDetailsRepositoryImpl(
