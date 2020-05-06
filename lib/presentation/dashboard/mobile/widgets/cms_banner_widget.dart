@@ -6,12 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CMSBannerWidget extends StatefulWidget {
-  final Function onPageChange;
-  final Function onPageSelected;
-  final Color pageIndicatorBackgroundColor;
-  final Map<String, String> imagePaths;
-  final Map<String, String> imageLinks;
-
   const CMSBannerWidget({
     this.onPageChange,
     this.onPageSelected,
@@ -19,6 +13,12 @@ class CMSBannerWidget extends StatefulWidget {
     @required this.imagePaths,
     @required this.imageLinks,
   });
+
+  final Function onPageChange;
+  final Function onPageSelected;
+  final Color pageIndicatorBackgroundColor;
+  final Map<String, String> imagePaths;
+  final Map<String, String> imageLinks;
 
   @override
   _CMSBannerWidgetState createState() => _CMSBannerWidgetState();
@@ -78,7 +78,7 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
                     fit: BoxFit.cover,
                     child: Image.network(
                         _baseUrl + widget.imagePaths.values.toList()[index],
-                        headers: {'authorization': basicAuth}),
+                        headers: <String, String>{'authorization': basicAuth}),
                   )),
             ));
           },
@@ -93,7 +93,7 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   for (int i = 0; i < widget.imagePaths.length; i++)
-                    if (i == currentPage) ...[circleBar(true)] else
+                    if (i == currentPage) ...<Widget>[circleBar(true)] else
                       circleBar(false),
                 ],
               ),
