@@ -8,20 +8,21 @@ import 'package:globe_one_poc_project/infrastructure/dashboard/data_usage/remote
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DataUsageRepositoryImpl implements DataUsageRepository {
-  final RemoteDataUsageService remoteDataUsageService;
-  final LocalDataUsageService localDataUsageService;
-
   DataUsageRepositoryImpl(
       this.remoteDataUsageService, this.localDataUsageService);
-
+  final RemoteDataUsageService remoteDataUsageService;
+  final LocalDataUsageService localDataUsageService;
   @override
   Future<Either<DataUsageFailure, DataUsageModel>> getDataUsage() async {
-    SharedPreferences myPrefs = await SharedPreferences.getInstance();
-    int secs = DateTimeConverter.getSecsDiff(myPrefs.getString('LastApiCall'));
+    final SharedPreferences myPrefs = await SharedPreferences.getInstance();
+    final int secs =
+        DateTimeConverter.getSecsDiff(myPrefs.getString('LastApiCall'));
     if (secs <= 5) {
       return localDataUsageService.getDataUsage();
     } else {
-      return remoteDataUsageService.getDataUsage().then((value) {
+      return remoteDataUsageService
+          .getDataUsage()
+          .then((Either<DataUsageFailure, DataUsageModel> value) {
         if (value.isLeft()) {
           return localDataUsageService.getDataUsage();
         } else {
@@ -32,12 +33,12 @@ class DataUsageRepositoryImpl implements DataUsageRepository {
   }
 
   @override
-  Future deleteDataUsageLocal() {
+  Future<void> deleteDataUsageLocal() {
     return localDataUsageService.delete();
   }
 
   @override
-  Future insertDataUsageLocal(dateUsageModel) {
+  Future<void> insertDataUsageLocal(DataUsageModel dateUsageModel) {
     return localDataUsageService.insert(dateUsageModel);
   }
 }

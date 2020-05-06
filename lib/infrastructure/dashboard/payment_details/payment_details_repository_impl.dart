@@ -26,7 +26,9 @@ class PaymentDetailsRepositoryImpl implements PaymentDetailsRepository {
     if (secs <= 5) {
       return localPaymentDetailsService.getPaymentDetails();
     } else {
-      return remotePaymentDetailsService.getPaymentDetails().then((value) {
+      return remotePaymentDetailsService
+          .getPaymentDetails()
+          .then((Either<PaymentDetailsFailure, PaymentDetailsModel> value) {
         if (value.isLeft()) {
           return localPaymentDetailsService.getPaymentDetails();
         } else {
@@ -37,15 +39,13 @@ class PaymentDetailsRepositoryImpl implements PaymentDetailsRepository {
   }
 
   @override
-  Future<Void> deletePaymentDetailsLocal() async {
-    localPaymentDetailsService.delete();
-    return null;
+  Future<void> deletePaymentDetailsLocal() async {
+    return localPaymentDetailsService.delete();
   }
 
   @override
-  Future<Void> insertPaymentDetailsLocal(
+  Future<void> insertPaymentDetailsLocal(
       PaymentDetailsModel paymentDetailsModel) async {
-    localPaymentDetailsService.insert(paymentDetailsModel);
-    return null;
+    return localPaymentDetailsService.insert(paymentDetailsModel);
   }
 }

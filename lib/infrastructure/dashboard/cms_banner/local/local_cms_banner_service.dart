@@ -1,16 +1,18 @@
 import 'package:dartz/dartz.dart';
 import 'package:globe_one_poc_project/domain/dashboard/cms_banner/entities/cms_banner_failure.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+
 import 'package:globe_one_poc_project/domain/dashboard/cms_banner/entities/cms_banner_model.dart';
 import 'package:sembast/sembast.dart';
-import '../../../database_factory.dart'
-    if (dart.library.js) 'package:sembast_web/sembast_web.dart';
 import '../../../app_database.dart';
 
-import 'package:flutter/foundation.dart' show kIsWeb;
+import '../../../database_factory.dart'
+    if (dart.library.js) 'package:sembast_web/sembast_web.dart';
 
 class LocalCmsBannerService {
   static const String CMS_BANNER = 'cmsBanner';
-  final _cmsBanner = intMapStoreFactory.store(CMS_BANNER);
+  final StoreRef<int, Map<String, dynamic>> _cmsBanner =
+      intMapStoreFactory.store(CMS_BANNER);
 
   Future<Database> get _db async => database();
 
@@ -21,7 +23,7 @@ class LocalCmsBannerService {
       return databaseFactoryWeb.openDatabase(CMS_BANNER);
   }
 
-  Future insert(CmsBannerModel cmsBannerModel) async {
+  Future<void> insert(CmsBannerModel cmsBannerModel) async {
     print('insert cms');
     try {
       await _cmsBanner.add(await _db, cmsBannerModel.toJson());
@@ -30,7 +32,7 @@ class LocalCmsBannerService {
     }
   }
 
-  Future delete() async {
+  Future<void> delete() async {
     print('delete cms');
     try {
       await _cmsBanner.delete(
@@ -43,9 +45,11 @@ class LocalCmsBannerService {
 
   Future<Either<CmsBannerFailure, CmsBannerModel>> getCmsBanner() async {
     try {
-      final finder = Finder(limit: 1);
-      final recordSnapshots = await _cmsBanner.find(await _db, finder: finder);
-      return right(recordSnapshots.map((snapshot) {
+      final Finder finder = Finder(limit: 1);
+      final List<RecordSnapshot<int, Map<String, dynamic>>> recordSnapshots =
+          await _cmsBanner.find(await _db, finder: finder);
+      return right(recordSnapshots
+          .map((RecordSnapshot<int, Map<String, dynamic>> snapshot) {
         return CmsBannerModel.fromJson(snapshot.value);
       }).single);
     } catch (error) {
