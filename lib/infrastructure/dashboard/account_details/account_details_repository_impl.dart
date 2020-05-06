@@ -17,12 +17,15 @@ class AccountDetailsRepositoryImpl implements AccountDetailsRepository {
   Future<Either<AccountDetailsFailures, AccountDetailsModel>>
       getAccountDetails() async {
     final SharedPreferences myPrefs = await SharedPreferences.getInstance();
-    final int secs = DateTimeConverter.getSecsDiff(myPrefs.getString('LastApiCall'));
+    final int secs =
+        DateTimeConverter.getSecsDiff(myPrefs.getString('LastApiCall'));
 
     if (secs <= 5) {
       return localAccountDetailsService.getAccountDetails();
     } else {
-      return remoteAccountDetailsService.getAccountDetails().then((value) {
+      return remoteAccountDetailsService
+          .getAccountDetails()
+          .then((Either<AccountDetailsFailures, AccountDetailsModel> value) {
         if (value.isLeft()) {
           return localAccountDetailsService.getAccountDetails();
         } else {
@@ -33,12 +36,13 @@ class AccountDetailsRepositoryImpl implements AccountDetailsRepository {
   }
 
   @override
-  Future deletePaymentDetailsLocal() {
+  Future<void> deletePaymentDetailsLocal() {
     return localAccountDetailsService.delete();
   }
 
   @override
-  Future insertPaymentDetailsLocal(accountDetailsModel) {
+  Future<void> insertPaymentDetailsLocal(
+      AccountDetailsModel accountDetailsModel) {
     return localAccountDetailsService.insert(accountDetailsModel);
   }
 }

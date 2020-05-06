@@ -63,13 +63,8 @@ class _MobileViewBillPayment extends State<MobileViewBillPayment> {
                         const SizedBox(height: 4),
                         Text(
                           'Due on ' + widget.dueDate,
-<<<<<<< HEAD
-                          style:
-                              const TextStyle(fontSize: 14, color: Color(0xff244857)),
-=======
                           style: const TextStyle(
                               fontSize: 14, color: Color(0xff244857)),
->>>>>>> 46a5ed3703e6b0cc5cc131ded2720a4f5d16e1de
                           textAlign: TextAlign.left,
                         ),
                       ],

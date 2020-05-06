@@ -11,7 +11,7 @@ class AccountDetailsModel {
   DetailsByMsisdnResponse detailsByMsisdnResponse;
 
   Map<String, dynamic> toJson() {
-    return {
+    return <String, dynamic>{
       'detailsByMsisdnResponse': detailsByMsisdnResponse.toJson(),
     };
   }
@@ -30,7 +30,7 @@ class DetailsByMsisdnResponse {
   DetailsByMsisdnResult detailsByMsisdnResult;
 
   Map<String, dynamic> toJson() {
-    return {
+    return <String, dynamic>{
       'detailsByMsisdnResult': detailsByMsisdnResult.toJson(),
     };
   }
@@ -47,7 +47,7 @@ class DetailsByMsisdnResult {
   SubscriberHeader subscriberHeader;
 
   Map<String, dynamic> toJson() {
-    return {
+    return <String, dynamic>{
       'subscriberHeader': subscriberHeader.toJson(),
     };
   }
@@ -63,7 +63,7 @@ class SubscriberHeader {
   NameInfo nameInfo;
 
   Map<String, dynamic> toJson() {
-    return {
+    return <String, dynamic>{
       'nameInfo': nameInfo.toJson(),
     };
   }
@@ -91,9 +91,9 @@ class NameInfo {
 
   factory NameInfo.fromJson(Map<dynamic, dynamic> json) {
     return NameInfo(
-      json['effectiveDate'],
+      json['effectiveDate'] as int,
       json['expirationDate'].toString(),
-      json['linkType'],
+      json['linkType'] as int,
       json['nameElement1'].toString(),
       json['nameElement2'].toString(),
       json['nameElement3'].toString(),
@@ -106,8 +106,8 @@ class NameInfo {
       json['nameElement10'].toString(),
       json['nameLine1'].toString(),
       json['nameLine2'].toString(),
-      json['nameType'],
-      json['nameUpdateType'],
+      json['nameType'] as int,
+      json['nameUpdateType'] as int,
     );
   }
 
@@ -130,7 +130,7 @@ class NameInfo {
   int nameUpdateType;
 
   Map<String, dynamic> toJson() {
-    return {
+    return <String, dynamic>{
       'effectiveDate': effectiveDate,
       'expirationDate': expirationDate,
       'linkType': linkType,

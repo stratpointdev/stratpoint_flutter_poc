@@ -9,21 +9,21 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class RemoteDataUsageService {
   Future<Either<DataUsageFailure, DataUsageModel>> getDataUsage() async {
-    final api = Api();
+    final Api api = Api();
 
     try {
-      final response =
+      final Response response =
           await get(api.getDataUsage()).timeout(const Duration(seconds: 5));
       if (response.statusCode == 200) {
         SharedPreferences myPrefs = await SharedPreferences.getInstance();
         myPrefs.setString('LastApiCall', DateTime.now().toString());
-        var body = jsonDecode(response.body);
+        body = jsonDecode(response.body);
         return right(DataUsageModel.fromJson(body));
       } else {
         return left(DataUsageFailure.fromJson(jsonDecode(response.body)));
       }
     } catch (_) {
-  return left(DataUsageFailure.localError(''));
+      return left(DataUsageFailure.localError(''));
     }
   }
 }
