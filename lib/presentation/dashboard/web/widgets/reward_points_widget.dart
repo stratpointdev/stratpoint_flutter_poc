@@ -63,9 +63,9 @@ class RewardPointsWidget extends StatelessWidget {
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: [R.assetsImagesImage1, R.assetsImagesImage2, R.assetsImagesImage3, R.assetsImagesImage4]
+                    children: <String>[R.assetsImagesImage1, R.assetsImagesImage2, R.assetsImagesImage3, R.assetsImagesImage4]
                         .map(
-                          (image) => Container(
+                          (String image) => Container(
                             padding: const EdgeInsets.only(top: 16),
                             width: 143,
                             height: 153,
