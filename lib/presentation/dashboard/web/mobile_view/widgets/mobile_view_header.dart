@@ -13,19 +13,19 @@ class MobileViewHeader extends StatelessWidget {
       children: <Widget>[
         Container(
           color: Colors.white,
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(right: 30),
                 child: Text(
-                  "Menu",
+                  'Menu',
                   style: TextStyle(color: Color(0xff244958), fontSize: 14),
                 ),
               ),
               Padding(
-                  padding: EdgeInsets.only(right: 30),
+                  padding: const EdgeInsets.only(right: 30),
                   child: Container(
                     width: 85,
                     height: 35,
@@ -36,17 +36,17 @@ class MobileViewHeader extends StatelessWidget {
                       ),
                     ),
                   )),
-              Expanded(
+              const Expanded(
                 child: Spacer(),
               ),
               Padding(
-                  padding: EdgeInsets.only(right: 20),
+                  padding: const EdgeInsets.only(right: 20),
                   child: CircleAvatar(
                     radius: 15.0,
                     backgroundImage: AssetImage(R.assetsImagesUser),
                     backgroundColor: Colors.transparent,
                   )),
-              Padding(
+              const Padding(
                   padding: EdgeInsets.only(right: 10),
                   child: Icon(
                     search,
@@ -57,12 +57,12 @@ class MobileViewHeader extends StatelessWidget {
           ),
         ),
         Container(
-          color: Color(0xff93B9C0),
-          padding: EdgeInsets.all(20),
+          color: const Color(0xff93B9C0),
+          padding: const EdgeInsets.all(20),
           child: Padding(
-            padding: EdgeInsets.only(right: 30),
+            padding: const EdgeInsets.only(right: 30),
             child: Text(
-              "GLOBEONE",
+              'GLOBEONE',
               style: TextStyle(color: Colors.white, fontSize: 14),
             ),
           ),
