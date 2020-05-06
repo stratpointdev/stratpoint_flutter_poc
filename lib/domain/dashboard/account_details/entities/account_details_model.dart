@@ -1,13 +1,14 @@
 class AccountDetailsModel {
-  int responseCode;
-  List<DetailsByMsisdnError> accountDetailsErrors;
-  DetailsByMsisdnResponse detailsByMsisdnResponse;
   AccountDetailsModel(this.responseCode, this.detailsByMsisdnResponse);
 
   factory AccountDetailsModel.fromJson(Map<dynamic, dynamic> json) {
-    return AccountDetailsModel(json["responseCode"],
-        DetailsByMsisdnResponse.fromJson(json["detailsByMsisdnResponse"]));
+    return AccountDetailsModel(json['responseCode'] as int,
+        DetailsByMsisdnResponse.fromJson(json['detailsByMsisdnResponse']));
   }
+
+  int responseCode;
+  List<DetailsByMsisdnError> accountDetailsErrors;
+  DetailsByMsisdnResponse detailsByMsisdnResponse;
 
   Map<String, dynamic> toJson() {
     return {
@@ -19,12 +20,14 @@ class AccountDetailsModel {
 class DetailsByMsisdnError {}
 
 class DetailsByMsisdnResponse {
-  DetailsByMsisdnResult detailsByMsisdnResult;
   DetailsByMsisdnResponse(this.detailsByMsisdnResult);
+
   factory DetailsByMsisdnResponse.fromJson(Map<dynamic, dynamic> json) {
     return DetailsByMsisdnResponse(
-        DetailsByMsisdnResult.fromJson(json["detailsByMsisdnResult"]));
+        DetailsByMsisdnResult.fromJson(json['detailsByMsisdnResult']));
   }
+
+  DetailsByMsisdnResult detailsByMsisdnResult;
 
   Map<String, dynamic> toJson() {
     return {
@@ -34,12 +37,14 @@ class DetailsByMsisdnResponse {
 }
 
 class DetailsByMsisdnResult {
-  SubscriberHeader subscriberHeader;
   DetailsByMsisdnResult(this.subscriberHeader);
+
   factory DetailsByMsisdnResult.fromJson(Map<dynamic, dynamic> json) {
     return DetailsByMsisdnResult(
-        SubscriberHeader.fromJson(json["subscriberHeader"]));
+        SubscriberHeader.fromJson(json['subscriberHeader']));
   }
+
+  SubscriberHeader subscriberHeader;
 
   Map<String, dynamic> toJson() {
     return {
@@ -49,11 +54,13 @@ class DetailsByMsisdnResult {
 }
 
 class SubscriberHeader {
-  NameInfo nameInfo;
   SubscriberHeader(this.nameInfo);
+
   factory SubscriberHeader.fromJson(Map<dynamic, dynamic> json) {
-    return SubscriberHeader(NameInfo.fromJson(json["nameInfo"]));
+    return SubscriberHeader(NameInfo.fromJson(json['nameInfo']));
   }
+
+  NameInfo nameInfo;
 
   Map<String, dynamic> toJson() {
     return {
@@ -63,24 +70,6 @@ class SubscriberHeader {
 }
 
 class NameInfo {
-  int effectiveDate;
-  String expirationDate;
-  int linkType;
-  String nameElement1;
-  String nameElement2;
-  String nameElement3;
-  String nameElement4;
-  String nameElement5;
-  String nameElement6;
-  String nameElement7;
-  String nameElement8;
-  String nameElement9;
-  String nameElement10;
-  String nameLine1;
-  String nameLine2;
-  int nameType;
-  int nameUpdateType;
-
   NameInfo(
       this.effectiveDate,
       this.expirationDate,
@@ -122,25 +111,43 @@ class NameInfo {
     );
   }
 
+  int effectiveDate;
+  String expirationDate;
+  int linkType;
+  String nameElement1;
+  String nameElement2;
+  String nameElement3;
+  String nameElement4;
+  String nameElement5;
+  String nameElement6;
+  String nameElement7;
+  String nameElement8;
+  String nameElement9;
+  String nameElement10;
+  String nameLine1;
+  String nameLine2;
+  int nameType;
+  int nameUpdateType;
+
   Map<String, dynamic> toJson() {
     return {
-      'effectiveDate' : effectiveDate ,
-      'expirationDate' :expirationDate,
-      'linkType':linkType,
-      'nameElement1':nameElement1,
-      'nameElement2':nameElement2,
-      'nameElement3':nameElement3,
-      'nameElement4':nameElement4,
-      'nameElement5':nameElement5,
-      'nameElement6':nameElement6,
-      'nameElement7':nameElement7,
-      'nameElement8':nameElement8,
-      'nameElement9':nameElement9,
-      'nameElement10':nameElement10,
-      'nameLine1':nameLine1,
-      'nameLine2':nameLine2,
-      'nameType':nameType,
-      'nameUpdateType':nameUpdateType,
+      'effectiveDate': effectiveDate,
+      'expirationDate': expirationDate,
+      'linkType': linkType,
+      'nameElement1': nameElement1,
+      'nameElement2': nameElement2,
+      'nameElement3': nameElement3,
+      'nameElement4': nameElement4,
+      'nameElement5': nameElement5,
+      'nameElement6': nameElement6,
+      'nameElement7': nameElement7,
+      'nameElement8': nameElement8,
+      'nameElement9': nameElement9,
+      'nameElement10': nameElement10,
+      'nameLine1': nameLine1,
+      'nameLine2': nameLine2,
+      'nameType': nameType,
+      'nameUpdateType': nameUpdateType,
     };
   }
 }
