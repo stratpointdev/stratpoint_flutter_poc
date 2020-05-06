@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class ProgressIndicatorWidget extends StatelessWidget {
   const ProgressIndicatorWidget({this.width = 50, this.height = 50});
+
   final double width;
   final double height;
 
