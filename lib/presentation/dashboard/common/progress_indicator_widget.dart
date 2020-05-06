@@ -12,7 +12,7 @@ class ProgressIndicatorWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Container(
-          margin: EdgeInsets.all(10),
+          margin: const EdgeInsets.all(10),
           width: width,
           height: height,
           child: Center(
