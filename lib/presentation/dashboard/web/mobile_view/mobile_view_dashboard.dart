@@ -45,11 +45,11 @@ class _MobileDashboard extends State<MobileDashboard> {
   String dateNow = 'Apr. 28 2020';
 
   DataUsageBloc _dataUsageBloc;
-  var remainingData;
-  var dataAllocation;
-  var refillDate;
-  var cupLevelIndicator;
-  var lastApiCall;
+  String remainingData;
+  String dataAllocation;
+  String refillDate;
+  Widget cupLevelIndicator;
+  String lastApiCall;
   GlobalKey dataUsageKey = GlobalKey<FormState>();
   @override
   void initState() {
@@ -97,7 +97,7 @@ class _MobileDashboard extends State<MobileDashboard> {
             BlocBuilder<CmsBannerBloc, CmsBannerState>(
                 builder: (BuildContext context, CmsBannerState state) {
               if (state is CmsBannerLoadingState) {
-                return ProgressIndicatorWidget();
+                return const ProgressIndicatorWidget();
               } else if (state is CmsBannerSuccessState) {
                 return CMSBannerWidget(
                   onPageSelected: () {},
@@ -121,7 +121,7 @@ class _MobileDashboard extends State<MobileDashboard> {
                 return Container(
                     height: 238,
                     width: MediaQuery.of(context).size.width,
-                    child: Center(child: ProgressIndicatorWidget()));
+                    child: const Center(child: ProgressIndicatorWidget()));
 
               return MobileViewBillPayment(
                 paymentAmountValue: paymentAmountValue,
@@ -146,7 +146,7 @@ class _MobileDashboard extends State<MobileDashboard> {
                   return Container(
                       height: 413,
                       width: MediaQuery.of(context).size.width,
-                      child: Center(child: ProgressIndicatorWidget()));
+                      child: const Center(child: ProgressIndicatorWidget()));
 
                 return DataUsageWidget(
                   key: dataUsageKey,
