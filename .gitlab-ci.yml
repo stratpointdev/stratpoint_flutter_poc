@@ -14,18 +14,19 @@ flutter_analyze: # Name of the lane
     - flutter analyze # Run Flutter test
   tags:
     - flutter # Tags for runner
-    
-flutter_test: 
-  stage: test 
+
+flutter_test:
+  stage: test
   script:
     - flutter test --coverage # Generates the lcov file
-    - lcov --list coverage/lcov.info
-    - genhtml coverage/lcov.info --output=coverage # generates the 
+    - lcov --remove coverage/lcov.info 'lib/domain/dashboard/*' -o coverage/lcov_filtered.info
+    - lcov --list coverage/lcov_filtered.info
+    - genhtml coverage/lcov.info --output=coverage # generates the report
   artifacts:
     paths:
       - coverage
   tags:
-    - flutter 
+    - flutter
 
 flutter_build_web:
   stage: build_web
