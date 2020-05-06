@@ -9,18 +9,21 @@ class MobileViewMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-        color: Color(0xff1587B7),
+        padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+        color: const Color(0xff1587B7),
         height: 40,
         child:
             Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-          Text("Dashboard",
-              style: TextStyle(fontSize: 14, color: Colors.white, fontWeight: FontWeight.w200),
+          Text('Dashboard',
+              style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w200),
               textAlign: TextAlign.left),
-          Expanded(
+          const Expanded(
             child: Spacer(),
           ),
-          Icon(expand_more, color: Color(0x80ffffff))
+          const Icon(expand_more, color: Color(0x80ffffff))
         ]));
   }
 }

@@ -6,9 +6,9 @@ class MobileViewPaymentDetails extends StatefulWidget {
   final GestureTapCallback onRefresh;
   final String dateNow;
 
-  MobileViewPaymentDetails(
+  const MobileViewPaymentDetails(
       {Key key,
-      this.paymentAmountValue = "P123.45",
+      this.paymentAmountValue = 'P123.45',
       this.dueDate,
       this.onRefresh,
       this.dateNow})
@@ -26,25 +26,20 @@ class _MobileViewPaymentDetailsState extends State<MobileViewPaymentDetails> {
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(left: 16, top: 22, bottom: 16),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                Material(
-                  child: Text(
-                    "Load Balance",
-                    style: TextStyle(
-                      fontSize: 22,
-                      color: Color(0xff244958),
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
+            padding: const EdgeInsets.only(left: 16, top: 22, bottom: 16),
+            child: const Material(
+              child: Text(
+                'Load Balance',
+                style: TextStyle(
+                  fontSize: 22,
+                  color: Color(0xff244958),
                 ),
-              ],
+                textAlign: TextAlign.left,
+              ),
             ),
           ),
           Container(
-            padding: EdgeInsets.only(left: 16, bottom: 16),
+            padding: const EdgeInsets.only(left: 16, bottom: 16),
             child: Column(
               children: <Widget>[
                 Row(
@@ -52,8 +47,8 @@ class _MobileViewPaymentDetailsState extends State<MobileViewPaymentDetails> {
                   children: <Widget>[
                     Material(
                       child: Text(
-                        "As of ${widget.dateNow}",
-                        style: TextStyle(
+                        'As of ${widget.dateNow}',
+                        style: const TextStyle(
                           fontSize: 16,
                           color: Color(0xff244857),
                         ),
@@ -74,8 +69,8 @@ class _MobileViewPaymentDetailsState extends State<MobileViewPaymentDetails> {
                   children: <Widget>[
                     Material(
                       child: Text(
-                        "Expires on ${widget.dueDate}",
-                        style: TextStyle(
+                        'Expires on ${widget.dueDate}',
+                        style: const TextStyle(
                           fontSize: 12,
                           color: Color(0xff244857),
                         ),
@@ -84,14 +79,14 @@ class _MobileViewPaymentDetailsState extends State<MobileViewPaymentDetails> {
                     ),
                   ],
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
                     Material(
                       child: Text(
                         widget.paymentAmountValue,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 26,
                           color: Color(0xff244857),
                         ),
@@ -99,15 +94,15 @@ class _MobileViewPaymentDetailsState extends State<MobileViewPaymentDetails> {
                     )
                   ],
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Row(
                   children: <Widget>[
                     Material(
                       child: Text(
-                        "View Loading History",
+                        'View Loading History',
                         style: TextStyle(
                           fontSize: 14,
-                          color: Color(0xff244857),
+                          color: const Color(0xff244857),
                           decoration: TextDecoration.underline,
                         ),
                       ),
