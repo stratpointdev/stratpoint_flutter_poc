@@ -1,3 +1,5 @@
+import 'dart:wasm';
+
 import 'package:dartz/dartz.dart';
 import 'package:globe_one_poc_project/domain/dashboard/common/datetime_converter.dart';
 import 'package:globe_one_poc_project/domain/dashboard/payment_details/entities/payment_details_failure.dart';
@@ -8,17 +10,18 @@ import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/r
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PaymentDetailsRepositoryImpl implements PaymentDetailsRepository {
-  final RemotePaymentDetailsService remotePaymentDetailsService;
-  final LocalPaymentDetailsService localPaymentDetailsService;
-
   PaymentDetailsRepositoryImpl(
       this.remotePaymentDetailsService, this.localPaymentDetailsService);
+
+  final RemotePaymentDetailsService remotePaymentDetailsService;
+  final LocalPaymentDetailsService localPaymentDetailsService;
 
   @override
   Future<Either<PaymentDetailsFailure, PaymentDetailsModel>>
       getPaymentDetails() async {
-    SharedPreferences myPrefs = await SharedPreferences.getInstance();
-    int secs = DateTimeConverter.getSecsDiff(myPrefs.getString('LastApiCall'));
+    final SharedPreferences myPrefs = await SharedPreferences.getInstance();
+    final int secs =
+        DateTimeConverter.getSecsDiff(myPrefs.getString('LastApiCall'));
 
     if (secs <= 5) {
       return localPaymentDetailsService.getPaymentDetails();
@@ -34,12 +37,15 @@ class PaymentDetailsRepositoryImpl implements PaymentDetailsRepository {
   }
 
   @override
-  Future deletePaymentDetailsLocal() {
-    return localPaymentDetailsService.delete();
+  Future<Void> deletePaymentDetailsLocal() async {
+    localPaymentDetailsService.delete();
+    return null;
   }
 
   @override
-  Future insertPaymentDetailsLocal(paymentDetailsModel) {
-    return localPaymentDetailsService.insert(paymentDetailsModel);
+  Future<Void> insertPaymentDetailsLocal(
+      PaymentDetailsModel paymentDetailsModel) async {
+    localPaymentDetailsService.insert(paymentDetailsModel);
+    return null;
   }
 }

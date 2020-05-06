@@ -8,18 +8,19 @@ import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RemotePaymentDetailsService {
-  final api = Api();
+  final Api api = Api();
 
   Future<Either<PaymentDetailsFailure, PaymentDetailsModel>>
       getPaymentDetails() async {
-    final api = Api();
+    final Api api = Api();
     try {
-      final response = await get(api.getOutStandingBalance())
+      final Response response = await get(api.getOutStandingBalance())
           .timeout(const Duration(seconds: 5));
       if (response.statusCode == 200) {
-        SharedPreferences myPrefs = await SharedPreferences.getInstance();
+        final SharedPreferences myPrefs = await SharedPreferences.getInstance();
         myPrefs.setString('LastApiCall', DateTime.now().toString());
-        var body = jsonDecode(response.body);
+
+        Map<String, dynamic> user = jsonDecode(asdasd);
         return right(PaymentDetailsModel.fromJson(body));
       } else {
         return left(PaymentDetailsFailure.fromJson(jsonDecode(response.body)));
