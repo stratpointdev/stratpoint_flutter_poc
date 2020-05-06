@@ -13,8 +13,11 @@ import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/l
 import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/payment_details_repository_impl.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/remote/remote_payment_details_service.dart';
 
-import 'application/dashboard/data_usage/data_usage_bloc.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/mobile/dashboard_page.dart'
+    if (dart.library.js) 'package:globe_one_poc_project/presentation/dashboard/web/dashboard_page.dart';
+
 import 'application/dashboard/account_details/account_details_bloc.dart';
+import 'application/dashboard/data_usage/data_usage_bloc.dart';
 import 'infrastructure/dashboard/account_details/account_details_repository_impl.dart';
 import 'infrastructure/dashboard/account_details/remote/remote_account_details_service.dart';
 import 'infrastructure/dashboard/cms_banner/local/local_cms_banner_service.dart';
@@ -22,9 +25,6 @@ import 'infrastructure/dashboard/cms_banner/remote/remote_cms_banner_service.dar
 import 'infrastructure/dashboard/data_usage/data_usage_repository_impl.dart';
 import 'infrastructure/dashboard/data_usage/local/local_data_usage_service.dart';
 import 'infrastructure/dashboard/data_usage/remote/remote_data_usage_service.dart';
-
-import 'package:globe_one_poc_project/presentation/dashboard/mobile/dashboard_page.dart'
-    if (dart.library.js) 'package:globe_one_poc_project/presentation/dashboard/web/dashboard_page.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -35,23 +35,27 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<PaymentDetailsBloc>(
-          create: (context) => PaymentDetailsBloc(PaymentDetailsRepositoryImpl(
+          create: (BuildContext context) =>
+              PaymentDetailsBloc(PaymentDetailsRepositoryImpl(
             RemotePaymentDetailsService(),
             LocalPaymentDetailsService(),
           )),
         ),
         BlocProvider<AccountDetailsBloc>(
-          create: (context) => AccountDetailsBloc(AccountDetailsRepositoryImpl(
-              RemoteAccountDetailsService(), LocalAccountDetailsService())),
+          create: (BuildContext context) => AccountDetailsBloc(
+              AccountDetailsRepositoryImpl(
+                  RemoteAccountDetailsService(), LocalAccountDetailsService())),
         ),
         BlocProvider<DataUsageBloc>(
-          create: (context) => DataUsageBloc(DataUsageRepositoryImpl(
+          create: (BuildContext context) =>
+              DataUsageBloc(DataUsageRepositoryImpl(
             RemoteDataUsageService(),
             LocalDataUsageService(),
           )),
         ),
         BlocProvider<CmsBannerBloc>(
-          create: (context) => CmsBannerBloc(CmsBannerRepositoryImpl(
+          create: (BuildContext context) =>
+              CmsBannerBloc(CmsBannerRepositoryImpl(
             RemoteCmsBannerService(),
             LocalCmsBannerService(),
           )),
@@ -63,12 +67,12 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: 'FSElliotPro',
           secondaryHeaderColor: Colors.black,
-          textSelectionHandleColor: Color(0xff007AFF),
-          textSelectionColor: Color(0xff001B58),
-          errorColor: Color(0xffE02020),
-          disabledColor: Color(0xff007AFF),
-          hintColor: Color(0xff7F7F7F),
-          primaryColor: Color(0xff0056BF),
+          textSelectionHandleColor: const Color(0xff007AFF),
+          textSelectionColor: const Color(0xff001B58),
+          errorColor: const Color(0xffE02020),
+          disabledColor: const Color(0xff007AFF),
+          hintColor: const Color(0xff7F7F7F),
+          primaryColor: const Color(0xff0056BF),
           accentColor: Colors.white,
         ),
         home: DashBoardPage(),
