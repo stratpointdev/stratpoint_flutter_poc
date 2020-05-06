@@ -38,11 +38,11 @@ class _MobileDashboard extends State<MobileDashboard> {
   AccountDetailsBloc _accountDetailsBloc;
   CmsBannerBloc _cmsBannerBloc;
   PaymentDetailsBloc _paymentDetailsBloc;
-  var paymentAmountValue = '₱2,327.03';
-  var dueDate = 'Mar. 30 2020, 4:00 PM';
-  var lastPaymentAmount = '₱200.00';
-  var lastPaymentDate = 'Apr 22';
-  var dateNow = 'Apr. 28 2020';
+  String paymentAmountValue = '₱2,327.03';
+  String dueDate = 'Mar. 30 2020, 4:00 PM';
+  String lastPaymentAmount = '₱200.00';
+  String lastPaymentDate = 'Apr 22';
+  String dateNow = 'Apr. 28 2020';
 
   DataUsageBloc _dataUsageBloc;
   var remainingData;
@@ -88,24 +88,20 @@ class _MobileDashboard extends State<MobileDashboard> {
               }
               return MobileViewAccountDetails(
                 profile: userName,
-                mobile: "0918 XXXX XXXX",
-                duoNumber: "(02) 2920118",
-                profilePicture: "https://i.imgur.com/BoN9kdC.png",
+                mobile: '0918 XXXX XXXX',
+                duoNumber: '(02) 2920118',
+                profilePicture: 'https://i.imgur.com/BoN9kdC.png',
               );
             }),
-            MobileViewMenu(),
+            const MobileViewMenu(),
             BlocBuilder<CmsBannerBloc, CmsBannerState>(
                 builder: (BuildContext context, CmsBannerState state) {
               if (state is CmsBannerLoadingState) {
                 return ProgressIndicatorWidget();
               } else if (state is CmsBannerSuccessState) {
                 return CMSBannerWidget(
-                  onPageSelected: (index) {
-                    print(index);
-                  },
-                  onPageChange: (index) {
-                    print(index);
-                  },
+                  onPageSelected: () {},
+                  onPageChange: () {},
                   imagePaths: state.imagePaths,
                   imageLinks: state.imageLinks,
                 );
@@ -157,8 +153,8 @@ class _MobileDashboard extends State<MobileDashboard> {
                   isMobileView: true,
                   onRefresh: () =>
                       {_dataUsageBloc.add(InitialDataUsageEvent())},
-                  onAddMoreData: () => {},
-                  onViewDetails: () => {},
+                  onAddMoreData: () {},
+                  onViewDetails: () {},
                   cupLevelIndicator: cupLevelIndicator,
                   time: lastApiCall,
                   addMoreDataButtonColor: const Color(0xff009CDF),
