@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 
 class MobileViewBillPayment extends StatefulWidget {
-  final GlobalKey key;
-  final String paymentAmountValue;
-  final String dueDate;
-  final VoidCallback onRefresh;
-  final String lastPaymentAmount;
-  final String lastPaymentDate;
-  final String dateNow;
   MobileViewBillPayment(
       {this.key,
       this.paymentAmountValue,
@@ -16,6 +9,14 @@ class MobileViewBillPayment extends StatefulWidget {
       this.lastPaymentAmount,
       this.lastPaymentDate,
       this.dateNow});
+  @override
+  final GlobalKey key;
+  final String paymentAmountValue;
+  final String dueDate;
+  final VoidCallback onRefresh;
+  final String lastPaymentAmount;
+  final String lastPaymentDate;
+  final String dateNow;
 
   @override
   _MobileViewBillPayment createState() => _MobileViewBillPayment();
@@ -62,8 +63,13 @@ class _MobileViewBillPayment extends State<MobileViewBillPayment> {
                         const SizedBox(height: 4),
                         Text(
                           'Due on ' + widget.dueDate,
+<<<<<<< HEAD
+                          style:
+                              const TextStyle(fontSize: 14, color: Color(0xff244857)),
+=======
                           style: const TextStyle(
                               fontSize: 14, color: Color(0xff244857)),
+>>>>>>> 46a5ed3703e6b0cc5cc131ded2720a4f5d16e1de
                           textAlign: TextAlign.left,
                         ),
                       ],

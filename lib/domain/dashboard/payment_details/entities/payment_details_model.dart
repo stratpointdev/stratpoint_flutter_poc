@@ -1,16 +1,13 @@
 class PaymentDetailsModel {
-  int responseCode;
-  List<BalanceByMsisdnError> errors;
-  OutstandingBalanceByMsisdnResponse outstandingBalanceByMsisdnResponse;
   PaymentDetailsModel(
       this.responseCode, this.outstandingBalanceByMsisdnResponse);
 
   factory PaymentDetailsModel.fromJson(Map<dynamic, dynamic> json) {
     print('PaymentDetailsModel ' + json.toString());
     return PaymentDetailsModel(
-      json["responseCode"],
+      json['responseCode'],
       OutstandingBalanceByMsisdnResponse.fromJson(
-        json["outstandingBalanceByMsisdnResponse"],
+        json['outstandingBalanceByMsisdnResponse'],
       ),
     );
   }
@@ -21,18 +18,20 @@ class PaymentDetailsModel {
           outstandingBalanceByMsisdnResponse.toJson(),
     };
   }
+  int responseCode;
+  List<BalanceByMsisdnError> errors;
+  OutstandingBalanceByMsisdnResponse outstandingBalanceByMsisdnResponse;
 }
 
 class BalanceByMsisdnError {}
 
 class OutstandingBalanceByMsisdnResponse {
-  OutstandingBalanceByMsisdnResult outstandingBalanceByMsisdnResult;
   OutstandingBalanceByMsisdnResponse(this.outstandingBalanceByMsisdnResult);
   factory OutstandingBalanceByMsisdnResponse.fromJson(
       Map<dynamic, dynamic> json) {
     return OutstandingBalanceByMsisdnResponse(
       OutstandingBalanceByMsisdnResult.fromJson(
-        json["outstandingBalanceByMsisdnResult"],
+        json['outstandingBalanceByMsisdnResult'],
       ),
     );
   }
@@ -43,14 +42,10 @@ class OutstandingBalanceByMsisdnResponse {
           outstandingBalanceByMsisdnResult.toJson(),
     };
   }
+  OutstandingBalanceByMsisdnResult outstandingBalanceByMsisdnResult;
 }
 
 class OutstandingBalanceByMsisdnResult {
-  LastPaymentDt lastPaymentDt;
-  String overDueDate;
-  String overDueBalance;
-  String resultNameSpace;
-
   OutstandingBalanceByMsisdnResult(this.lastPaymentDt, this.overDueDate,
       this.overDueBalance, this.resultNameSpace);
 
@@ -72,12 +67,13 @@ class OutstandingBalanceByMsisdnResult {
       'resultNameSpace': resultNameSpace.toString(),
     };
   }
+  LastPaymentDt lastPaymentDt;
+  String overDueDate;
+  String overDueBalance;
+  String resultNameSpace;
 }
 
 class LastPaymentDt {
-  var amount;
-  int creditId;
-  String paymentDate;
   LastPaymentDt({this.amount, this.creditId, this.paymentDate});
 
   factory LastPaymentDt.fromJson(Map<dynamic, dynamic> json) {
@@ -95,4 +91,7 @@ class LastPaymentDt {
       'paymentDate': paymentDate,
     };
   }
+  var amount;
+  int creditId;
+  String paymentDate;
 }

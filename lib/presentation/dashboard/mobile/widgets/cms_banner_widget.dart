@@ -1,22 +1,23 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:wasm';
 
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CMSBannerWidget extends StatefulWidget {
+  final Function onPageChange;
+  final Function onPageSelected;
   final Color pageIndicatorBackgroundColor;
   final Map<String, String> imagePaths;
   final Map<String, String> imageLinks;
-  final Function onPageChange;
-  final Function onPageSelected;
 
   const CMSBannerWidget({
-    @required this.imagePaths,
-    @required this.imageLinks,
     this.onPageChange,
     this.onPageSelected,
     this.pageIndicatorBackgroundColor,
+    @required this.imagePaths,
+    @required this.imageLinks,
   });
 
   @override
@@ -25,13 +26,13 @@ class CMSBannerWidget extends StatefulWidget {
 
 class _CMSBannerWidgetState extends State<CMSBannerWidget> {
   int currentPage = 0;
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
 
   @override
   void initState() {
     super.initState();
 
-    Timer.periodic(Duration(milliseconds: 3000), (Timer timer) {
+    Timer.periodic(const Duration(milliseconds: 3000), (Timer timer) {
       if (currentPage < widget.imagePaths.length) {
         currentPage++;
       } else {
@@ -40,7 +41,7 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
 
       _pageController.animateToPage(
         currentPage,
-        duration: Duration(milliseconds: 350),
+        duration: const Duration(milliseconds: 350),
         curve: Curves.easeIn,
       );
     });
@@ -48,14 +49,14 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    String _baseUrl = 'https://contentdev.globe.com.ph';
-    String basicAuth = 'Basic ' +
+    const String _baseUrl = 'https://contentdev.globe.com.ph';
+    final String basicAuth = 'Basic ' +
         base64Encode(utf8.encode('flutterpoc-stratpoint:Str@tp01nt'));
 
     return Stack(
       children: <Widget>[
         PageView.builder(
-          onPageChanged: (page) {
+          onPageChanged: (int page) {
             setState(() {
               currentPage = page;
             });
@@ -66,7 +67,8 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
             return Material(
                 child: InkWell(
               onTap: () {
-                String currentImage = widget.imagePaths.keys.toList()[index];
+                final String currentImage =
+                    widget.imagePaths.keys.toList()[index];
                 _launchURL(widget.imageLinks[
                     'link' + currentImage.substring(currentImage.length - 1)]);
               },
@@ -85,7 +87,7 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
           child: Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              margin: EdgeInsets.only(bottom: 8),
+              margin: const EdgeInsets.only(bottom: 8),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -104,21 +106,24 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
 
   Widget circleBar(bool isActive) {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 150),
-      margin: EdgeInsets.symmetric(horizontal: 8),
+      duration: const Duration(milliseconds: 150),
+      margin: const EdgeInsets.symmetric(horizontal: 8),
       height: 9,
       width: 9,
       decoration: BoxDecoration(
-          color: isActive ? Theme.of(context).accentColor : Color(0xff4A8DE0),
-          borderRadius: BorderRadius.all(Radius.circular(12))),
+          color: isActive
+              ? Theme.of(context).accentColor
+              : const Color(0xff4A8DE0),
+          borderRadius: const BorderRadius.all(Radius.circular(12))),
     );
   }
 
-  _launchURL(String url) async {
+  Future<Void> _launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
     } else {
       print('null url');
     }
+    return null;
   }
 }

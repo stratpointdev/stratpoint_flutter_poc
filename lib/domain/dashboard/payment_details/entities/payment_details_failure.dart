@@ -1,7 +1,4 @@
 class PaymentDetailsFailure {
-  String code;
-  String message;
-  String parameter;
   PaymentDetailsFailure({this.code, this.message, this.parameter});
 
   factory PaymentDetailsFailure.fromJson(Map<String, dynamic> json) {
@@ -17,4 +14,7 @@ class PaymentDetailsFailure {
       message: error,
     );
   }
+  String code;
+  String message;
+  String parameter;
 }
