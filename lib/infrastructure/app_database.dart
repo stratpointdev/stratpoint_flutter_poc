@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -9,26 +10,26 @@ import 'package:sembast/sembast_io.dart';
 import 'encryption.dart';
 
 class AppDatabase {
+  AppDatabase._();
+  //Database _database;
   static final AppDatabase _singleton = AppDatabase._();
   static AppDatabase get instance => _singleton;
   Completer<Database> _dbOpenCompleter;
-  AppDatabase._();
-  //Database _database;
-
   Future<Database> get database async {
     if (_dbOpenCompleter == null) {
-      _dbOpenCompleter = Completer();
+      _dbOpenCompleter = Completer<Database>();
       _openDatabase();
     }
     return _dbOpenCompleter.future;
   }
 
-  Future _openDatabase() async {
-    final appDocumentDir = await getApplicationDocumentsDirectory();
-    final dbPath = join(appDocumentDir.path, 'globeone.db');
+  Future<void> _openDatabase() async {
+    final Directory appDocumentDir = await getApplicationDocumentsDirectory();
+    final String dbPath = join(appDocumentDir.path, 'globeone.db');
 
-    var codec = getEncryptSembastCodec(password: 'Str@tpo1nt');
-    final database = await databaseFactoryIo.openDatabase(dbPath, codec: codec);
+    final SembastCodec codec = getEncryptSembastCodec(password: 'Str@tpo1nt');
+    final Database database =
+        await databaseFactoryIo.openDatabase(dbPath, codec: codec);
     _dbOpenCompleter.complete(database);
   }
 }
