@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 
 class DesktopViewBillPayment extends StatefulWidget {
   const DesktopViewBillPayment(
-      {this.key,
+      {Key key,
       this.paymentAmountValue,
       this.dueDate,
       this.onRefresh,
       this.lastPaymentAmount,
       this.lastPaymentDate,
-      this.dateNow});
-  final GlobalKey key;
+      this.dateNow})
+      : super(key: key);
+
   final String paymentAmountValue;
   final String dueDate;
   final VoidCallback onRefresh;
