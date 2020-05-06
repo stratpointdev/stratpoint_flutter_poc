@@ -51,6 +51,8 @@ deploy_web:
   script:
     - firebase use staging
     - firebase deploy --token $FIREBASE_TOKEN
+  tags:
+    - flutter
   only:
     - develop
 
