@@ -1,3 +1,5 @@
+import 'dart:wasm';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_bloc.dart';
@@ -35,7 +37,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
   DataUsageBloc _dataUsageBloc;
   CmsBannerBloc _cmsBannerBloc;
 
-  Future<Null> _refresh() async {
+  Future<Void> _refresh() async {
     _accountDetailsBloc.add(InitialAccountDetailsEvent());
     _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
     _dataUsageBloc.add(InitialDataUsageEvent());
@@ -61,18 +63,18 @@ class _DashBoardPageState extends State<DashBoardPage> {
     _cmsBannerBloc.add(InitialCmsBannerEvent());
   }
 
-  var remainingData = '6.4 GB';
-  var dataAllocation = '10 GB';
-  var refillDate = 'Apr. 24';
-  var paymentAmountValue = '0';
-  var dueDate = '';
-  var cupLevelIndicator = Image.asset(R.assetsDuckPlaceholder);
-  var lastApiCall = '8:30 AM';
+  String remainingData = '6.4 GB';
+  String dataAllocation = '10 GB';
+  String refillDate = 'Apr. 24';
+  String paymentAmountValue = '0';
+  String dueDate = '';
+  Image cupLevelIndicator = Image.asset(R.assetsDuckPlaceholder);
+  String lastApiCall = '8:30 AM';
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
@@ -94,7 +96,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
       body: Column(
         children: <Widget>[
           BlocBuilder<AccountDetailsBloc, AccountDetailsState>(
-              builder: (context, state) {
+              builder: (BuildContext context, AccountDetailsState state) {
             String userName = '';
             if (state is AccountDetailsSuccessState) {
               userName = state.nameInfo.nameElement2;
@@ -104,14 +106,14 @@ class _DashBoardPageState extends State<DashBoardPage> {
 
             return AccountDetailsWidget(
               userName: userName,
-              userMobileNumber: "0917 123 4567",
-              userDuoNumber: " | DUO 052654245",
+              userMobileNumber: '0917 123 4567',
+              userDuoNumber: ' | DUO 052654245',
             );
           }),
           Expanded(
             child: RefreshIndicator(
               onRefresh: _refresh,
-              key: Key('refreshIndicatorWidget'),
+              key: const Key('refreshIndicatorWidget'),
               color: Theme.of(context).primaryColor,
               child: Container(
                 child: ListView(
@@ -120,16 +122,16 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     Container(
                       width: MediaQueryUtil.convertWidth(screenWidth, 320),
                       height: MediaQueryUtil.convertHeight(screenHeight, 102),
-                      child: BlocBuilder<CmsBannerBloc, CmsBannerState>(
-                          builder: (context, state) {
+                      child: BlocBuilder<CmsBannerBloc, CmsBannerState>(builder:
+                          (BuildContext context, CmsBannerState state) {
                         if (state is CmsBannerLoadingState) {
                           return ProgressIndicatorWidget();
                         } else if (state is CmsBannerSuccessState) {
                           return CMSBannerWidget(
-                            onPageSelected: (index) {
+                            onPageSelected: (int index) {
                               print(index);
                             },
-                            onPageChange: (index) {
+                            onPageChange: (int index) {
                               print(index);
                             },
                             imagePaths: state.imagePaths,
@@ -146,7 +148,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                       }),
                     ),
                     BlocBuilder<PaymentDetailsBloc, PaymentDetailsState>(
-                        builder: (context, state) {
+                        builder:
+                            (BuildContext context, PaymentDetailsState state) {
                       if (state is PaymentDetailsSuccessState) {
                         paymentAmountValue = state.paymentAmountValue;
                         dueDate = state.dueDate;
@@ -168,16 +171,16 @@ class _DashBoardPageState extends State<DashBoardPage> {
                       );
                     }),
                     Container(
-                      color: Color(0xffD4D4D4),
+                      color: const Color(0xffD4D4D4),
                       height: 1,
                     ),
                     BlocBuilder<DataUsageBloc, DataUsageState>(
-                        builder: (context, state) {
+                        builder: (BuildContext context, DataUsageState state) {
                       if (state is DataUsageSuccessState) {
                         remainingData = state.volumeRemaing;
                         dataAllocation = state.totalAllocated;
                         refillDate = state.endDate;
-                        cupLevelIndicator = state.cupLevelIndicator;
+                        cupLevelIndicator = state.cupLevelIndicator as Image;
                         lastApiCall = state.lastApiCall;
                       }
                       if (state is DataUsageLoadingState) {
@@ -194,8 +197,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                         isMobile: true,
                         onRefresh: () =>
                             {_dataUsageBloc.add(RefreshDataUsageEvent())},
-                        onAddMoreData: () => {},
-                        onViewDetails: () => {},
+                        onAddMoreData: () {},
+                        onViewDetails: () {},
                         cupLevelIndicator: cupLevelIndicator,
                         time: lastApiCall,
                         addMoreDataButtonColor: const Color(0xff009CDF),

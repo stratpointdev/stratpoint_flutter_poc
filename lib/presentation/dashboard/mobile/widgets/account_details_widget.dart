@@ -9,15 +9,15 @@ class AccountDetailsWidget extends StatefulWidget {
   final String userMobileNumber;
   final String userDuoNumber;
 
-  AccountDetailsWidget(
+  const AccountDetailsWidget(
       {this.userName, this.userMobileNumber, this.userDuoNumber});
 }
 
 class _AccountDetailsWidgetState extends State<AccountDetailsWidget> {
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
     return Container(
       height: MediaQueryUtil.convertHeight(screenHeight, 53),
       child: AppBar(
@@ -30,19 +30,19 @@ class _AccountDetailsWidgetState extends State<AccountDetailsWidget> {
             Container(
               width: MediaQueryUtil.convertWidth(screenWidth, 32),
               height: MediaQueryUtil.convertHeight(screenHeight, 32),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color(0xffF8D31C),
                 shape: BoxShape.circle,
               ),
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(11, 0, 0, 0),
+              padding: const EdgeInsets.fromLTRB(11, 0, 0, 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
                     widget.userName,
-                    key: Key('userNameWidget'),
+                    key: const Key('userNameWidget'),
                     style: TextStyle(
                         fontFamily: 'FSElliotPro',
                         fontSize:
