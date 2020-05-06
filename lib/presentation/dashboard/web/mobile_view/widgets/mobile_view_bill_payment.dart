@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 
 class MobileViewBillPayment extends StatefulWidget {
-  final GlobalKey key;
-  final String paymentAmountValue;
-  final String dueDate;
-  final VoidCallback onRefresh;
-  final String lastPaymentAmount;
-  final String lastPaymentDate;
-  final String dateNow;
   MobileViewBillPayment(
       {this.key,
       this.paymentAmountValue,
@@ -16,6 +9,14 @@ class MobileViewBillPayment extends StatefulWidget {
       this.lastPaymentAmount,
       this.lastPaymentDate,
       this.dateNow});
+  @override
+  final GlobalKey key;
+  final String paymentAmountValue;
+  final String dueDate;
+  final VoidCallback onRefresh;
+  final String lastPaymentAmount;
+  final String lastPaymentDate;
+  final String dateNow;
 
   @override
   _MobileViewBillPayment createState() => _MobileViewBillPayment();

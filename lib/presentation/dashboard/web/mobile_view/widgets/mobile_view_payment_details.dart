@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 
 class MobileViewPaymentDetails extends StatefulWidget {
-  final String paymentAmountValue;
-  final String dueDate;
-  final GestureTapCallback onRefresh;
-  final String dateNow;
-
-  const MobileViewPaymentDetails(
+  MobileViewPaymentDetails(
       {Key key,
       this.paymentAmountValue = 'P123.45',
       this.dueDate,
       this.onRefresh,
       this.dateNow})
       : super(key: key);
+  final String paymentAmountValue;
+  final String dueDate;
+  final GestureTapCallback onRefresh;
+  final String dateNow;
 
   @override
   _MobileViewPaymentDetailsState createState() =>
@@ -27,12 +26,18 @@ class _MobileViewPaymentDetailsState extends State<MobileViewPaymentDetails> {
         children: <Widget>[
           Container(
             padding: const EdgeInsets.only(left: 16, top: 22, bottom: 16),
-            child: const Material(
-              child: Text(
-                'Load Balance',
-                style: TextStyle(
-                  fontSize: 22,
-                  color: Color(0xff244958),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                const Material(
+                  child: Text(
+                    'Load Balance',
+                    style: TextStyle(
+                      fontSize: 22,
+                      color: Color(0xff244958),
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
                 ),
                 textAlign: TextAlign.left,
               ),
