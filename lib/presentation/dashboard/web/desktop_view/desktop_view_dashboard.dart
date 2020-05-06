@@ -138,7 +138,6 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
                         }
 
                         return DataUsageWidget(
-                          key: dataUsageKey,
                           onRefresh: () {
                             _dataUsageBloc.add(InitialDataUsageEvent());
                           },
