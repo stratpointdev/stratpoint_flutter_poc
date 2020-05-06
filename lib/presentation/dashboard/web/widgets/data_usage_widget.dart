@@ -6,7 +6,6 @@ import 'package:globe_one_poc_project/presentation/presentation_util/media_query
 
 class DataUsageWidget extends StatelessWidget {
   const DataUsageWidget({
-    @required this.key,
     this.isMobileView = false,
     @required this.time,
     @required this.remainingData,
@@ -22,7 +21,6 @@ class DataUsageWidget extends StatelessWidget {
     @required this.onViewDetails,
   });
 
-  final GlobalKey key;
   final bool isMobileView;
   final String time;
   final String remainingData;
