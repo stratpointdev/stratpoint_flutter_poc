@@ -1,11 +1,13 @@
 class CmsBannerModel {
   CmsBannerModel({this.cms});
 
-  CmsBannerModel.fromJson(Map<String, dynamic> json) {
+  factory CmsBannerModel.fromJson(Map<String, dynamic> json) {
     print("last: ${json['jcr:lastModifiedBy']}");
-    cms = json;
+    return CmsBannerModel(cms: json);
   }
+
   Map<String, dynamic> cms;
+
   Map<String, String> getImagePaths() {
     final Map<String, String> paths = <String, String>{};
 
