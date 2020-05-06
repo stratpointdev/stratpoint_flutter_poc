@@ -11,13 +11,13 @@ class DashBoardPage extends StatefulWidget {
 class _DashBoardPageState extends State<DashBoardPage> {
   @override
   Widget build(BuildContext context) {
-
-    return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
-          if(constraints.maxWidth > 1150) {
-            return DesktopViewDashboard();
-          }else {
-            return MobileDashboard();
-          }
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        if (constraints.maxWidth > 1150) {
+          return DesktopViewDashboard();
+        } else {
+          return const MobileDashboard();
+        }
       },
     );
   }
