@@ -15,12 +15,13 @@ class RemoteDataUsageService {
       final Response response =
           await get(api.getDataUsage()).timeout(const Duration(seconds: 5));
       if (response.statusCode == 200) {
-        SharedPreferences myPrefs = await SharedPreferences.getInstance();
+        final SharedPreferences myPrefs = await SharedPreferences.getInstance();
         myPrefs.setString('LastApiCall', DateTime.now().toString());
-        body = jsonDecode(response.body);
-        return right(DataUsageModel.fromJson(body));
+        final dynamic body = jsonDecode(response.body);
+        return right(DataUsageModel.fromJson(body as Map<String, dynamic>));
       } else {
-        return left(DataUsageFailure.fromJson(jsonDecode(response.body)));
+        return left(DataUsageFailure.fromJson(
+            jsonDecode(response.body) as Map<String, dynamic>));
       }
     } catch (_) {
       return left(DataUsageFailure.localError(''));

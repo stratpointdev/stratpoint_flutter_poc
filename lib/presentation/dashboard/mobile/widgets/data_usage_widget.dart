@@ -2,20 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 
 class DataUsageWidget extends StatelessWidget {
-  final bool isMobile;
-  final String time;
-  final String remainingData;
-  final String dataAllocation;
-  final String refillDate;
-  final Color textColor;
-  final Color cupIndicatorTextColor;
-  final Color addMoreDataButtonColor;
-  final Widget cupLevelIndicator;
-  final EdgeInsetsGeometry padding;
-  final VoidCallback onRefresh;
-  final VoidCallback onAddMoreData;
-  final VoidCallback onViewDetails;
-
   const DataUsageWidget({
     this.isMobile = false,
     @required this.time,
@@ -31,6 +17,20 @@ class DataUsageWidget extends StatelessWidget {
     @required this.onAddMoreData,
     @required this.onViewDetails,
   });
+
+  final bool isMobile;
+  final String time;
+  final String remainingData;
+  final String dataAllocation;
+  final String refillDate;
+  final Color textColor;
+  final Color cupIndicatorTextColor;
+  final Color addMoreDataButtonColor;
+  final Widget cupLevelIndicator;
+  final EdgeInsetsGeometry padding;
+  final VoidCallback onRefresh;
+  final VoidCallback onAddMoreData;
+  final VoidCallback onViewDetails;
 
   @override
   Widget build(BuildContext context) {

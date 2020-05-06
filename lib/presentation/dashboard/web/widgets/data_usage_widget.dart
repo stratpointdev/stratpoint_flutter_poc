@@ -5,6 +5,23 @@ import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usag
 import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 
 class DataUsageWidget extends StatelessWidget {
+  const DataUsageWidget({
+    @required this.key,
+    this.isMobileView = false,
+    @required this.time,
+    @required this.remainingData,
+    @required this.dataAllocation,
+    @required this.refillDate,
+    this.textColor = const Color(0xff244857),
+    this.addMoreDataButtonColor = const Color(0xff009CDF),
+    this.cupIndicatorTextColor = const Color(0xff9B9B9B),
+    this.padding = const EdgeInsets.fromLTRB(21, 24, 20, 35),
+    @required this.cupLevelIndicator,
+    @required this.onRefresh,
+    @required this.onAddMoreData,
+    @required this.onViewDetails,
+  });
+
   final GlobalKey key;
   final bool isMobileView;
   final String time;
@@ -19,23 +36,6 @@ class DataUsageWidget extends StatelessWidget {
   final VoidCallback onRefresh;
   final VoidCallback onAddMoreData;
   final VoidCallback onViewDetails;
-
-  const DataUsageWidget({
-    @required this.key,
-    this.isMobileView: false,
-    @required this.time,
-    @required this.remainingData,
-    @required this.dataAllocation,
-    @required this.refillDate,
-    this.textColor = const Color(0xff244857),
-    this.addMoreDataButtonColor = const Color(0xff009CDF),
-    this.cupIndicatorTextColor = const Color(0xff9B9B9B),
-    this.padding = const EdgeInsets.fromLTRB(21, 24, 20, 35),
-    @required this.cupLevelIndicator,
-    @required this.onRefresh,
-    @required this.onAddMoreData,
-    @required this.onViewDetails,
-  });
 
   @override
   Widget build(BuildContext context) {

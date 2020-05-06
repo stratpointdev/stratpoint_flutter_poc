@@ -1,26 +1,32 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
 import 'package:globe_one_poc_project/domain/dashboard/data_usage/data_usage_repository.dart';
+import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage_failures.dart';
+import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage_model.dart';
 
 class DataUsageBloc extends Bloc<DataUsageEvent, DataUsageState> {
-  final DataUsageRepository dataUsageRepository;
   DataUsageBloc(this.dataUsageRepository);
 
-  get initialState => DataUsageInitialState();
+  final DataUsageRepository dataUsageRepository;
 
   @override
-  Stream<DataUsageState> mapEventToState(event) async* {
+  DataUsageInitialState get initialState => DataUsageInitialState();
+
+  @override
+  Stream<DataUsageState> mapEventToState(DataUsageEvent event) async* {
     if (event is InitialDataUsageEvent) {
       yield DataUsageLoadingState();
     }
     if (event is RefreshDataUsageEvent || event is InitialDataUsageEvent) {
-      var value = await dataUsageRepository.getDataUsage();
+      final Either<DataUsageFailure, DataUsageModel> value =
+          await dataUsageRepository.getDataUsage();
 
       yield value.fold(
-          (failed) => DataUsageFailedState(failed),
-          (succuess_entity) => DataUsageSuccessState.dataUsageSuccesState(
-              succuess_entity
+          (DataUsageFailure failed) => DataUsageFailedState(failed),
+          (DataUsageModel succuessEntity) =>
+              DataUsageSuccessState.dataUsageSuccesState(succuessEntity
                   .retrieveSubscriberUsageResult.buckets.dataUsageList));
 
       if (value.isRight()) {

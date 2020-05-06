@@ -29,7 +29,7 @@ void main() {
         totalAllocated: '10485760',
         volumeUsed: '0',
         unit: 'KB');
-    final List<DataUsage> dataUsages = [dataUsage];
+    final List<DataUsage> dataUsages = <DataUsage>[dataUsage];
     final Buckets buckets = Buckets(dataUsageList: dataUsages);
     final RetrieveSubscriberUsageResult result =
         RetrieveSubscriberUsageResult(buckets: buckets);
@@ -43,7 +43,7 @@ void main() {
 
     expectLater(
         bloc,
-        emitsInOrder([
+        emitsInOrder(<DataUsageState>[
           DataUsageInitialState(),
           DataUsageSuccessState.dataUsageSuccesState(dataUsageModel
               .retrieveSubscriberUsageResult.buckets.dataUsageList)
