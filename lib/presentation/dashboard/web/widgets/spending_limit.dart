@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:globe_one_poc_project/r.dart';
 
 class SpendingLimitWidget extends StatefulWidget {
-
-  final  bool isMobileView;
   const SpendingLimitWidget({this.isMobileView = false});
+  final  bool isMobileView;
 
   @override
   _SpendingLimitWidget createState() => _SpendingLimitWidget();
@@ -16,12 +15,12 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
     return Container(
       width: 689,
       height: 500,
-      padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 30),
+      padding: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 30),
       color: Colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
+          const Text(
             'Spending Limit',
             style: TextStyle(
               color: Color(0xff244857),
@@ -29,11 +28,11 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
               fontSize: 20,
             ),
           ),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 'From Mar. 24 up to present',
                 style: TextStyle(
                   color: Color(0xff244857),
@@ -41,7 +40,7 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
                   fontSize: 14,
                 ),
               ),
-              Text(
+              const Text(
                 'Reset on Apr. 24',
                 style: TextStyle(
                   color: Color(0xff244857),
@@ -51,8 +50,8 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
               ),
             ],
           ),
-          SizedBox(height: 12),
-          Text(
+          const SizedBox(height: 12),
+          const Text(
             'Excess usage',
             style: TextStyle(
               color: Color(0xff244857),
@@ -60,10 +59,10 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
               fontSize: 14,
             ),
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           Image.asset(widget.isMobileView ?  R.assetsImagesMobilespeedlimit : R.assetsImagesWebspeedlimit,),
-          SizedBox(height: 30),
-          Text(
+          const SizedBox(height: 30),
+          const Text(
             'REMEMBER: Reaching your speed limit due to excess usage charge may cause temporary disconnect of line',
             style: TextStyle(
               color: Color(0xff244857),
@@ -74,16 +73,16 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
           Text(
             'Learn more',
             style: TextStyle(
-              color: Color(0xff244857),
+              color: const Color(0xff244857),
               fontFamily: 'FSElliotPro',
               decoration: TextDecoration.underline,
               fontSize: 12,
             ),
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           Container(
-            padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 29),
-            color: Color(0xff7F959D),
+            padding: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 29),
+            color: const Color(0xff7F959D),
             child: Column(
               children: <Widget>[
                 Row(
@@ -107,13 +106,13 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
                     ),
                   ],
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     BulletWidget(),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Flexible(
                       child: Text(
                         'There are charges that used your Spending Limit and may consist of call, text, and mobile data that are not part of your plan.',
@@ -126,13 +125,13 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     BulletWidget(),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Text(
                       'Roaming and Shar-A-Load charges may not be displayed here.',
                       style: TextStyle(
@@ -143,7 +142,7 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
                     ),
                   ],
                 ),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
                 Align(
                   alignment: Alignment.centerRight,
                   child: Text(
@@ -169,10 +168,10 @@ class _SpendingLimitWidget extends State<SpendingLimitWidget> {
 class BulletWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Container(
+    return Container(
       height: 5.0,
       width: 5.0,
-      decoration: new BoxDecoration(
+      decoration: BoxDecoration(
         color: Colors.white,
         shape: BoxShape.circle,
       ),
