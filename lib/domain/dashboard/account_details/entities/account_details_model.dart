@@ -2,8 +2,10 @@ class AccountDetailsModel {
   AccountDetailsModel(this.responseCode, this.detailsByMsisdnResponse);
 
   factory AccountDetailsModel.fromJson(Map<dynamic, dynamic> json) {
-    return AccountDetailsModel(json['responseCode'] as int,
-        DetailsByMsisdnResponse.fromJson(json['detailsByMsisdnResponse']));
+    return AccountDetailsModel(
+        json['responseCode'] as int,
+        DetailsByMsisdnResponse.fromJson(
+            json['detailsByMsisdnResponse'] as Map<dynamic, dynamic>));
   }
 
   int responseCode;
@@ -23,8 +25,8 @@ class DetailsByMsisdnResponse {
   DetailsByMsisdnResponse(this.detailsByMsisdnResult);
 
   factory DetailsByMsisdnResponse.fromJson(Map<dynamic, dynamic> json) {
-    return DetailsByMsisdnResponse(
-        DetailsByMsisdnResult.fromJson(json['detailsByMsisdnResult']));
+    return DetailsByMsisdnResponse(DetailsByMsisdnResult.fromJson(
+        json['detailsByMsisdnResult'] as Map<dynamic, dynamic>));
   }
 
   DetailsByMsisdnResult detailsByMsisdnResult;
@@ -40,8 +42,8 @@ class DetailsByMsisdnResult {
   DetailsByMsisdnResult(this.subscriberHeader);
 
   factory DetailsByMsisdnResult.fromJson(Map<dynamic, dynamic> json) {
-    return DetailsByMsisdnResult(
-        SubscriberHeader.fromJson(json['subscriberHeader']));
+    return DetailsByMsisdnResult(SubscriberHeader.fromJson(
+        json['subscriberHeader'] as Map<dynamic, dynamic>));
   }
 
   SubscriberHeader subscriberHeader;
@@ -57,7 +59,8 @@ class SubscriberHeader {
   SubscriberHeader(this.nameInfo);
 
   factory SubscriberHeader.fromJson(Map<dynamic, dynamic> json) {
-    return SubscriberHeader(NameInfo.fromJson(json['nameInfo']));
+    return SubscriberHeader(
+        NameInfo.fromJson(json['nameInfo'] as Map<dynamic, dynamic>));
   }
 
   NameInfo nameInfo;
