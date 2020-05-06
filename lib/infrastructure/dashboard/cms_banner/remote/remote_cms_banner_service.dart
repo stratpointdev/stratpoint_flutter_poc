@@ -7,26 +7,29 @@ import 'package:globe_one_poc_project/infrastructure/api.dart';
 import 'package:http/http.dart';
 
 class RemoteCmsBannerService {
-  final api = Api();
+  final Api api = Api();
 
   Future<Either<CmsBannerFailure, CmsBannerModel>> getCmsBanner() async {
-    String username = 'flutterpoc-stratpoint';
-    String password = 'Str@tp01nt';
-    String basicAuth =
+    const String username = 'flutterpoc-stratpoint';
+    const String password = 'Str@tp01nt';
+    final String basicAuth =
         'Basic ' + base64Encode(utf8.encode('$username:$password'));
-    Map<String, String> headers = {"Authorization": basicAuth};
+    final Map<String, String> headers = <String, String>{
+      'Authorization': basicAuth
+    };
     try {
-      final response = await get(api.getCms(), headers: headers)
+      final dynamic response = await get(api.getCms(), headers: headers)
           .timeout(const Duration(seconds: 5));
       print(response.body);
       print(response.statusCode);
       if (response.statusCode == 200) {
-        var body = jsonDecode(response.body);
+        final dynamic body = jsonDecode(response.body.toString());
 
-        return right(CmsBannerModel.fromJson(body));
+        return right(CmsBannerModel.fromJson(body as Map<String, dynamic>));
       } else {
         return left(CmsBannerFailure(
-            code: response.statusCode, message: response.body.toString()));
+            code: response.statusCode as int,
+            message: response.body.toString()));
       }
     } catch (e) {
       print(e.toString);
