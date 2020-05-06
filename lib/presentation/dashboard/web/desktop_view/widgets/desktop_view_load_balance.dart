@@ -1,17 +1,16 @@
-
 import 'package:flutter/material.dart';
 
 class DesktopViewLoadBalance extends StatefulWidget {
-  DesktopViewLoadBalance(
-      {this.key,
+  const DesktopViewLoadBalance(
+      {Key key,
       this.paymentAmountValue,
       this.dueDate,
       this.onRefresh,
       this.lastPaymentAmount,
       this.lastPaymentDate,
-      this.dateNow});
-  @override
-  final GlobalKey key;
+      this.dateNow})
+      : super(key: key);
+
   final String paymentAmountValue;
   final String dueDate;
   final VoidCallback onRefresh;
@@ -52,8 +51,8 @@ class _DesktopViewLoadBalance extends State<DesktopViewLoadBalance> {
                     Padding(
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
                       child: Text('As of ' + widget.dateNow,
-                          style:
-                              const TextStyle(fontSize: 18, color: Color(0xff244857)),
+                          style: const TextStyle(
+                              fontSize: 18, color: Color(0xff244857)),
                           textAlign: TextAlign.left),
                     ),
 
@@ -75,14 +74,16 @@ class _DesktopViewLoadBalance extends State<DesktopViewLoadBalance> {
                   padding: const EdgeInsets.only(bottom: 30),
                   child: Text(
                     'Expires on ' + widget.dueDate,
-                    style: const TextStyle(fontSize: 18, color: Color(0xff244857)),
+                    style:
+                        const TextStyle(fontSize: 18, color: Color(0xff244857)),
                     textAlign: TextAlign.left,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 30),
                   child: Text(widget.paymentAmountValue,
-                      style: const TextStyle(fontSize: 36, color: Color(0xff244857)),
+                      style: const TextStyle(
+                          fontSize: 36, color: Color(0xff244857)),
                       textAlign: TextAlign.left),
                 ),
                 Padding(
@@ -97,7 +98,9 @@ class _DesktopViewLoadBalance extends State<DesktopViewLoadBalance> {
                 Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Container(
-                        height: 1.0, width: 130.0, color: const Color(0xff979797))),
+                        height: 1.0,
+                        width: 130.0,
+                        color: const Color(0xff979797))),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -112,8 +115,8 @@ class _DesktopViewLoadBalance extends State<DesktopViewLoadBalance> {
                     Padding(
                       padding: const EdgeInsets.only(top: 30, bottom: 10),
                       child: Text(widget.lastPaymentAmount,
-                          style:
-                              const TextStyle(fontSize: 16, color: Color(0xff244857)),
+                          style: const TextStyle(
+                              fontSize: 16, color: Color(0xff244857)),
                           textAlign: TextAlign.left),
                     ),
                   ],
@@ -132,8 +135,8 @@ class _DesktopViewLoadBalance extends State<DesktopViewLoadBalance> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 10),
                       child: Text(widget.lastPaymentDate,
-                          style:
-                              const TextStyle(fontSize: 16, color: Color(0xff244857)),
+                          style: const TextStyle(
+                              fontSize: 16, color: Color(0xff244857)),
                           textAlign: TextAlign.left),
                     ),
                   ],

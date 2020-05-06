@@ -50,7 +50,6 @@ class _MobileDashboard extends State<MobileDashboard> {
   String refillDate;
   Widget cupLevelIndicator;
   String lastApiCall;
-  GlobalKey dataUsageKey = GlobalKey<FormState>();
   @override
   void initState() {
     super.initState();
@@ -127,8 +126,9 @@ class _MobileDashboard extends State<MobileDashboard> {
                 paymentAmountValue: paymentAmountValue,
                 dueDate: dueDate,
                 dateNow: dateNow,
-                onRefresh: () =>
-                    {_paymentDetailsBloc.add(InitialPaymentDetailsEvent())},
+                onRefresh: () {
+                  _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
+                },
               );
             }),
             const RewardPointsWidget(hasTitlePadding: true),
@@ -149,10 +149,10 @@ class _MobileDashboard extends State<MobileDashboard> {
                       child: const Center(child: ProgressIndicatorWidget()));
 
                 return DataUsageWidget(
-                  key: dataUsageKey,
                   isMobileView: true,
-                  onRefresh: () =>
-                      {_dataUsageBloc.add(InitialDataUsageEvent())},
+                  onRefresh: () {
+                    _dataUsageBloc.add(InitialDataUsageEvent());
+                  },
                   onAddMoreData: () {},
                   onViewDetails: () {},
                   cupLevelIndicator: cupLevelIndicator,

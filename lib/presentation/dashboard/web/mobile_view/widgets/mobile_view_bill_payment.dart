@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
 class MobileViewBillPayment extends StatefulWidget {
-  MobileViewBillPayment(
-      {this.key,
+  const MobileViewBillPayment(
+      {Key key,
       this.paymentAmountValue,
       this.dueDate,
       this.onRefresh,
       this.lastPaymentAmount,
       this.lastPaymentDate,
-      this.dateNow});
+      this.dateNow})
+      : super(key: key);
 
-  @override
-  final GlobalKey key;
   final String paymentAmountValue;
   final String dueDate;
   final VoidCallback onRefresh;
