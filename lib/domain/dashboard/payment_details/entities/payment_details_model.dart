@@ -5,19 +5,20 @@ class PaymentDetailsModel {
   factory PaymentDetailsModel.fromJson(Map<dynamic, dynamic> json) {
     print('PaymentDetailsModel ' + json.toString());
     return PaymentDetailsModel(
-      json['responseCode'],
+      json['responseCode'] as int,
       OutstandingBalanceByMsisdnResponse.fromJson(
-        json['outstandingBalanceByMsisdnResponse'],
+        json['outstandingBalanceByMsisdnResponse'] as Map<dynamic, dynamic>,
       ),
     );
   }
 
   Map<String, dynamic> toJson() {
-    return {
+    return <String, dynamic>{
       'outstandingBalanceByMsisdnResponse':
           outstandingBalanceByMsisdnResponse.toJson(),
     };
   }
+
   int responseCode;
   List<BalanceByMsisdnError> errors;
   OutstandingBalanceByMsisdnResponse outstandingBalanceByMsisdnResponse;
@@ -31,17 +32,18 @@ class OutstandingBalanceByMsisdnResponse {
       Map<dynamic, dynamic> json) {
     return OutstandingBalanceByMsisdnResponse(
       OutstandingBalanceByMsisdnResult.fromJson(
-        json['outstandingBalanceByMsisdnResult'],
+        json['outstandingBalanceByMsisdnResult'] as Map<dynamic, dynamic>,
       ),
     );
   }
 
   Map<String, dynamic> toJson() {
-    return {
+    return <String, dynamic>{
       'outstandingBalanceByMsisdnResult':
           outstandingBalanceByMsisdnResult.toJson(),
     };
   }
+
   OutstandingBalanceByMsisdnResult outstandingBalanceByMsisdnResult;
 }
 
@@ -52,21 +54,22 @@ class OutstandingBalanceByMsisdnResult {
   factory OutstandingBalanceByMsisdnResult.fromJson(
       Map<dynamic, dynamic> json) {
     return OutstandingBalanceByMsisdnResult(
-      LastPaymentDt.fromJson(json['lastPaymentDt']),
+      LastPaymentDt.fromJson(json['lastPaymentDt'] as Map<dynamic, dynamic>),
       json['overDueDate'].toString(),
       json['overDueBalance'].toString(),
-      json['resultNameSpace'],
+      json['resultNameSpace'].toString(),
     );
   }
 
   Map<String, dynamic> toJson() {
-    return {
+    return <String, dynamic>{
       'lastPaymentDt': lastPaymentDt.toJson(),
       'overDueDate': overDueDate.toString(),
       'overDueBalance': overDueBalance.toString(),
       'resultNameSpace': resultNameSpace.toString(),
     };
   }
+
   LastPaymentDt lastPaymentDt;
   String overDueDate;
   String overDueBalance;
@@ -79,19 +82,20 @@ class LastPaymentDt {
   factory LastPaymentDt.fromJson(Map<dynamic, dynamic> json) {
     return LastPaymentDt(
       amount: json['amount'],
-      creditId: json['creditId'],
-      paymentDate: json['paymentDate'],
+      creditId: json['creditId'] as int,
+      paymentDate: json['paymentDate'].toString(),
     );
   }
 
   Map<String, dynamic> toJson() {
-    return {
+    return <String, dynamic>{
       'amount': amount,
       'creditId': creditId,
       'paymentDate': paymentDate,
     };
   }
-  var amount;
+
+  dynamic amount;
   int creditId;
   String paymentDate;
 }
