@@ -1,5 +1,3 @@
-
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -7,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'app.dart';
 
 void main() {
-  HttpOverrides.global = new MyHttpOverrides();
-  runApp(new MyApp());
+  HttpOverrides.global = MyHttpOverrides();
+  runApp(MyApp());
 }
 
 class MyHttpOverrides extends HttpOverrides {
