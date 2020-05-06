@@ -20,20 +20,20 @@ void main() {
 
   test('Successful RefreshDataUsageEvent should display DataUsageSuccessState',
       () {
-    DataUsage dataUsage = DataUsage(
-        bucketId: "GS_17194649",
-        startDate: "2020-01-11T02:23:34",
-        endDate: "2020-05-10T23:59:59",
-        state: "Active",
-        volumeRemaining: "10485760",
-        totalAllocated: "10485760",
-        volumeUsed: "0",
-        unit: "KB");
-    List<DataUsage> dataUsages = [dataUsage];
-    Buckets buckets = Buckets(dataUsageList: dataUsages);
-    RetrieveSubscriberUsageResult result =
+    final DataUsage dataUsage = DataUsage(
+        bucketId: 'GS_17194649',
+        startDate: '2020-01-11T02:23:34',
+        endDate: '2020-05-10T23:59:59',
+        state: 'Active',
+        volumeRemaining: '10485760',
+        totalAllocated: '10485760',
+        volumeUsed: '0',
+        unit: 'KB');
+    final List<DataUsage> dataUsages = [dataUsage];
+    final Buckets buckets = Buckets(dataUsageList: dataUsages);
+    final RetrieveSubscriberUsageResult result =
         RetrieveSubscriberUsageResult(buckets: buckets);
-    DataUsageModel dataUsageModel =
+    final DataUsageModel dataUsageModel =
         DataUsageModel(retrieveSubscriberUsageResult: result);
 
     when(mockRepository.getDataUsage())
