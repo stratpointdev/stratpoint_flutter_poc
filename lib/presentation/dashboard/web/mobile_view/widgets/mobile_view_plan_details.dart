@@ -18,7 +18,6 @@ class _MobileViewPlanDetailsWidget extends State<MobileViewPlanDetailsWidget> {
             textAlign: TextAlign.left,
             style: TextStyle(
                 color: const Color(0xff244857),
-                fontFamily: 'FSElliotPro',
                 fontSize: 22,
                 fontWeight: FontWeight.w100),
           ),
@@ -29,23 +28,21 @@ class _MobileViewPlanDetailsWidget extends State<MobileViewPlanDetailsWidget> {
               const EdgeInsets.only(top: 24, left: 16, right: 20, bottom: 24),
           color: Colors.white,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Text(
+                children:const <Widget>[
+                   Text(
                     'Your current plan:',
                     style: TextStyle(
                       color: Color(0xff244857),
                       fontSize: 18,
                     ),
                   ),
-                  const SizedBox(width: 15),
-                  Text(
+                   SizedBox(width: 15),
+                   Text(
                     'ThePlan 1799',
                     style: TextStyle(
-                      color: const Color(0xff244857),
+                      color:  Color(0xff244857),
                       fontWeight: FontWeight.w700,
                       fontSize: 18,
                     ),
@@ -54,10 +51,8 @@ class _MobileViewPlanDetailsWidget extends State<MobileViewPlanDetailsWidget> {
               ),
               const SizedBox(height: 24),
               Container(
-                width: 270,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     const Text(
                       'Cut off date:',
@@ -81,9 +76,7 @@ class _MobileViewPlanDetailsWidget extends State<MobileViewPlanDetailsWidget> {
               ),
               const SizedBox(height: 16),
               Container(
-                width: 270,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     const Text(
                       'Contract Expiry:',
@@ -107,10 +100,8 @@ class _MobileViewPlanDetailsWidget extends State<MobileViewPlanDetailsWidget> {
               ),
               const SizedBox(height: 16),
               Container(
-                width: 270,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     const Text(
                       'Months remaining:',

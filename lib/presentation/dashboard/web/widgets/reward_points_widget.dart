@@ -23,7 +23,7 @@ class RewardPointsWidget extends StatelessWidget {
               top: hasTitlePadding ? 30 : 0,
             ),
             child: Text(
-              'Reward Points',
+              'Rewards Points',
               style: TextStyle(fontSize: 22, color: const Color(0xff244857), fontWeight: FontWeight.w100),
               textAlign: TextAlign.left,
             ),

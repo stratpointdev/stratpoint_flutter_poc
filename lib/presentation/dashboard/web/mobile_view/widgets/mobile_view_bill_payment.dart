@@ -32,7 +32,7 @@ class _MobileViewBillPayment extends State<MobileViewBillPayment> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(left: 16, top: 16, bottom: 12),
+            padding: const EdgeInsets.only(left: 16, bottom: 12),
             child: Text(
               'Bills Payment',
               style: TextStyle(
@@ -44,8 +44,8 @@ class _MobileViewBillPayment extends State<MobileViewBillPayment> {
           ),
           Container(
             color: Colors.white,
-            padding: const EdgeInsets.only(left: 20, top: 20, bottom: 20),
-            height: 199,
+            padding: const EdgeInsets.only(left: 20, top: 20),
+            height: 210,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
@@ -77,7 +77,7 @@ class _MobileViewBillPayment extends State<MobileViewBillPayment> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 12.0),
+                  padding: const EdgeInsets.only(bottom: 24.0,top: 16.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
@@ -86,9 +86,9 @@ class _MobileViewBillPayment extends State<MobileViewBillPayment> {
                       Padding(
                         padding: const EdgeInsets.only(right: 20.0),
                         child: Text(widget.paymentAmountValue,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 26,
-                                color: const Color(0xff244857),
+                                color:  Color(0xff244857),
                                 fontWeight: FontWeight.w700),
                             textAlign: TextAlign.left),
                       ),
