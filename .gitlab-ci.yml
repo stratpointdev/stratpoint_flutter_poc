@@ -19,7 +19,7 @@ flutter_test:
   stage: test
   script:
     - flutter test --coverage # Generates the lcov file
-    - lcov --remove coverage/lcov.info 'lib/domain/dashboard/*' -o coverage/lcov_filtered.info
+    - lcov --remove coverage/lcov.info 'lib/domain/dashboard/*' -o coverage/lcov_filtered.info # exclusion rules for files.
     - lcov --list coverage/lcov_filtered.info
     - genhtml coverage/lcov_filtered.info --output=coverage # generates the report
   artifacts:
