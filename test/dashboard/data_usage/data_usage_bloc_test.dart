@@ -20,21 +20,20 @@ void main() {
 
   test('Successful RefreshDataUsageEvent should display DataUsageSuccessState',
       () {
-    final DataUsage dataUsage = DataUsage(
-        bucketId: 'GS_17194649',
-        startDate: '2020-01-11T02:23:34',
-        endDate: '2020-05-10T23:59:59',
-        state: 'Active',
-        volumeRemaining: '10485760',
-        totalAllocated: '10485760',
-        volumeUsed: '0',
-        unit: 'KB');
-    final List<DataUsage> dataUsages = <DataUsage>[dataUsage];
-    final Buckets buckets = Buckets(dataUsageList: dataUsages);
-    final RetrieveSubscriberUsageResult result =
-        RetrieveSubscriberUsageResult(buckets: buckets);
+    final MainData mainData = MainData(
+        skelligWallet: '',
+        skelligCategory: '',
+        dataRemaining: '',
+        dataTotal: '',
+        dataUsed: '',
+        endDate: '',
+        type: '');
+    final List<MainData> dataUsages = <MainData>[];
+    dataUsages.add(mainData);
+    final PromoSubscriptionUsage promoSubscriptionUsage =
+        PromoSubscriptionUsage(mainData: dataUsages);
     final DataUsageModel dataUsageModel =
-        DataUsageModel(retrieveSubscriberUsageResult: result);
+        DataUsageModel(promoSubscriptionUsage: promoSubscriptionUsage);
 
     when(mockRepository.getDataUsage())
         .thenAnswer((_) async => right(dataUsageModel));
@@ -45,8 +44,9 @@ void main() {
         bloc,
         emitsInOrder(<DataUsageState>[
           DataUsageInitialState(),
-          DataUsageSuccessState.dataUsageSuccesState(dataUsageModel
-              .retrieveSubscriberUsageResult.buckets.dataUsageList)
+          DataUsageSuccessState(
+              mainData: dataUsageModel.promoSubscriptionUsage.mainData[0],
+              lastAPICall: '')
         ]));
   });
 }

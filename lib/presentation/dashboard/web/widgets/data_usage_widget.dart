@@ -45,11 +45,12 @@ class DataUsageWidget extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(top: 28.0, bottom: 12.0),
+            padding: const EdgeInsets.only(top: 28.0, ),
             child: Row(
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.only(
+                    bottom: 12,
                     left: isMobileView ? 16 : 0,
                   ),
                   child: Text(

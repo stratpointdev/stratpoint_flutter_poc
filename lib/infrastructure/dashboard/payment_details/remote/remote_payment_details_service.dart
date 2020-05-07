@@ -15,6 +15,7 @@ class RemotePaymentDetailsService {
     final Authentication authentication = Authentication();
     final String _getAccessToken = await authentication.getAccessToken();
 
+    //Normaly we get this testBody from domain. It is hardcode for now since we have no login.
     const String _testBody = '''
           {
           "msisdn": "09270001926",

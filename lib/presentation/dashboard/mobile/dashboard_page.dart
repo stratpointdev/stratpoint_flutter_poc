@@ -16,6 +16,8 @@ import 'package:globe_one_poc_project/application/dashboard/payment_details/paym
 
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
 import 'package:globe_one_poc_project/domain/dashboard/common/cup_level_indicator.dart';
+import 'package:globe_one_poc_project/domain/dashboard/common/datetime_converter.dart';
+import 'package:globe_one_poc_project/domain/dashboard/common/gb_converter.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/data_usage_widget.dart';
@@ -178,11 +180,16 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     BlocBuilder<DataUsageBloc, DataUsageState>(
                         builder: (BuildContext context, DataUsageState state) {
                       if (state is DataUsageSuccessState) {
-                        remainingData = state.mainData.dataRemaining.toString();
-                        dataAllocation = state.mainData.dataTotal.toString();
-                        refillDate = state.mainData.endDate.toString();
-                        cupLevelIndicator =
-                            CupLevelIndicator.cupLevelIndicator(100.0, 100);
+                        remainingData = GBConverter.convert(
+                            state.mainData.dataRemaining as int);
+                        dataAllocation = GBConverter.convert(
+                            state.mainData.dataTotal as int);
+                        refillDate = DateTimeConverter.convertToDate(
+                            state.mainData.endDate);
+                        cupLevelIndicator = CupLevelIndicator.cupLevelIndicator(
+                            double.parse(
+                                state.mainData.dataRemaining.toString()),
+                            double.parse(state.mainData.dataTotal.toString()));
                         lastApiCall = state.lastAPICall;
                       }
                       if (state is DataUsageLoadingState) {

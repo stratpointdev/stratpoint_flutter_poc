@@ -1,6 +1,3 @@
-import 'package:globe_one_poc_project/domain/dashboard/common/datetime_converter.dart';
-import 'package:globe_one_poc_project/domain/dashboard/common/gb_converter.dart';
-
 class DataUsageModel {
   DataUsageModel({this.responseCode, this.promoSubscriptionUsage});
 
@@ -63,25 +60,13 @@ class MainData {
     return MainData(
         skelligWallet: json['skelligWallet'].toString(),
         skelligCategory: json['skelligCategory'].toString(),
-        dataRemaining: GBConverter.convert(json['dataRemaining'] as int),
-        dataTotal: GBConverter.convert(json['dataTotal'] as int),
+        dataRemaining: json['dataRemaining'],
+        dataTotal: json['dataTotal'],
         dataUsed: json['dataUsed'],
-        endDate: DateTimeConverter.convertToDate(json['endDate'] as String)
-            .toString(),
+        endDate: json['endDate'].toString(),
         type: json['type'].toString());
   }
 
-  // Map<String, dynamic> toJson() {
-  //   return <String, dynamic>{
-  //     'skelligWallet': skelligWallet,
-  //     'skelligCategory': skelligCategory,
-  //     'dataRemaining': dataRemaining,
-  //     'dataTotal': dataTotal,
-  //     'dataUsed': dataUsed,
-  //     'endDate': endDate,
-  //     'type': type
-  //   };
-  // }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['skelligWallet'] = skelligWallet;

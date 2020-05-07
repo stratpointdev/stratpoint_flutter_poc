@@ -9,7 +9,7 @@ class MobileViewMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+        padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
         color: const Color(0xff1587B7),
         height: 40,
         child:

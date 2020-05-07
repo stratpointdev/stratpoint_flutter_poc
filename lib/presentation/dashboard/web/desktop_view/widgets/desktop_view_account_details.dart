@@ -31,8 +31,11 @@ class _DesktopViewAccountDetails extends State<DesktopViewAccountDetails> {
         children: <Widget>[
           CircleAvatar(
             radius: 35,
-            backgroundImage: NetworkImage(widget.profilePicture),
-            backgroundColor: Colors.transparent,
+            child:  CircleAvatar(
+              radius: 33,
+              backgroundImage: NetworkImage(widget.profilePicture),
+            ),
+            backgroundColor: Colors.white,
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
