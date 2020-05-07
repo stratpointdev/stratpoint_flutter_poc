@@ -1,113 +1,105 @@
+import 'package:globe_one_poc_project/domain/dashboard/common/datetime_converter.dart';
+import 'package:globe_one_poc_project/domain/dashboard/common/gb_converter.dart';
+
 class DataUsageModel {
-  DataUsageModel({this.responseCode, this.retrieveSubscriberUsageResult});
+  DataUsageModel({this.responseCode, this.promoSubscriptionUsage});
 
   factory DataUsageModel.fromJson(Map<String, dynamic> json) {
-    print('retrieveSubscriberUsageResult ' + json.toString());
     return DataUsageModel(
       responseCode: json['responseCode'] as int,
-      retrieveSubscriberUsageResult: RetrieveSubscriberUsageResult.fromJson(
-          json['retrieveSubscriberUsageResult'] as Map<String, dynamic>),
+      promoSubscriptionUsage: PromoSubscriptionUsage.fromJson(
+          json['promoSubscriptionUsage'] as Map<String, dynamic>),
     );
   }
 
   Map<String, dynamic> toJson() {
-    print(retrieveSubscriberUsageResult.toJson().toString());
     return <String, dynamic>{
-      'retrieveSubscriberUsageResult': retrieveSubscriberUsageResult.toJson(),
+      'promoSubscriptionUsage': promoSubscriptionUsage.toJson(),
     };
   }
 
   int responseCode;
   List<BalanceByMsisdnError> errors;
-  RetrieveSubscriberUsageResult retrieveSubscriberUsageResult;
+  PromoSubscriptionUsage promoSubscriptionUsage;
 }
 
 class BalanceByMsisdnError {}
 
-class RetrieveSubscriberUsageResult {
-  RetrieveSubscriberUsageResult({this.buckets});
+class PromoSubscriptionUsage {
+  PromoSubscriptionUsage({this.mainData});
 
-  factory RetrieveSubscriberUsageResult.fromJson(Map<String, dynamic> json) {
-    return RetrieveSubscriberUsageResult(
-      buckets: Buckets.fromJson(json['buckets'] as Map<String, dynamic>),
-    );
+  PromoSubscriptionUsage.fromJson(Map<String, dynamic> json) {
+    if (json['mainData'] != null) {
+      mainData = <MainData>[];
+      json['mainData'].forEach((dynamic v) async {
+        mainData.add(MainData.fromJson(v as Map<String, dynamic>));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
-    print('Buckets');
-    return <String, dynamic>{
-      'buckets': buckets.toJson(),
-    };
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (mainData != null) {
+      data['mainData'] = mainData.map((MainData v) => v.toJson()).toList();
+    }
+
+    return data;
   }
 
-  Buckets buckets;
+  List<MainData> mainData;
 }
 
-class Buckets {
-  Buckets({this.dataUsageList});
+class MainData {
+  MainData(
+      {this.skelligWallet,
+      this.skelligCategory,
+      this.dataRemaining,
+      this.dataTotal,
+      this.dataUsed,
+      this.endDate,
+      this.type});
 
-  factory Buckets.fromJson(Map<String, dynamic> json) {
-    return Buckets(
-        dataUsageList: (json['buckets'] as List<dynamic>)
-            .map((dynamic e) => DataUsage.fromJson(e as Map<String, dynamic>))
-            .toList());
+  factory MainData.fromJson(Map<String, dynamic> json) {
+    return MainData(
+        skelligWallet: json['skelligWallet'].toString(),
+        skelligCategory: json['skelligCategory'].toString(),
+        dataRemaining: GBConverter.convert(json['dataRemaining'] as int),
+        dataTotal: GBConverter.convert(json['dataTotal'] as int),
+        dataUsed: json['dataUsed'],
+        endDate: DateTimeConverter.convertToDate(json['endDate'] as String)
+            .toString(),
+        type: json['type'].toString());
   }
 
+  // Map<String, dynamic> toJson() {
+  //   return <String, dynamic>{
+  //     'skelligWallet': skelligWallet,
+  //     'skelligCategory': skelligCategory,
+  //     'dataRemaining': dataRemaining,
+  //     'dataTotal': dataTotal,
+  //     'dataUsed': dataUsed,
+  //     'endDate': endDate,
+  //     'type': type
+  //   };
+  // }
   Map<String, dynamic> toJson() {
-    return <String, dynamic>{
-      'buckets': dataUsageList
-          .map((DataUsage dataUsage) => dataUsage.toJson())
-          .toList(),
-    };
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['skelligWallet'] = skelligWallet;
+    data['skelligCategory'] = skelligCategory;
+    data['dataRemaining'] = dataRemaining;
+    data['dataTotal'] = dataTotal;
+    data['dataUsed'] = dataUsed;
+    data['endDate'] = endDate;
+    data['type'] = type;
+
+    return data;
   }
 
-  List<DataUsage> dataUsageList;
-}
-
-class DataUsage {
-  DataUsage({
-    this.bucketId,
-    this.startDate,
-    this.endDate,
-    this.state,
-    this.volumeRemaining,
-    this.totalAllocated,
-    this.volumeUsed,
-    this.unit,
-  });
-
-  factory DataUsage.fromJson(Map<String, dynamic> json) {
-    print('DataUsage' + json['bucketId'].toString());
-    return DataUsage(
-        bucketId: json['bucketId'] as String,
-        startDate: json['startDate'] as String,
-        endDate: json['endDate'] as String,
-        state: json['state'] as String,
-        volumeRemaining: json['volumeRemaining'] as String,
-        totalAllocated: json['totalAllocated'] as String,
-        volumeUsed: json['volumeUsed'] as String,
-        unit: json['unit'] as String);
-  }
-
-  Map<String, dynamic> toJson() {
-    return <String, dynamic>{
-      'bucketId': bucketId,
-      'startDate': startDate,
-      'endDate': endDate,
-      'state': state,
-      'volumeRemaining': volumeRemaining,
-      'totalAllocated': totalAllocated,
-      'volumeUsed': volumeUsed,
-      'unit': unit,
-    };
-  }
-
-  final String bucketId;
-  final String startDate;
-  final String endDate;
-  final String state;
-  final String volumeRemaining;
-  final String totalAllocated;
-  final String volumeUsed;
-  final String unit;
+  String skelligWallet;
+  String skelligCategory;
+  dynamic dataRemaining;
+  dynamic dataTotal;
+  dynamic dataUsed;
+  String endDate;
+  String type;
 }

@@ -13,11 +13,12 @@ class AccountDetailsInitialState extends AccountDetailsState {}
 class AccountDetailsLoadingState extends AccountDetailsState {}
 
 class AccountDetailsSuccessState extends AccountDetailsState {
-  const AccountDetailsSuccessState({this.nameInfo});
+  const AccountDetailsSuccessState({this.nameInfo, this.subscriberGeneralInfo});
   final NameInfo nameInfo;
+  final SubscriberGeneralInfo subscriberGeneralInfo;
 
   @override
-  List<Object> get props => <Object>[nameInfo];
+  List<Object> get props => <Object>[nameInfo, subscriberGeneralInfo];
 }
 
 class AccountDetailsFailedState extends AccountDetailsState {}

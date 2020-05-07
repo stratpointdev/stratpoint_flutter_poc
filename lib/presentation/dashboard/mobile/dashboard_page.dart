@@ -15,6 +15,7 @@ import 'package:globe_one_poc_project/application/dashboard/payment_details/paym
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_state.dart';
 
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
+import 'package:globe_one_poc_project/domain/dashboard/common/cup_level_indicator.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/data_usage_widget.dart';
@@ -95,15 +96,18 @@ class _DashBoardPageState extends State<DashBoardPage> {
           BlocBuilder<AccountDetailsBloc, AccountDetailsState>(
               builder: (BuildContext context, AccountDetailsState state) {
             String userName = '';
+            String mobileNumber = '';
             if (state is AccountDetailsSuccessState) {
               userName = state.nameInfo.nameElement2;
+              mobileNumber = '0' + state.subscriberGeneralInfo.primResourceVal;
             } else if (state is AccountDetailsFailures) {
               userName = 'NA';
+              mobileNumber = 'NA';
             }
 
             return AccountDetailsWidget(
               userName: userName,
-              userMobileNumber: '0917 123 4567',
+              userMobileNumber: mobileNumber,
               userDuoNumber: ' | DUO 052654245',
             );
           }),
@@ -174,11 +178,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     BlocBuilder<DataUsageBloc, DataUsageState>(
                         builder: (BuildContext context, DataUsageState state) {
                       if (state is DataUsageSuccessState) {
-                        remainingData = state.volumeRemaing;
-                        dataAllocation = state.totalAllocated;
-                        refillDate = state.endDate;
-                        cupLevelIndicator = state.cupLevelIndicator as Image;
-                        lastApiCall = state.lastApiCall;
+                        remainingData = state.mainData.dataRemaining.toString();
+                        dataAllocation = state.mainData.dataTotal.toString();
+                        refillDate = state.mainData.endDate.toString();
+                        cupLevelIndicator =
+                            CupLevelIndicator.cupLevelIndicator(100.0, 100);
+                        lastApiCall = state.lastAPICall;
                       }
                       if (state is DataUsageLoadingState) {
                         return const ProgressIndicatorWidget();
