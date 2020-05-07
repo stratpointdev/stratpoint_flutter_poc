@@ -56,18 +56,22 @@ class DetailsByMsisdnResult {
 }
 
 class SubscriberHeader {
-  SubscriberHeader(this.nameInfo);
+  SubscriberHeader(this.nameInfo, this.subscriberGeneralInfo);
 
   factory SubscriberHeader.fromJson(Map<dynamic, dynamic> json) {
     return SubscriberHeader(
-        NameInfo.fromJson(json['nameInfo'] as Map<dynamic, dynamic>));
+        NameInfo.fromJson(json['nameInfo'] as Map<dynamic, dynamic>),
+        SubscriberGeneralInfo.fromJson(
+            json['subscriberGeneralInfo'] as Map<dynamic, dynamic>));
   }
 
   NameInfo nameInfo;
+  SubscriberGeneralInfo subscriberGeneralInfo;
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       'nameInfo': nameInfo.toJson(),
+      'subscriberGeneralInfo': subscriberGeneralInfo.toJson()
     };
   }
 }
@@ -151,6 +155,23 @@ class NameInfo {
       'nameLine2': nameLine2,
       'nameType': nameType,
       'nameUpdateType': nameUpdateType,
+    };
+  }
+}
+
+class SubscriberGeneralInfo {
+  SubscriberGeneralInfo({this.primResourceVal});
+
+  factory SubscriberGeneralInfo.fromJson(Map<dynamic, dynamic> json) {
+    return SubscriberGeneralInfo(
+      primResourceVal: json['primResourceVal'] as String,
+    );
+  }
+  String primResourceVal;
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'primResourceVal': primResourceVal,
     };
   }
 }

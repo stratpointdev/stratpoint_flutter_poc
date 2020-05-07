@@ -30,7 +30,12 @@ class AccountDetailsBloc
           (AccountDetailsFailures failures) => AccountDetailsFailedState(),
           (AccountDetailsModel successEntity) => AccountDetailsSuccessState(
               nameInfo: successEntity.detailsByMsisdnResponse
-                  .detailsByMsisdnResult.subscriberHeader.nameInfo));
+                  .detailsByMsisdnResult.subscriberHeader.nameInfo,
+              subscriberGeneralInfo: successEntity
+                  .detailsByMsisdnResponse
+                  .detailsByMsisdnResult
+                  .subscriberHeader
+                  .subscriberGeneralInfo));
 
       if (result.isRight()) {
         await accountDetailsRepository.deletePaymentDetailsLocal();

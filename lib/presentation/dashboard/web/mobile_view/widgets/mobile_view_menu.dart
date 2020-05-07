@@ -11,7 +11,7 @@ class MobileViewMenu extends StatelessWidget {
     return Container(
         padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
         color: const Color(0xff1587B7),
-        height: 40,
+        height: 46,
         child:
             Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
           Text('Dashboard',

@@ -1,5 +1,5 @@
 class GBConverter {
-  static String convert(double num) {
+  static String convert(int num) {
     const int marker = 1000;
     const int gigaBytes = marker * marker;
 

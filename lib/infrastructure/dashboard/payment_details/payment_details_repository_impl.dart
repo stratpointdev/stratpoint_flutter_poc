@@ -21,7 +21,7 @@ class PaymentDetailsRepositoryImpl implements PaymentDetailsRepository {
     final int secs =
         DateTimeConverter.getSecsDiff(myPrefs.getString('LastApiCall'));
 
-    if (secs <= 5) {
+    if (secs <= 30) {
       return localPaymentDetailsService.getPaymentDetails();
     } else {
       return remotePaymentDetailsService

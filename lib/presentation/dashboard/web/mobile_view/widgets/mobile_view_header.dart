@@ -57,14 +57,12 @@ class MobileViewHeader extends StatelessWidget {
           ),
         ),
         Container(
+          height: 40,
           color: const Color(0xff93B9C0),
-          padding: const EdgeInsets.all(20),
-          child: Padding(
-            padding: const EdgeInsets.only(right: 30),
-            child: Text(
-              'GLOBEONE',
-              style: TextStyle(color: Colors.white, fontSize: 14),
-            ),
+          padding: const EdgeInsets.only(top: 12,left: 16),
+          child: Text(
+            'GLOBEONE',
+            style: TextStyle(color: Colors.white, fontSize: 14),
           ),
         )
       ],

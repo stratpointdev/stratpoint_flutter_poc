@@ -14,6 +14,13 @@ class DateTimeConverter {
     final String formatted = formatter.format(dateTime);
     return formatted;
   }
+  static String convertOverDueDateToDueDate(String date) {
+    final DateTime dateTime = DateTime.parse(date);
+    final DateTime newDateTime =  dateTime.subtract(const Duration(days: 1));
+    final DateFormat formatter = DateFormat('MMM dd');
+    final String formatted = formatter.format(newDateTime);
+    return formatted;
+  }
 
   static String convertToDateWithYear(String date) {
     final DateTime dateTime = DateTime.parse(date);

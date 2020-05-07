@@ -24,7 +24,10 @@ void main() {
       () {
     final NameInfo nameInfo = NameInfo(0, ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ',
         ' ', ' ', ' ', ' ', ' ', ' ', 0, 0);
-    final SubscriberHeader subscriberHeader = SubscriberHeader(nameInfo);
+    final SubscriberGeneralInfo subscriberGeneralInfo =
+        SubscriberGeneralInfo(primResourceVal: '');
+    final SubscriberHeader subscriberHeader =
+        SubscriberHeader(nameInfo, subscriberGeneralInfo);
     final DetailsByMsisdnResult detailsByMsisdnResult =
         DetailsByMsisdnResult(subscriberHeader);
     final DetailsByMsisdnResponse detailsByMsisdnResponse =

@@ -20,7 +20,7 @@ class AccountDetailsRepositoryImpl implements AccountDetailsRepository {
     final int secs =
         DateTimeConverter.getSecsDiff(myPrefs.getString('LastApiCall'));
 
-    if (secs <= 5) {
+    if (secs <= 30) {
       return localAccountDetailsService.getAccountDetails();
     } else {
       return remoteAccountDetailsService
