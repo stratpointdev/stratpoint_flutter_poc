@@ -30,12 +30,12 @@ class DesktopViewHeader extends StatelessWidget {
                       ),
                     ),
                   ),
-                  child: Padding(
-                    padding:  const EdgeInsets.only(top: 16.5),
+                  child: const Padding(
+                    padding:   EdgeInsets.only(top: 16.5),
                     child: Text(
                       'Personal',
-                      style: TextStyle(
-                          color: const Color(0xff009CDF),
+                      style:  TextStyle(
+                          color:  Color(0xff009CDF),
                           fontSize: 14,
                           fontWeight: FontWeight.bold),
                     ),
@@ -64,39 +64,39 @@ class DesktopViewHeader extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              Padding(
-                padding: const EdgeInsets.only(right: 29 , top: 19),
+              const Padding(
+                padding:  EdgeInsets.only(right: 29 , top: 19),
                 child: Text(
                   'Help & Support',
                   style: TextStyle(
-                      color: const Color(0xff33464D),
+                      color:  Color(0xff33464D),
                       fontSize: 14,
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 42 , top: 19),
+             const Padding(
+                padding:  EdgeInsets.only(right: 42 , top: 19),
                 child: Text(
                   'Contact Us',
                   style: TextStyle(
-                      color: const Color(0xff33464D),
+                      color:  Color(0xff33464D),
                       fontSize: 14,
                       fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
-                  padding: const EdgeInsets.only(right: 14 , top: 19),
+                  padding:  const EdgeInsets.only(right: 14 , top: 19),
                   child: CircleAvatar(
                     radius: 12.0,
-                    backgroundImage: AssetImage(R.assetsImagesUser),
+                    backgroundImage: const AssetImage(R.assetsImagesUser),
                     backgroundColor: Colors.transparent,
                   )),
-              Padding(
-                padding: const EdgeInsets.only(right: 8 , top: 19),
+             const Padding(
+                padding:  EdgeInsets.only(right: 8 , top: 19),
                 child: Text(
                   'Logged In',
                   style: TextStyle(
-                      color: const Color(0xff33464D),
+                      color:  Color(0xff33464D),
                       fontSize: 14,
                       fontWeight: FontWeight.bold),
                 ),
@@ -114,8 +114,8 @@ class DesktopViewHeader extends StatelessWidget {
                   child: Container(
                     width: 173,
                     height: 70,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
+                    decoration: const BoxDecoration(
+                      image:  DecorationImage(
                         image: AssetImage(R.assetsImagesGlobelogo),
                       ),
                     ),

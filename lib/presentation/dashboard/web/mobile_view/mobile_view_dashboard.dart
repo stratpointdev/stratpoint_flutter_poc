@@ -87,8 +87,8 @@ class _MobileDashboard extends State<MobileDashboard> {
               }
               return MobileViewAccountDetails(
                 profile: userName,
-                mobile: '0918 XXXX XXXX',
-                duoNumber: '(02) 2920118',
+                mobile: '0917 123 4567',
+                duoNumber: '052654245',
                 profilePicture: 'https://i.imgur.com/BoN9kdC.png',
               );
             }),

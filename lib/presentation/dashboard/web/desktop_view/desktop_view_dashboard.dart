@@ -68,7 +68,7 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
               const DesktopViewHeader(),
               Container(
                 width: MediaQuery.of(context).size.width,
-                color: const Color(0xff93B9C0),
+                color: const Color(0xffE4E8E8),
                 padding: const EdgeInsets.all(12),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 57),
@@ -91,8 +91,8 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
                 }
                 return DesktopViewAccountDetails(
                   profile: userName,
-                  mobile: '0918 XXXX XXXX',
-                  duoNumber: '(02) 2920118',
+                  mobile: '0917 123 4567',
+                  duoNumber: '(05) 2654245',
                   profilePicture: 'https://i.imgur.com/BoN9kdC.png',
                 );
               }),
