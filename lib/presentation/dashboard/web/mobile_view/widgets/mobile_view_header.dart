@@ -29,8 +29,8 @@ class MobileViewHeader extends StatelessWidget {
                   child: Container(
                     width: 85,
                     height: 35,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
+                    decoration: const BoxDecoration(
+                      image:  DecorationImage(
                         fit: BoxFit.fill,
                         image: AssetImage(R.assetsImagesGlobelogo),
                       ),
@@ -43,7 +43,7 @@ class MobileViewHeader extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 20),
                   child: CircleAvatar(
                     radius: 15.0,
-                    backgroundImage: AssetImage(R.assetsImagesUser),
+                    backgroundImage: const AssetImage(R.assetsImagesUser),
                     backgroundColor: Colors.transparent,
                   )),
               const Padding(
