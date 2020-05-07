@@ -85,14 +85,17 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
               BlocBuilder<AccountDetailsBloc, AccountDetailsState>(
                   builder: (BuildContext context, AccountDetailsState state) {
                 String userName = '';
+                String mobileNumber = '';
                 if (state is AccountDetailsSuccessState) {
                   userName = state.nameInfo.nameElement2;
+                  mobileNumber =
+                      '0' + state.subscriberGeneralInfo.primResourceVal;
                 } else if (state is AccountDetailsFailures) {
                   userName = 'NA';
                 }
                 return DesktopViewAccountDetails(
                   profile: userName,
-                  mobile: '0917 123 4567',
+                  mobile: mobileNumber,
                   duoNumber: '(05) 2654245',
                   profilePicture: 'https://i.imgur.com/BoN9kdC.png',
                 );
