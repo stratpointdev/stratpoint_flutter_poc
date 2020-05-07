@@ -17,7 +17,7 @@ class DataUsageRepositoryImpl implements DataUsageRepository {
     final SharedPreferences myPrefs = await SharedPreferences.getInstance();
     final int secs =
         DateTimeConverter.getSecsDiff(myPrefs.getString('LastApiCall'));
-    if (secs <= 5) {
+    if (secs <= 30) {
       return localDataUsageService.getDataUsage();
     } else {
       return remoteDataUsageService

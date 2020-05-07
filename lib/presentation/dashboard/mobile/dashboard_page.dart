@@ -52,6 +52,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
   @override
   void initState() {
     super.initState();
+
     _accountDetailsBloc = BlocProvider.of<AccountDetailsBloc>(context);
     _paymentDetailsBloc = BlocProvider.of<PaymentDetailsBloc>(context);
     _dataUsageBloc = BlocProvider.of<DataUsageBloc>(context);
