@@ -14,7 +14,7 @@ class DataUsageWidget extends StatelessWidget {
     this.textColor = const Color(0xff244857),
     this.addMoreDataButtonColor = const Color(0xff009CDF),
     this.cupIndicatorTextColor = const Color(0xff9B9B9B),
-    this.padding = const EdgeInsets.fromLTRB(21, 24, 20, 35),
+    this.padding = const EdgeInsets.fromLTRB(21, 24, 20, 0),
     @required this.cupLevelIndicator,
     @required this.onRefresh,
     @required this.onAddMoreData,
