@@ -1,19 +1,23 @@
 class Api {
-  final String _baseUrl = 'gah-poc-flutter.firebaseio.com';
+  final String _baseUrl = 'ocspdev.globe.com.ph';
+
+  Uri getAccessToken() {
+    const String path = '/security/v1/access-token-generation';
+    return Uri.https(_baseUrl, path);
+  }
 
   Uri getSubscriberDetails() {
-    const String path = '/endpoint/postpaid/v1/account/subscriber-details.json';
+    const String path = '/postpaid/v1/account/subscriber-details';
     return Uri.https(_baseUrl, path);
   }
 
   Uri getOutStandingBalance() {
-    const String path =
-        '/endpoint/postpaid/v1/account/outstanding-balance.json';
+    const String path = '/postpaid/v1/account/outstanding-balance';
     return Uri.https(_baseUrl, path);
   }
 
   Uri getDataUsage() {
-    const String path = '/endpoint/postpaid/v1/account/data-usage.json';
+    const String path = '/postpaid/v1/account/promo-subscription-usage';
     return Uri.https(_baseUrl, path);
   }
 

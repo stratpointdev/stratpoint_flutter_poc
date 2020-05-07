@@ -8,6 +8,9 @@ import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usag
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
+import 'package:globe_one_poc_project/domain/dashboard/common/cup_level_indicator.dart';
+import 'package:globe_one_poc_project/domain/dashboard/common/datetime_converter.dart';
+import 'package:globe_one_poc_project/domain/dashboard/common/gb_converter.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/desktop_view/widgets/desktop_view_header.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/spending_limit.dart';
@@ -114,11 +117,19 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
                                   child: ProgressIndicatorWidget()));
 
                         if (state is DataUsageSuccessState) {
-                          remainingData = state.volumeRemaing;
-                          dataAllocation = state.totalAllocated;
-                          refillDate = state.endDate;
-                          cupLevelIndicator = state.cupLevelIndicator;
-                          lastApiCall = state.lastApiCall;
+                          remainingData = GBConverter.convert(
+                              state.mainData.dataRemaining as int);
+                          dataAllocation = GBConverter.convert(
+                              state.mainData.dataTotal as int);
+                          refillDate = DateTimeConverter.convertToDate(
+                              state.mainData.endDate);
+                          cupLevelIndicator =
+                              CupLevelIndicator.cupLevelIndicator(
+                                  double.parse(
+                                      state.mainData.dataRemaining.toString()),
+                                  double.parse(
+                                      state.mainData.dataTotal.toString()));
+                          lastApiCall = state.lastAPICall;
                         }
 
                         return DataUsageWidget(

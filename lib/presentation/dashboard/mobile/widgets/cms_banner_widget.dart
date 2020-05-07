@@ -31,19 +31,20 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
   void initState() {
     super.initState();
 
-    Timer.periodic(const Duration(milliseconds: 3000), (Timer timer) {
-      if (currentPage < widget.imagePaths.length) {
-        currentPage++;
-      } else {
-        currentPage = 0;
-      }
-
-      _pageController.animateToPage(
-        currentPage,
-        duration: const Duration(milliseconds: 350),
-        curve: Curves.easeIn,
-      );
-    });
+    // if (_pageController != null) {
+    //   Timer.periodic(const Duration(milliseconds: 3000), (Timer timer) {
+    //     if (currentPage < widget.imagePaths.length) {
+    //       currentPage++;
+    //     } else if (currentPage == widget.imagePaths.length) {
+    //       currentPage = 0;
+    //     }
+    //     _pageController.animateToPage(
+    //       currentPage,
+    //       duration: const Duration(milliseconds: 350),
+    //       curve: Curves.easeIn,
+    //     );
+    //   });
+    // }
   }
 
   @override
