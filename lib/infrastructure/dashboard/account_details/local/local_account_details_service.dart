@@ -1,5 +1,3 @@
-import 'dart:wasm';
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
@@ -22,22 +20,20 @@ class LocalAccountDetailsService {
       return databaseFactoryWeb.openDatabase(ACCOUNT_DETAILS);
   }
 
-  Future<Void> insert(AccountDetailsModel accountDetailsModel) async {
+  Future<void> insert(AccountDetailsModel accountDetailsModel) async {
     print('insert ');
     try {
       await _accountDetails.add(await _db, accountDetailsModel.toJson());
     } catch (error) {
       print('insert ' + error.toString());
     }
-    return null;
   }
 
-  Future<Void> delete() async {
+  Future<void> delete() async {
     print('delete');
     await _accountDetails.delete(
       await _db,
     );
-    return null;
   }
 
   Future<Either<AccountDetailsFailures, AccountDetailsModel>>

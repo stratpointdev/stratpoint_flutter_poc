@@ -1,5 +1,3 @@
-import 'dart:wasm';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_bloc.dart';
@@ -37,7 +35,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
   DataUsageBloc _dataUsageBloc;
   CmsBannerBloc _cmsBannerBloc;
 
-  Future<Void> _refresh() async {
+  Future<void> _refresh() async {
     _accountDetailsBloc.add(InitialAccountDetailsEvent());
     _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
     _dataUsageBloc.add(InitialDataUsageEvent());
@@ -46,7 +44,6 @@ class _DashBoardPageState extends State<DashBoardPage> {
     _dataUsageBloc.add(RefreshDataUsageEvent());
     _paymentDetailsBloc.add(RefreshPaymentDetailsEvent());
     _cmsBannerBloc.add(RefreshCmsBannerEvent());
-    return null;
   }
 
   @override
