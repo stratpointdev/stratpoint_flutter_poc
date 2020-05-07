@@ -44,7 +44,8 @@ void main() {
         bloc,
         emitsInOrder(<AccountDetailsState>[
           AccountDetailsInitialState(),
-          AccountDetailsSuccessState(nameInfo: nameInfo)
+          AccountDetailsSuccessState(
+              nameInfo: nameInfo, subscriberGeneralInfo: subscriberGeneralInfo)
         ]));
   });
 }
