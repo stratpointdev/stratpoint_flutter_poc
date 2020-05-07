@@ -118,12 +118,11 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
     );
   }
 
-  Future<Void> _launchURL(String url) async {
+  Future<void> _launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
     } else {
       print('null url');
     }
-    return null;
   }
 }
