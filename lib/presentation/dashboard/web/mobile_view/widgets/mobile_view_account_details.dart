@@ -34,10 +34,13 @@ class _MobileViewAccountDetails extends State<MobileViewAccountDetails> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.fromLTRB(10, 10, 12, 10),
-                    child: CircleAvatar(
-                      radius: 30.0,
-                      backgroundImage: NetworkImage(widget.profilePicture),
-                      backgroundColor: Colors.transparent,
+                    child:    CircleAvatar(
+                      radius: 30,
+                      child:  CircleAvatar(
+                        radius: 28,
+                        backgroundImage: NetworkImage(widget.profilePicture),
+                      ),
+                      backgroundColor: Colors.white,
                     ),
                   )
                 ]),

@@ -4,12 +4,10 @@ import 'package:globe_one_poc_project/application/dashboard/account_details/acco
 import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_state.dart';
 import 'package:globe_one_poc_project/application/dashboard/cms_banner/cms_banner_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/cms_banner/cms_banner_event.dart';
-import 'package:globe_one_poc_project/application/dashboard/cms_banner/cms_banner_state.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/desktop_view/widgets/desktop_view_header.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/spending_limit.dart';
@@ -60,7 +58,7 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: const Color(0xffD2D8DB),
+        color: const Color(0xffE4E8E8),
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -68,7 +66,7 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
               const DesktopViewHeader(),
               Container(
                 width: MediaQuery.of(context).size.width,
-                color: const Color(0xffE4E8E8),
+                color: const Color(0xff93B9C0),
                 padding: const EdgeInsets.all(12),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 57),
@@ -97,21 +95,7 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
                 );
               }),
               const DesktopViewMenu(),
-              BlocBuilder<CmsBannerBloc, CmsBannerState>(
-                  builder: (BuildContext context, CmsBannerState state) {
-                if (state is CmsBannerLoadingState) {
-                  return const ProgressIndicatorWidget();
-                } else if (state is CmsBannerSuccessState) {
-                  return CMSBannerWidget(
-                    onPageSelected: () {},
-                    onPageChange: () {},
-                    imagePaths: state.imagePaths,
-                    imageLinks: state.imageLinks,
-                  );
-                } else {
-                  return Container();
-                }
-              }),
+              const SizedBox(height: 12),
               const DesktopViewLoadRewards(),
               const SizedBox(height: 12),
               Container(

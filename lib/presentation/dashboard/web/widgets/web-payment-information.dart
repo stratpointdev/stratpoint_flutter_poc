@@ -80,8 +80,8 @@ class _WebPaymentInformationWidget extends State<WebPaymentInformationWidget> {
                     children: <Widget>[
                       Text(
                         '\u20B1${widget.dueAmount}',
-                        style: TextStyle(
-                          color: const Color(0xff244857),
+                        style:const TextStyle(
+                          color:  Color(0xff244857),
                           fontFamily: 'FSElliotPro',
                           fontWeight: FontWeight.bold,
                           fontSize: 36,

@@ -55,7 +55,6 @@ class _DesktopViewLoadRewards extends State<DesktopViewLoadRewards> {
 
             if (state is PaymentDetailsLoadingState)
               return Container(
-                  color: const Color(0xffD2D8DB),
                   height: 382,
                   width: 562,
                   child: const Center(child: ProgressIndicatorWidget()));

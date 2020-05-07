@@ -31,19 +31,19 @@ class _DesktopViewPlanDetails extends State<DesktopViewPlanDetails> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Row(
-                    children: <Widget>[
-                      const Text(
+                    children:const <Widget>[
+                       Text(
                         'Your current plan:',
                         style: TextStyle(
                           color: Color(0xff244857),
                           fontSize: 18,
                         ),
                       ),
-                      const SizedBox(width: 15),
+                       SizedBox(width: 15),
                       Text(
                         'ThePlan 1799',
                         style: TextStyle(
-                          color: const Color(0xff244857),
+                          color:  Color(0xff244857),
                           fontWeight: FontWeight.w700,
                           fontSize: 18,
                         ),

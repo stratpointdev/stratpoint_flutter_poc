@@ -5,7 +5,6 @@ import 'package:globe_one_poc_project/application/dashboard/account_details/acco
 import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_state.dart';
 import 'package:globe_one_poc_project/application/dashboard/cms_banner/cms_banner_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/cms_banner/cms_banner_event.dart';
-import 'package:globe_one_poc_project/application/dashboard/cms_banner/cms_banner_state.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
@@ -14,7 +13,6 @@ import 'package:globe_one_poc_project/application/dashboard/payment_details/paym
 
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_state.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
-import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/mobile_view/widgets/mobile_view_bill_payment.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/mobile_view/widgets/mobile_view_plan_details.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';
@@ -73,9 +71,10 @@ class _MobileDashboard extends State<MobileDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: const Color(0xffD2D8DB),
+        color: const Color(0xffE4E8E8),
         child: ListView(
           children: <Widget>[
+
             const MobileViewHeader(),
             BlocBuilder<AccountDetailsBloc, AccountDetailsState>(
                 builder: (BuildContext context, AccountDetailsState state) {
@@ -88,26 +87,12 @@ class _MobileDashboard extends State<MobileDashboard> {
               return MobileViewAccountDetails(
                 profile: userName,
                 mobile: '0917 123 4567',
-                duoNumber: '052654245',
+                duoNumber: 'Duo 052654245',
                 profilePicture: 'https://i.imgur.com/BoN9kdC.png',
               );
             }),
             const MobileViewMenu(),
-            BlocBuilder<CmsBannerBloc, CmsBannerState>(
-                builder: (BuildContext context, CmsBannerState state) {
-              if (state is CmsBannerLoadingState) {
-                return const ProgressIndicatorWidget();
-              } else if (state is CmsBannerSuccessState) {
-                return CMSBannerWidget(
-                  onPageSelected: () {},
-                  onPageChange: () {},
-                  imagePaths: state.imagePaths,
-                  imageLinks: state.imageLinks,
-                );
-              } else {
-                return Container();
-              }
-            }),
+            const SizedBox(height: 30,),
             BlocBuilder<PaymentDetailsBloc, PaymentDetailsState>(
                 builder: (BuildContext context, PaymentDetailsState state) {
               if (state is PaymentDetailsSuccessState) {

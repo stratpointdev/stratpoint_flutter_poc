@@ -86,9 +86,9 @@ class _DesktopViewBillPayment extends State<DesktopViewBillPayment> {
                       Padding(
                         padding: const EdgeInsets.only(right: 33.0),
                         child: Text(widget.paymentAmountValue,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 36,
-                                color: const Color(0xff244857),
+                                color:  Color(0xff244857),
                                 fontWeight: FontWeight.w700),
                             textAlign: TextAlign.left),
                       ),
