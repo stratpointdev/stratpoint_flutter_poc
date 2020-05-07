@@ -81,14 +81,17 @@ class _MobileDashboard extends State<MobileDashboard> {
             BlocBuilder<AccountDetailsBloc, AccountDetailsState>(
                 builder: (BuildContext context, AccountDetailsState state) {
               String userName = '';
+              String mobileNumber = '';
               if (state is AccountDetailsSuccessState) {
                 userName = state.nameInfo.nameElement2;
+                mobileNumber =
+                    '0' + state.subscriberGeneralInfo.primResourceVal;
               } else if (state is AccountDetailsFailures) {
                 userName = 'NA';
               }
               return MobileViewAccountDetails(
                 profile: userName,
-                mobile: '0917 123 4567',
+                mobile: mobileNumber,
                 duoNumber: 'Duo 052654245',
                 profilePicture: 'https://i.imgur.com/BoN9kdC.png',
               );
