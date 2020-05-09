@@ -20,7 +20,7 @@ class SecureStorageUtil {
   static String accessUserName = 'stratpoint';
   static String accessTokenPassword = 'KJBRzYM5yA4jHcbd8Zqm74vFWtr7NsDN';
   static String cmsUserName = 'flutterpoc-stratpoint';
-  static String cmsPassword = 'Str@tpo1nt';
+  static String cmsPassword = 'Str@tp01nt';
   static String dbPassword = 'P@55w0rd';
 
   static Future<void> getInstance(bool isWeb) async {
