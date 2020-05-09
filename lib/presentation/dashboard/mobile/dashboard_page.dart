@@ -43,10 +43,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
     _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
     _dataUsageBloc.add(InitialDataUsageEvent());
     _cmsBannerBloc.add(InitialCmsBannerEvent());
-    _accountDetailsBloc.add(RefreshAccountDetailsEvent());
-    _dataUsageBloc.add(RefreshDataUsageEvent());
-    _paymentDetailsBloc.add(RefreshPaymentDetailsEvent());
-    _cmsBannerBloc.add(RefreshCmsBannerEvent());
+
   }
 
   @override

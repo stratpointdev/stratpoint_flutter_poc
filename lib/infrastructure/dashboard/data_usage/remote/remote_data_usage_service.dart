@@ -19,7 +19,7 @@ class RemoteDataUsageService {
     final Response response = await post(api.getDataUsage(),
             headers: <String, String>{
               'Authorization': '$_getAccessToken',
-              'g-channel': 'STRATPOINT'
+              'Content-Type': 'application/json'
             },
             body: jsonEncode(dataUsageRequestBody))
         .timeout(const Duration(seconds: 60));

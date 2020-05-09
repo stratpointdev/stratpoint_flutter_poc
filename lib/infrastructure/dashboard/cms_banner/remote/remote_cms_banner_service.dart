@@ -16,12 +16,13 @@ class RemoteCmsBannerService {
     final String password =
         await SecureStorageUtil.getString(SecureStorageUtil.cmsPasswordKey);
 
-    final String basicAuth =
-        'Basic ' + base64Encode(utf8.encode(username + ':' + password));
+
 
     final Map<String, String> headers = <String, String>{
-      'Authorization': basicAuth
+      'username': '$username',
+      'password': '$password'
     };
+
 
     try {
       final Response response = await get(api.getCms(), headers: headers)
@@ -29,7 +30,7 @@ class RemoteCmsBannerService {
 
       if (response.statusCode == 200) {
         final dynamic body = jsonDecode(response.body.toString());
-
+        print('CMS'+response.body.toString());
         return right(CmsBannerModel.fromJson(body as Map<String, dynamic>));
       } else {
         return left(CmsBannerFailure(

@@ -52,7 +52,7 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
     const String _baseUrl = 'https://contentdev.globe.com.ph';
     final String basicAuth = 'Basic ' +
         base64Encode(utf8.encode('flutterpoc-stratpoint:Str@tp01nt'));
-
+    print('basicAuth '+basicAuth);
     return Stack(
       children: <Widget>[
         PageView.builder(

@@ -4,6 +4,7 @@ import 'package:globe_one_poc_project/application/dashboard/account_details/acco
 import 'package:globe_one_poc_project/application/dashboard/account_details/account_details_state.dart';
 import 'package:globe_one_poc_project/application/dashboard/cms_banner/cms_banner_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/cms_banner/cms_banner_event.dart';
+import 'package:globe_one_poc_project/application/dashboard/cms_banner/cms_banner_state.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
@@ -11,6 +12,7 @@ import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/
 import 'package:globe_one_poc_project/domain/dashboard/common/cup_level_indicator.dart';
 import 'package:globe_one_poc_project/domain/dashboard/common/datetime_converter.dart';
 import 'package:globe_one_poc_project/domain/dashboard/common/gb_converter.dart';
+import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/desktop_view/widgets/desktop_view_header.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/spending_limit.dart';
@@ -101,7 +103,36 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
                 );
               }),
               const DesktopViewMenu(),
-              const SizedBox(height: 12),
+              const SizedBox(height: 24),
+              Container(
+                width: 1137,
+                height: 109,
+                child: BlocBuilder<CmsBannerBloc, CmsBannerState>(builder:
+                    (BuildContext context, CmsBannerState state) {
+                  if (state is CmsBannerLoadingState) {
+                    return const ProgressIndicatorWidget();
+                  } else if (state is CmsBannerSuccessState) {
+                    return CMSBannerWidget(
+                      onPageSelected: (int index) {
+                        print(index);
+                      },
+                      onPageChange: (int index) {
+                        print(index);
+                      },
+                      imagePaths: state.imagePaths,
+                      imageLinks: state.imageLinks,
+                    );
+                  } else if (state is CmsBannerFailedState) {
+                    return Center(
+                      child: Container(
+                          height: 100, child: Icon(Icons.error_outline)),
+                    );
+                  } else {
+                    return Container();
+                  }
+                }),
+              ),
+              const SizedBox(height: 36),
               const DesktopViewLoadRewards(),
               const SizedBox(height: 12),
               Container(
