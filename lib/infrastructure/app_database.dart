@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:globe_one_poc_project/infrastructure/dashboard/authentication/storage_util.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sembast/sembast.dart';
@@ -26,8 +27,7 @@ class AppDatabase {
   Future<void> _openDatabase() async {
     final Directory appDocumentDir = await getApplicationDocumentsDirectory();
     final String dbPath = join(appDocumentDir.path, 'globeone.db');
-
-    final SembastCodec codec = getEncryptSembastCodec(password: 'Str@tpo1nt');
+    final SembastCodec codec = getEncryptSembastCodec(password: StorageUtil.getString(StorageUtil.dbPassword));
     final Database database =
         await databaseFactoryIo.openDatabase(dbPath, codec: codec);
     _dbOpenCompleter.complete(database);

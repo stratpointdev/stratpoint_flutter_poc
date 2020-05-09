@@ -3,9 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'app.dart';
+import 'infrastructure/dashboard/authentication/storage_util.dart';
 
-void main() {
+Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
+  await StorageUtil.getInstance();
   runApp(MyApp());
 }
 
