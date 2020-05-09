@@ -160,15 +160,10 @@ class _MobileDashboard extends State<MobileDashboard> {
             BlocBuilder<DataUsageBloc, DataUsageState>(
               builder: (BuildContext context, DataUsageState state) {
                 if (state is DataUsageSuccessState) {
-                  remainingData =
-                      GBConverter.convert(state.mainData.dataRemaining as int);
-                  dataAllocation =
-                      GBConverter.convert(state.mainData.dataTotal as int);
-                  refillDate =
-                      DateTimeConverter.convertToDate(state.mainData.endDate);
-                  cupLevelIndicator = CupLevelIndicator.cupLevelIndicator(
-                      double.parse(state.mainData.dataRemaining.toString()),
-                      double.parse(state.mainData.dataTotal.toString()));
+                  remainingData = state.remainingData;
+                  dataAllocation = state.dataAllocation;
+                  refillDate = state.refillDate;
+                  cupLevelIndicator = state.cupLevelIndicator;
                   lastApiCall = state.lastAPICall;
                 }
 

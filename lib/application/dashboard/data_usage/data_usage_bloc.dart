@@ -30,9 +30,8 @@ class DataUsageBloc extends Bloc<DataUsageEvent, DataUsageState> {
 
       yield value.fold(
           (DataUsageFailure failed) => DataUsageFailedState(failed),
-          (DataUsageModel succuessEntity) => DataUsageSuccessState(
-              mainData: succuessEntity.promoSubscriptionUsage.mainData[0],
-              lastAPICall: DateTimeConverter.getTimeNow()));
+          (DataUsageModel successEntity) => DataUsageSuccessState.success(
+              mainData: successEntity.promoSubscriptionUsage.mainData[0],));
 
       if (value.isRight()) {
         await dataUsageRepository.deleteDataUsageLocal();

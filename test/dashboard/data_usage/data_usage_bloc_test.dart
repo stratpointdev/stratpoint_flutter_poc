@@ -44,9 +44,7 @@ void main() {
         bloc,
         emitsInOrder(<DataUsageState>[
           DataUsageInitialState(),
-          DataUsageSuccessState(
-              mainData: dataUsageModel.promoSubscriptionUsage.mainData[0],
-              lastAPICall: '')
+          const DataUsageSuccessState()
         ]));
   });
 }
