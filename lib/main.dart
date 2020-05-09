@@ -1,13 +1,15 @@
 import 'dart:io';
-
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-
 import 'app.dart';
 import 'infrastructure/dashboard/authentication/storage_util.dart';
 
+
 Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
+  if(kIsWeb)
   await StorageUtil.getInstance();
+
   runApp(MyApp());
 }
 
