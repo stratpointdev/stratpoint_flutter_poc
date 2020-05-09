@@ -6,6 +6,7 @@ import 'package:globe_one_poc_project/domain/dashboard/common/datetime_converter
 import 'package:globe_one_poc_project/domain/dashboard/data_usage/data_usage_repository.dart';
 import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage_failures.dart';
 import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage_model.dart';
+import 'package:globe_one_poc_project/domain/dashboard/data_usage/entities/data_usage_request_body.dart';
 
 class DataUsageBloc extends Bloc<DataUsageEvent, DataUsageState> {
   DataUsageBloc(this.dataUsageRepository);
@@ -22,7 +23,10 @@ class DataUsageBloc extends Bloc<DataUsageEvent, DataUsageState> {
     }
     if (event is RefreshDataUsageEvent || event is InitialDataUsageEvent) {
       final Either<DataUsageFailure, DataUsageModel> value =
-          await dataUsageRepository.getDataUsage();
+          await dataUsageRepository.getDataUsage(DataUsageRequestBody(
+              serviceNumber: '09270001926',
+              forceRefresh: true,
+              primaryResourceType: 'C'));
 
       yield value.fold(
           (DataUsageFailure failed) => DataUsageFailedState(failed),
