@@ -24,8 +24,6 @@ class RemoteAccountDetailsService {
             },
             body: jsonEncode(accountDetailsRequestBody))
         .timeout(const Duration(seconds: 60));
-    print('CODE: ' + response.statusCode.toString());
-    print('BODY: ' + response.body.toString());
 
     if (response.statusCode == 200) {
       final SharedPreferences myPrefs = await SharedPreferences.getInstance();

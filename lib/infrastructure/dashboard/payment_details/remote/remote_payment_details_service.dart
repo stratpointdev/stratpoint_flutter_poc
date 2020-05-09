@@ -23,14 +23,11 @@ class RemotePaymentDetailsService {
             },
             body: jsonEncode(paymentDetailsRequestBody))
         .timeout(const Duration(seconds: 60));
-    print('CODE: ' + response.statusCode.toString());
-    print('BODY: ' + response.body.toString());
 
     print(response.statusCode);
     if (response.statusCode == 200) {
       final SharedPreferences myPrefs = await SharedPreferences.getInstance();
       myPrefs.setString('LastApiCall', DateTime.now().toString());
-      print('RESPONSE CODE: $response');
       final dynamic body = jsonDecode(response.body.toString());
       return right(PaymentDetailsModel.fromJson(body as Map<dynamic, dynamic>));
     } else {

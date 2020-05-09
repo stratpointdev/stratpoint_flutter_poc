@@ -1,11 +1,14 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-
 import 'app.dart';
+import 'infrastructure/dashboard/authentication/storage_util.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  //if(kIsWeb)
+  await StorageUtil.getInstance();
   HttpOverrides.global = MyHttpOverrides();
+
   runApp(MyApp());
 }
 
