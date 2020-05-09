@@ -1,12 +1,13 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart' show kIsWeb;
+
 import 'package:flutter/material.dart';
+import 'package:globe_one_poc_project/infrastructure/dashboard/authentication/secure_storage_util.dart';
 import 'app.dart';
-import 'infrastructure/dashboard/authentication/storage_util.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //if(kIsWeb)
-  await StorageUtil.getInstance();
+  await SecureStorageUtil.getInstance(kIsWeb);
   HttpOverrides.global = MyHttpOverrides();
 
   runApp(MyApp());

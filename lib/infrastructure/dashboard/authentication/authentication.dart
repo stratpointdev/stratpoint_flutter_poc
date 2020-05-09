@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:globe_one_poc_project/infrastructure/api.dart';
-import 'package:globe_one_poc_project/infrastructure/dashboard/authentication/storage_util.dart';
+import 'package:globe_one_poc_project/infrastructure/dashboard/authentication/secure_storage_util.dart';
 import 'package:http/http.dart';
 
 class Authentication {
@@ -9,9 +9,10 @@ class Authentication {
 
   Future<String> getAccessToken() async {
     final String username =
-        StorageUtil.getString(StorageUtil.accessUserNameKey);
-    final String password =
-        StorageUtil.getString(StorageUtil.accessTokenPasswordKey);
+        await SecureStorageUtil.getString(SecureStorageUtil.accessUserNameKey);
+    final String password = await SecureStorageUtil.getString(
+        SecureStorageUtil.accessTokenPasswordKey);
+
     final String _testAccount =
         'Basic ' + base64Encode(utf8.encode('$username:$password'));
     final Response response = await post(api.getAccessToken(),

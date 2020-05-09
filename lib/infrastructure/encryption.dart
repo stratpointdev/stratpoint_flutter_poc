@@ -99,4 +99,3 @@ SembastCodec getEncryptSembastCodec({@required String password}) =>
     SembastCodec(
         signature: _encryptCodecSignature,
         codec: _EncryptCodec(_generateEncryptPassword(password)));
-
