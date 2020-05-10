@@ -40,7 +40,6 @@ class _DashBoardPageState extends State<DashBoardPage> {
     _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
     _dataUsageBloc.add(InitialDataUsageEvent());
     _cmsBannerBloc.add(InitialCmsBannerEvent());
-
   }
 
   @override
@@ -65,6 +64,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
   String dueDate = '';
   Image cupLevelIndicator = Image.asset(R.assetsDuckPlaceholder);
   String lastApiCall = '8:30 AM';
+
+  String cmsUsername;
+  String cmsPassword;
+  String cmsBaseUrl;
+  Map<String, String> imagePaths;
+  Map<String, String> imageLinks;
 
   @override
   Widget build(BuildContext context) {
@@ -125,16 +130,11 @@ class _DashBoardPageState extends State<DashBoardPage> {
                         if (state is CmsBannerLoadingState) {
                           return const ProgressIndicatorWidget();
                         } else if (state is CmsBannerSuccessState) {
-                          return CMSBannerWidget(
-                            onPageSelected: (int index) {
-                              print(index);
-                            },
-                            onPageChange: (int index) {
-                              print(index);
-                            },
-                            imagePaths: state.imagePaths,
-                            imageLinks: state.imageLinks,
-                          );
+                          cmsUsername = state.cmsUsername;
+                          cmsPassword = state.cmsPassword;
+                          cmsBaseUrl = state.cmsBaseUrl;
+                          imagePaths = state.imagePaths;
+                          imageLinks = state.imageLinks;
                         } else if (state is CmsBannerFailedState) {
                           return Center(
                             child: Container(
@@ -143,6 +143,19 @@ class _DashBoardPageState extends State<DashBoardPage> {
                         } else {
                           return Container();
                         }
+                        return CMSBannerWidget(
+                          onPageSelected: (int index) {
+                            print(index);
+                          },
+                          onPageChange: (int index) {
+                            print(index);
+                          },
+                          cmsUserName: cmsUsername,
+                          cmsPassWord: cmsPassword,
+                          cmsBaseUrl: cmsBaseUrl,
+                          imagePaths: imagePaths,
+                          imageLinks: imageLinks,
+                        );
                       }),
                     ),
                     BlocBuilder<PaymentDetailsBloc, PaymentDetailsState>(

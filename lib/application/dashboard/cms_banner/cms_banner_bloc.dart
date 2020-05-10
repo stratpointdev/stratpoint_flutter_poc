@@ -26,10 +26,12 @@ class CmsBannerBloc extends Bloc<CmsBannerEvent, CmsBannerState> {
 
       if (kIsWeb) {
         if (value.isRight()) {
-          final Map<String,String> bannerImages = await cmsBannerRepository.getCmsBannerImage(value.getOrElse(() => null).getImagePaths());
-          print('bannerImages '+bannerImages.length.toString());
-          yield CmsBannerSuccessState(imagePaths: bannerImages,imageLinks: value.getOrElse(() => null).getImageLinks());
-
+          final Map<String, String> bannerImages = await cmsBannerRepository
+              .getCmsBannerImage(value.getOrElse(() => null).getImagePaths());
+          print('bannerImages ' + bannerImages.length.toString());
+          yield CmsBannerSuccessState(
+              imagePaths: bannerImages,
+              imageLinks: value.getOrElse(() => null).getImageLinks());
         } else {
           yield CmsBannerFailedState();
         }
@@ -38,7 +40,10 @@ class CmsBannerBloc extends Bloc<CmsBannerEvent, CmsBannerState> {
             (CmsBannerFailure failures) => CmsBannerFailedState(),
             (CmsBannerModel successEntity) => CmsBannerSuccessState(
                 imagePaths: successEntity.getImagePaths(),
-                imageLinks: successEntity.getImageLinks()));
+                imageLinks: successEntity.getImageLinks(),
+                cmsUsername: successEntity.getCmsUsername(),
+                cmsPassword: successEntity.getCmsPassword(),
+                cmsBaseUrl: successEntity.getCmsBaseUrl()));
       }
 
       if (value.isRight()) {

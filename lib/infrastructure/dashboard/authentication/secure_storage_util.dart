@@ -15,12 +15,14 @@ class SecureStorageUtil {
   static String accessTokenPasswordKey = 'accessTokenPassword';
   static String cmsUserNameKey = 'cmsUserName';
   static String cmsPasswordKey = 'cmsPassword';
+  static String aemUrlKey = 'aemUrl';
   static String dbPasswordKey = 'dbPassword';
   //value
   static String accessUserName = 'stratpoint';
   static String accessTokenPassword = 'KJBRzYM5yA4jHcbd8Zqm74vFWtr7NsDN';
   static String cmsUserName = 'flutterpoc-stratpoint';
   static String cmsPassword = 'Str@tp01nt';
+  static String aemUrl = 'https://contentdev.globe.com.ph';
   static String dbPassword = 'P@55w0rd';
 
   static Future<void> getInstance(bool isWeb) async {
@@ -35,6 +37,7 @@ class SecureStorageUtil {
     SecureStorageUtil.putString(accessTokenPasswordKey, accessTokenPassword);
     SecureStorageUtil.putString(cmsUserNameKey, cmsUserName);
     SecureStorageUtil.putString(cmsPasswordKey, cmsPassword);
+    SecureStorageUtil.putString(aemUrlKey, aemUrl);
     SecureStorageUtil.putString(dbPasswordKey, dbPassword);
 
     return _secureStorageUtil;
