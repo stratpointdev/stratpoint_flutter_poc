@@ -9,9 +9,6 @@ import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usag
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
-import 'package:globe_one_poc_project/domain/dashboard/common/cup_level_indicator.dart';
-import 'package:globe_one_poc_project/domain/dashboard/common/datetime_converter.dart';
-import 'package:globe_one_poc_project/domain/dashboard/common/gb_converter.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/desktop_view/widgets/desktop_view_header.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/data_usage_widget.dart';

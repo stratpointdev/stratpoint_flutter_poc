@@ -14,9 +14,6 @@ import 'package:globe_one_poc_project/application/dashboard/payment_details/paym
 
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_state.dart';
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
-import 'package:globe_one_poc_project/domain/dashboard/common/cup_level_indicator.dart';
-import 'package:globe_one_poc_project/domain/dashboard/common/datetime_converter.dart';
-import 'package:globe_one_poc_project/domain/dashboard/common/gb_converter.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/mobile_view/widgets/mobile_view_bill_payment.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/mobile_view/widgets/mobile_view_plan_details.dart';
