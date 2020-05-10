@@ -103,7 +103,7 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
               const SizedBox(height: 24),
               Container(
                 width: 1137,
-                height: 109,
+                height: 120,
                 child: BlocBuilder<CmsBannerBloc, CmsBannerState>(builder:
                     (BuildContext context, CmsBannerState state) {
                   if (state is CmsBannerLoadingState) {
@@ -116,7 +116,7 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
                       onPageChange: (int index) {
                         print(index);
                       },
-                      imagePaths: state.imagePaths,
+                      imageList: state.imageList,
                       imageLinks: state.imageLinks,
                     );
                   } else if (state is CmsBannerFailedState) {
@@ -129,7 +129,7 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
                   }
                 }),
               ),
-              const SizedBox(height: 36),
+              const SizedBox(height: 24),
               const DesktopViewLoadRewards(),
               const SizedBox(height: 12),
               Container(

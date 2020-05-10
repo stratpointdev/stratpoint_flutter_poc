@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:globe_one_poc_project/domain/dashboard/cms_banner/cms_banner_repository.dart';
@@ -35,14 +37,13 @@ class CmsBannerRepositoryImpl implements CmsBannerRepository {
   }
 
   @override
-   Future<Map<String, String>> getCmsBannerImage(Map<String, String> imagePaths) async  {
-    final Map<String, String> paths = <String, String>{};
-      imagePaths.forEach((String key, String value) async  {
-      final String bannerImage = await remoteCmsBannerService.getCmsBannerImage(value);
-      paths.putIfAbsent(key, () => bannerImage);
-    });
-
-    return paths;
+   Future<List<Image>> getCmsBannerImage(Map<String, String> imagePaths) async  {
+    final List<Image> imageList = <Image>[];
+    for (final MapEntry<String, String> entry in imagePaths.entries) {
+      final String bannerImage = await remoteCmsBannerService.getCmsBannerImage(entry.value);
+      imageList.add(imageFromBase64String(bannerImage));
+    }
+    return imageList;
 
   }
 
@@ -54,6 +55,17 @@ class CmsBannerRepositoryImpl implements CmsBannerRepository {
   @override
   Future<void> insertCmsBannerLocal(CmsBannerModel cmsBannerModel) async {
     return localCmsBannerService.insert(cmsBannerModel);
+  }
+
+  Image imageFromBase64String(String base64String) {
+    Image image;
+
+    try{
+      image = Image.memory(base64Decode(base64String.substring(22)));
+    }catch(error){
+      print('imageFromBase64String '+error.toString());
+    }
+    return image;
   }
 
 }
