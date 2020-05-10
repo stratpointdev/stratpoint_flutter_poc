@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>604401469779-glggk3i8150gab6d1bhr9b6pp3ebnn0i.apps.googleusercontent.com</string>
+	<string>193948618821-fuh80a8aqind51di6mueabj5ac821cmj.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.604401469779-glggk3i8150gab6d1bhr9b6pp3ebnn0i</string>
+	<string>com.googleusercontent.apps.193948618821-fuh80a8aqind51di6mueabj5ac821cmj</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAm9xIEtQJwbOHecZGaEfL72BNiWCIc_lc</string>
+	<string>AIzaSyBpz5UWsPVPb5dT-TM5WiQVA0ZbFT5wlNI</string>
 	<key>GCM_SENDER_ID</key>
-	<string>604401469779</string>
+	<string>193948618821</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.stratpoint.globeonepoc</string>
 	<key>PROJECT_ID</key>
-	<string>globeone-poc</string>
+	<string>globeonepoc</string>
 	<key>STORAGE_BUCKET</key>
-	<string>globeone-poc.appspot.com</string>
+	<string>globeonepoc.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:604401469779:ios:2cf57ab543ee91b0b0f9a6</string>
+	<string>1:193948618821:ios:9ee111c46fc17df77d132c</string>
 	<key>DATABASE_URL</key>
-	<string>https://globeone-poc.firebaseio.com</string>
+	<string>https://globeonepoc.firebaseio.com</string>
 </dict>
 </plist>

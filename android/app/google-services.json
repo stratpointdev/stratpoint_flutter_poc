@@ -1,35 +1,42 @@
 {
   "project_info": {
-    "project_number": "604401469779",
-    "firebase_url": "https://globeone-poc.firebaseio.com",
-    "project_id": "globeone-poc",
-    "storage_bucket": "globeone-poc.appspot.com"
+    "project_number": "193948618821",
+    "firebase_url": "https://globeonepoc.firebaseio.com",
+    "project_id": "globeonepoc",
+    "storage_bucket": "globeonepoc.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:604401469779:android:7a9c241a159cba9db0f9a6",
+        "mobilesdk_app_id": "1:193948618821:android:6a360c6833882b437d132c",
         "android_client_info": {
           "package_name": "com.stratpoint.globeonepoc"
         }
       },
       "oauth_client": [
         {
-          "client_id": "604401469779-hott4d1g8k1lddg2ftb13j6gm9u7meng.apps.googleusercontent.com",
+          "client_id": "193948618821-sv1n320chd0i3qabqdtjkini7aue1tqu.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDfUM-PUQSIgLAFmaMxK88IzVcGpWvhzVU"
+          "current_key": "AIzaSyAMGrCxMvZEXr0Hk9jJfY-6TOtonDI1hbo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "604401469779-hott4d1g8k1lddg2ftb13j6gm9u7meng.apps.googleusercontent.com",
+              "client_id": "193948618821-sv1n320chd0i3qabqdtjkini7aue1tqu.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "193948618821-fuh80a8aqind51di6mueabj5ac821cmj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.stratpoint.globeonepoc"
+              }
             }
           ]
         }
