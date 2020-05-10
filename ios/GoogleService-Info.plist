@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1070254934331-3s0g2n11798rvu1fn5lundfue3iuf0k2.apps.googleusercontent.com</string>
+	<string>604401469779-glggk3i8150gab6d1bhr9b6pp3ebnn0i.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1070254934331-3s0g2n11798rvu1fn5lundfue3iuf0k2</string>
+	<string>com.googleusercontent.apps.604401469779-glggk3i8150gab6d1bhr9b6pp3ebnn0i</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAlbRsW7csC5e1JqfCObeLbVPdQd8Gvmzo</string>
+	<string>AIzaSyAm9xIEtQJwbOHecZGaEfL72BNiWCIc_lc</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1070254934331</string>
+	<string>604401469779</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.thebrewery.ale-flutter-ddd</string>
+	<string>com.stratpoint.globeonepoc</string>
 	<key>PROJECT_ID</key>
-	<string>thebrewery-flutter</string>
+	<string>globeone-poc</string>
 	<key>STORAGE_BUCKET</key>
-	<string>thebrewery-flutter.appspot.com</string>
+	<string>globeone-poc.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1070254934331:ios:f1f70755102dab84128f1e</string>
+	<string>1:604401469779:ios:2cf57ab543ee91b0b0f9a6</string>
 	<key>DATABASE_URL</key>
-	<string>https://thebrewery-flutter.firebaseio.com</string>
+	<string>https://globeone-poc.firebaseio.com</string>
 </dict>
 </plist>
