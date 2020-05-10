@@ -13,12 +13,10 @@ class Authentication {
     final String password = await SecureStorageUtil.getString(
         SecureStorageUtil.accessTokenPasswordKey);
 
-    final String _testAccount =
-        'Basic ' + base64Encode(utf8.encode('$username:$password'));
     final Response response = await post(api.getAccessToken(),
         headers: <String, String>{
-          'Authorization': _testAccount,
-          'g-channel': 'STRATPOINT'
+          'username': '$username',
+          'password': '$password'
         }).timeout(const Duration(seconds: 30));
     if (response.statusCode == 200) {
       final dynamic body = jsonDecode(response.body);

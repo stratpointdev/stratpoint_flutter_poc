@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -9,14 +7,14 @@ class CMSBannerWidget extends StatefulWidget {
     this.onPageChange,
     this.onPageSelected,
     this.pageIndicatorBackgroundColor,
-    @required this.imagePaths,
+    @required this.imageList,
     @required this.imageLinks,
   });
 
   final Function onPageChange;
   final Function onPageSelected;
   final Color pageIndicatorBackgroundColor;
-  final Map<String, String> imagePaths;
+  final List<Image> imageList;
   final Map<String, String> imageLinks;
 
   @override
@@ -31,57 +29,38 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
   void initState() {
     super.initState();
 
-    // if (_pageController != null) {
-    //   Timer.periodic(const Duration(milliseconds: 3000), (Timer timer) {
-    //     if (currentPage < widget.imagePaths.length) {
-    //       currentPage++;
-    //     } else if (currentPage == widget.imagePaths.length) {
-    //       currentPage = 0;
-    //     }
-    //     _pageController.animateToPage(
-    //       currentPage,
-    //       duration: const Duration(milliseconds: 350),
-    //       curve: Curves.easeIn,
-    //     );
-    //   });
-    // }
   }
 
   @override
   Widget build(BuildContext context) {
-    const String _baseUrl = 'https://contentdev.globe.com.ph';
-    final String basicAuth = 'Basic ' +
-        base64Encode(utf8.encode('flutterpoc-stratpoint:Str@tp01nt'));
-    print('basicAuth '+basicAuth);
+
     return Stack(
       children: <Widget>[
-        PageView.builder(
-          onPageChanged: (int page) {
-            setState(() {
-              currentPage = page;
-            });
-          },
-          controller: _pageController,
-          itemCount: widget.imagePaths.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Material(
-                child: InkWell(
-              onTap: () {
-                final String currentImage =
-                    widget.imagePaths.keys.toList()[index];
-                _launchURL(widget.imageLinks[
-                    'link' + currentImage.substring(currentImage.length - 1)]);
-              },
-              child: Container(
-                  color: Colors.blue,
+        Container(
+          height: 95,
+          child: PageView.builder(
+            onPageChanged: (int page) {
+              setState(() {
+                currentPage = page;
+              });
+            },
+            controller: _pageController,
+            itemCount:widget.imageList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Material(
+                  child: InkWell(
+                onTap: () {
+                  _launchURL(widget.imageLinks.values.toList()[index]);
+                },
+                child: Container(
+                    color: Colors.blue,
                   child: FittedBox(
-                    fit: BoxFit.cover,
-                    child: Image.network(
-                        _baseUrl + widget.imagePaths.values.toList()[index],
-                        headers: <String, String>{'authorization': basicAuth}),
-                  )),
-            ));
-          },
+                      fit: BoxFit.cover,
+                      child: widget.imageList[index]),
+                     ),
+              ));
+            },
+          ),
         ),
         Positioned.fill(
           child: Align(
@@ -92,7 +71,7 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  for (int i = 0; i < widget.imagePaths.length; i++)
+                  for (int i = 0; i < widget.imageList.length; i++)
                     if (i == currentPage) ...<Widget>[circleBar(true)] else
                       circleBar(false),
                 ],
@@ -104,10 +83,12 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
     );
   }
 
+
+
   Widget circleBar(bool isActive) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 150),
-      margin: const EdgeInsets.symmetric(horizontal: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 3),
       height: 9,
       width: 9,
       decoration: BoxDecoration(
@@ -119,6 +100,7 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
   }
 
   Future<void> _launchURL(String url) async {
+    print('url $url');
     if (await canLaunch(url)) {
       await launch(url);
     } else {

@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import '../../../r.dart';
 
 class CupLevelIndicator {
-  static Image cupLevelIndicator(double remaining, double total) {
+  static Image cupLevel(double remaining, double total) {
     final double percentage = (remaining / total) * 100;
     if (percentage == 0.0) {
       return Image.asset(R.assetsImagesDuck0);

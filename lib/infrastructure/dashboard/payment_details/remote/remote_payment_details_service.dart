@@ -19,7 +19,7 @@ class RemotePaymentDetailsService {
     final Response response = await post(api.getOutStandingBalance(),
             headers: <String, String>{
               'Authorization': '$_getAccessToken',
-              'g-channel': 'STRATPOINT'
+              'Content-Type': 'application/json'
             },
             body: jsonEncode(paymentDetailsRequestBody))
         .timeout(const Duration(seconds: 60));

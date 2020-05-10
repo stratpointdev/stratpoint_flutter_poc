@@ -19,6 +19,18 @@ class CmsBannerModel {
     return paths;
   }
 
+  Map<String, String> getImagePathsForWeb() {
+    final Map<String, String> paths = <String, String>{};
+
+    cms.forEach((String key, dynamic value) {
+      if (key.contains('imagePathWeb')) {
+        paths.putIfAbsent(key, () => value as String);
+      }
+    });
+    return paths;
+  }
+
+
   Map<String, String> getImageLinks() {
     final Map<String, String> paths = <String, String>{};
 
