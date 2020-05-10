@@ -129,7 +129,7 @@ class _DesktopViewDashboardState extends State<DesktopViewDashboard> {
                   }
                 }),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 6),
               const DesktopViewLoadRewards(),
               const SizedBox(height: 12),
               Container(
