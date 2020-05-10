@@ -3,8 +3,9 @@ import 'package:globe_one_poc_project/domain/dashboard/cms_banner/entities/cms_b
 import 'package:globe_one_poc_project/domain/dashboard/cms_banner/entities/cms_banner_model.dart';
 
 abstract class CmsBannerRepository {
-  // isLocal - true will get local data 1st before remote
   Future<Either<CmsBannerFailure, CmsBannerModel>> getCmsBanner();
+  Future<Map<String, String>> getCmsBannerImage(final Map<String, String> imagePaths);
   Future<void> insertCmsBannerLocal(CmsBannerModel cmsBannerModel);
   Future<void> deleteCmsBannerLocal();
+
 }

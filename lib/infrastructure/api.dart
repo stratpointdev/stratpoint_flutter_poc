@@ -17,4 +17,9 @@ class Api {
     return '$_baseUrl/banner';
   }
 
+  String getCmsImage() {
+    return '$_baseUrl/banner/image';
+  }
+
+
 }

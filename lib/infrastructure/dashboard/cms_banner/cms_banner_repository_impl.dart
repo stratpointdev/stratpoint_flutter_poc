@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:globe_one_poc_project/domain/dashboard/cms_banner/cms_banner_repository.dart';
 import 'package:globe_one_poc_project/domain/dashboard/cms_banner/entities/cms_banner_model.dart';
 import 'package:globe_one_poc_project/domain/dashboard/cms_banner/entities/cms_banner_failure.dart';
@@ -34,6 +35,18 @@ class CmsBannerRepositoryImpl implements CmsBannerRepository {
   }
 
   @override
+   Future<Map<String, String>> getCmsBannerImage(Map<String, String> imagePaths) async  {
+    final Map<String, String> paths = <String, String>{};
+      imagePaths.forEach((String key, String value) async  {
+      final String bannerImage = await remoteCmsBannerService.getCmsBannerImage(value);
+      paths.putIfAbsent(key, () => bannerImage);
+    });
+
+    return paths;
+
+  }
+
+  @override
   Future<void> deleteCmsBannerLocal() async {
     return localCmsBannerService.delete();
   }
@@ -42,4 +55,5 @@ class CmsBannerRepositoryImpl implements CmsBannerRepository {
   Future<void> insertCmsBannerLocal(CmsBannerModel cmsBannerModel) async {
     return localCmsBannerService.insert(cmsBannerModel);
   }
+
 }

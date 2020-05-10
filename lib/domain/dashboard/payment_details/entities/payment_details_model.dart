@@ -3,7 +3,6 @@ class PaymentDetailsModel {
       this.responseCode, this.outstandingBalanceByMsisdnResponse);
 
   factory PaymentDetailsModel.fromJson(Map<dynamic, dynamic> json) {
-    print('PaymentDetailsModel ' + json.toString());
     return PaymentDetailsModel(
       json['responseCode'] as int,
       OutstandingBalanceByMsisdnResponse.fromJson(
