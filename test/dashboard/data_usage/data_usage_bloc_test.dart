@@ -21,13 +21,14 @@ void main() {
   test('Successful RefreshDataUsageEvent should display DataUsageSuccessState',
       () {
     final MainData mainData = MainData(
-        skelligWallet: '',
-        skelligCategory: '',
-        dataRemaining: 0,
-        dataTotal: 0,
-        dataUsed: 0,
-        endDate: '',
-        type: '');
+        skelligWallet: '1230',
+        skelligCategory: '1230',
+        dataRemaining: 10000000,
+        dataTotal: 10000000,
+        dataUsed: '0',
+        endDate: '2020-05-12T23:59:59',
+        type: 'BULK');
+
     final List<MainData> dataUsages = <MainData>[];
     dataUsages.add(mainData);
     final PromoSubscriptionUsage promoSubscriptionUsage =
@@ -44,7 +45,7 @@ void main() {
         bloc,
         emitsInOrder(<DataUsageState>[
           DataUsageInitialState(),
-          DataUsageSuccessState.success(mainData: dataUsages[0])
+          const DataUsageSuccessState()
         ]));
   });
 }

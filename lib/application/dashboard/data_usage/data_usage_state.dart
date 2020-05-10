@@ -20,8 +20,7 @@ class DataUsageSuccessState extends DataUsageState {
       this.cupLevelIndicator,
       this.lastAPICall});
 
-  factory DataUsageSuccessState.success(
-      {MainData mainData}) {
+  factory DataUsageSuccessState.success({MainData mainData}) {
     return DataUsageSuccessState(
         remainingData: GBConverter.convert(mainData.dataRemaining as int),
         dataAllocation: GBConverter.convert(mainData.dataTotal as int),
