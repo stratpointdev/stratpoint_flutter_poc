@@ -35,7 +35,7 @@ void main() {
     final AccountDetailsModel accountDetailsModel =
         AccountDetailsModel(200, detailsByMsisdnResponse);
 
-    when(mockRepository.getAccountDetails())
+    when(mockRepository.getAccountDetails(any))
         .thenAnswer((_) async => right(accountDetailsModel));
 
     bloc.add(RefreshAccountDetailsEvent());

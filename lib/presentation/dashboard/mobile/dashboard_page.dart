@@ -15,9 +15,6 @@ import 'package:globe_one_poc_project/application/dashboard/payment_details/paym
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_state.dart';
 
 import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/account_details_failures.dart';
-import 'package:globe_one_poc_project/domain/dashboard/common/cup_level_indicator.dart';
-import 'package:globe_one_poc_project/domain/dashboard/common/datetime_converter.dart';
-import 'package:globe_one_poc_project/domain/dashboard/common/gb_converter.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/cms_banner_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/data_usage_widget.dart';
@@ -43,10 +40,6 @@ class _DashBoardPageState extends State<DashBoardPage> {
     _paymentDetailsBloc.add(InitialPaymentDetailsEvent());
     _dataUsageBloc.add(InitialDataUsageEvent());
     _cmsBannerBloc.add(InitialCmsBannerEvent());
-    _accountDetailsBloc.add(RefreshAccountDetailsEvent());
-    _dataUsageBloc.add(RefreshDataUsageEvent());
-    _paymentDetailsBloc.add(RefreshPaymentDetailsEvent());
-    _cmsBannerBloc.add(RefreshCmsBannerEvent());
   }
 
   @override
@@ -71,6 +64,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
   String dueDate = '';
   Image cupLevelIndicator = Image.asset(R.assetsDuckPlaceholder);
   String lastApiCall = '8:30 AM';
+
+  String cmsUsername;
+  String cmsPassword;
+  String cmsBaseUrl;
+  Map<String, String> imagePaths;
+  Map<String, String> imageLinks;
 
   @override
   Widget build(BuildContext context) {
@@ -131,16 +130,11 @@ class _DashBoardPageState extends State<DashBoardPage> {
                         if (state is CmsBannerLoadingState) {
                           return const ProgressIndicatorWidget();
                         } else if (state is CmsBannerSuccessState) {
-                          return CMSBannerWidget(
-                            onPageSelected: (int index) {
-                              print(index);
-                            },
-                            onPageChange: (int index) {
-                              print(index);
-                            },
-                            imagePaths: state.imagePaths,
-                            imageLinks: state.imageLinks,
-                          );
+                          cmsUsername = state.cmsUsername;
+                          cmsPassword = state.cmsPassword;
+                          cmsBaseUrl = state.cmsBaseUrl;
+                          imagePaths = state.imagePaths;
+                          imageLinks = state.imageLinks;
                         } else if (state is CmsBannerFailedState) {
                           return Center(
                             child: Container(
@@ -149,6 +143,19 @@ class _DashBoardPageState extends State<DashBoardPage> {
                         } else {
                           return Container();
                         }
+                        return CMSBannerWidget(
+                          onPageSelected: (int index) {
+                            print(index);
+                          },
+                          onPageChange: (int index) {
+                            print(index);
+                          },
+                          cmsUserName: cmsUsername,
+                          cmsPassWord: cmsPassword,
+                          cmsBaseUrl: cmsBaseUrl,
+                          imagePaths: imagePaths,
+                          imageLinks: imageLinks,
+                        );
                       }),
                     ),
                     BlocBuilder<PaymentDetailsBloc, PaymentDetailsState>(
@@ -181,16 +188,10 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     BlocBuilder<DataUsageBloc, DataUsageState>(
                         builder: (BuildContext context, DataUsageState state) {
                       if (state is DataUsageSuccessState) {
-                        remainingData = GBConverter.convert(
-                            state.mainData.dataRemaining as int);
-                        dataAllocation = GBConverter.convert(
-                            state.mainData.dataTotal as int);
-                        refillDate = DateTimeConverter.convertToDate(
-                            state.mainData.endDate);
-                        cupLevelIndicator = CupLevelIndicator.cupLevelIndicator(
-                            double.parse(
-                                state.mainData.dataRemaining.toString()),
-                            double.parse(state.mainData.dataTotal.toString()));
+                        remainingData = state.remainingData;
+                        dataAllocation = state.dataAllocation;
+                        refillDate = state.refillDate;
+                        cupLevelIndicator = state.cupLevelIndicator;
                         lastApiCall = state.lastAPICall;
                       }
                       if (state is DataUsageLoadingState) {

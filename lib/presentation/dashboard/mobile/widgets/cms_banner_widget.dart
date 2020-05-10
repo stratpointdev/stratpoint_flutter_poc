@@ -11,6 +11,9 @@ class CMSBannerWidget extends StatefulWidget {
     this.pageIndicatorBackgroundColor,
     @required this.imagePaths,
     @required this.imageLinks,
+    this.cmsUserName,
+    this.cmsPassWord,
+    this.cmsBaseUrl,
   });
 
   final Function onPageChange;
@@ -18,6 +21,9 @@ class CMSBannerWidget extends StatefulWidget {
   final Color pageIndicatorBackgroundColor;
   final Map<String, String> imagePaths;
   final Map<String, String> imageLinks;
+  final String cmsUserName;
+  final String cmsPassWord;
+  final String cmsBaseUrl;
 
   @override
   _CMSBannerWidgetState createState() => _CMSBannerWidgetState();
@@ -49,10 +55,9 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    const String _baseUrl = 'https://contentdev.globe.com.ph';
     final String basicAuth = 'Basic ' +
-        base64Encode(utf8.encode('flutterpoc-stratpoint:Str@tp01nt'));
-
+        base64Encode(
+            utf8.encode(widget.cmsUserName + ':' + widget.cmsPassWord));
     return Stack(
       children: <Widget>[
         PageView.builder(
@@ -77,7 +82,8 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
                   child: FittedBox(
                     fit: BoxFit.cover,
                     child: Image.network(
-                        _baseUrl + widget.imagePaths.values.toList()[index],
+                        widget.cmsBaseUrl +
+                            widget.imagePaths.values.toList()[index],
                         headers: <String, String>{'authorization': basicAuth}),
                   )),
             ));

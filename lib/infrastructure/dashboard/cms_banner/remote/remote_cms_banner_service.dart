@@ -15,12 +15,12 @@ class RemoteCmsBannerService {
         await SecureStorageUtil.getString(SecureStorageUtil.cmsUserNameKey);
     final String password =
         await SecureStorageUtil.getString(SecureStorageUtil.cmsPasswordKey);
-
-    final String basicAuth =
-        'Basic ' + base64Encode(utf8.encode(username + ':' + password));
+    final String aemBaseUrl =
+        await SecureStorageUtil.getString(SecureStorageUtil.aemUrlKey);
 
     final Map<String, String> headers = <String, String>{
-      'Authorization': basicAuth
+      'username': '$username',
+      'password': '$password'
     };
 
     try {
@@ -28,9 +28,13 @@ class RemoteCmsBannerService {
           .timeout(const Duration(seconds: 30));
 
       if (response.statusCode == 200) {
-        final dynamic body = jsonDecode(response.body.toString());
+        final Map<String, dynamic> body =
+            jsonDecode(response.body.toString()) as Map<String, dynamic>;
+        body.putIfAbsent('cmsUsername', () => username);
+        body.putIfAbsent('cmsPassword', () => password);
+        body.putIfAbsent('cmsBaseUrl', () => aemBaseUrl);
 
-        return right(CmsBannerModel.fromJson(body as Map<String, dynamic>));
+        return right(CmsBannerModel.fromJson(body));
       } else {
         return left(CmsBannerFailure(
             code: response.statusCode, message: response.body.toString()));
@@ -38,6 +42,35 @@ class RemoteCmsBannerService {
     } catch (e) {
       print(e.toString);
       return left(CmsBannerFailure.localError(''));
+    }
+  }
+
+  Future<String> getCmsBannerImage(String value) async {
+    final String username =
+        await SecureStorageUtil.getString(SecureStorageUtil.cmsUserNameKey);
+    final String password =
+        await SecureStorageUtil.getString(SecureStorageUtil.cmsPasswordKey);
+    print('getCmsBannerImage $username : $password  value:$value');
+    final Map<String, String> headers = <String, String>{
+      'username': '$username',
+      'password': '$password',
+      'Content-Type': 'application/json',
+    };
+    final Uri uri = Uri.https('nameless-tor-61972.herokuapp.com',
+        '/banner/image', <String, String>{'imagePath': '$value'});
+    //final Uri uri = Uri.parse(api.getCmsImage());
+    // final Uri newURI = uri.replace(queryParameters: <String, String>{'imagePath': '$value'});
+
+    final Response response = await get(uri, headers: headers);
+
+    /*  final Response response = await get(api.getCmsImage(),
+            headers: headers,
+            body: <String, String>{'imagePath': '$value'})
+        .timeout(const Duration(seconds: 30));*/
+    if (response.statusCode == 200) {
+      return response.body.toString();
+    } else {
+      return '';
     }
   }
 }

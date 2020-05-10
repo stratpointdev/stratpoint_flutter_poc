@@ -22,12 +22,13 @@ void main() {
   test('Successful RefreshEvent should display PaymentSuccessState', () {
     final LastPaymentDt lastPaymentDt = LastPaymentDt(
         amount: '200.03', paymentDate: '2020-04-23T00:00:00+0800');
+
     final PaymentDetailsModel paymentDetailsModel = PaymentDetailsModel(
         200,
         OutstandingBalanceByMsisdnResponse(OutstandingBalanceByMsisdnResult(
             lastPaymentDt, '2020-03-31T00:00:00+0800', '2000.03', '_')));
 
-    when(mockRepository.getPaymentDetails())
+    when(mockRepository.getPaymentDetails(any))
         .thenAnswer((_) async => right(paymentDetailsModel));
 
     bloc.add(RefreshPaymentDetailsEvent());

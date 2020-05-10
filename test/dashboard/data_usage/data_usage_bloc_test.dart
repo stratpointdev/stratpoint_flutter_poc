@@ -21,13 +21,14 @@ void main() {
   test('Successful RefreshDataUsageEvent should display DataUsageSuccessState',
       () {
     final MainData mainData = MainData(
-        skelligWallet: '',
-        skelligCategory: '',
-        dataRemaining: '',
-        dataTotal: '',
-        dataUsed: '',
-        endDate: '',
-        type: '');
+        skelligWallet: '1230',
+        skelligCategory: '1230',
+        dataRemaining: 10000000,
+        dataTotal: 10000000,
+        dataUsed: '0',
+        endDate: '2020-05-12T23:59:59',
+        type: 'BULK');
+
     final List<MainData> dataUsages = <MainData>[];
     dataUsages.add(mainData);
     final PromoSubscriptionUsage promoSubscriptionUsage =
@@ -35,7 +36,7 @@ void main() {
     final DataUsageModel dataUsageModel =
         DataUsageModel(promoSubscriptionUsage: promoSubscriptionUsage);
 
-    when(mockRepository.getDataUsage())
+    when(mockRepository.getDataUsage(any))
         .thenAnswer((_) async => right(dataUsageModel));
 
     bloc.add(RefreshDataUsageEvent());
@@ -44,9 +45,7 @@ void main() {
         bloc,
         emitsInOrder(<DataUsageState>[
           DataUsageInitialState(),
-          DataUsageSuccessState(
-              mainData: dataUsageModel.promoSubscriptionUsage.mainData[0],
-              lastAPICall: '')
+          const DataUsageSuccessState()
         ]));
   });
 }
