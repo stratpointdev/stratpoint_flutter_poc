@@ -15,7 +15,7 @@ class DateTimeConverter {
     return formatted;
   }
   static String convertOverDueDateToDueDate(String date) {
-    final DateTime dateTime = DateTime.parse(date);
+    final DateTime dateTime = DateTime.parse(date.split('T')[0]);
     final DateTime newDateTime =  dateTime.subtract(const Duration(days: 1));
     final DateFormat formatter = DateFormat('MMM dd');
     final String formatted = formatter.format(newDateTime);

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/cms_banner/cms_banner_event.dart';
 import 'package:globe_one_poc_project/application/dashboard/cms_banner/cms_banner_state.dart';
@@ -26,11 +27,11 @@ class CmsBannerBloc extends Bloc<CmsBannerEvent, CmsBannerState> {
 
       if (kIsWeb) {
         if (value.isRight()) {
-          final Map<String, String> bannerImages = await cmsBannerRepository
-              .getCmsBannerImage(value.getOrElse(() => null).getImagePaths());
-          print('bannerImages ' + bannerImages.length.toString());
+          final List<Image> imageList =
+              await cmsBannerRepository.getCmsBannerImage(
+                  value.getOrElse(() => null).getImagePathsForWeb());
           yield CmsBannerSuccessState(
-              imagePaths: bannerImages,
+              imageList: imageList,
               imageLinks: value.getOrElse(() => null).getImageLinks());
         } else {
           yield CmsBannerFailedState();

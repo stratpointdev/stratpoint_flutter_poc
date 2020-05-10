@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:globe_one_poc_project/application/dashboard/cms_banner/cms_banner_bloc.dart';
 
 import 'package:globe_one_poc_project/application/dashboard/payment_details/payment_details_bloc.dart';
+import 'package:globe_one_poc_project/infrastructure/cache_configuration/cache_configuration_repository_impl.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/account_details/local/local_account_details_service.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/cms_banner/cms_banner_repository_impl.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/data_usage/data_usage_repository_impl.dart';
@@ -35,30 +36,28 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: <BlocProvider<Bloc<dynamic, dynamic>>>[
         BlocProvider<PaymentDetailsBloc>(
-          create: (BuildContext context) =>
-              PaymentDetailsBloc(PaymentDetailsRepositoryImpl(
-            RemotePaymentDetailsService(),
-            LocalPaymentDetailsService(),
-          )),
+          create: (BuildContext context) => PaymentDetailsBloc(
+              PaymentDetailsRepositoryImpl(
+                  RemotePaymentDetailsService(),
+                  LocalPaymentDetailsService(),
+                  CacheConfigurationRepositoryImpl())),
         ),
         BlocProvider<AccountDetailsBloc>(
           create: (BuildContext context) => AccountDetailsBloc(
               AccountDetailsRepositoryImpl(
-                  RemoteAccountDetailsService(), LocalAccountDetailsService())),
+                  RemoteAccountDetailsService(),
+                  LocalAccountDetailsService(),
+                  CacheConfigurationRepositoryImpl())),
         ),
         BlocProvider<DataUsageBloc>(
-          create: (BuildContext context) =>
-              DataUsageBloc(DataUsageRepositoryImpl(
-            RemoteDataUsageService(),
-            LocalDataUsageService(),
-          )),
+          create: (BuildContext context) => DataUsageBloc(
+              DataUsageRepositoryImpl(RemoteDataUsageService(),
+                  LocalDataUsageService(), CacheConfigurationRepositoryImpl())),
         ),
         BlocProvider<CmsBannerBloc>(
-          create: (BuildContext context) =>
-              CmsBannerBloc(CmsBannerRepositoryImpl(
-            RemoteCmsBannerService(),
-            LocalCmsBannerService(),
-          )),
+          create: (BuildContext context) => CmsBannerBloc(
+              CmsBannerRepositoryImpl(RemoteCmsBannerService(),
+                  LocalCmsBannerService(), CacheConfigurationRepositoryImpl())),
         ),
       ],
       child: MaterialApp(

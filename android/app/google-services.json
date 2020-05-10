@@ -1,35 +1,42 @@
 {
   "project_info": {
-    "project_number": "1070254934331",
-    "firebase_url": "https://thebrewery-flutter.firebaseio.com",
-    "project_id": "thebrewery-flutter",
-    "storage_bucket": "thebrewery-flutter.appspot.com"
+    "project_number": "193948618821",
+    "firebase_url": "https://globeonepoc.firebaseio.com",
+    "project_id": "globeonepoc",
+    "storage_bucket": "globeonepoc.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1070254934331:android:accb87f3ab07afaa128f1e",
+        "mobilesdk_app_id": "1:193948618821:android:6a360c6833882b437d132c",
         "android_client_info": {
           "package_name": "com.stratpoint.globeonepoc"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1070254934331-pdr618re34e7sj5nl1q27aefbkh0pp1q.apps.googleusercontent.com",
+          "client_id": "193948618821-sv1n320chd0i3qabqdtjkini7aue1tqu.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDka7IlWKq7iTlsDMEQKw9uU6SpaoFIN50"
+          "current_key": "AIzaSyAMGrCxMvZEXr0Hk9jJfY-6TOtonDI1hbo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1070254934331-pdr618re34e7sj5nl1q27aefbkh0pp1q.apps.googleusercontent.com",
+              "client_id": "193948618821-sv1n320chd0i3qabqdtjkini7aue1tqu.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "193948618821-fuh80a8aqind51di6mueabj5ac821cmj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.stratpoint.globeonepoc"
+              }
             }
           ]
         }

@@ -1,4 +1,11 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
+
+import 'package:globe_one_poc_project/domain/cache_configuration/cache_configuration_repository.dart';
+import 'package:globe_one_poc_project/domain/cache_configuration/entities/cache_configuration_details_model.dart';
+
 import 'package:globe_one_poc_project/domain/dashboard/cms_banner/cms_banner_repository.dart';
 import 'package:globe_one_poc_project/domain/dashboard/cms_banner/entities/cms_banner_model.dart';
 import 'package:globe_one_poc_project/domain/dashboard/cms_banner/entities/cms_banner_failure.dart';
@@ -8,17 +15,21 @@ import 'package:globe_one_poc_project/infrastructure/dashboard/cms_banner/remote
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CmsBannerRepositoryImpl implements CmsBannerRepository {
-  CmsBannerRepositoryImpl(
-      this.remoteCmsBannerService, this.localCmsBannerService);
+  CmsBannerRepositoryImpl(this.remoteCmsBannerService,
+      this.localCmsBannerService, this.cacheConfigurationRepository);
   final RemoteCmsBannerService remoteCmsBannerService;
   final LocalCmsBannerService localCmsBannerService;
+  final CacheConfigurationRepository cacheConfigurationRepository;
   @override
   Future<Either<CmsBannerFailure, CmsBannerModel>> getCmsBanner() async {
     final SharedPreferences myPrefs = await SharedPreferences.getInstance();
     final int secs =
         DateTimeConverter.getSecsDiff(myPrefs.getString('LastApiCall'));
 
-    if (secs <= 30) {
+    final CacheConfigurationDetailsModel cacheConfiguration =
+        await cacheConfigurationRepository.getCacheInterval();
+
+    if (secs <= cacheConfiguration.interval) {
       return localCmsBannerService.getCmsBanner();
     } else {
       return remoteCmsBannerService
@@ -34,16 +45,14 @@ class CmsBannerRepositoryImpl implements CmsBannerRepository {
   }
 
   @override
-  Future<Map<String, String>> getCmsBannerImage(
-      Map<String, String> imagePaths) async {
-    final Map<String, String> paths = <String, String>{};
-    imagePaths.forEach((String key, String value) async {
+  Future<List<Image>> getCmsBannerImage(Map<String, String> imagePaths) async {
+    final List<Image> imageList = <Image>[];
+    for (final MapEntry<String, String> entry in imagePaths.entries) {
       final String bannerImage =
-          await remoteCmsBannerService.getCmsBannerImage(value);
-      paths.putIfAbsent(key, () => bannerImage);
-    });
-
-    return paths;
+          await remoteCmsBannerService.getCmsBannerImage(entry.value);
+      imageList.add(imageFromBase64String(bannerImage));
+    }
+    return imageList;
   }
 
   @override
@@ -54,5 +63,16 @@ class CmsBannerRepositoryImpl implements CmsBannerRepository {
   @override
   Future<void> insertCmsBannerLocal(CmsBannerModel cmsBannerModel) async {
     return localCmsBannerService.insert(cmsBannerModel);
+  }
+
+  Image imageFromBase64String(String base64String) {
+    Image image;
+
+    try {
+      image = Image.memory(base64Decode(base64String.substring(22)));
+    } catch (error) {
+      print('imageFromBase64String ' + error.toString());
+    }
+    return image;
   }
 }

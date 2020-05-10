@@ -100,7 +100,7 @@ class _MobileDashboard extends State<MobileDashboard> {
               height: 8,
             ),
             Container(
-              height: 114,
+              height: 120,
               width: 320,
               child: BlocBuilder<CmsBannerBloc, CmsBannerState>(builder:
                   (BuildContext context, CmsBannerState state) {
@@ -114,7 +114,7 @@ class _MobileDashboard extends State<MobileDashboard> {
                     onPageChange: (int index) {
                       print(index);
                     },
-                    imagePaths: state.imagePaths,
+                    imageList: state.imageList,
                     imageLinks: state.imageLinks,
                   );
                 } else if (state is CmsBannerFailedState) {

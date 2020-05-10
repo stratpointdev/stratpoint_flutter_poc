@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -9,14 +7,14 @@ class CMSBannerWidget extends StatefulWidget {
     this.onPageChange,
     this.onPageSelected,
     this.pageIndicatorBackgroundColor,
-    @required this.imagePaths,
+    @required this.imageList,
     @required this.imageLinks,
   });
 
   final Function onPageChange;
   final Function onPageSelected;
   final Color pageIndicatorBackgroundColor;
-  final Map<String, String> imagePaths;
+  final List<Image> imageList;
   final Map<String, String> imageLinks;
 
   @override
@@ -38,31 +36,31 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
 
     return Stack(
       children: <Widget>[
-        PageView.builder(
-          onPageChanged: (int page) {
-            setState(() {
-              currentPage = page;
-            });
-          },
-          controller: _pageController,
-          itemCount: widget.imagePaths.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Material(
-                child: InkWell(
-              onTap: () {
-                final String currentImage =
-                    widget.imagePaths.keys.toList()[index];
-                _launchURL(widget.imageLinks[
-                    'link' + currentImage.substring(currentImage.length - 1)]);
-              },
-              child: Container(
-                  color: Colors.blue,
+        Container(
+          height: 95,
+          child: PageView.builder(
+            onPageChanged: (int page) {
+              setState(() {
+                currentPage = page;
+              });
+            },
+            controller: _pageController,
+            itemCount:widget.imageList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Material(
+                  child: InkWell(
+                onTap: () {
+                  _launchURL(widget.imageLinks.values.toList()[index]);
+                },
+                child: Container(
+                    color: Colors.blue,
                   child: FittedBox(
-                    fit: BoxFit.cover,
-                    child: imageFromBase64String(widget.imagePaths.values.toList()[index]),
-                   )),
-            ));
-          },
+                      fit: BoxFit.cover,
+                      child: widget.imageList[index]),
+                     ),
+              ));
+            },
+          ),
         ),
         Positioned.fill(
           child: Align(
@@ -73,7 +71,7 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  for (int i = 0; i < widget.imagePaths.length; i++)
+                  for (int i = 0; i < widget.imageList.length; i++)
                     if (i == currentPage) ...<Widget>[circleBar(true)] else
                       circleBar(false),
                 ],
@@ -85,20 +83,12 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
     );
   }
 
-  Image imageFromBase64String(String base64String) {
-    Image image;
-    try{
-      image = Image.memory(base64Decode(base64String));
-    }catch(error){
-      print('imageFromBase64String '+error.toString());
-    }
-      return image;
-  }
+
 
   Widget circleBar(bool isActive) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 150),
-      margin: const EdgeInsets.symmetric(horizontal: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 3),
       height: 9,
       width: 9,
       decoration: BoxDecoration(
@@ -110,6 +100,7 @@ class _CMSBannerWidgetState extends State<CMSBannerWidget> {
   }
 
   Future<void> _launchURL(String url) async {
+    print('url $url');
     if (await canLaunch(url)) {
       await launch(url);
     } else {
