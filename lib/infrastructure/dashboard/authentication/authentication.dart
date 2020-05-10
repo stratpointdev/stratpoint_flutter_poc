@@ -1,16 +1,20 @@
 import 'dart:convert';
 
 import 'package:globe_one_poc_project/infrastructure/api.dart';
+import 'package:globe_one_poc_project/infrastructure/dashboard/authentication/secure_storage_util.dart';
 import 'package:http/http.dart';
 
 class Authentication {
   final Api api = Api();
 
   Future<String> getAccessToken() async {
-    //Usually we get this credentials as inputs, since we have no login. This is just a test account.
-    final String _testAccount = 'Basic ' +
-        base64Encode(
-            utf8.encode('stratpoint:KJBRzYM5yA4jHcbd8Zqm74vFWtr7NsDN'));
+    final String username =
+        await SecureStorageUtil.getString(SecureStorageUtil.accessUserNameKey);
+    final String password = await SecureStorageUtil.getString(
+        SecureStorageUtil.accessTokenPasswordKey);
+
+    final String _testAccount =
+        'Basic ' + base64Encode(utf8.encode('$username:$password'));
     final Response response = await post(api.getAccessToken(),
         headers: <String, String>{
           'Authorization': _testAccount,

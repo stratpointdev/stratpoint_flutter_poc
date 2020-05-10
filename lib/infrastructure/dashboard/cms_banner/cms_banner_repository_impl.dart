@@ -1,4 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:globe_one_poc_project/domain/cache_configuration/cache_configuration_repository.dart';
+import 'package:globe_one_poc_project/domain/cache_configuration/entities/cache_configuration_details_model.dart';
 import 'package:globe_one_poc_project/domain/dashboard/cms_banner/cms_banner_repository.dart';
 import 'package:globe_one_poc_project/domain/dashboard/cms_banner/entities/cms_banner_model.dart';
 import 'package:globe_one_poc_project/domain/dashboard/cms_banner/entities/cms_banner_failure.dart';
@@ -8,17 +10,21 @@ import 'package:globe_one_poc_project/infrastructure/dashboard/cms_banner/remote
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CmsBannerRepositoryImpl implements CmsBannerRepository {
-  CmsBannerRepositoryImpl(
-      this.remoteCmsBannerService, this.localCmsBannerService);
+  CmsBannerRepositoryImpl(this.remoteCmsBannerService,
+      this.localCmsBannerService, this.cacheConfigurationRepository);
   final RemoteCmsBannerService remoteCmsBannerService;
   final LocalCmsBannerService localCmsBannerService;
+  final CacheConfigurationRepository cacheConfigurationRepository;
   @override
   Future<Either<CmsBannerFailure, CmsBannerModel>> getCmsBanner() async {
     final SharedPreferences myPrefs = await SharedPreferences.getInstance();
     final int secs =
         DateTimeConverter.getSecsDiff(myPrefs.getString('LastApiCall'));
 
-    if (secs <= 30) {
+    final CacheConfigurationDetailsModel cacheConfiguration =
+        await cacheConfigurationRepository.getCacheInterval();
+
+    if (secs <= cacheConfiguration.interval) {
       return localCmsBannerService.getCmsBanner();
     } else {
       return remoteCmsBannerService
