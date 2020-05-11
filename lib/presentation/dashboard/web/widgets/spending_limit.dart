@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:globe_one_poc_project/r.dart';
 
+
+//reusable placeholder to display SpendingLimit
 class SpendingLimitWidget extends StatefulWidget {
   const SpendingLimitWidget({this.isMobileView = false});
   final  bool isMobileView;

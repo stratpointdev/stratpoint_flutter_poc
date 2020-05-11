@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/menu_item.dart';
 
+
+//widget placeholder for view menu(Dashboard, May Plan & Usage, etc)
 class DesktopViewMenu extends StatelessWidget {
   const DesktopViewMenu();
 

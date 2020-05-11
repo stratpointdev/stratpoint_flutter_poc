@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//widget placeholder for plan details(Plan Details, your current plan, etc)
 class DesktopViewPlanDetails extends StatefulWidget {
   @override
   _DesktopViewPlanDetails createState() => _DesktopViewPlanDetails();

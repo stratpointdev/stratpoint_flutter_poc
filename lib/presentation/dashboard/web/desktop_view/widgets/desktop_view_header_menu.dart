@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+
+// widget placeholder for header menu (About Us, Governance, etc)
 class DesktopViewHeaderMenu extends StatelessWidget {
   const DesktopViewHeaderMenu();
 
