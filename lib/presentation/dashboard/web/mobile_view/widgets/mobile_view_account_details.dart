@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// widget that display Account Details(profile,mobile number, duo number, and profile picture)
 class MobileViewAccountDetails extends StatefulWidget {
   const MobileViewAccountDetails({
     this.profile,

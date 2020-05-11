@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//widget for load balance. this was supposed to be in the sprint but was scratch our
 class DesktopViewLoadBalance extends StatefulWidget {
   const DesktopViewLoadBalance(
       {Key key,

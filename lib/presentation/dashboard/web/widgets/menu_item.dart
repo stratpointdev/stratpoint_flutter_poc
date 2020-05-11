@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//reusable widget that used for web/desktop_view/widgets/desktop_view_header_menu
 class MenuItem extends StatelessWidget {
   const MenuItem({
     this.item,

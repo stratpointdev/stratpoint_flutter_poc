@@ -27,6 +27,9 @@ import 'widgets/mobile_view_account_details.dart';
 import 'widgets/mobile_view_header.dart';
 import 'widgets/mobile_view_menu.dart';
 
+
+// the main ui dashboard for web mobile view which display all widgets from web/mobile_view/widgets/
+// and also handle the state for Account details,CMS Banner and Data Usage
 class MobileDashboard extends StatefulWidget {
   const MobileDashboard();
 
