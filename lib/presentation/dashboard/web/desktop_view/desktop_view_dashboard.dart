@@ -24,6 +24,9 @@ import 'widgets/desktop_view_load_rewards.dart';
 import 'widgets/desktop_view_menu.dart';
 import 'widgets/desktop_view_plan_detaiils.dart';
 
+
+// the main ui dashboard for desktop which display all widgets from web/desktop_view/widgets/
+// and also handle the state for Account details,CMS Banner and Data Usage
 class DesktopViewDashboard extends StatefulWidget {
   @override
   _DesktopViewDashboardState createState() => _DesktopViewDashboardState();

@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+//This widget is used to view CMS banners
+//This widget contains PageView and PageView indicator
 class CMSBannerWidget extends StatefulWidget {
   const CMSBannerWidget({
     this.onPageChange,
@@ -31,7 +33,8 @@ class CMSBannerWidget extends StatefulWidget {
 
 class _CMSBannerWidgetState extends State<CMSBannerWidget> {
   int currentPage = 0;
-  final PageController _pageController = PageController();
+  PageController _pageController;
+  Timer timer;
 
   @override
   void initState() {

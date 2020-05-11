@@ -14,6 +14,7 @@ import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/l
 import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/payment_details_repository_impl.dart';
 import 'package:globe_one_poc_project/infrastructure/dashboard/payment_details/remote/remote_payment_details_service.dart';
 
+//condition whether to use package for web or for mobile.
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/dashboard_page.dart'
     if (dart.library.js) 'package:globe_one_poc_project/presentation/dashboard/web/dashboard_page.dart';
 
@@ -29,7 +30,6 @@ import 'infrastructure/dashboard/data_usage/remote/remote_data_usage_service.dar
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-
   @override
   Widget build(BuildContext context) {
     WidgetsFlutterBinding.ensureInitialized();

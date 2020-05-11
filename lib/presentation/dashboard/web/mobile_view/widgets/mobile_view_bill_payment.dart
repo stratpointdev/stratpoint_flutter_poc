@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// widget that display Payment Detail(amount to pay, dueDate, last payment amount,last payment date)
 class MobileViewBillPayment extends StatefulWidget {
   const MobileViewBillPayment(
       {Key key,

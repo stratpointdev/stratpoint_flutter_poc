@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:globe_one_poc_project/r.dart';
 
+//widget placeholder for header (Personal,Business)
 class MobileViewHeader extends StatelessWidget {
   const MobileViewHeader();
 

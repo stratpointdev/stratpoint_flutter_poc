@@ -7,6 +7,7 @@ import 'package:http/http.dart';
 class Authentication {
   final Api api = Api();
 
+  //This method will fetch the access token from the API.
   Future<String> getAccessToken() async {
     final String username =
         await SecureStorageUtil.getString(SecureStorageUtil.accessUserNameKey);

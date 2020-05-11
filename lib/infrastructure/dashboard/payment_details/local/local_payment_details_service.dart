@@ -13,6 +13,8 @@ class LocalPaymentDetailsService {
       intMapStoreFactory.store(PAYMENT_DETAILS);
 
   Future<Database> get _db async => database();
+
+  //Method to open local database
   Future<Database> database() {
     if (!kIsWeb)
       return AppDatabase.instance.database;
@@ -20,6 +22,7 @@ class LocalPaymentDetailsService {
       return databaseFactoryWeb.openDatabase(PAYMENT_DETAILS);
   }
 
+  //Method to insert PaymentDetails object into the local database
   Future<void> insert(PaymentDetailsModel paymentDetailsModel) async {
     try {
       await _paymentDetails.add(await _db, paymentDetailsModel.toJson());
@@ -28,12 +31,14 @@ class LocalPaymentDetailsService {
     }
   }
 
+  //Method to delete PaymentDetails object from the local database
   Future<void> delete() async {
     await _paymentDetails.delete(
       await _db,
     );
   }
 
+  //Method to fetch PaymentDetails object from the local database
   Future<Either<PaymentDetailsFailure, PaymentDetailsModel>>
       getPaymentDetails() async {
     try {

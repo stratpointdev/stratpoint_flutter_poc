@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class RemotePaymentDetailsService {
   final Api api = Api();
 
+  //Method to fetch PaymentDetails object from the API
   Future<Either<PaymentDetailsFailure, PaymentDetailsModel>> getPaymentDetails(
       PaymentDetailsRequestBody paymentDetailsRequestBody) async {
     final Authentication authentication = Authentication();

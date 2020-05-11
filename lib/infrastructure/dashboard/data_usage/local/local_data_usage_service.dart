@@ -14,6 +14,7 @@ class LocalDataUsageService {
 
   Future<Database> get _db async => database();
 
+  //Method to open local database
   Future<Database> database() {
     if (!kIsWeb)
       return AppDatabase.instance.database;
@@ -21,6 +22,7 @@ class LocalDataUsageService {
       return databaseFactoryWeb.openDatabase(DATA_USAGE);
   }
 
+  //Method to insert DataUsage object into the local database
   Future<void> insert(DataUsageModel dataUsageModel) async {
     print('insert');
     try {
@@ -30,6 +32,7 @@ class LocalDataUsageService {
     }
   }
 
+  //Method to delete DataUsage object from the local database
   Future<void> delete() async {
     print('delete');
     try {
@@ -41,6 +44,7 @@ class LocalDataUsageService {
     }
   }
 
+  //Method to fetch the DataUsage object from the local database
   Future<Either<DataUsageFailure, DataUsageModel>> getDataUsage() async {
     try {
       final Finder finder = Finder(limit: 1);

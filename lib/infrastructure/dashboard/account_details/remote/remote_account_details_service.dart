@@ -12,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class RemoteAccountDetailsService {
   final Api api = Api();
 
+  //This method will fetch the AccountDetails from the API.
   Future<Either<AccountDetailsFailures, AccountDetailsModel>> getAccountDetails(
       AccountDetailsRequestBody accountDetailsRequestBody) async {
     final Authentication authentication = Authentication();

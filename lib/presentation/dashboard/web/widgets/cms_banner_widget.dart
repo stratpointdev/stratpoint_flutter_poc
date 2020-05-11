@@ -2,6 +2,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+
+
+// reusable widget that display CMS Banner(List of Images, redirect links);
 class CMSBannerWidget extends StatefulWidget {
   const CMSBannerWidget({
     this.onPageChange,

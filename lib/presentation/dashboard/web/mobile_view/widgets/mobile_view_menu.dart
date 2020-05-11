@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//widget placeholder for view menu(Dashboard, May Plan & Usage, etc)
 class MobileViewMenu extends StatelessWidget {
   const MobileViewMenu();
 

@@ -10,6 +10,7 @@ import 'package:http/http.dart';
 class RemoteCmsBannerService {
   final Api api = Api();
 
+  //Method to fetch CmsBanner object from the API
   Future<Either<CmsBannerFailure, CmsBannerModel>> getCmsBanner() async {
     final String username =
         await SecureStorageUtil.getString(SecureStorageUtil.cmsUserNameKey);
@@ -45,6 +46,8 @@ class RemoteCmsBannerService {
     }
   }
 
+  //Method to fetch the base64 images from the API
+  //This method is only used for web
   Future<String> getCmsBannerImage(String value) async {
     final String username =
         await SecureStorageUtil.getString(SecureStorageUtil.cmsUserNameKey);
@@ -58,15 +61,9 @@ class RemoteCmsBannerService {
     };
     final Uri uri = Uri.https('nameless-tor-61972.herokuapp.com',
         '/banner/image', <String, String>{'imagePath': '$value'});
-    //final Uri uri = Uri.parse(api.getCmsImage());
-    // final Uri newURI = uri.replace(queryParameters: <String, String>{'imagePath': '$value'});
 
     final Response response = await get(uri, headers: headers);
 
-    /*  final Response response = await get(api.getCmsImage(),
-            headers: headers,
-            body: <String, String>{'imagePath': '$value'})
-        .timeout(const Duration(seconds: 30));*/
     if (response.statusCode == 200) {
       return response.body.toString();
     } else {

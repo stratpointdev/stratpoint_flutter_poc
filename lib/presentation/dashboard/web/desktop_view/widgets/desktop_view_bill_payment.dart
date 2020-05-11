@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+
+// widget that display Payment Detail(amount to pay, dueDate, last payment amount,last payment date)
 class DesktopViewBillPayment extends StatefulWidget {
   const DesktopViewBillPayment(
       {Key key,
@@ -23,7 +25,6 @@ class DesktopViewBillPayment extends StatefulWidget {
 }
 
 class _DesktopViewBillPayment extends State<DesktopViewBillPayment> {
-  // static const IconData refresh = IconData(0xe5d5, fontFamily: 'MaterialIcons');
 
   @override
   Widget build(BuildContext context) {
