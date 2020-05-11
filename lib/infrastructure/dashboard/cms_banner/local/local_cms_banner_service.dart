@@ -16,6 +16,7 @@ class LocalCmsBannerService {
 
   Future<Database> get _db async => database();
 
+  //Open our database
   Future<Database> database() {
     if (!kIsWeb)
       return AppDatabase.instance.database;
@@ -23,6 +24,7 @@ class LocalCmsBannerService {
       return databaseFactoryWeb.openDatabase(CMS_BANNER);
   }
 
+  //Method to insert CmsBanner object into the local database
   Future<void> insert(CmsBannerModel cmsBannerModel) async {
     print('insert cms');
     try {
@@ -32,6 +34,7 @@ class LocalCmsBannerService {
     }
   }
 
+  //Method to delete CmsBanner object from the local database.
   Future<void> delete() async {
     print('delete cms');
     try {
@@ -43,6 +46,7 @@ class LocalCmsBannerService {
     }
   }
 
+  //Method to fetch CmsBanner from the local database
   Future<Either<CmsBannerFailure, CmsBannerModel>> getCmsBanner() async {
     try {
       final Finder finder = Finder(limit: 1);

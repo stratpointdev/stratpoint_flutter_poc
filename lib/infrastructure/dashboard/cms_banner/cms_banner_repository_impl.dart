@@ -20,6 +20,8 @@ class CmsBannerRepositoryImpl implements CmsBannerRepository {
   final RemoteCmsBannerService remoteCmsBannerService;
   final LocalCmsBannerService localCmsBannerService;
   final CacheConfigurationRepository cacheConfigurationRepository;
+
+  //This method will check the cache interval config then get the CmsBanner object from our data sources.
   @override
   Future<Either<CmsBannerFailure, CmsBannerModel>> getCmsBanner() async {
     final SharedPreferences myPrefs = await SharedPreferences.getInstance();
@@ -44,6 +46,7 @@ class CmsBannerRepositoryImpl implements CmsBannerRepository {
     }
   }
 
+  //Method to get the list of cms banner for flutter web
   @override
   Future<List<Image>> getCmsBannerImage(Map<String, String> imagePaths) async {
     final List<Image> imageList = <Image>[];
@@ -55,16 +58,19 @@ class CmsBannerRepositoryImpl implements CmsBannerRepository {
     return imageList;
   }
 
+  //Method to call localCmsBannerService.delete() from local data service
   @override
   Future<void> deleteCmsBannerLocal() async {
     return localCmsBannerService.delete();
   }
 
+  //Method to call localCmsBannerService.insert() from local data service
   @override
   Future<void> insertCmsBannerLocal(CmsBannerModel cmsBannerModel) async {
     return localCmsBannerService.insert(cmsBannerModel);
   }
 
+  //Method to decode base64
   Image imageFromBase64String(String base64String) {
     Image image;
 

@@ -24,6 +24,7 @@ import 'package:globe_one_poc_project/r.dart';
 
 import 'widgets/mobile_payment_details_widget.dart';
 
+//This widget is the main widget of mobile dashboard
 class DashBoardPage extends StatefulWidget {
   @override
   _DashBoardPageState createState() => _DashBoardPageState();

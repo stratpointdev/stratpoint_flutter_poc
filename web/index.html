@@ -18,6 +18,21 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+<script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyC2HuFvRdJTPDt4NxuiRqjlb8h3KWq8DJ4",
+    authDomain: "globeonepoc.firebaseapp.com",
+    databaseURL: "https://globeonepoc.firebaseio.com",
+    projectId: "globeonepoc",
+    storageBucket: "globeonepoc.appspot.com",
+    messagingSenderId: "193948618821",
+    appId: "1:193948618821:web:496873cc8e958e2b7d132c"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
