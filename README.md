@@ -8,7 +8,7 @@ Flutter development can be done on macOS, Linux, or Windows. While you can use a
 
 Instructions for setting up your development machine with the Flutter framework can be found [here](https://flutter.dev/docs/get-started/install). The basic steps vary by platform, but for the most part are:
 
-1. Download the installation bundle for your development machine’s operating system to get the latest **stable release (at least v1.12)** of the Flutter SDK 
+1. Download the installation bundle for your development machine’s operating system to get the latest **stable release (at least v1.12)** of the Flutter SDK
 2. Extract the the installation bundle in the desired location
 3. Add the flutter tool to your path
 4. Run the `flutter doctor` command, which installs the Flutter framework including Dart and alerts you to any missing dependencies
@@ -90,13 +90,22 @@ You may now access your assets like this
 Image.asset(R.assetsIcSampleName)
 ```
 
+**_IMPORTANT NOTE_**
+The `secrets.json`; which contains sensitive information would normally not be checked in to the repository and distributed only to the necessary members of the development team in order to ensure a higher level of security around development.
+
+The values are also stored currently in the application inside keychain and keystore secure storage.
+
+However for the purpose of demonstration and easy access to running the Proof of Concept application, we included the sensitive keys already into the repository.
+
+The ideal setup would be the use of an Authentication Server which would provide an access key based on login and two-factor authentication, and not storing the key on the device at all.
+
 #### Coding Standards
 
 We will be using the standard Dart Formatter provided by the Dart SDK.
 
 The documentaion on effective Dart design can be found on this [link](https://dart.dev/guides/language/effective-dart)
 
-## Domain-Driven Design 
+## Domain-Driven Design
 
 *Original source:  [https://resocoder.com/2020/03/09/flutter-firebase-ddd-course-1-domain-driven-design-principles/](https://resocoder.com/2020/03/09/flutter-firebase-ddd-course-1-domain-driven-design-principles/)*
 
