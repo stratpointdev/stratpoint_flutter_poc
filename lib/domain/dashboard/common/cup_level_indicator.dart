@@ -3,8 +3,13 @@ import 'package:flutter/cupertino.dart';
 import '../../../r.dart';
 
 class CupLevelIndicator {
+
+  //method return image asset to appropriate percentage
   static Image cupLevel(double remaining, double total) {
+    //formula to get the percentage for remaining and total data.
     final double percentage = (remaining / total) * 100;
+
+    //after getting the quotient this condition will determine what asset will be return.
     if (percentage == 0.0) {
       return Image.asset(R.assetsImagesDuck0);
     } else if (percentage <= 5.0) {
