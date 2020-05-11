@@ -1,3 +1,6 @@
+/// This entity contains all of the objects
+/// needed for parsing the response of the
+/// Account Details API
 class AccountDetailsModel {
   AccountDetailsModel(this.responseCode, this.detailsByMsisdnResponse);
 

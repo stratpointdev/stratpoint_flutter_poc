@@ -42,7 +42,7 @@ class DesktopViewHeaderMenu extends StatelessWidget {
               child: FittedBox(
                 fit: BoxFit.fitWidth,
                 child: Text(
-                  'Inv`estor',
+                  'Investor',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 12,

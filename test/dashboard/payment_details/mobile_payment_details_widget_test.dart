@@ -3,6 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/mobile_payment_details_widget.dart';
 
 void main() {
+  /// If MobilePaymentDetailsWidget is displayed, it should have
+  /// a payment amount value and due date displayed with it.
   testWidgets(
       'MobilePaymentDetailsWidget should display payment amount and due date',
       (WidgetTester tester) async {

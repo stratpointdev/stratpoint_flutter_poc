@@ -3,7 +3,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/mobile_view/widgets/mobile_view_bill_payment.dart';
 
 void main() {
-  testWidgets('description', (WidgetTester tester) async {
+  /// If MobileViewBillPayment is displayed, it should have
+  /// a payment amount value, due date, last payment amount, and
+  /// last payment date displayed with it.
+  testWidgets(
+      'MobileViewBillPayment should display payment amount value, due date, last payment amount, and last payment date',
+      (WidgetTester tester) async {
     await tester.pumpWidget(const MaterialApp(
       home: Scaffold(
         body: MobileViewBillPayment(

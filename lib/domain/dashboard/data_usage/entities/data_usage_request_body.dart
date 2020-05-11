@@ -1,3 +1,5 @@
+/// This entity represents the Request Body
+/// of the Data Usage API.
 class DataUsageRequestBody {
   DataUsageRequestBody(
       {this.serviceNumber, this.forceRefresh, this.primaryResourceType});

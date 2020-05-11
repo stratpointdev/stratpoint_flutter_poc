@@ -1,3 +1,6 @@
+/// This entity contains all of the objects
+/// needed for parsing the response of the
+/// Data Usage API.
 class DataUsageModel {
   DataUsageModel({this.responseCode, this.promoSubscriptionUsage});
 

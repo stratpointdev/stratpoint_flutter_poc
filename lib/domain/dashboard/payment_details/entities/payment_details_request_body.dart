@@ -1,3 +1,5 @@
+/// This entity represents the Request Body
+/// when calling the Payment Details API.
 class PaymentDetailsRequestBody {
   PaymentDetailsRequestBody(
       {this.msisdn, this.forceRefresh, this.primaryResourceType});

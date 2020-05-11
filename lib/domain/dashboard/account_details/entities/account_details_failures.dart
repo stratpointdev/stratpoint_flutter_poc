@@ -1,3 +1,5 @@
+/// This entity represents the failure response
+/// from the Account Details API.
 class AccountDetailsFailures {
   AccountDetailsFailures({this.code, this.message, this.parameter});
 

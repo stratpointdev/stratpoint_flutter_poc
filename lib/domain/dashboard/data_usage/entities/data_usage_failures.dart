@@ -1,3 +1,5 @@
+/// This entity represents the failure response
+/// from the Data Usage API.
 class DataUsageFailure {
   DataUsageFailure({this.code, this.message, this.parameter});
 

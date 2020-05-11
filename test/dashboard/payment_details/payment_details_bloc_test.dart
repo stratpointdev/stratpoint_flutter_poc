@@ -19,6 +19,8 @@ void main() {
     bloc = PaymentDetailsBloc(mockRepository);
   });
 
+  /// If RefreshEvent is triggered, PaymentDetailsSuccessState
+  /// should be returned with a PaymentDetailsModel.
   test('Successful RefreshEvent should display PaymentSuccessState', () {
     final LastPaymentDt lastPaymentDt = LastPaymentDt(
         amount: '200.03', paymentDate: '2020-04-23T00:00:00+0800');

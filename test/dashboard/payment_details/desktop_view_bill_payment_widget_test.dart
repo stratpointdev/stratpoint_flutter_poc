@@ -3,6 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/web/desktop_view/widgets/desktop_view_bill_payment.dart';
 
 void main() {
+  /// If DesktopViewBillPaymentWidget is displayed, it should have
+  /// a payment amount value, due date, last payment amount, and
+  /// last payment date displayed with it.
   testWidgets(
       'DesktopViewBillPaymentWidget should display payment amount, due date, last payment amount, and last payment date',
       (WidgetTester tester) async {

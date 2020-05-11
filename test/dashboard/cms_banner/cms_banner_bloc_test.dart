@@ -18,6 +18,8 @@ void main() {
     bloc = CmsBannerBloc(mockRepository);
   });
 
+  /// If RefreshCmsBannerEvent is triggered, CmsBannerSuccessState
+  /// should be returned with the imagePaths and the imageLinks.
   test('Successful RefreshCmsBannerEvent should display CmsBannerSuccessState',
       () {
     final Map<String, dynamic> mockCmsResponse = <String, dynamic>{};
