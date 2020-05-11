@@ -1,7 +1,13 @@
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:globe_one_poc_project/infrastructure/dashboard/authentication/secrets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SecureStorageUtil {
+  SecureStorageUtil();
+
   SecureStorageUtil._();
 
   static SecureStorageUtil _secureStorageUtil;
@@ -9,7 +15,6 @@ class SecureStorageUtil {
   static FlutterSecureStorage _storage;
   //For web we used SharedPreferences
   static SharedPreferences _preferences;
-
   //keys
   static String accessUserNameKey = 'accessUserName';
   static String accessTokenPasswordKey = 'accessTokenPassword';
@@ -17,15 +22,9 @@ class SecureStorageUtil {
   static String cmsPasswordKey = 'cmsPassword';
   static String aemUrlKey = 'aemUrl';
   static String dbPasswordKey = 'dbPassword';
-  //value
-  static String accessUserName = 'stratpoint';
-  static String accessTokenPassword = 'KJBRzYM5yA4jHcbd8Zqm74vFWtr7NsDN';
-  static String cmsUserName = 'flutterpoc-stratpoint';
-  static String cmsPassword = 'Str@tp01nt';
-  static String aemUrl = 'https://contentdev.globe.com.ph';
-  static String dbPassword = 'P@55w0rd';
 
-  static Future<void> getInstance(bool isWeb) async {
+  Future<void> getInstance(bool isWeb) async {
+    final Secret secrets = await load();
     if (_secureStorageUtil == null) {
       final SecureStorageUtil secureStorage = SecureStorageUtil._();
 
@@ -33,15 +32,23 @@ class SecureStorageUtil {
 
       _secureStorageUtil = secureStorage;
     }
-    SecureStorageUtil.putString(accessUserNameKey, accessUserName);
-    SecureStorageUtil.putString(accessTokenPasswordKey, accessTokenPassword);
-    SecureStorageUtil.putString(cmsUserNameKey, cmsUserName);
-    SecureStorageUtil.putString(cmsPasswordKey, cmsPassword);
-    SecureStorageUtil.putString(aemUrlKey, aemUrl);
-    SecureStorageUtil.putString(dbPasswordKey, dbPassword);
+    SecureStorageUtil.putString(
+        accessUserNameKey, secrets.accessUserName.toString());
+    SecureStorageUtil.putString(
+        accessTokenPasswordKey, secrets.accessTokenPassword.toString());
+    SecureStorageUtil.putString(cmsUserNameKey, secrets.cmsUserName.toString());
+    SecureStorageUtil.putString(cmsPasswordKey, secrets.cmsPassword.toString());
+    SecureStorageUtil.putString(aemUrlKey, secrets.aemUrl.toString());
+    SecureStorageUtil.putString(dbPasswordKey, secrets.dbPassword.toString());
 
     return _secureStorageUtil;
   }
+
+  Future<Secret> load() async =>
+      rootBundle.loadStructuredData<Secret>('assets/secrets.json',
+          (String jsonStr) async {
+        return Secret.fromJson(json.decode(jsonStr) as Map<String, dynamic>);
+      });
 
   Future<void> _init(bool isWeb) async {
     if (isWeb) {
