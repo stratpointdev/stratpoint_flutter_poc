@@ -91,6 +91,7 @@ Image.asset(R.assetsIcSampleName)
 ```
 
 **_IMPORTANT NOTE_**
+
 The `secrets.json`; which contains sensitive information would normally not be checked in to the repository and distributed only to the necessary members of the development team in order to ensure a higher level of security around development.
 
 The values are also stored currently in the application inside keychain and keystore secure storage.
