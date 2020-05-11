@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 
+//This widget is used to display Data usage
+//This widget contains a Image widget to display the glass level indicator
 class DataUsageWidget extends StatelessWidget {
   const DataUsageWidget({
     this.isMobile = false,

@@ -1,3 +1,5 @@
+/// This entity represents the failure response
+/// of the CMS Banner API
 class CmsBannerFailure {
   CmsBannerFailure({this.code, this.message});
   factory CmsBannerFailure.fromJson(Map<String, dynamic> json) {

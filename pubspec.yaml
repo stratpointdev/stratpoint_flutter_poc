@@ -59,6 +59,7 @@ flutter:
     - assets/images/webspeedlimit.png
     - assets/images/webmobileview_speedlimit.png
     # assets-generator-end
+    - assets/secrets.json
   
   fonts:
     - family: FSElliotPro

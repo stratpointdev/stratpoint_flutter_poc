@@ -19,6 +19,8 @@ void main() {
     bloc = AccountDetailsBloc(mockRepository);
   });
 
+  /// If RefreshAccountDetailsEvent is triggered, AccountDetailsSuccessState
+  /// should be returned with an AccountDetailsModel.
   test(
       'Successful RefreshAccountDetailsEvent should display AccountDetailsSuccessState',
       () {

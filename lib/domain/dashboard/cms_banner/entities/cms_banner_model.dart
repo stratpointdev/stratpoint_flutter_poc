@@ -1,3 +1,6 @@
+/// This entity contains all of the objects
+/// needed for parsing the response of the
+/// CMS Banner API.
 class CmsBannerModel {
   CmsBannerModel({this.cms});
 

@@ -8,20 +8,27 @@ import 'package:globe_one_poc_project/domain/dashboard/account_details/entities/
 import 'account_details_event.dart';
 import 'account_details_state.dart';
 
+//State management that handle Account Detail Module(both presentation and domain layer)
 class AccountDetailsBloc
     extends Bloc<AccountDetailsEvent, AccountDetailsState> {
   AccountDetailsBloc(this.accountDetailsRepository);
   final AccountDetailsRepository accountDetailsRepository;
+
+  // the state before any events have been processed
   @override
   AccountDetailsState get initialState => AccountDetailsInitialState();
 
+  //is called whenever an event related to AccountDetail is added
   @override
   Stream<AccountDetailsState> mapEventToState(
       AccountDetailsEvent event) async* {
+
+    // event that first converted into a loading state(which represent as a circularProgressDialog in presentation layer)
     if (event is InitialAccountDetailsEvent) {
       yield AccountDetailsLoadingState();
     }
 
+    // event that get AccountDetails in domain layer then converted into a state(Success or Failed)
     if (event is RefreshAccountDetailsEvent ||
         event is InitialAccountDetailsEvent) {
       final Either<AccountDetailsFailures, AccountDetailsModel> result =

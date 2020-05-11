@@ -10,6 +10,7 @@ import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RemoteDataUsageService {
+  //Method to fetch the DataUsage object from the API
   Future<Either<DataUsageFailure, DataUsageModel>> getDataUsage(
       DataUsageRequestBody dataUsageRequestBody) async {
     final Api api = Api();

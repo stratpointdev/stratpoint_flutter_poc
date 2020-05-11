@@ -1,3 +1,6 @@
+/// This entity contains all of the objects
+/// needed for parsing the response of the
+/// Payment Details API
 class PaymentDetailsModel {
   PaymentDetailsModel(
       this.responseCode, this.outstandingBalanceByMsisdnResponse);

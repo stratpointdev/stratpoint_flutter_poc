@@ -18,6 +18,8 @@ void main() {
     bloc = DataUsageBloc(mockRepository);
   });
 
+  /// If RefreshDataUsageEvent is triggered, DataUsageSuccessState
+  /// should be returned with a DataUsageModel.
   test('Successful RefreshDataUsageEvent should display DataUsageSuccessState',
       () {
     final MainData mainData = MainData(

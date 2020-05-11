@@ -4,6 +4,7 @@ import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usag
 import 'package:globe_one_poc_project/application/dashboard/data_usage/data_usage_state.dart';
 import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 
+// reusable widget that display DataUsageWidget(cup-level image, data remaining, total allocation)
 class DataUsageWidget extends StatelessWidget {
   const DataUsageWidget({
     this.isMobileView = false,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+
+// widget placeholder for header menu (About Us, Governance, etc)
 class DesktopViewHeaderMenu extends StatelessWidget {
   const DesktopViewHeaderMenu();
 
@@ -42,7 +44,7 @@ class DesktopViewHeaderMenu extends StatelessWidget {
               child: FittedBox(
                 fit: BoxFit.fitWidth,
                 child: Text(
-                  'Inv`estor',
+                  'Investor',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 12,

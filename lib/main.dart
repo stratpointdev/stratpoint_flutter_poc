@@ -7,7 +7,8 @@ import 'app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SecureStorageUtil.getInstance(kIsWeb);
+  final SecureStorageUtil secureStorageUtil = SecureStorageUtil();
+  await secureStorageUtil.getInstance(kIsWeb);
   HttpOverrides.global = MyHttpOverrides();
 
   runApp(MyApp());

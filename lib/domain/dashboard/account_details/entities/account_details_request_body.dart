@@ -1,3 +1,5 @@
+/// This entity represents the Request Body
+/// when calling the Account Details API.
 class AccountDetailsRequestBody {
   AccountDetailsRequestBody(
       {this.msisdn, this.forceRefresh, this.primaryResourceType});

@@ -4,6 +4,9 @@ import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/data
 import 'package:globe_one_poc_project/r.dart';
 
 void main() {
+  /// If DataUsageWidget is displayed, it should have
+  /// time, remaining data, data allocation, refill date, and
+  /// cup level indicator displayed with it.
   testWidgets('DataUsageWidget should display Data Plan Details',
       (WidgetTester tester) async {
     await tester.pumpWidget(MaterialApp(

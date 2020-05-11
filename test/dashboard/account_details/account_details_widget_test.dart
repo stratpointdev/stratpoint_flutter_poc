@@ -3,6 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/mobile/widgets/account_details_widget.dart';
 
 void main() {
+  /// If AccountDetailsWidget is displayed, it should have
+  /// a username, mobile number, and duo number displayed with it.
   testWidgets(
       'AccountDetailsWidget should display username, mobile number, and duo number',
       (WidgetTester tester) async {

@@ -7,6 +7,9 @@ import 'package:globe_one_poc_project/presentation/dashboard/web/desktop_view/wi
 import 'package:globe_one_poc_project/presentation/dashboard/web/widgets/reward_points_widget.dart';
 import 'package:globe_one_poc_project/presentation/dashboard/common/progress_indicator_widget.dart';
 
+
+
+//widget that handle the state of payment detail and load both web/desktop_view/widgets/desktop_view_bill_payment and  web/widgets/reward_points_widget
 class DesktopViewLoadRewards extends StatefulWidget {
   const DesktopViewLoadRewards();
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:globe_one_poc_project/presentation/presentation_util/media_query_util.dart';
 
+//This widget is used to display Account Details
 class AccountDetailsWidget extends StatefulWidget {
   const AccountDetailsWidget(
       {this.userName, this.userMobileNumber, this.userDuoNumber});

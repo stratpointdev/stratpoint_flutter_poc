@@ -1,3 +1,5 @@
+/// This entity represents the Failure response
+/// from the Payment Details API.
 class PaymentDetailsFailure {
   PaymentDetailsFailure({this.code, this.message, this.parameter});
 

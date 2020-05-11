@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../r.dart';
 
+//reusable placeholder widget that display reward points(Reward points,List of assetImages)
 class RewardPointsWidget extends StatelessWidget {
   const RewardPointsWidget({this.points = 197, this.hasTitlePadding = false});
   final int points;

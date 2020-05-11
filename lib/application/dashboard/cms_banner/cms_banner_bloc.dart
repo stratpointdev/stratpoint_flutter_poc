@@ -8,19 +8,26 @@ import 'package:globe_one_poc_project/domain/dashboard/cms_banner/cms_banner_rep
 import 'package:globe_one_poc_project/domain/dashboard/cms_banner/entities/cms_banner_failure.dart';
 import 'package:globe_one_poc_project/domain/dashboard/cms_banner/entities/cms_banner_model.dart';
 
+//State management that handle CMS Banner Module(both presentation and domain layer)
 class CmsBannerBloc extends Bloc<CmsBannerEvent, CmsBannerState> {
   CmsBannerBloc(this.cmsBannerRepository);
 
+  // the state before any events have been processed
   @override
   CmsBannerState get initialState => CmsBannerInitialState();
 
   final CmsBannerRepository cmsBannerRepository;
 
+  //is called whenever an event related to CMSBanner is added
   @override
   Stream<CmsBannerState> mapEventToState(CmsBannerEvent event) async* {
+
+    // event that first converted into a loading state(which represent as a circularProgressDialog in presentation layer)
     if (event is InitialCmsBannerEvent) {
       yield CmsBannerLoadingState();
     }
+
+    // event that get CMSBanner in domain layer then converted into a state( Success or Failed)
     if (event is RefreshCmsBannerEvent || event is InitialCmsBannerEvent) {
       final Either<CmsBannerFailure, CmsBannerModel> value =
           await cmsBannerRepository.getCmsBanner();
