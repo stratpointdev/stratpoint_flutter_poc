@@ -1,8 +1,11 @@
 class GBConverter {
-  static String convert(int num) {
-    const int marker = 1000;
-    const int gigaBytes = marker * marker;
 
+// method used to convert kilobytes(num) into gigabytes
+  static String convert(int num) {
+    //marker represent the size for megabyte
+    const int marker = 1024;
+    const int gigaBytes = marker * marker;
+   //formula to convert kilobytes into gigabytes and added 1 fix decimal place.
     return (num / gigaBytes).toStringAsFixed(1) + ' GB';
   }
 }
